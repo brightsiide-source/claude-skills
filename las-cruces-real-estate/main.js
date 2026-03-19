@@ -109,19 +109,32 @@ if (form) {
     }
 
     if (isValid) {
-      // Collect form data
+      // Collect form data and submit to Netlify Forms
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
 
-      // Log submission (replace with actual backend endpoint)
-      console.log('Form submitted:', data);
-
-      // Show success message
-      form.style.display = 'none';
-      formSuccess.style.display = 'block';
-
-      // Scroll to success message
-      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          formSuccess.style.display = 'block';
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get My Free Cash Offer →';
+        alert('Something went wrong. Please try again or call us directly.');
+      });
     }
   });
 }
