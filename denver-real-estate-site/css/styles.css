@@ -145,7 +145,8 @@ input, select, textarea {
   font-weight: 700;
   color: var(--white);
 }
-.logo-icon { color: var(--teal); font-size: 1.5rem; }
+.logo-icon { color: var(--teal); font-size: 1.5rem; display: flex; align-items: center; }
+.logo-icon svg { flex-shrink: 0; }
 .logo-accent { color: var(--teal); }
 .nav-menu {
   display: flex;
