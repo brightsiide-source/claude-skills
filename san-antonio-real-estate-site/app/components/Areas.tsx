@@ -68,7 +68,7 @@ export default function Areas() {
           </div>
 
           <div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
               {areas.map((area) => (
                 <div
                   key={area}
@@ -77,6 +77,20 @@ export default function Areas() {
                   {area}
                 </div>
               ))}
+            </div>
+
+            {/* Google Maps Embed — San Antonio service area */}
+            <div className="rounded-xl overflow-hidden border border-silver/50 shadow-sm">
+              <iframe
+                title="SA Cash Home Buyers service area — San Antonio, TX"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d222355.07104045655!2d-98.63737842968749!3d29.45876805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c58af04d00eaf%3A0x856e13b10a016bc!2sSan%20Antonio%2C%20TX!5e0!3m2!1sen!2sus!4v1711200000000!5m2!1sen!2sus"
+                width="100%"
+                height="280"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>

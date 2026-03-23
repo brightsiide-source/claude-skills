@@ -1,0 +1,21 @@
+{
+  "name": "SA Cash Home Buyers",
+  "short_name": "SA Cash Buyers",
+  "description": "We buy houses for cash in San Antonio, TX. Fast closings, no repairs, no fees.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d9488",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
