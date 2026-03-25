@@ -1,0 +1,13 @@
+Lead Status,Property Street Address,Property City,Property State,Property Zip,Email Address,First Name,Last Name,Lead Created Date,Offer Price,Offer Date,Under Contract Price,Under Contract Date
+Attempting Contact,123 Main Street,Houston,TX,77001,john.doe@example.com,John,Doe,2026-03-20,,,
+Attempting Contact,456 Oak Avenue,Dallas,TX,75201,jane.smith@example.com,Jane,Smith,2026-03-01,,,
+Contact Made - Follow Up,789 Elm Boulevard,Austin,TX,73301,bob.jones@example.com,Bob,Jones,2026-03-10,,,
+Contact Made - Follow Up,321 Pine Drive,San Antonio,TX,78201,alice.brown@example.com,Alice,Brown,2026-02-15,,,
+Qualified,555 Cedar Court,Houston,TX,77002,charlie.wilson@example.com,Charlie,Wilson,2026-03-05,,,
+Negotiation,777 Birch Lane,Dallas,TX,75202,diana.garcia@example.com,Diana,Garcia,2026-02-01,,,
+Offers Made,999 Maple Road,Austin,TX,73302,frank.miller@example.com,Frank,Miller,2026-03-15,$185000,2026-03-15,,
+Under Contract,111 Walnut Circle,Houston,TX,77003,grace.taylor@example.com,Grace,Taylor,2026-03-01,,$175000,2026-03-20
+Warm Lead,222 Spruce Terrace,Dallas,TX,75203,henry.anderson@example.com,Henry,Anderson,2026-02-20,,,
+Dead Lead,333 Ash Trail,San Antonio,TX,78202,irene.thomas@example.com,Irene,Thomas,2026-01-15,,,
+New Leads,444 Willow Way,Austin,TX,73303,james.jackson@example.com,James,Jackson,2026-03-24,,,
+Referred To Agent,666 Hickory Parkway,Houston,TX,77004,karen.white@example.com,Karen,White,2026-03-10,,,
