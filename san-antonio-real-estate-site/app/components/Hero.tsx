@@ -1,4 +1,31 @@
+"use client";
+
+import { useState, FormEvent } from "react";
+
 export default function Hero() {
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+      });
+      setSubmitted(true);
+    } catch {
+      alert("Something went wrong. Please call us directly at (210) 555-1234.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <section className="relative min-h-screen flex items-center bg-adobe pt-16">
       {/* Background pattern */}
@@ -82,64 +109,81 @@ export default function Hero() {
 
           {/* Right side - Quick form */}
           <div className="bg-white rounded-xl shadow-2xl p-8 lg:ml-8">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-adobe mb-2">Get Your Cash Offer Today</h2>
-              <p className="text-sand-dark text-sm">Fill out this quick form and we&apos;ll contact you within 24 hours</p>
-            </div>
-            <form name="quick-offer" method="POST" data-netlify="true" className="space-y-4">
-              <input type="hidden" name="form-name" value="quick-offer" />
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Full Name"
-                  className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
-                />
+            {submitted ? (
+              <div className="text-center py-12">
+                <svg className="w-16 h-16 text-terra mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-2xl font-bold text-adobe mb-2">We Got Your Info!</h3>
+                <p className="text-sand-dark">We&apos;ll reach out within 24 hours with your cash offer.</p>
               </div>
-              <div>
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Property Address in San Antonio"
-                  className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
-                />
-              </div>
-              <div>
-                <select name="timeline" className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
-                  <option value="">How soon do you need to sell?</option>
-                  <option value="asap">ASAP</option>
-                  <option value="30">Within 30 Days</option>
-                  <option value="60">Within 60 Days</option>
-                  <option value="90">Within 90 Days</option>
-                  <option value="flexible">Flexible</option>
-                </select>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-terra hover:bg-terra-dark text-white py-4 rounded-md text-lg font-bold transition-colors"
-              >
-                Get My Free Cash Offer &rarr;
-              </button>
-              <p className="text-xs text-sand-dark text-center">
-                No obligation. No spam. Your info stays private.
-              </p>
-            </form>
+            ) : (
+              <>
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-bold text-adobe mb-2">Get Your Cash Offer Today</h2>
+                  <p className="text-sand-dark text-sm">Fill out this quick form and we&apos;ll contact you within 24 hours</p>
+                </div>
+                <form name="quick-offer" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-4">
+                  <input type="hidden" name="form-name" value="quick-offer" />
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="Your Full Name"
+                      className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      placeholder="Phone Number"
+                      className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="Email Address"
+                      className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="address"
+                      required
+                      placeholder="Property Address in San Antonio"
+                      className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <select name="timeline" className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
+                      <option value="">How soon do you need to sell?</option>
+                      <option value="asap">ASAP</option>
+                      <option value="30">Within 30 Days</option>
+                      <option value="60">Within 60 Days</option>
+                      <option value="90">Within 90 Days</option>
+                      <option value="flexible">Flexible</option>
+                    </select>
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full bg-terra hover:bg-terra-dark disabled:opacity-50 text-white py-4 rounded-md text-lg font-bold transition-colors"
+                  >
+                    {submitting ? "Sending..." : "Get My Free Cash Offer \u2192"}
+                  </button>
+                  <p className="text-xs text-sand-dark text-center">
+                    No obligation. No spam. Your info stays private.
+                  </p>
+                </form>
+              </>
+            )}
           </div>
         </div>
       </div>
