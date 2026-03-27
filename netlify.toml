@@ -1,5 +1,6 @@
 [build]
-  publish = "bds-lawns-website"
+  base = "bds-lawns-website"
+  publish = "."
 
 [[headers]]
   for = "/*"
