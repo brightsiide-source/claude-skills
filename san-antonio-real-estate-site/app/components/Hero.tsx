@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-black pt-16">
+    <section className="relative min-h-screen flex items-center bg-adobe pt-16">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -15,18 +15,18 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div>
-            <div className="inline-flex items-center gap-2 bg-teal/10 border border-teal/30 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
-              <span className="text-teal text-sm font-medium">Serving San Antonio &amp; Surrounding Areas</span>
+            <div className="inline-flex items-center gap-2 bg-terra/10 border border-terra/30 rounded-full px-4 py-1.5 mb-6">
+              <span className="w-2 h-2 bg-terra rounded-full animate-pulse" />
+              <span className="text-terra-light text-sm font-medium">Serving San Antonio &amp; Surrounding Areas</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
               We Buy Houses in{" "}
-              <span className="text-teal">San Antonio</span>{" "}
+              <span className="text-terra">San Antonio</span>{" "}
               for Cash
             </h1>
 
-            <p className="text-xl text-silver-dark mb-4 max-w-xl">
+            <p className="text-xl text-sand mb-4 max-w-xl">
               Get a fair, no-obligation cash offer on your home in as little as <strong className="text-white">24 hours</strong>. Close in <strong className="text-white">30 days or less</strong>.
             </p>
 
@@ -37,8 +37,8 @@ export default function Hero() {
                 "No agents, no commissions, no fees",
                 "Any condition, any situation",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-silver">
-                  <svg className="w-5 h-5 text-teal shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <li key={item} className="flex items-center gap-3 text-sand">
+                  <svg className="w-5 h-5 text-river shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <span>{item}</span>
@@ -49,7 +49,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#get-offer"
-                className="bg-teal hover:bg-teal-dark text-white px-8 py-4 rounded-md text-lg font-bold transition-colors text-center"
+                className="bg-terra hover:bg-terra-dark text-white px-8 py-4 rounded-md text-lg font-bold transition-colors text-center"
               >
                 Get My Free Cash Offer
               </a>
@@ -64,15 +64,15 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="mt-8 flex items-center gap-6 text-silver-dark text-sm">
+            <div className="mt-8 flex items-center gap-6 text-sand-dark text-sm">
               <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
                 <span>200+ Homes Purchased</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
                 <span>4.9/5 Star Rating</span>
@@ -83,40 +83,40 @@ export default function Hero() {
           {/* Right side - Quick form */}
           <div className="bg-white rounded-xl shadow-2xl p-8 lg:ml-8">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-black mb-2">Get Your Cash Offer Today</h2>
-              <p className="text-silver-dark text-sm">Fill out this quick form and we&apos;ll contact you within 24 hours</p>
+              <h2 className="text-2xl font-bold text-adobe mb-2">Get Your Cash Offer Today</h2>
+              <p className="text-sand-dark text-sm">Fill out this quick form and we&apos;ll contact you within 24 hours</p>
             </div>
             <form className="space-y-4">
               <div>
                 <input
                   type="text"
                   placeholder="Your Full Name"
-                  className="w-full px-4 py-3 rounded-md border border-silver bg-silver-light text-black placeholder:text-silver-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
               </div>
               <div>
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="w-full px-4 py-3 rounded-md border border-silver bg-silver-light text-black placeholder:text-silver-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
               </div>
               <div>
                 <input
                   type="email"
                   placeholder="Email Address"
-                  className="w-full px-4 py-3 rounded-md border border-silver bg-silver-light text-black placeholder:text-silver-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
               </div>
               <div>
                 <input
                   type="text"
                   placeholder="Property Address in San Antonio"
-                  className="w-full px-4 py-3 rounded-md border border-silver bg-silver-light text-black placeholder:text-silver-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
               </div>
               <div>
-                <select className="w-full px-4 py-3 rounded-md border border-silver bg-silver-light text-silver-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <select className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
                   <option value="">How soon do you need to sell?</option>
                   <option value="asap">ASAP</option>
                   <option value="30">Within 30 Days</option>
@@ -127,11 +127,11 @@ export default function Hero() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-teal hover:bg-teal-dark text-white py-4 rounded-md text-lg font-bold transition-colors"
+                className="w-full bg-terra hover:bg-terra-dark text-white py-4 rounded-md text-lg font-bold transition-colors"
               >
                 Get My Free Cash Offer &rarr;
               </button>
-              <p className="text-xs text-silver-dark text-center">
+              <p className="text-xs text-sand-dark text-center">
                 No obligation. No spam. Your info stays private.
               </p>
             </form>

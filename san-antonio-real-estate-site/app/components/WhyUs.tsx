@@ -59,13 +59,13 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="py-24 bg-black">
+    <section id="why-us" className="py-24 bg-adobe">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-            Why Homeowners Choose <span className="text-teal">Us</span>
+            Why Homeowners Choose <span className="text-terra">Us</span>
           </h2>
-          <p className="text-lg text-silver-dark max-w-2xl mx-auto">
+          <p className="text-lg text-sand max-w-2xl mx-auto">
             We&apos;ve helped hundreds of San Antonio homeowners sell fast for fair cash — and we can help you too.
           </p>
         </div>
@@ -74,13 +74,13 @@ export default function WhyUs() {
           {benefits.map((benefit) => (
             <div
               key={benefit.title}
-              className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-teal/50 transition-colors group"
+              className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-terra/50 transition-colors group"
             >
-              <div className="text-teal mb-4 group-hover:scale-110 transition-transform">
+              <div className="text-river mb-4 group-hover:scale-110 transition-transform">
                 {benefit.icon}
               </div>
               <h3 className="text-lg font-bold text-white mb-2">{benefit.title}</h3>
-              <p className="text-silver-dark text-sm leading-relaxed">{benefit.description}</p>
+              <p className="text-sand-dark text-sm leading-relaxed">{benefit.description}</p>
             </div>
           ))}
         </div>
@@ -92,9 +92,9 @@ export default function WhyUs() {
           </h3>
           <div className="max-w-3xl mx-auto bg-white/5 rounded-xl border border-white/10 overflow-hidden">
             <div className="grid grid-cols-3 text-center">
-              <div className="p-4 bg-white/5 border-b border-white/10 font-bold text-silver-dark text-sm" />
-              <div className="p-4 bg-teal/20 border-b border-teal/30 font-bold text-teal text-sm">Sell to Us</div>
-              <div className="p-4 bg-white/5 border-b border-white/10 font-bold text-silver-dark text-sm">Traditional Agent</div>
+              <div className="p-4 bg-white/5 border-b border-white/10 font-bold text-sand-dark text-sm" />
+              <div className="p-4 bg-terra/20 border-b border-terra/30 font-bold text-terra text-sm">Sell to Us</div>
+              <div className="p-4 bg-white/5 border-b border-white/10 font-bold text-sand-dark text-sm">Traditional Agent</div>
             </div>
             {[
               ["Commissions / Fees", "None", "Up to 6%"],
@@ -106,8 +106,8 @@ export default function WhyUs() {
             ].map(([label, us, agent]) => (
               <div key={label} className="grid grid-cols-3 text-center border-b border-white/5 last:border-0">
                 <div className="p-4 text-white text-sm font-medium text-left">{label}</div>
-                <div className="p-4 bg-teal/5 text-teal text-sm font-semibold">{us}</div>
-                <div className="p-4 text-silver-dark text-sm">{agent}</div>
+                <div className="p-4 bg-terra/5 text-terra text-sm font-semibold">{us}</div>
+                <div className="p-4 text-sand-dark text-sm">{agent}</div>
               </div>
             ))}
           </div>

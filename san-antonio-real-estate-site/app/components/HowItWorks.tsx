@@ -36,13 +36,13 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-silver-light">
+    <section id="how-it-works" className="py-24 bg-limestone">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black mb-4">
-            How It Works — <span className="text-teal">3 Simple Steps</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-adobe mb-4">
+            How It Works — <span className="text-terra">3 Simple Steps</span>
           </h2>
-          <p className="text-lg text-silver-dark max-w-2xl mx-auto">
+          <p className="text-lg text-sand-dark max-w-2xl mx-auto">
             Selling your house doesn&apos;t have to be stressful. We&apos;ve simplified the process to get you cash fast.
           </p>
         </div>
@@ -51,14 +51,14 @@ export default function HowItWorks() {
           {steps.map((step) => (
             <div
               key={step.number}
-              className="relative bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow border border-silver/50 group"
+              className="relative bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow border border-limestone-dark group"
             >
-              <div className="absolute -top-4 left-8 bg-teal text-white text-sm font-bold px-3 py-1 rounded-full">
+              <div className="absolute -top-4 left-8 bg-terra text-white text-sm font-bold px-3 py-1 rounded-full">
                 Step {step.number}
               </div>
-              <div className="text-teal mb-4 mt-2">{step.icon}</div>
-              <h3 className="text-xl font-bold text-black mb-3">{step.title}</h3>
-              <p className="text-silver-dark leading-relaxed">{step.description}</p>
+              <div className="text-river mb-4 mt-2">{step.icon}</div>
+              <h3 className="text-xl font-bold text-adobe mb-3">{step.title}</h3>
+              <p className="text-sand-dark leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>
@@ -66,7 +66,7 @@ export default function HowItWorks() {
         <div className="text-center mt-12">
           <a
             href="#get-offer"
-            className="inline-flex items-center gap-2 bg-black hover:bg-black/80 text-white px-8 py-4 rounded-md text-lg font-bold transition-colors"
+            className="inline-flex items-center gap-2 bg-adobe hover:bg-adobe-light text-white px-8 py-4 rounded-md text-lg font-bold transition-colors"
           >
             Start the Process
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

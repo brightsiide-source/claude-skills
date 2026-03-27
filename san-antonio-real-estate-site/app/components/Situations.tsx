@@ -14,10 +14,10 @@ export default function Situations() {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black mb-4">
-            We Buy Houses in <span className="text-teal">Any Situation</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-adobe mb-4">
+            We Buy Houses in <span className="text-terra">Any Situation</span>
           </h2>
-          <p className="text-lg text-silver-dark max-w-2xl mx-auto">
+          <p className="text-lg text-sand-dark max-w-2xl mx-auto">
             No matter what you&apos;re going through, we&apos;ve seen it before and we can help. No judgment — just fair cash offers.
           </p>
         </div>
@@ -26,12 +26,12 @@ export default function Situations() {
           {situations.map((situation) => (
             <div
               key={situation.title}
-              className="border border-silver/50 rounded-lg p-5 hover:border-teal/50 hover:shadow-md transition-all group"
+              className="border border-limestone-dark rounded-lg p-5 hover:border-terra/50 hover:shadow-md transition-all group"
             >
-              <h3 className="font-bold text-black mb-1 group-hover:text-teal transition-colors">
+              <h3 className="font-bold text-adobe mb-1 group-hover:text-terra transition-colors">
                 {situation.title}
               </h3>
-              <p className="text-silver-dark text-sm">{situation.description}</p>
+              <p className="text-sand-dark text-sm">{situation.description}</p>
             </div>
           ))}
         </div>

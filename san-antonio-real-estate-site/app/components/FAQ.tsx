@@ -44,10 +44,10 @@ export default function FAQ() {
     <section id="faq" className="py-24 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black mb-4">
-            Frequently Asked <span className="text-teal">Questions</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-adobe mb-4">
+            Frequently Asked <span className="text-terra">Questions</span>
           </h2>
-          <p className="text-lg text-silver-dark">
+          <p className="text-lg text-sand-dark">
             Got questions? We&apos;ve got answers.
           </p>
         </div>
@@ -56,15 +56,15 @@ export default function FAQ() {
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="border border-silver/50 rounded-lg overflow-hidden"
+              className="border border-limestone-dark rounded-lg overflow-hidden"
             >
               <button
-                className="w-full flex items-center justify-between p-5 text-left hover:bg-silver-light transition-colors"
+                className="w-full flex items-center justify-between p-5 text-left hover:bg-limestone transition-colors"
                 onClick={() => setOpen(open === i ? null : i)}
               >
-                <span className="font-semibold text-black pr-4">{faq.q}</span>
+                <span className="font-semibold text-adobe pr-4">{faq.q}</span>
                 <svg
-                  className={`w-5 h-5 text-teal shrink-0 transition-transform ${
+                  className={`w-5 h-5 text-terra shrink-0 transition-transform ${
                     open === i ? "rotate-180" : ""
                   }`}
                   fill="none"
@@ -75,7 +75,7 @@ export default function FAQ() {
                 </svg>
               </button>
               {open === i && (
-                <div className="px-5 pb-5 text-silver-dark leading-relaxed">
+                <div className="px-5 pb-5 text-sand-dark leading-relaxed">
                   {faq.a}
                 </div>
               )}
