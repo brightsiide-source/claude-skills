@@ -1,21 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
-
-const heading = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-  weight: ["600", "700", "800"],
-});
-
-const body = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "S&C Exteriors | Roofing, Siding, Gutters & Concrete | Johnston, Iowa",
@@ -46,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${heading.variable} ${body.variable}`}>
+    <html lang="en">
       <body className="font-body text-gray-800 antialiased">
         <Header />
         <main className="pt-[108px]">{children}</main>
