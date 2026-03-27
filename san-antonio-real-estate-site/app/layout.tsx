@@ -179,7 +179,7 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#C2704E" />
+        <meta name="theme-color" content="#38BDF8" />
         <meta name="geo.region" content="US-TX" />
         <meta name="geo.placename" content="San Antonio" />
         <meta name="geo.position" content="29.4241;-98.4936" />

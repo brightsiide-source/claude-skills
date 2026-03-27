@@ -2,18 +2,18 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #2C1A0E;
-  --terra: #C2704E;
-  --terra-dark: #A85A3A;
-  --terra-light: #D4886A;
-  --river: #2A9D8F;
-  --adobe: #3D2B1F;
-  --adobe-light: #5C4033;
-  --limestone: #F5F0E8;
-  --limestone-dark: #E8DFD3;
-  --sand: #C4B5A3;
-  --sand-dark: #9A8B78;
-  --gold: #E0A526;
+  --foreground: #0a0a0a;
+  --terra: #38BDF8;
+  --terra-dark: #0EA5E9;
+  --terra-light: #7DD3FC;
+  --river: #38BDF8;
+  --adobe: #000000;
+  --adobe-light: #1a1a1a;
+  --limestone: #F3F4F6;
+  --limestone-dark: #E5E7EB;
+  --sand: #C4CED4;
+  --sand-dark: #9CA3AF;
+  --gold: #FBBF24;
 }
 
 @theme inline {
