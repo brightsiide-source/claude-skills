@@ -3,19 +3,19 @@
   <g transform="translate(0, 2)">
     <!-- House shape -->
     <path d="M22 16 L4 30 L8 30 L8 44 L36 44 L36 30 L40 30 Z"
-          stroke="#14b8a6" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+          stroke="#6b8f71" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
     <!-- Door -->
-    <rect x="17" y="30" width="10" height="14" rx="1.5" fill="#14b8a6" opacity="0.85"/>
+    <rect x="17" y="30" width="10" height="14" rx="1.5" fill="#c77d4a" opacity="0.85"/>
     <!-- Dollar sign in door -->
     <path d="M22 33 L22 41 M20 35.5 C20 34.2 21 33.5 22 33.5 C23 33.5 24 34 24 35 C24 36.5 20 36.5 20 38 C20 39 21 39.5 22 39.5 C23 39.5 24 38.8 24 37.5"
-          stroke="#0a0a0a" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+          stroke="#0f1419" stroke-width="1.2" stroke-linecap="round" fill="none"/>
     <!-- Window -->
-    <rect x="27" y="24" width="5" height="5" rx="0.5" fill="#14b8a6" opacity="0.4"/>
+    <rect x="27" y="24" width="5" height="5" rx="0.5" fill="#6b8f71" opacity="0.4"/>
   </g>
   <!-- Text: Colorado -->
   <text x="50" y="22" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#ffffff" letter-spacing="0.5">Colorado</text>
-  <!-- Text: Cash -->
-  <text x="131" y="22" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#14b8a6" letter-spacing="0.5">Cash</text>
+  <!-- Text: Cash (copper accent) -->
+  <text x="131" y="22" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#c77d4a" letter-spacing="0.5">Cash</text>
   <!-- Text: HomeBuyers -->
   <text x="50" y="42" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#ffffff" letter-spacing="0.5">HomeBuyers</text>
 </svg>

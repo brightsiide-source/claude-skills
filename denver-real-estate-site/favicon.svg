@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#0a0a0a"/>
+  <rect width="100" height="100" rx="20" fill="#0f1419"/>
   <!-- House roof -->
   <path d="M50 18 L16 46 L22 46 L22 82 L78 82 L78 46 L84 46 Z"
-        stroke="#14b8a6" stroke-width="4" stroke-linejoin="round" fill="none"/>
+        stroke="#6b8f71" stroke-width="4" stroke-linejoin="round" fill="none"/>
   <!-- Door with dollar sign -->
-  <rect x="38" y="54" width="24" height="28" rx="3" fill="#14b8a6"/>
+  <rect x="38" y="54" width="24" height="28" rx="3" fill="#c77d4a"/>
   <path d="M50 58 L50 78 M45 63 C45 60 47 58.5 50 58.5 C53 58.5 55 60 55 62.5 C55 66 45 66 45 70 C45 72.5 47 74 50 74 C53 74 55 72.5 55 70"
-        stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        stroke="#0f1419" stroke-width="2.5" stroke-linecap="round" fill="none"/>
   <!-- Window -->
-  <rect x="58" y="50" width="12" height="10" rx="1.5" fill="#14b8a6" opacity="0.45"/>
-  <line x1="64" y1="50" x2="64" y2="60" stroke="#0a0a0a" stroke-width="1"/>
-  <line x1="58" y1="55" x2="70" y2="55" stroke="#0a0a0a" stroke-width="1"/>
+  <rect x="58" y="50" width="12" height="10" rx="1.5" fill="#6b8f71" opacity="0.45"/>
+  <line x1="64" y1="50" x2="64" y2="60" stroke="#0f1419" stroke-width="1"/>
+  <line x1="58" y1="55" x2="70" y2="55" stroke="#0f1419" stroke-width="1"/>
 </svg>
