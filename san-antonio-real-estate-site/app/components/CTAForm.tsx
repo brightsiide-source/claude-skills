@@ -15,12 +15,14 @@ export default function CTAForm() {
         </div>
 
         <div className="bg-white rounded-xl shadow-2xl p-8 sm:p-10">
-          <form className="space-y-5">
+          <form name="cash-offer" method="POST" data-netlify="true" className="space-y-5">
+            <input type="hidden" name="form-name" value="cash-offer" />
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-adobe mb-1.5">Full Name *</label>
                 <input
                   type="text"
+                  name="name"
                   required
                   placeholder="John Smith"
                   className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
@@ -30,6 +32,7 @@ export default function CTAForm() {
                 <label className="block text-sm font-medium text-adobe mb-1.5">Phone Number *</label>
                 <input
                   type="tel"
+                  name="phone"
                   required
                   placeholder="(210) 555-0000"
                   className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
@@ -41,6 +44,7 @@ export default function CTAForm() {
               <label className="block text-sm font-medium text-adobe mb-1.5">Email Address *</label>
               <input
                 type="email"
+                name="email"
                 required
                 placeholder="john@email.com"
                 className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
@@ -51,6 +55,7 @@ export default function CTAForm() {
               <label className="block text-sm font-medium text-adobe mb-1.5">Property Address *</label>
               <input
                 type="text"
+                name="address"
                 required
                 placeholder="123 Main St, San Antonio, TX 78201"
                 className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
@@ -60,7 +65,7 @@ export default function CTAForm() {
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-adobe mb-1.5">Property Condition</label>
-                <select className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
+                <select name="condition" className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
                   <option value="">Select condition</option>
                   <option value="excellent">Excellent — Move-in ready</option>
                   <option value="good">Good — Minor repairs needed</option>
@@ -71,7 +76,7 @@ export default function CTAForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-adobe mb-1.5">Timeline to Sell</label>
-                <select className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
+                <select name="timeline" className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
                   <option value="">How soon?</option>
                   <option value="asap">ASAP — As fast as possible</option>
                   <option value="30">Within 30 days</option>
@@ -85,6 +90,7 @@ export default function CTAForm() {
             <div>
               <label className="block text-sm font-medium text-adobe mb-1.5">Anything else we should know?</label>
               <textarea
+                name="notes"
                 rows={3}
                 placeholder="Tell us about your situation (optional)"
                 className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent resize-none"

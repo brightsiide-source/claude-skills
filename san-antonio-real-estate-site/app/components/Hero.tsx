@@ -86,10 +86,12 @@ export default function Hero() {
               <h2 className="text-2xl font-bold text-adobe mb-2">Get Your Cash Offer Today</h2>
               <p className="text-sand-dark text-sm">Fill out this quick form and we&apos;ll contact you within 24 hours</p>
             </div>
-            <form className="space-y-4">
+            <form name="quick-offer" method="POST" data-netlify="true" className="space-y-4">
+              <input type="hidden" name="form-name" value="quick-offer" />
               <div>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your Full Name"
                   className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
@@ -97,6 +99,7 @@ export default function Hero() {
               <div>
                 <input
                   type="tel"
+                  name="phone"
                   placeholder="Phone Number"
                   className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
@@ -104,6 +107,7 @@ export default function Hero() {
               <div>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Email Address"
                   className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
@@ -111,12 +115,13 @@ export default function Hero() {
               <div>
                 <input
                   type="text"
+                  name="address"
                   placeholder="Property Address in San Antonio"
                   className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
               </div>
               <div>
-                <select className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
+                <select name="timeline" className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent">
                   <option value="">How soon do you need to sell?</option>
                   <option value="asap">ASAP</option>
                   <option value="30">Within 30 Days</option>
