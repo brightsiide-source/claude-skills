@@ -26,16 +26,16 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
       {/* Top bar */}
-      <div className="bg-brand-navy text-white text-sm">
+      <div className="bg-brand-black text-white text-sm">
         <div className="container-max flex justify-between items-center py-2 px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-6">
-            <a href="tel:5157831896" className="flex items-center gap-2 hover:text-brand-orange transition-colors">
+            <a href="tel:5157831896" className="flex items-center gap-2 hover:text-brand-silver transition-colors">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
               (515) 783-1896
             </a>
-            <a href="mailto:Shawncarm@yahoo.com" className="hidden sm:flex items-center gap-2 hover:text-brand-orange transition-colors">
+            <a href="mailto:Shawncarm@yahoo.com" className="hidden sm:flex items-center gap-2 hover:text-brand-silver transition-colors">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
@@ -56,11 +56,11 @@ export default function Header() {
       {/* Main nav */}
       <nav className="container-max flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-brand-navy rounded-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-brand-black rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-xl">S&C</span>
           </div>
           <div>
-            <div className="text-xl font-bold text-brand-navy leading-tight">S&C Exteriors</div>
+            <div className="text-xl font-bold text-brand-black leading-tight">S&C Exteriors</div>
             <div className="text-xs text-brand-slate">Central Iowa&apos;s Exterior Experts</div>
           </div>
         </Link>
@@ -75,7 +75,7 @@ export default function Header() {
                 onMouseEnter={() => setServicesOpen(true)}
                 onMouseLeave={() => setServicesOpen(false)}
               >
-                <button className="flex items-center gap-1 text-brand-slate font-medium hover:text-brand-navy transition-colors">
+                <button className="flex items-center gap-1 text-brand-slate font-medium hover:text-brand-black transition-colors">
                   {item.name}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -87,7 +87,7 @@ export default function Header() {
                       <Link
                         key={child.name}
                         href={child.href}
-                        className="block px-4 py-2 text-brand-slate hover:bg-brand-light hover:text-brand-navy transition-colors"
+                        className="block px-4 py-2 text-brand-slate hover:bg-brand-light hover:text-brand-black transition-colors"
                       >
                         {child.name}
                       </Link>
@@ -99,7 +99,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-brand-slate font-medium hover:text-brand-navy transition-colors"
+                className="text-brand-slate font-medium hover:text-brand-black transition-colors"
               >
                 {item.name}
               </Link>
@@ -135,12 +135,12 @@ export default function Header() {
             {navigation.map((item) =>
               item.children ? (
                 <div key={item.name}>
-                  <div className="px-4 py-2 font-medium text-brand-navy">{item.name}</div>
+                  <div className="px-4 py-2 font-medium text-brand-black">{item.name}</div>
                   {item.children.map((child) => (
                     <Link
                       key={child.name}
                       href={child.href}
-                      className="block px-8 py-2 text-brand-slate hover:text-brand-navy"
+                      className="block px-8 py-2 text-brand-slate hover:text-brand-black"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {child.name}
@@ -151,7 +151,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-4 py-2 text-brand-slate font-medium hover:text-brand-navy"
+                  className="block px-4 py-2 text-brand-slate font-medium hover:text-brand-black"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}

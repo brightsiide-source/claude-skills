@@ -61,15 +61,15 @@ export default function ConcretePage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-navy text-white section-padding !pb-32">
+      <section className="bg-brand-black text-white section-padding !pb-32">
         <div className="container-max">
           <div className="flex items-center gap-2 text-sm text-white/60 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-brand-orange">Concrete</span>
+            <span className="text-brand-silver">Concrete</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            <span className="text-brand-orange">Concrete</span> Services
+            <span className="text-brand-silver">Concrete</span> Services
           </h1>
           <p className="text-white/80 text-xl max-w-3xl leading-relaxed">
             Comprehensive concrete removal and replacement services for Central Iowa.
@@ -83,19 +83,19 @@ export default function ConcretePage() {
       <section className="section-padding bg-white -mt-16">
         <div className="container-max">
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-20">
-            <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">What We Do</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy mt-3 mb-10">
+            <span className="text-brand-slate font-semibold text-sm uppercase tracking-wider">What We Do</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-3 mb-10">
               Concrete Services We Offer
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((s, i) => (
-                <div key={i} className="border-2 border-gray-100 rounded-xl p-6 hover:border-brand-orange/30 transition-colors">
-                  <div className="w-10 h-10 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div key={i} className="border-2 border-gray-100 rounded-xl p-6 hover:border-brand-silver/50 transition-colors">
+                  <div className="w-10 h-10 bg-brand-black/5 rounded-lg flex items-center justify-center mb-4">
+                    <svg className="w-5 h-5 text-brand-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-heading font-bold text-brand-navy mb-2">{s.title}</h3>
+                  <h3 className="text-lg font-heading font-bold text-brand-black mb-2">{s.title}</h3>
                   <p className="text-brand-slate text-sm leading-relaxed">{s.description}</p>
                 </div>
               ))}
@@ -104,27 +104,27 @@ export default function ConcretePage() {
 
           {/* Process */}
           <div className="text-center mb-12">
-            <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">Our Process</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy mt-3">
+            <span className="text-brand-slate font-semibold text-sm uppercase tracking-wider">Our Process</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-3">
               How It Works
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {process.map((p, i) => (
               <div key={i} className="text-center">
-                <div className="w-16 h-16 bg-brand-orange rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-brand-black rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <span className="text-white text-2xl font-bold">{p.step}</span>
                 </div>
-                <h3 className="text-lg font-heading font-bold text-brand-navy mb-2">{p.title}</h3>
+                <h3 className="text-lg font-heading font-bold text-brand-black mb-2">{p.title}</h3>
                 <p className="text-brand-slate text-sm leading-relaxed">{p.description}</p>
               </div>
             ))}
           </div>
 
           {/* Why Iowa concrete needs attention */}
-          <div className="bg-gray-50 rounded-2xl p-8 md:p-12">
+          <div className="bg-brand-light rounded-2xl p-8 md:p-12">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-brand-navy mb-6">
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-brand-black mb-6">
                 Why Iowa Concrete Needs Expert Care
               </h2>
               <div className="space-y-4 text-brand-slate leading-relaxed text-left md:text-center">
@@ -151,7 +151,7 @@ export default function ConcretePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand-navy text-white section-padding">
+      <section className="bg-brand-black text-white section-padding">
         <div className="container-max text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
             Ready to Replace Your Concrete?

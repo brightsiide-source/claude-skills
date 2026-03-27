@@ -34,12 +34,12 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-navy text-white section-padding !pb-32">
+      <section className="bg-brand-black text-white section-padding !pb-32">
         <div className="container-max">
-          <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">About Us</span>
+          <span className="text-brand-silver font-semibold text-sm uppercase tracking-wider">About Us</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mt-3 mb-6">
             Central Iowa&apos;s Trusted{" "}
-            <span className="text-brand-orange">Exterior Experts</span>
+            <span className="text-brand-silver">Exterior Experts</span>
           </h1>
           <p className="text-white/80 text-xl max-w-3xl leading-relaxed">
             S&C Exteriors is your dedicated partner for all things roofing, siding,
@@ -56,8 +56,8 @@ export default function AboutPage() {
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 lg:p-16">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">Our Story</span>
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy mt-3 mb-6">
+                <span className="text-brand-slate font-semibold text-sm uppercase tracking-wider">Our Story</span>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-3 mb-6">
                   Built on Hard Work & Trust
                 </h2>
                 <div className="space-y-4 text-brand-slate leading-relaxed">
@@ -81,12 +81,12 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-brand-navy to-blue-900 rounded-2xl p-10 text-white">
+              <div className="bg-gradient-to-br from-brand-black to-brand-charcoal rounded-2xl p-10 text-white">
                 <h3 className="text-2xl font-heading font-bold mb-8">At a Glance</h3>
                 <ul className="space-y-6">
                   <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-brand-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="w-10 h-10 bg-brand-silver/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-brand-silver" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
@@ -97,8 +97,8 @@ export default function AboutPage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-brand-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="w-10 h-10 bg-brand-silver/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-brand-silver" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                       </svg>
                     </div>
@@ -108,8 +108,8 @@ export default function AboutPage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-brand-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="w-10 h-10 bg-brand-silver/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-brand-silver" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
@@ -119,8 +119,8 @@ export default function AboutPage() {
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-brand-orange/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="w-10 h-10 bg-brand-silver/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-brand-silver" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
@@ -137,18 +137,18 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-brand-light">
         <div className="container-max">
           <div className="text-center mb-16">
-            <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">Our Values</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy mt-3">
+            <span className="text-brand-slate font-semibold text-sm uppercase tracking-wider">Our Values</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-3">
               What We Stand For
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {values.map((v, i) => (
               <div key={i} className="bg-white p-8 rounded-2xl shadow-sm">
-                <h3 className="text-xl font-heading font-bold text-brand-navy mb-3">{v.title}</h3>
+                <h3 className="text-xl font-heading font-bold text-brand-black mb-3">{v.title}</h3>
                 <p className="text-brand-slate leading-relaxed">{v.description}</p>
               </div>
             ))}
@@ -157,7 +157,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand-navy text-white section-padding">
+      <section className="bg-brand-black text-white section-padding">
         <div className="container-max text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
             Ready to Get Started?

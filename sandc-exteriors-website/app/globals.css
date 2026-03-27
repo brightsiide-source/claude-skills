@@ -10,18 +10,18 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-brand-orange text-white font-bold text-lg rounded-lg
-           hover:bg-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-8 py-4 bg-brand-silver text-brand-black font-bold text-lg rounded-lg
+           hover:bg-brand-lightsilver transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold text-lg rounded-lg
-           hover:bg-white hover:text-brand-navy transition-all duration-300;
+           hover:bg-white hover:text-brand-black transition-all duration-300;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-brand-navy text-brand-navy font-bold text-lg rounded-lg
-           hover:bg-brand-navy hover:text-white transition-all duration-300;
+    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-brand-black text-brand-black font-bold text-lg rounded-lg
+           hover:bg-brand-black hover:text-white transition-all duration-300;
   }
 
   .section-padding {

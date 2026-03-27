@@ -38,15 +38,15 @@ export default function SidingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-navy text-white section-padding !pb-32">
+      <section className="bg-brand-black text-white section-padding !pb-32">
         <div className="container-max">
           <div className="flex items-center gap-2 text-sm text-white/60 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-brand-orange">Siding</span>
+            <span className="text-brand-silver">Siding</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            Professional <span className="text-brand-orange">Siding</span> Installation
+            Professional <span className="text-brand-silver">Siding</span> Installation
           </h1>
           <p className="text-white/80 text-xl max-w-3xl leading-relaxed">
             Enhance your property&apos;s charm and protection with expert siding installation
@@ -60,20 +60,20 @@ export default function SidingPage() {
       <section className="section-padding bg-white -mt-16">
         <div className="container-max">
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-20">
-            <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">Benefits</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy mt-3 mb-10">
+            <span className="text-brand-slate font-semibold text-sm uppercase tracking-wider">Benefits</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-3 mb-10">
               Why Replace Your Siding?
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {benefits.map((b, i) => (
                 <div key={i} className="flex gap-4">
-                  <div className="w-10 h-10 bg-brand-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="w-10 h-10 bg-brand-black/5 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-brand-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-brand-navy mb-1">{b.title}</h3>
+                    <h3 className="font-heading font-bold text-brand-black mb-1">{b.title}</h3>
                     <p className="text-brand-slate text-sm leading-relaxed">{b.description}</p>
                   </div>
                 </div>
@@ -83,20 +83,20 @@ export default function SidingPage() {
 
           {/* Siding Types */}
           <div className="text-center mb-12">
-            <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">Options</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy mt-3">
+            <span className="text-brand-slate font-semibold text-sm uppercase tracking-wider">Options</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-3">
               Siding Materials We Offer
             </h2>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
             {sidingTypes.map((type, i) => (
-              <div key={i} className="bg-gray-50 rounded-2xl p-8">
-                <h3 className="text-xl font-heading font-bold text-brand-navy mb-3">{type.title}</h3>
+              <div key={i} className="bg-brand-light rounded-2xl p-8">
+                <h3 className="text-xl font-heading font-bold text-brand-black mb-3">{type.title}</h3>
                 <p className="text-brand-slate leading-relaxed mb-6">{type.description}</p>
                 <ul className="space-y-2">
                   {type.features.map((f, j) => (
                     <li key={j} className="flex items-center gap-2 text-sm text-brand-slate">
-                      <svg className="w-4 h-4 text-brand-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-4 h-4 text-brand-charcoal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       {f}
@@ -110,7 +110,7 @@ export default function SidingPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand-navy text-white section-padding">
+      <section className="bg-brand-black text-white section-padding">
         <div className="container-max text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
             Ready for New Siding?

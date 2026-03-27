@@ -9,13 +9,15 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          navy: "#1B2A4A",
-          blue: "#2563EB",
-          sky: "#3B82F6",
-          orange: "#F97316",
-          amber: "#F59E0B",
-          slate: "#475569",
-          light: "#F8FAFC",
+          black: "#111111",
+          dark: "#1A1A1A",
+          charcoal: "#2D2D2D",
+          silver: "#C0C0C0",
+          lightsilver: "#D9D9D9",
+          slate: "#6B7280",
+          light: "#F5F5F5",
+          white: "#FFFFFF",
+          accent: "#C0C0C0",
         },
       },
       fontFamily: {

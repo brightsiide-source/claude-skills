@@ -49,15 +49,15 @@ export default function GuttersPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-navy text-white section-padding !pb-32">
+      <section className="bg-brand-black text-white section-padding !pb-32">
         <div className="container-max">
           <div className="flex items-center gap-2 text-sm text-white/60 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-brand-orange">Gutters</span>
+            <span className="text-brand-silver">Gutters</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            <span className="text-brand-orange">Gutter</span> Services
+            <span className="text-brand-silver">Gutter</span> Services
           </h1>
           <p className="text-white/80 text-xl max-w-3xl leading-relaxed">
             Protect your property from water damage with professional gutter removal,
@@ -71,19 +71,19 @@ export default function GuttersPage() {
       <section className="section-padding bg-white -mt-16">
         <div className="container-max">
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-20">
-            <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">Our Gutter Services</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy mt-3 mb-10">
+            <span className="text-brand-slate font-semibold text-sm uppercase tracking-wider">Our Gutter Services</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-3 mb-10">
               Complete Gutter Solutions
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((s, i) => (
-                <div key={i} className="border-2 border-gray-100 rounded-xl p-6 hover:border-brand-orange/30 transition-colors">
-                  <div className="w-10 h-10 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div key={i} className="border-2 border-gray-100 rounded-xl p-6 hover:border-brand-silver/50 transition-colors">
+                  <div className="w-10 h-10 bg-brand-black/5 rounded-lg flex items-center justify-center mb-4">
+                    <svg className="w-5 h-5 text-brand-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-heading font-bold text-brand-navy mb-2">{s.title}</h3>
+                  <h3 className="text-lg font-heading font-bold text-brand-black mb-2">{s.title}</h3>
                   <p className="text-brand-slate text-sm leading-relaxed">{s.description}</p>
                 </div>
               ))}
@@ -93,8 +93,8 @@ export default function GuttersPage() {
           {/* Warning Signs */}
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">Warning Signs</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy mt-3 mb-6">
+              <span className="text-brand-slate font-semibold text-sm uppercase tracking-wider">Warning Signs</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-3 mb-6">
                 Signs You Need New Gutters
               </h2>
               <p className="text-brand-slate leading-relaxed mb-8">
@@ -104,7 +104,7 @@ export default function GuttersPage() {
               <ul className="space-y-3">
                 {signs.map((sign, i) => (
                   <li key={i} className="flex items-center gap-3 text-brand-slate">
-                    <svg className="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-brand-charcoal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
                     </svg>
                     {sign}
@@ -112,7 +112,7 @@ export default function GuttersPage() {
                 ))}
               </ul>
             </div>
-            <div className="bg-brand-navy rounded-2xl p-10 text-white">
+            <div className="bg-brand-black rounded-2xl p-10 text-white">
               <h3 className="text-2xl font-heading font-bold mb-4">Why Gutters Matter</h3>
               <div className="space-y-4 text-white/80 leading-relaxed">
                 <p>
@@ -137,7 +137,7 @@ export default function GuttersPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand-navy text-white section-padding">
+      <section className="bg-brand-black text-white section-padding">
         <div className="container-max text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
             Protect Your Property from Water Damage
