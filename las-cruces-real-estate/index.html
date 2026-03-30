@@ -103,8 +103,47 @@
           </div>
         </div>
         <div class="hero-cta">
-          <a href="#offer-form" class="btn btn-primary btn-lg">Get My Free Cash Offer &rarr;</a>
           <a href="tel:+15755550123" class="btn btn-outline btn-lg">&#9742; (575) 555-0123</a>
+        </div>
+      </div>
+      <div class="hero-form-card">
+        <h3>Get Your Free Cash Offer</h3>
+        <form id="heroForm" name="cash-offer-hero" method="POST" data-netlify="true" novalidate>
+          <div class="form-group">
+            <label for="heroFullName">Full Name *</label>
+            <input type="text" id="heroFullName" name="fullName" placeholder="John Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="heroPhone">Phone *</label>
+            <input type="tel" id="heroPhone" name="phone" placeholder="(575) 555-0123" required>
+          </div>
+          <div class="form-group">
+            <label for="heroEmail">Email *</label>
+            <input type="email" id="heroEmail" name="email" placeholder="john@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="heroAddress">Property Address *</label>
+            <input type="text" id="heroAddress" name="address" placeholder="123 Main St, Las Cruces, NM" required>
+          </div>
+          <div class="form-group">
+            <label for="heroCondition">Property Condition</label>
+            <select id="heroCondition" name="condition">
+              <option value="">Select condition</option>
+              <option value="excellent">Excellent &mdash; Move-in ready</option>
+              <option value="good">Good &mdash; Minor cosmetic work</option>
+              <option value="fair">Fair &mdash; Needs some repairs</option>
+              <option value="poor">Poor &mdash; Major repairs needed</option>
+              <option value="vacant">Vacant / Abandoned</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Get My Free Cash Offer &rarr;</button>
+          <p class="form-disclaimer">100% confidential. No obligation.</p>
+        </form>
+        <div id="heroFormSuccess" class="form-success" style="display:none;">
+          <div class="success-icon">&#10004;</div>
+          <h3>Offer Request Received!</h3>
+          <p>We'll get back to you within 24 hours with a fair cash offer.</p>
+          <p><strong>Want faster service?</strong> Call us at <a href="tel:+15755550123">(575) 555-0123</a></p>
         </div>
       </div>
     </div>

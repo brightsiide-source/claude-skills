@@ -149,10 +149,84 @@ function showError(input, message) {
   group.appendChild(errorEl);
 }
 
+// ===== Hero Form Validation & Submission =====
+const heroForm = document.getElementById('heroForm');
+const heroFormSuccess = document.getElementById('heroFormSuccess');
+
+if (heroForm) {
+  heroForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Clear previous errors
+    heroForm.querySelectorAll('.form-group').forEach(group => {
+      group.classList.remove('error');
+      const existing = group.querySelector('.error-message');
+      if (existing) existing.remove();
+    });
+
+    let isValid = true;
+
+    const requiredFields = [
+      { id: 'heroFullName', label: 'Full name is required' },
+      { id: 'heroPhone', label: 'Phone number is required' },
+      { id: 'heroEmail', label: 'Email address is required' },
+      { id: 'heroAddress', label: 'Property address is required' }
+    ];
+
+    requiredFields.forEach(field => {
+      const input = document.getElementById(field.id);
+      if (!input.value.trim()) {
+        isValid = false;
+        showError(input, field.label);
+      }
+    });
+
+    const heroEmailInput = document.getElementById('heroEmail');
+    if (heroEmailInput.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(heroEmailInput.value)) {
+      isValid = false;
+      showError(heroEmailInput, 'Please enter a valid email address');
+    }
+
+    const heroPhoneInput = document.getElementById('heroPhone');
+    const heroPhoneDigits = heroPhoneInput.value.replace(/\D/g, '');
+    if (heroPhoneInput.value.trim() && heroPhoneDigits.length < 10) {
+      isValid = false;
+      showError(heroPhoneInput, 'Please enter a valid 10-digit phone number');
+    }
+
+    if (isValid) {
+      const formData = new FormData(heroForm);
+      const submitBtn = heroForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(response => {
+        if (response.ok) {
+          heroForm.style.display = 'none';
+          heroFormSuccess.style.display = 'block';
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get My Free Cash Offer →';
+        alert('Something went wrong. Please try again or call us directly.');
+      });
+    }
+  });
+}
+
 // ===== Phone Number Formatting =====
-const phoneInput = document.getElementById('phone');
-if (phoneInput) {
-  phoneInput.addEventListener('input', (e) => {
+function formatPhoneInput(input) {
+  if (!input) return;
+  input.addEventListener('input', (e) => {
     let value = e.target.value.replace(/\D/g, '');
     if (value.length > 10) value = value.slice(0, 10);
 
@@ -165,6 +239,9 @@ if (phoneInput) {
     e.target.value = value;
   });
 }
+
+formatPhoneInput(document.getElementById('phone'));
+formatPhoneInput(document.getElementById('heroPhone'));
 
 // ===== Intersection Observer for Scroll Animations =====
 const observerOptions = {
