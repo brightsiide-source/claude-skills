@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" fill="none">
+  <!-- Sky gradient -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2535"/>
+      <stop offset="60%" stop-color="#2a3545"/>
+      <stop offset="100%" stop-color="#3a4555"/>
+    </linearGradient>
+    <linearGradient id="mountain1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3d4f5f"/>
+      <stop offset="100%" stop-color="#2a3545"/>
+    </linearGradient>
+    <linearGradient id="mountain2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a5c6c"/>
+      <stop offset="100%" stop-color="#354555"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2e4033"/>
+      <stop offset="100%" stop-color="#1a2e1e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="480" height="320" fill="url(#sky)" rx="12"/>
+
+  <!-- Stars -->
+  <circle cx="50" cy="30" r="1.5" fill="#faf8f5" opacity="0.6"/>
+  <circle cx="120" cy="55" r="1" fill="#faf8f5" opacity="0.4"/>
+  <circle cx="200" cy="20" r="1.5" fill="#faf8f5" opacity="0.5"/>
+  <circle cx="300" cy="45" r="1" fill="#faf8f5" opacity="0.3"/>
+  <circle cx="380" cy="25" r="1.5" fill="#faf8f5" opacity="0.5"/>
+  <circle cx="430" cy="60" r="1" fill="#faf8f5" opacity="0.4"/>
+  <circle cx="80" cy="70" r="1" fill="#faf8f5" opacity="0.3"/>
+  <circle cx="350" cy="15" r="1" fill="#faf8f5" opacity="0.5"/>
+
+  <!-- Moon -->
+  <circle cx="400" cy="50" r="18" fill="#faf8f5" opacity="0.15"/>
+  <circle cx="400" cy="50" r="16" fill="#faf8f5" opacity="0.08"/>
+
+  <!-- Far mountains (back range) -->
+  <path d="M0 200 L40 150 L80 170 L140 110 L180 140 L220 100 L260 130 L310 90 L350 120 L400 105 L440 135 L480 115 L480 320 L0 320 Z" fill="url(#mountain1)" opacity="0.7"/>
+
+  <!-- Snow caps on far mountains -->
+  <path d="M140 110 L155 125 L130 122 Z" fill="#faf8f5" opacity="0.3"/>
+  <path d="M220 100 L235 118 L210 115 Z" fill="#faf8f5" opacity="0.35"/>
+  <path d="M310 90 L328 110 L298 107 Z" fill="#faf8f5" opacity="0.4"/>
+  <path d="M400 105 L415 120 L390 118 Z" fill="#faf8f5" opacity="0.3"/>
+
+  <!-- Near mountains -->
+  <path d="M0 240 L60 180 L110 200 L170 155 L230 185 L280 160 L340 175 L390 150 L440 180 L480 165 L480 320 L0 320 Z" fill="url(#mountain2)" opacity="0.6"/>
+
+  <!-- Snow on near peaks -->
+  <path d="M170 155 L182 168 L160 166 Z" fill="#faf8f5" opacity="0.25"/>
+  <path d="M280 160 L293 174 L270 172 Z" fill="#faf8f5" opacity="0.3"/>
+  <path d="M390 150 L404 166 L380 163 Z" fill="#faf8f5" opacity="0.3"/>
+
+  <!-- Treeline -->
+  <path d="M0 260 L480 250 L480 320 L0 320 Z" fill="url(#ground)"/>
+
+  <!-- Pine trees (silhouettes) -->
+  <g fill="#1a3020" opacity="0.8">
+    <path d="M30 260 L35 230 L40 260 Z"/>
+    <path d="M55 258 L62 220 L69 258 Z"/>
+    <path d="M90 262 L96 235 L102 262 Z"/>
+    <path d="M130 259 L137 225 L144 259 Z"/>
+    <path d="M170 261 L175 240 L180 261 Z"/>
+    <path d="M210 258 L218 222 L226 258 Z"/>
+    <path d="M260 260 L265 242 L270 260 Z"/>
+    <path d="M295 257 L303 218 L311 257 Z"/>
+    <path d="M340 261 L345 245 L350 261 Z"/>
+    <path d="M375 259 L382 228 L389 259 Z"/>
+    <path d="M420 260 L426 238 L432 260 Z"/>
+    <path d="M455 258 L462 230 L469 258 Z"/>
+  </g>
+
+  <!-- House -->
+  <g transform="translate(200, 248)">
+    <!-- House body -->
+    <rect x="0" y="12" width="50" height="35" rx="2" fill="#3a2820"/>
+    <!-- Roof -->
+    <path d="M-6 14 L25 -6 L56 14 Z" fill="#c77d4a"/>
+    <!-- Door -->
+    <rect x="18" y="26" width="14" height="21" rx="1.5" fill="#c77d4a" opacity="0.8"/>
+    <!-- Door knob -->
+    <circle cx="28" cy="38" r="1.5" fill="#d4946a"/>
+    <!-- Windows -->
+    <rect x="5" y="20" width="9" height="8" rx="1" fill="#6b8f71" opacity="0.5"/>
+    <rect x="36" y="20" width="9" height="8" rx="1" fill="#6b8f71" opacity="0.5"/>
+    <!-- Window glow -->
+    <rect x="5" y="20" width="9" height="8" rx="1" fill="#faf8f5" opacity="0.15"/>
+    <rect x="36" y="20" width="9" height="8" rx="1" fill="#faf8f5" opacity="0.15"/>
+    <!-- Chimney -->
+    <rect x="38" y="0" width="7" height="14" fill="#3a2820"/>
+  </g>
+
+  <!-- Ground line -->
+  <path d="M0 295 Q120 288 240 292 Q360 296 480 290 L480 320 L0 320 Z" fill="#152515" opacity="0.5"/>
+</svg>
