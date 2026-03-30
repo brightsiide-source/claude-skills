@@ -107,23 +107,49 @@
         </div>
       </div>
       <div class="hero-form-card">
-        <h3>Get Your Free Cash Offer</h3>
+        <h3>Property Information</h3>
         <form id="heroForm" name="cash-offer-hero" method="POST" data-netlify="true" novalidate>
           <div class="form-group">
             <label for="heroFullName">Full Name *</label>
             <input type="text" id="heroFullName" name="fullName" placeholder="John Smith" required>
           </div>
-          <div class="form-group">
-            <label for="heroPhone">Phone *</label>
-            <input type="tel" id="heroPhone" name="phone" placeholder="(575) 555-0123" required>
-          </div>
-          <div class="form-group">
-            <label for="heroEmail">Email *</label>
-            <input type="email" id="heroEmail" name="email" placeholder="john@email.com" required>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="heroPhone">Phone *</label>
+              <input type="tel" id="heroPhone" name="phone" placeholder="(575) 555-0123" required>
+            </div>
+            <div class="form-group">
+              <label for="heroEmail">Email *</label>
+              <input type="email" id="heroEmail" name="email" placeholder="john@email.com" required>
+            </div>
           </div>
           <div class="form-group">
             <label for="heroAddress">Property Address *</label>
             <input type="text" id="heroAddress" name="address" placeholder="123 Main St, Las Cruces, NM" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="heroBedrooms">Bedrooms</label>
+              <select id="heroBedrooms" name="bedrooms">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5+">5+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="heroBathrooms">Bathrooms</label>
+              <select id="heroBathrooms" name="bathrooms">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="1.5">1.5</option>
+                <option value="2">2</option>
+                <option value="2.5">2.5</option>
+                <option value="3+">3+</option>
+              </select>
+            </div>
           </div>
           <div class="form-group">
             <label for="heroCondition">Property Condition</label>
@@ -136,8 +162,36 @@
               <option value="vacant">Vacant / Abandoned</option>
             </select>
           </div>
+          <div class="form-group">
+            <label for="heroSituation">Your Situation (optional)</label>
+            <select id="heroSituation" name="situation">
+              <option value="">Why are you selling?</option>
+              <option value="foreclosure">Facing Foreclosure</option>
+              <option value="divorce">Divorce</option>
+              <option value="inherited">Inherited Property</option>
+              <option value="relocation">Job Relocation</option>
+              <option value="repairs">Can't Afford Repairs</option>
+              <option value="landlord">Tired Landlord</option>
+              <option value="downsizing">Downsizing</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="heroTimeline">Desired Timeline</label>
+            <select id="heroTimeline" name="timeline">
+              <option value="">When do you need to sell?</option>
+              <option value="asap">ASAP &mdash; As fast as possible</option>
+              <option value="30days">Within 30 days</option>
+              <option value="60days">Within 60 days</option>
+              <option value="flexible">I'm flexible</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="heroNotes">Additional Notes</label>
+            <textarea id="heroNotes" name="notes" rows="3" placeholder="Anything else we should know about your property?"></textarea>
+          </div>
           <button type="submit" class="btn btn-primary btn-full">Get My Free Cash Offer &rarr;</button>
-          <p class="form-disclaimer">100% confidential. No obligation.</p>
+          <p class="form-disclaimer">Your information is 100% confidential. We will never share or sell your data.</p>
         </form>
         <div id="heroFormSuccess" class="form-success" style="display:none;">
           <div class="success-icon">&#10004;</div>

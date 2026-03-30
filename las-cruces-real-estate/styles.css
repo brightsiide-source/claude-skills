@@ -227,7 +227,7 @@ img {
 /* ===== Hero ===== */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: auto;
   display: flex;
   align-items: center;
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
@@ -255,7 +255,7 @@ img {
 }
 
 .hero-form-card {
-  flex: 0 0 400px;
+  flex: 0 0 460px;
   background: #fff;
   border-radius: var(--radius-lg);
   padding: 32px;
@@ -291,11 +291,28 @@ img {
   transition: border-color var(--transition);
 }
 
+.hero-form-card textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color var(--transition);
+}
+
 .hero-form-card input:focus,
-.hero-form-card select:focus {
+.hero-form-card select:focus,
+.hero-form-card textarea:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(137, 18, 22, 0.1);
+}
+
+.hero-form-card .form-row {
+  display: flex;
+  gap: 12px;
 }
 
 .hero-form-card .btn-full {
