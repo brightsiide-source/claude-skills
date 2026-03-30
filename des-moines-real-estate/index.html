@@ -213,8 +213,9 @@
         <div class="hero-form-card">
           <h2>Get Your <span class="teal">Free</span> Cash Offer</h2>
           <p>Fill out the form below and we'll contact you within 24 hours with a no-obligation cash offer.</p>
-          <form id="hero-form" class="form" netlify name="hero-lead" method="POST" data-netlify="true">
+          <form id="hero-form" class="form" name="hero-lead" method="POST" action="/thank-you.html" data-netlify="true" data-netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="hero-lead">
+            <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
             <div class="form-group">
               <input type="text" name="name" placeholder="Your Full Name" required>
             </div>
@@ -596,8 +597,9 @@
         <div class="cta-form-wrap">
           <div class="hero-form-card">
             <h3>Get Your Cash Offer</h3>
-            <form id="contact-form" class="form" netlify name="contact-lead" method="POST" data-netlify="true">
+            <form id="contact-form" class="form" name="contact-lead" method="POST" action="/thank-you.html" data-netlify="true" data-netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="contact-lead">
+              <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
               <div class="form-group">
                 <input type="text" name="name" placeholder="Your Full Name" required>
               </div>

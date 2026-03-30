@@ -57,41 +57,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ---- Form Submission (Netlify handles POST, this adds UX) ----
+  // ---- Form Submission ----
+  // Let Netlify handle the native POST + redirect to /thank-you.html
+  // Just add loading state on the button for UX
   function handleFormSubmit(form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      var formData = new FormData(form);
+    form.addEventListener('submit', function () {
       var btn = form.querySelector('button[type="submit"]');
-      var originalText = btn.textContent;
       btn.textContent = 'Sending...';
       btn.disabled = true;
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(function (response) {
-        if (response.ok) {
-          form.closest('.hero-form-card').innerHTML =
-            '<div class="form-success">' +
-            '<h3>Thank You!</h3>' +
-            '<p>We received your information and will contact you within 24 hours with your no-obligation cash offer.</p>' +
-            '<p style="margin-top:12px;"><a href="tel:+15155550123">Call us now: (515) 555-0123</a></p>' +
-            '</div>';
-        } else {
-          btn.textContent = originalText;
-          btn.disabled = false;
-          alert('Something went wrong. Please call us at (515) 555-0123.');
-        }
-      })
-      .catch(function () {
-        btn.textContent = originalText;
-        btn.disabled = false;
-        alert('Network error. Please call us at (515) 555-0123.');
-      });
+      // Form submits natively to Netlify — no fetch, no preventDefault
     });
   }
 
