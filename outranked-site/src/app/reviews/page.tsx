@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Reviews & Testimonials",
-  description:
-    "See what our clients say about Outranked SEO Agency. 4.9/5 stars from 80+ Google Reviews. Real results from real local businesses.",
-};
+import Link from "next/link";
+import { motion } from "framer-motion";
+import ScrollReveal from "@/components/ScrollReveal";
+import TiltCard from "@/components/TiltCard";
+import FloatingOrbs from "@/components/FloatingOrbs";
+import GradientText from "@/components/GradientText";
+import MagneticButton from "@/components/MagneticButton";
+import ParticleGrid from "@/components/ParticleGrid";
 
 const reviews = [
   {
@@ -103,91 +105,117 @@ export default function ReviewsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-charcoal via-[#1e2d42] to-[#0c2840] text-white py-20 md:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-teal-light font-semibold text-sm uppercase tracking-wider mb-4">
-            Client Testimonials
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Don&apos;t Take Our Word For It
-          </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-            See what local business owners say about working with Outranked.
+      <section className="relative bg-gradient-to-br from-charcoal via-[#1e2d42] to-[#0c2840] text-white overflow-hidden -mt-20 pt-20">
+        <ParticleGrid />
+        <FloatingOrbs />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-36 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-5xl md:text-6xl font-bold mb-6"
+          >
+            Don&apos;t Take Our{" "}
+            <GradientText className="text-5xl md:text-6xl font-bold">Word For It</GradientText>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-gray-300 max-w-2xl mx-auto mb-10"
+          >
             Real reviews from real clients with real results.
-          </p>
-          <div className="flex items-center justify-center gap-3">
-            <div className="flex gap-0.5">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, type: "spring" }}
+            className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl px-8 py-5"
+          >
+            <div className="flex gap-1">
               {Array.from({ length: 5 }).map((_, i) => (
-                <svg key={i} className="w-7 h-7 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <motion.svg
+                  key={i}
+                  className="w-8 h-8 text-yellow-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.5 + i * 0.1, type: "spring" }}
+                >
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+                </motion.svg>
               ))}
             </div>
-            <span className="text-xl font-semibold">4.9/5</span>
-            <span className="text-gray-400">from 80+ Google Reviews</span>
-          </div>
+            <div className="text-left">
+              <span className="text-2xl font-bold">4.9/5</span>
+              <p className="text-sm text-gray-400">from 80+ Google Reviews</p>
+            </div>
+          </motion.div>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </section>
 
       {/* Reviews Grid */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review) => (
-              <div
-                key={review.name}
-                className="bg-white border border-gray-100 rounded-xl p-8 hover:shadow-lg transition-shadow"
-              >
-                <StarRating count={review.rating} />
-                <p className="mt-4 text-charcoal leading-relaxed">
-                  &ldquo;{review.text}&rdquo;
-                </p>
-                <div className="mt-4 inline-block bg-teal/10 text-teal text-xs font-semibold px-3 py-1 rounded-full">
-                  {review.result}
-                </div>
-                <div className="mt-4 pt-4 border-t border-gray-100">
-                  <p className="font-semibold text-charcoal">{review.name}</p>
-                  <p className="text-sm text-gray-mid">{review.company}</p>
-                  <p className="text-xs text-gray-mid">{review.location}</p>
-                </div>
-              </div>
+          {/* Masonry-style grid */}
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            {reviews.map((review, i) => (
+              <ScrollReveal key={review.name} delay={i * 0.08}>
+                <TiltCard className="break-inside-avoid">
+                  <div className="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-500 relative overflow-hidden group">
+                    {/* Top gradient line */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal to-teal-light opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                    <StarRating count={review.rating} />
+                    <p className="mt-4 text-charcoal leading-relaxed">
+                      &ldquo;{review.text}&rdquo;
+                    </p>
+                    <motion.div
+                      className="mt-4 inline-flex items-center gap-1.5 bg-teal/10 text-teal text-xs font-semibold px-3 py-1.5 rounded-full"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
+                      {review.result}
+                    </motion.div>
+                    <div className="mt-5 pt-4 border-t border-gray-100 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-sm font-bold text-white flex-shrink-0">
+                        {review.name.split(" ").map((n) => n[0]).join("")}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-charcoal text-sm">{review.name}</p>
+                        <p className="text-xs text-gray-mid">{review.company} &middot; {review.location}</p>
+                      </div>
+                    </div>
+                  </div>
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Google Reviews CTA */}
-      <section className="bg-gray-light py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-charcoal mb-4">
-            See More Reviews on Google
-          </h2>
-          <p className="text-gray-mid mb-6">
-            We&apos;re proud of our 4.9-star rating. Check out our full Google Reviews profile
-            for even more client success stories.
-          </p>
-          <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-lg shadow-sm text-charcoal font-semibold">
-            <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            View on Google Reviews
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="bg-gradient-to-r from-teal to-teal-dark py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Ready to Be Our Next Success Story?</h2>
-          <p className="text-lg text-white/80 mb-8">
-            Join 150+ local businesses that trust Outranked to grow their online presence.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block bg-white text-teal-dark px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Get Your Free SEO Audit
-          </Link>
+      <section className="relative py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-[#1e2d42] to-[#0c2840]" />
+        <FloatingOrbs />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <ScrollReveal>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to Be Our Next <GradientText className="text-4xl md:text-5xl font-bold">Success Story</GradientText>?
+            </h2>
+            <p className="text-lg text-gray-300 mb-10">
+              Join 150+ local businesses that trust Outranked to grow their online presence.
+            </p>
+            <MagneticButton
+              href="/contact"
+              className="inline-block bg-white text-teal-dark px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-lg hover:shadow-white/20 transition-all"
+            >
+              Get Your Free SEO Audit
+            </MagneticButton>
+          </ScrollReveal>
         </div>
       </section>
     </>

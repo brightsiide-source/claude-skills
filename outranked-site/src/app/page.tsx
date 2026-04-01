@@ -1,4 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
+import ParticleGrid from "@/components/ParticleGrid";
+import ScrollReveal from "@/components/ScrollReveal";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import TiltCard from "@/components/TiltCard";
+import FloatingOrbs from "@/components/FloatingOrbs";
+import GradientText from "@/components/GradientText";
+import MagneticButton from "@/components/MagneticButton";
 
 const stats = [
   { value: "150+", label: "Clients Ranked" },
@@ -90,9 +100,17 @@ function StarRating({ count }: { count: number }) {
   return (
     <div className="flex gap-0.5">
       {Array.from({ length: count }).map((_, i) => (
-        <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+        <motion.svg
+          key={i}
+          className="w-5 h-5 text-yellow-400"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: i * 0.1 }}
+        >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
+        </motion.svg>
       ))}
     </div>
   );
@@ -102,191 +120,294 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-charcoal via-[#1e2d42] to-[#0c2840] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+      <section className="relative bg-gradient-to-br from-charcoal via-[#1e2d42] to-[#0c2840] text-white overflow-hidden -mt-20 pt-20">
+        <ParticleGrid />
+        <FloatingOrbs />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-40">
           <div className="max-w-3xl">
-            <p className="text-teal-light font-semibold text-sm uppercase tracking-wider mb-4">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-teal-light font-semibold text-sm uppercase tracking-widest mb-4"
+            >
               Data-Driven SEO That Delivers Results
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Dominate Your Local
-              <span className="text-teal-light"> Search Results</span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6"
+            >
+              Dominate Your Local{" "}
+              <GradientText className="text-5xl md:text-6xl lg:text-7xl font-bold">
+                Search Results
+              </GradientText>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl"
+            >
               We help local businesses get found on Google, drive qualified traffic,
               and convert visitors into customers. No fluff, no vanity metrics —
               just measurable growth.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <MagneticButton
                 href="/contact"
-                className="bg-teal text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-teal-dark transition-colors text-center"
+                className="bg-teal text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-lg hover:shadow-teal/25 transition-all text-center inline-block"
               >
                 Get Your Free SEO Audit
-              </Link>
-              <a
+              </MagneticButton>
+              <MagneticButton
                 href="tel:+15551234567"
-                className="border-2 border-white/30 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:border-teal-light hover:text-teal-light transition-colors text-center"
+                className="border-2 border-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl text-lg font-semibold hover:border-teal-light/50 hover:bg-white/5 transition-all text-center inline-block"
               >
                 Call (555) 123-4567
-              </a>
-            </div>
+              </MagneticButton>
+            </motion.div>
+
+            {/* Floating badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8, type: "spring" }}
+              className="mt-12 inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-5 py-2.5"
+            >
+              <div className="flex -space-x-2">
+                {["AR", "JK", "TN"].map((initials, i) => (
+                  <div
+                    key={initials}
+                    className="w-8 h-8 rounded-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-xs font-bold text-white border-2 border-charcoal"
+                    style={{ zIndex: 3 - i }}
+                  >
+                    {initials}
+                  </div>
+                ))}
+              </div>
+              <span className="text-sm text-gray-300">
+                <span className="text-white font-semibold">150+ businesses</span> ranked to page 1
+              </span>
+            </motion.div>
           </div>
         </div>
+
+        {/* Bottom gradient fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-teal">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <div className="text-3xl md:text-4xl font-bold">{stat.value}</div>
-                <div className="text-sm mt-1 text-white/80">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+      <section className="relative -mt-8 z-20 pb-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="bg-gradient-to-r from-teal to-teal-dark rounded-2xl shadow-xl shadow-teal/20 p-8 md:p-10"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 + i * 0.1 }}
+                >
+                  <div className="text-3xl md:text-4xl font-bold">
+                    <AnimatedCounter value={stat.value} />
+                  </div>
+                  <div className="text-sm mt-1 text-white/70">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-teal font-semibold text-sm uppercase tracking-wider mb-3">What We Do</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-              Everything You Need to Rank Higher
-            </h2>
-            <p className="text-gray-mid text-lg">
-              From technical SEO to content strategy, we offer comprehensive services
-              designed to grow your online visibility and revenue.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <div
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <FloatingOrbs />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <p className="text-teal font-semibold text-sm uppercase tracking-widest mb-3">What We Do</p>
+              <h2 className="text-3xl md:text-5xl font-bold text-charcoal mb-4">
+                Everything You Need to <GradientText>Rank Higher</GradientText>
+              </h2>
+              <p className="text-gray-mid text-lg">
+                From technical SEO to content strategy, we offer comprehensive services
+                designed to grow your online visibility and revenue.
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, i) => (
+              <ScrollReveal
                 key={service.title}
-                className="bg-white border border-gray-100 rounded-xl p-8 hover:shadow-lg hover:border-teal/20 transition-all group"
+                delay={i * 0.1}
+                direction={i % 2 === 0 ? "left" : "right"}
               >
-                <div className="text-teal mb-4 group-hover:scale-110 transition-transform">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold text-charcoal mb-3">{service.title}</h3>
-                <p className="text-gray-mid leading-relaxed">{service.description}</p>
-              </div>
+                <TiltCard className="h-full">
+                  <div className="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:border-teal/20 transition-all duration-500 group h-full relative overflow-hidden">
+                    {/* Gradient corner accent */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-teal/5 to-transparent rounded-bl-full" />
+                    <div className="relative">
+                      <div className="w-14 h-14 bg-teal/10 rounded-xl flex items-center justify-center text-teal mb-5 group-hover:bg-teal group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                        {service.icon}
+                      </div>
+                      <h3 className="text-xl font-bold text-charcoal mb-3">{service.title}</h3>
+                      <p className="text-gray-mid leading-relaxed">{service.description}</p>
+                    </div>
+                  </div>
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-teal font-semibold hover:text-teal-dark transition-colors"
-            >
-              View All Services
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="text-center mt-12">
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 text-teal font-semibold hover:text-teal-dark transition-colors group"
+              >
+                View All Services
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Social Proof / Reviews */}
-      <section className="bg-gray-light py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-teal font-semibold text-sm uppercase tracking-wider mb-3">Client Results</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-              Trusted by Local Businesses
-            </h2>
-            <div className="flex items-center justify-center gap-2 mt-4">
-              <StarRating count={5} />
-              <span className="text-gray-mid font-medium">4.9/5 from 80+ Google Reviews</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {reviews.map((review) => (
-              <div
-                key={review.name}
-                className="bg-white rounded-xl p-8 shadow-sm"
-              >
-                <StarRating count={review.rating} />
-                <p className="mt-4 text-charcoal leading-relaxed">&ldquo;{review.text}&rdquo;</p>
-                <div className="mt-6 pt-4 border-t border-gray-100">
-                  <p className="font-semibold text-charcoal">{review.name}</p>
-                  <p className="text-sm text-gray-mid">{review.company}</p>
-                </div>
+      <section className="bg-gray-light py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(8,145,178,0.04),transparent_50%)]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <p className="text-teal font-semibold text-sm uppercase tracking-widest mb-3">Client Results</p>
+              <h2 className="text-3xl md:text-5xl font-bold text-charcoal mb-4">
+                Trusted by Local Businesses
+              </h2>
+              <div className="flex items-center justify-center gap-2 mt-4">
+                <StarRating count={5} />
+                <span className="text-gray-mid font-medium">4.9/5 from 80+ Google Reviews</span>
               </div>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {reviews.map((review, i) => (
+              <ScrollReveal key={review.name} delay={i * 0.15}>
+                <TiltCard className="h-full">
+                  <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 h-full border border-gray-100/50 relative overflow-hidden">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal to-teal-light" />
+                    <div className="flex gap-0.5 mb-4">
+                      {Array.from({ length: review.rating }).map((_, j) => (
+                        <svg key={j} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-charcoal leading-relaxed">&ldquo;{review.text}&rdquo;</p>
+                    <div className="mt-6 pt-4 border-t border-gray-100 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-sm font-bold text-white">
+                        {review.name.split(" ").map((n) => n[0]).join("")}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-charcoal">{review.name}</p>
+                        <p className="text-sm text-gray-mid">{review.company}</p>
+                      </div>
+                    </div>
+                  </div>
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <Link
-              href="/reviews"
-              className="inline-flex items-center gap-2 text-teal font-semibold hover:text-teal-dark transition-colors"
-            >
-              Read All Reviews
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="text-center mt-10">
+              <Link
+                href="/reviews"
+                className="inline-flex items-center gap-2 text-teal font-semibold hover:text-teal-dark transition-colors group"
+              >
+                Read All Reviews
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Trust Signals */}
-      <section className="py-16 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-sm text-gray-mid uppercase tracking-wider mb-8 font-medium">
-            Trusted Partners & Certifications
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-12 text-gray-300">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-charcoal">Google</div>
-              <div className="text-xs text-gray-mid mt-1">Partner</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-charcoal">SEMrush</div>
-              <div className="text-xs text-gray-mid mt-1">Certified</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-charcoal">Moz</div>
-              <div className="text-xs text-gray-mid mt-1">Recommended</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-charcoal">HubSpot</div>
-              <div className="text-xs text-gray-mid mt-1">Solutions Partner</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-charcoal">Ahrefs</div>
-              <div className="text-xs text-gray-mid mt-1">Certified</div>
+      <ScrollReveal>
+        <section className="py-20 border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-center text-sm text-gray-mid uppercase tracking-widest mb-10 font-medium">
+              Trusted Partners & Certifications
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+              {[
+                { name: "Google", sub: "Partner" },
+                { name: "SEMrush", sub: "Certified" },
+                { name: "Moz", sub: "Recommended" },
+                { name: "HubSpot", sub: "Solutions Partner" },
+                { name: "Ahrefs", sub: "Certified" },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  className="text-center group cursor-default"
+                  whileHover={{ scale: 1.1, y: -4 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <div className="text-2xl font-bold text-charcoal/30 group-hover:text-charcoal transition-colors duration-300">
+                    {item.name}
+                  </div>
+                  <div className="text-xs text-gray-mid/50 group-hover:text-teal mt-1 transition-colors duration-300">
+                    {item.sub}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-teal to-teal-dark py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Outrank Your Competition?
-          </h2>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Get a free, no-obligation SEO audit of your website. We&apos;ll show you
-            exactly where you stand and how to improve your rankings.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="bg-white text-teal-dark px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Get Your Free Audit
-            </Link>
-            <a
-              href="tel:+15551234567"
-              className="border-2 border-white/40 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 transition-colors"
-            >
-              (555) 123-4567
-            </a>
-          </div>
+      <section className="relative py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-[#1e2d42] to-[#0c2840]" />
+        <FloatingOrbs />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <ScrollReveal>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to <GradientText className="text-4xl md:text-5xl font-bold">Outrank</GradientText> Your Competition?
+            </h2>
+            <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+              Get a free, no-obligation SEO audit of your website. We&apos;ll show you
+              exactly where you stand and how to improve your rankings.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <MagneticButton
+                href="/contact"
+                className="bg-white text-teal-dark px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-lg hover:shadow-white/20 transition-all inline-block"
+              >
+                Get Your Free Audit
+              </MagneticButton>
+              <MagneticButton
+                href="tel:+15551234567"
+                className="border-2 border-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition-all inline-block"
+              >
+                (555) 123-4567
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>
