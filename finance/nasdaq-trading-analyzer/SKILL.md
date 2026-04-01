@@ -1,6 +1,6 @@
 ---
 name: "nasdaq-trading-analyzer"
-description: "NASDAQ futures (NQ/MNQ) trading analyzer for Apex Trader Funding accounts. Technical analysis (RSI, MACD, EMA, Bollinger, VWAP, ATR), risk management with Apex drawdown rules, session timing, economic calendar, and news scanning. 4 Python tools, stdlib-only."
+description: "NASDAQ futures (NQ/MNQ) trading analyzer for Apex Trader Funding accounts. Technical analysis (RSI, MACD, EMA, Bollinger, VWAP, ATR) optimized for 1m/5m scalping, risk management with Apex EOD drawdown rules, session timing, economic calendar, and news scanning. 4 Python tools, stdlib-only."
 version: 1.0.0
 author: Alireza Rezvani
 license: MIT
@@ -19,7 +19,7 @@ agents:
 
 # NASDAQ Futures Trading Analyzer
 
-> Comprehensive analysis toolkit for NQ/MNQ futures traders using Apex Trader Funding. Technical indicators, risk management, session analysis, and market intelligence — all from the command line.
+> Comprehensive analysis toolkit for NQ/MNQ futures traders using Apex Trader Funding. Technical indicators optimized for 1-min and 5-min scalping, risk management with EOD (End-of-Day) drawdown rules, session analysis, and market intelligence — all from the command line.
 
 ## Quick Start
 
@@ -75,14 +75,14 @@ python3 scripts/technical_analyzer.py prices.csv --rsi-period 10 --ema-periods 8
 
 ### 2. Risk Manager (`scripts/risk_manager.py`)
 
-Position sizing and risk calculator built around Apex Trader Funding account rules.
+Position sizing and risk calculator built around Apex Trader Funding's **EOD (End-of-Day) drawdown** system. Optimized for 1m/5m scalping.
 
 **Features:**
-- All Apex account types (25K–300K) with correct drawdown limits
-- Position size calculator respecting max contracts and trailing drawdown
-- Risk/Reward ratio analysis
-- Daily loss limit tracking
-- Drawdown proximity warnings
+- All Apex account types (25K–300K) with correct EOD drawdown limits
+- Position size calculator respecting max contracts and EOD drawdown
+- Scalp metrics (ticks to stop, $/tick, breakeven ticks)
+- Risk/Reward ratio analysis with tick-level detail
+- EOD drawdown proximity warnings
 - Scale-in/scale-out plan generator
 
 ```bash
@@ -99,16 +99,18 @@ python3 scripts/risk_manager.py --account 50k --entry 18450 --stop 18430 --targe
 python3 scripts/risk_manager.py --account 50k --entry 18450 --stop 18430 --target 18490 --format json
 ```
 
-**Apex Account Rules Built In:**
-| Account | Drawdown | Max Contracts | Trailing Threshold |
-|---------|----------|---------------|--------------------|
-| 25K | $1,500 | 4 NQ / 40 MNQ | Trails from Day 1 |
-| 50K | $2,500 | 10 NQ / 100 MNQ | Trails from Day 1 |
-| 75K | $2,750 | 12 NQ / 120 MNQ | Trails from Day 1 |
-| 100K | $3,000 | 14 NQ / 140 MNQ | Trails from Day 1 |
-| 150K | $5,000 | 17 NQ / 170 MNQ | Trails from Day 1 |
-| 250K | $6,500 | 27 NQ / 270 MNQ | Trails from Day 1 |
-| 300K | $7,500 | 35 NQ / 350 MNQ | Trails from Day 1 |
+**Apex Account Rules Built In (EOD Drawdown):**
+| Account | EOD Drawdown | Max Contracts | Floor Moves On |
+|---------|-------------|---------------|----------------|
+| 25K | $1,500 | 4 NQ / 40 MNQ | EOD settled balance |
+| 50K | $2,500 | 10 NQ / 100 MNQ | EOD settled balance |
+| 75K | $2,750 | 12 NQ / 120 MNQ | EOD settled balance |
+| 100K | $3,000 | 14 NQ / 140 MNQ | EOD settled balance |
+| 150K | $5,000 | 17 NQ / 170 MNQ | EOD settled balance |
+| 250K | $6,500 | 27 NQ / 270 MNQ | EOD settled balance |
+| 300K | $7,500 | 35 NQ / 350 MNQ | EOD settled balance |
+
+> **EOD Drawdown:** Floor only moves based on your end-of-day settled balance. Intraday unrealized P&L does NOT move the floor — a major advantage for 1m/5m scalpers.
 
 ### 3. Session Analyzer (`scripts/session_analyzer.py`)
 
@@ -219,7 +221,7 @@ Use `assets/trade-journal-template.md` to record the setup, execution, and revie
 | Post-Market | 4:00 PM | 6:00 PM | Settlement, reduced liquidity |
 
 ### Apex Trader Funding Quick Reference
-- **Trailing Drawdown:** Follows your highest balance, never resets
+- **EOD Drawdown:** Floor trails based on end-of-day settled balance only — intraday swings don't affect it
 - **No daily loss limit** in evaluation — but respect your own
 - **Must trade during Apex hours:** Typically Globex session
 - **Payout rules:** Varies by PA account type (check current Apex terms)
@@ -236,10 +238,11 @@ Use `assets/trade-journal-template.md` to record the setup, execution, and revie
 - `assets/trade-journal-template.md` — Daily trade journaling template
 - `assets/daily-prep-checklist.md` — Pre-market preparation checklist
 
-## Tips for Apex Traders
+## Tips for 1m/5m Apex Scalpers
 
-1. **Respect the trailing drawdown.** It's the #1 account killer. Use the risk manager to track proximity.
-2. **Trade the morning session (10-12 ET).** Best liquidity and trend moves on NQ.
-3. **Size down on news days.** CPI, FOMC, NFP can move NQ 200+ points in minutes.
-4. **Use MNQ to scale in.** 1 NQ = 10 MNQ. Scale into positions with micros for precision.
-5. **Journal every trade.** The template is there — use it. Pattern recognition comes from review.
+1. **Leverage the EOD drawdown.** Intraday noise won't kill you — only your end-of-day settled balance matters. But don't let losers run.
+2. **Trade the morning session (10-12 ET).** Best liquidity and cleanest moves for scalping NQ on 1m/5m.
+3. **Size down on news days.** CPI, FOMC, NFP can move NQ 200+ pts in minutes — your scalp stops won't hold.
+4. **Use MNQ to scale in.** 1 NQ = 10 MNQ. Perfect for fine-tuning entries on 1m charts.
+5. **Cap your trades per day.** 6-8 scalps max. Overtrading on 1m charts kills accounts through commissions and tilt.
+6. **Journal every trade.** The template is there — use it. Pattern recognition on 1m/5m comes from reviewing your setups.

@@ -1,11 +1,11 @@
 # Apex Trader Funding — Account Rules & Specifications
 
-> Complete reference for all Apex evaluation and PA (Performance Account) rules as they apply to NQ/MNQ futures trading.
+> Complete reference for all Apex evaluation and PA (Performance Account) rules as they apply to NQ/MNQ futures trading. Updated for the **End-of-Day (EOD) drawdown system**.
 
 ## Account Types & Limits
 
-| Account | Starting Balance | Trailing Drawdown | Max NQ | Max MNQ | Monthly Cost |
-|---------|-----------------|-------------------|--------|---------|-------------|
+| Account | Starting Balance | EOD Drawdown | Max NQ | Max MNQ | Monthly Cost |
+|---------|-----------------|-------------|--------|---------|-------------|
 | 25K | $25,000 | $1,500 | 4 | 40 | ~$147/mo |
 | 50K | $50,000 | $2,500 | 10 | 100 | ~$167/mo |
 | 75K | $75,000 | $2,750 | 12 | 120 | ~$187/mo |
@@ -16,28 +16,44 @@
 
 *Pricing subject to change. Apex frequently runs promotions (50-80% off).*
 
-## Trailing Drawdown Mechanics
+## End-of-Day (EOD) Drawdown System
 
 ### How It Works
 1. **Starting floor** = Starting Balance - Drawdown Amount
    - Example: 50K account → Floor starts at $47,500
-2. **The floor trails UP** with your highest balance (including unrealized P&L)
-3. **The floor NEVER trails down** — it only moves up or stays
-4. **Account breaches** when balance touches or goes below the floor
+2. **The floor trails UP** based on your highest **end-of-day settled balance** only
+3. **Intraday unrealized P&L does NOT move the floor** — this is the key difference from trailing drawdown
+4. **Account breaches** when your end-of-day settled balance touches or goes below the floor
 
-### Critical Details
-- Trailing drawdown tracks **intraday highs**, not just end-of-day
-- If your balance hits $52,500 on a 50K account, your new floor is $50,000
-- Once the floor reaches your starting balance ($50,000), it **stops trailing** (on some account types)
-- Unrealized P&L counts — a floating profit raises the high-water mark
+### Why EOD Drawdown Is Better for Scalpers
+- You can hold through intraday drawdowns without the floor chasing your equity up
+- A winning trade that you close at breakeven doesn't permanently raise your floor
+- Only your **settled balance at end of day** matters for the drawdown calculation
+- Gives you more breathing room for 1m/5m scalping where quick dips and recoveries are normal
 
-### Example Scenario (50K Account)
+### EOD vs Trailing Drawdown — Key Differences
+| Aspect | EOD Drawdown | Trailing Drawdown (old) |
+|--------|-------------|------------------------|
+| Floor moves on | End-of-day settled balance | Intraday equity high (including unrealized) |
+| Unrealized P&L | Does NOT affect floor | DOES raise the floor |
+| Scalping impact | Favorable — dips don't hurt you | Unfavorable — brief spikes raise floor permanently |
+| Floor check | Once per day at settlement | Continuously intraday |
+
+### Example Scenario (50K Account, EOD System)
 ```
-Starting:    $50,000  |  Floor: $47,500
-Trade 1 win: $51,200  |  Floor: $48,700 (trailed up by $1,200)
-Trade 2 win: $52,800  |  Floor: $50,300 (trailed up)
-Trade 3 loss: $51,500 |  Floor: $50,300 (doesn't trail down)
-Remaining buffer: $51,500 - $50,300 = $1,200
+Day 1 start:   $50,000  |  Floor: $47,500
+  Intraday high: $51,500 (unrealized) — FLOOR STAYS at $47,500
+  EOD balance:   $50,800 (closed winners)
+  New floor:     $48,300 (trailed up by $800 based on EOD balance)
+
+Day 2 start:   $50,800  |  Floor: $48,300
+  Intraday low:  $49,500 (unrealized drawdown) — NO BREACH (floor is $48,300)
+  EOD balance:   $51,400 (recovered and closed green)
+  New floor:     $48,900 (trailed up to $51,400 - $2,500)
+
+Day 3 start:   $51,400  |  Floor: $48,900
+  Bad day, EOD:  $49,200 — STILL SAFE (above floor of $48,900)
+  Floor stays:   $48,900 (doesn't trail down)
 ```
 
 ## Evaluation Rules
@@ -45,7 +61,7 @@ Remaining buffer: $51,500 - $50,300 = $1,200
 ### Pass Criteria
 - Reach the profit target for your account size
 - Trade a minimum number of days (typically 7)
-- Do not breach trailing drawdown
+- Do not breach EOD drawdown
 
 ### Profit Targets
 | Account | Profit Target |
@@ -59,9 +75,9 @@ Remaining buffer: $51,500 - $50,300 = $1,200
 | 300K | $20,000 |
 
 ### Restrictions During Evaluation
-- No trading during major news events (varies by Apex policy)
 - Must close all positions by end of session (no overnight holds in eval)
 - Must trade within allowed hours
+- Check current Apex rules for news trading restrictions
 
 ## Performance Account (PA) Rules
 
@@ -72,7 +88,7 @@ Remaining buffer: $51,500 - $50,300 = $1,200
 - Payout schedule: Twice monthly or as specified by Apex
 
 ### PA-Specific Rules
-- Trailing drawdown still applies
+- EOD drawdown still applies
 - Position limits may differ
 - Scaling plan may apply (start with fewer contracts, earn more over time)
 - Consistency rule: No single day P&L > 30-50% of total profits (check current rules)
@@ -85,7 +101,7 @@ Remaining buffer: $51,500 - $50,300 = $1,200
 
 ### Not Allowed
 - Holding positions during the daily maintenance window (5:00-6:00 PM ET)
-- Some accounts restrict trading during high-impact news (check your specific rules)
+- Check your specific account rules for any additional restrictions
 
 ## Instruments Available
 
@@ -101,39 +117,54 @@ Remaining buffer: $51,500 - $50,300 = $1,200
 - GC/MGC (Gold)
 - And others
 
-## Risk Management Best Practices for Apex
-
-### The 1% Rule (Adapted for Apex)
-- Never risk more than **15-25% of your trailing drawdown** on a single trade
-- For a 50K account ($2,500 drawdown): max risk = $375-$625 per trade
-- This gives you 4-6 full losing trades before breach
+## Risk Management for EOD Drawdown + 1m/5m Scalping
 
 ### Position Sizing Formula
 ```
 Max Contracts = (Drawdown × Risk%) / (Stop Distance × Point Value)
 
-Example (50K, 20-point stop on NQ, 20% risk):
-Max = ($2,500 × 0.20) / (20 × $20) = $500 / $400 = 1.25 → 1 NQ contract
+Example (50K, 8-point stop on NQ, 20% risk):
+Max = ($2,500 × 0.20) / (8 × $20) = $500 / $160 = 3.1 → 3 NQ contracts
 ```
 
+### Scalping-Specific Risk Rules
+- **Tight stops on 1m/5m:** Typical stop distance = 5-15 points (20-60 ticks)
+- **With EOD drawdown, you can recover intraday** — a dip to -$800 unrealized doesn't breach if you close green
+- **But don't abuse it** — still manage risk per trade to avoid a cascade of realized losses
+- **Daily loss limit (self-imposed):** Stop after losing 20-30% of drawdown in realized losses
+- **Max trades per day:** Cap at 6-8 scalps to avoid overtrading and commission drag
+
 ### Daily Loss Limits (Self-Imposed)
-- **Conservative:** Stop trading after losing 10% of drawdown ($250 on 50K)
-- **Moderate:** Stop after 20% of drawdown ($500 on 50K)
-- **Maximum:** Never lose more than 30% of drawdown in one day
+| Level | Max Daily Realized Loss | 50K Example |
+|-------|------------------------|-------------|
+| Conservative | 15% of drawdown | $375 |
+| Moderate | 25% of drawdown | $625 |
+| Maximum | 35% of drawdown | $875 |
 
-### Scaling Strategy
+### Scaling Strategy for Scalpers
 1. Start with **1-2 NQ** or **5-10 MNQ** regardless of max allowed
-2. Only scale up after proving consistent profitability
-3. Use MNQ to fine-tune position sizes (1 NQ = 10 MNQ)
+2. On 1m/5m charts, use MNQ to scale in/out with precision
+3. Only scale up size after 2+ weeks of consistent green days
+4. **1 NQ = 10 MNQ** — use MNQ for fine-grained position management
 
-## Common Account Killers
+## Common Account Killers (EOD System)
 
-1. **Revenge trading** after a loss — leads to oversizing and drawdown breach
-2. **Moving stop losses** further away — turns small loss into account-ending loss
-3. **Ignoring the trailing nature** — profits raise your floor, then a reversal breaches
-4. **News trading** without understanding the risk — NQ can move 200+ pts in seconds
-5. **Overtrading** — commissions add up, and more trades = more exposure to the trailing drawdown
-6. **Not understanding unrealized P&L counts** — floating profit raises the high-water mark
+1. **Revenge trading** after a loss — multiple realized losses stack up against EOD floor
+2. **Moving stop losses** further away — turns small scalp loss into account-ending loss
+3. **Not closing losers** — EOD drawdown gives you intraday room, but don't let losers run to settlement
+4. **News trading** without understanding the risk — NQ can move 200+ pts in minutes on CPI/FOMC
+5. **Overtrading on 1m** — commissions eat into scalp profits; be selective with setups
+6. **Thinking EOD = unlimited intraday risk** — your settled balance at day's end is what matters
+
+## EOD Drawdown Advantage: How to Use It
+
+The EOD system is a significant edge for scalpers:
+
+1. **Take the trade with proper stop** — if stopped out, the loss is realized and counted
+2. **Hold through normal noise** — intraday dips in unrealized P&L won't kill your account
+3. **If a trade goes against you but hasn't hit stop** — you have room to manage it
+4. **Close flat trades freely** — entering and exiting at breakeven doesn't raise the floor
+5. **Focus on ending each day green** — even a small green day is a win with EOD drawdown
 
 ## Useful Links
 

@@ -1,6 +1,6 @@
 # NQ/MNQ Technical Patterns & Indicator Strategies
 
-> Chart patterns, indicator setups, and confluence techniques specifically for NASDAQ futures.
+> Chart patterns, indicator setups, and confluence techniques for NASDAQ futures. Optimized for **1-minute and 5-minute scalping** timeframes.
 
 ## Indicator Quick Reference
 
@@ -14,10 +14,11 @@
 | 20-40 | Bearish momentum | Sell rallies toward 50 |
 | < 20 | Extremely oversold | Look for long entries on divergence |
 
-**NQ-Specific Notes:**
+**NQ-Specific Notes (1m/5m Scalping):**
 - NQ trends harder than ES — RSI can stay overbought/oversold longer
-- Use RSI divergence on 15min+ charts for higher probability
-- 5-min RSI is useful for timing entries within larger trend
+- **5-min RSI** is your primary signal — use for entry timing within the trend
+- **1-min RSI** can be noisy; best used to confirm 5-min signals or spot micro-divergence
+- On 1m charts, RSI >65 or <35 is often sufficient (don't wait for 70/30 extremes)
 
 ### MACD (12/26/9)
 | Signal | Description | Action |
@@ -49,48 +50,56 @@
 
 ### ATR (Average True Range)
 - **NQ typical daily ATR:** 150-300 points (varies with VIX)
-- **Use for stops:** 1.5× ATR for swing trades, 0.5-1× ATR for day trades
-- **High ATR days:** Reduce position size proportionally
-- **Low ATR days:** Tighter stops, expect range-bound action
+- **For 1m/5m scalping:** Use 0.3-0.5× the 5-min ATR for stop placement (typically 5-15 points)
+- **High ATR days:** Reduce contracts, widen stops slightly, but scalps still work with EOD drawdown
+- **Low ATR days:** Tighter stops, smaller targets — good for VWAP scalps
+- **1-min ATR:** Useful for setting micro-targets on quick scalps (2-5 point moves)
 
-## Chart Patterns for NQ
+## Chart Patterns for 1m/5m NQ Scalping
 
-### High-Probability Patterns
+### High-Probability Scalp Setups
 
-#### 1. Opening Range Breakout (ORB)
-- **Setup:** Mark the high/low of the first 15-30 minutes after 9:30 AM
-- **Entry:** Break above range high (long) or below range low (short)
-- **Stop:** Opposite side of the range
-- **Target:** 1:1.5 to 1:2 R:R
+#### 1. Opening Range Breakout (ORB) — 5min
+- **Setup:** Mark the high/low of the first 5-15 minutes after 9:30 AM (use 5-min candles)
+- **Entry:** Break above range high (long) or below range low (short) on 1-min confirmation
+- **Stop:** Midpoint or opposite side of the range (typically 8-15 points)
+- **Target:** 1:1.5 to 1:2 R:R, or prior day high/low
 - **Works best:** Trend days following overnight consolidation
 
-#### 2. VWAP Reversion
-- **Setup:** Price extended 1+ ATR from VWAP
-- **Entry:** First pullback toward VWAP with confirming candle
-- **Stop:** Beyond the extreme (recent high/low)
-- **Target:** VWAP touch or slight overshoot
-- **Works best:** Lunch session, choppy days
+#### 2. VWAP Scalp (Mean Reversion)
+- **Setup:** Price extended 10+ points from VWAP on 5-min chart
+- **Entry:** 1-min candle reversal pattern near VWAP deviation extreme
+- **Stop:** 5-10 points beyond the extreme
+- **Target:** VWAP touch or slight overshoot (5-15 points)
+- **Works best:** Lunch session, choppy days. The bread-and-butter 1m/5m scalp.
 
-#### 3. EMA Pullback (Trend Continuation)
-- **Setup:** Price in clear trend (EMA stack aligned)
-- **Entry:** Pullback to 9 or 21 EMA with holding candle
-- **Stop:** Below the 21 EMA (longs) or above (shorts)
-- **Target:** New high/low beyond previous swing
-- **Works best:** 10 AM - 12 PM morning session
+#### 3. EMA Pullback Scalp (Trend Continuation)
+- **Setup:** 5-min EMA stack aligned (9 > 21 for longs). Price pulls back to 9 EMA on 1-min.
+- **Entry:** 1-min candle holds and closes above 9 EMA (longs)
+- **Stop:** Below the 1-min swing low or 5-min 21 EMA (5-10 points)
+- **Target:** New 1-min swing high, or 5-min candle high
+- **Works best:** 10 AM - 12 PM morning session. Most reliable scalp pattern.
 
-#### 4. Double Bottom/Top at Support/Resistance
-- **Setup:** Price tests a key level twice with RSI divergence
-- **Entry:** Break above the neckline (double bottom) or below (double top)
-- **Stop:** Below the double bottom / above double top
-- **Target:** Measured move (distance from bottom to neckline, projected)
-- **Works best:** At prior day high/low, weekly pivots
+#### 4. Double Bottom/Top Micro-Pattern
+- **Setup:** On 1-min chart, price tests a level twice with RSI divergence
+- **Entry:** Break of the micro-neckline on 1-min
+- **Stop:** Below the double bottom (3-8 points)
+- **Target:** Measured move from the pattern (5-15 points)
+- **Works best:** At VWAP, pivot points, or prior session high/low
 
-#### 5. Bull/Bear Flag
-- **Setup:** Strong impulse move followed by tight consolidation (flag)
-- **Entry:** Break of flag in direction of impulse
-- **Stop:** Beyond the flag boundary
-- **Target:** Measured move (length of pole projected from breakout)
-- **Works best:** Morning session continuation setups
+#### 5. Bull/Bear Flag Scalp
+- **Setup:** 1-min impulse candle (3+ points) followed by 2-4 tight consolidation candles
+- **Entry:** Break of flag in direction of impulse on 1-min
+- **Stop:** Beyond the flag boundary (3-8 points)
+- **Target:** Measured move (pole length projected from breakout)
+- **Works best:** Morning session after initial direction is established
+
+#### 6. Level-to-Level Scalp (Unique to 1m/5m)
+- **Setup:** Identify two nearby levels (pivot, VWAP, S/R) 10-20 points apart
+- **Entry:** Bounce from one level on 1-min chart with volume confirmation
+- **Stop:** 3-5 points beyond the entry level
+- **Target:** The opposite level
+- **Works best:** Range days. Map your levels pre-market and trade between them.
 
 ### NQ-Specific Behaviors
 
@@ -129,18 +138,18 @@
 - 3 Tier 1 + 2 Tier 2 = A+ setup (increase size)
 - Tier 3 violations = Reduce size or skip
 
-## Multi-Timeframe Analysis Framework
+## Multi-Timeframe Analysis Framework (for 1m/5m Scalping)
 
 | Timeframe | Purpose | Key Indicators |
 |-----------|---------|---------------|
 | Daily | Trend direction, key levels | 50/200 SMA, daily pivots |
-| 4H | Swing bias | EMA stack, MACD |
-| 1H | Session trend | VWAP, EMA 9/21 |
-| 15min | Entry timing | RSI, Bollinger, candle patterns |
-| 5min | Precise entry/exit | Price action, volume |
+| 1H | Session bias — trade in this direction | EMA stack, VWAP |
+| 15min | Context — identify key structure levels | S/R, Bollinger Bands |
+| **5min** | **Primary chart — setup identification** | **EMA 9/21, RSI, MACD, VWAP** |
+| **1min** | **Execution chart — entry/exit timing** | **Price action, volume, micro-patterns** |
 
-**Rule:** Only trade in the direction of the 1H+ trend unless you see a confirmed reversal pattern with strong confluence.
+**Rule:** Use the 5-min chart to identify the setup and direction. Use the 1-min chart ONLY for precise entry timing and scalp exits. Never trade the 1-min against the 5-min trend unless at a major level with clear divergence.
 
 ---
 
-*These patterns are based on common NQ behavior. No pattern guarantees profit. Always use proper risk management and respect your Apex drawdown limits.*
+*These patterns are based on common NQ behavior on 1m/5m charts. No pattern guarantees profit. Always use proper risk management and respect your Apex EOD drawdown limits.*
