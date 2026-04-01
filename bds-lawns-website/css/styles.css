@@ -204,7 +204,7 @@ ul { list-style: none; }
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 12px 0;
+    padding: 8px 0;
     background: var(--white);
     box-shadow: var(--shadow-sm);
 }
@@ -222,13 +222,13 @@ ul { list-style: none; }
 }
 
 .logo-img {
-    height: 70px;
+    height: 120px;
     width: auto;
 }
 
 @media (max-width: 768px) {
     .logo-img {
-        height: 55px;
+        height: 90px;
     }
 }
 
