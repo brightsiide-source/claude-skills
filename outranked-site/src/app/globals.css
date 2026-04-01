@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a2332;
+  --teal: #0891b2;
+  --teal-dark: #0e7490;
+  --teal-light: #06b6d4;
+  --charcoal: #1a2332;
+  --gray-light: #f8fafc;
+  --gray-mid: #64748b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-teal: var(--teal);
+  --color-teal-dark: var(--teal-dark);
+  --color-teal-light: var(--teal-light);
+  --color-charcoal: var(--charcoal);
+  --color-gray-light: var(--gray-light);
+  --color-gray-mid: var(--gray-mid);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
