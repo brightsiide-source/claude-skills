@@ -7,8 +7,9 @@ This guide covers the finance skills and their Python automation tools.
 **Available Skills:**
 1. **financial-analyst/** - Financial statement analysis, ratio analysis, DCF valuation, budgeting, forecasting (4 Python tools)
 2. **saas-metrics-coach/** - SaaS financial health: ARR, MRR, churn, CAC, LTV, NRR, Quick Ratio, 12-month projections (3 Python tools)
+3. **nasdaq-trading-analyzer/** - NASDAQ futures (NQ/MNQ) technical analysis, Apex Trader Funding risk management, session timing, economic calendar & news scanning (4 Python tools)
 
-**Total Tools:** 7 Python automation tools, 5 knowledge bases, 6 templates
+**Total Tools:** 11 Python automation tools, 8 knowledge bases, 8 templates
 
 **Commands:** 2 (`/financial-health`, `/saas-health`)
 
@@ -92,6 +93,57 @@ python financial-analyst/scripts/forecast_builder.py forecast_data.json --format
 - Process files locally (no API calls)
 - Include argparse CLI with `--help` support
 
+### 5. Technical Analyzer (`nasdaq-trading-analyzer/scripts/technical_analyzer.py`)
+
+**Purpose:** Compute technical indicators for NQ/MNQ futures price data
+
+**Features:**
+- RSI, MACD, EMA, SMA, Bollinger Bands, ATR, VWAP, Stochastic
+- Pivot points and support/resistance detection
+- Overall bias calculation from indicator confluence
+
+**Usage:**
+```bash
+python nasdaq-trading-analyzer/scripts/technical_analyzer.py prices.csv
+python nasdaq-trading-analyzer/scripts/technical_analyzer.py prices.csv --indicators rsi,macd --format json
+```
+
+### 6. Risk Manager (`nasdaq-trading-analyzer/scripts/risk_manager.py`)
+
+**Purpose:** Position sizing and drawdown tracking for Apex Trader Funding accounts
+
+**Features:**
+- All Apex account types (25K–300K) with correct drawdown limits
+- Conservative/moderate/aggressive position sizing
+- Multi-target scale-out planning
+- Drawdown proximity warnings
+
+**Usage:**
+```bash
+python nasdaq-trading-analyzer/scripts/risk_manager.py --account 50k --entry 18450 --stop 18430 --target 18490
+python nasdaq-trading-analyzer/scripts/risk_manager.py --account 50k --balance 51200 --pnl -300
+```
+
+### 7. Session Analyzer (`nasdaq-trading-analyzer/scripts/session_analyzer.py`)
+
+**Purpose:** Market session timing, key events, and trading windows
+
+**Usage:**
+```bash
+python nasdaq-trading-analyzer/scripts/session_analyzer.py --timezone US/Eastern
+python nasdaq-trading-analyzer/scripts/session_analyzer.py --week
+```
+
+### 8. News Scanner (`nasdaq-trading-analyzer/scripts/news_scanner.py`)
+
+**Purpose:** Economic calendar and news headlines for NQ-moving events
+
+**Usage:**
+```bash
+python nasdaq-trading-analyzer/scripts/news_scanner.py --impact high
+python nasdaq-trading-analyzer/scripts/news_scanner.py --week --news
+```
+
 ## Related Skills
 
 - **C-Level:** Strategic financial decision-making -> `../c-level-advisor/`
@@ -100,7 +152,7 @@ python financial-analyst/scripts/forecast_builder.py forecast_data.json --format
 
 ---
 
-**Last Updated:** March 2026
-**Skills Deployed:** 2/2 finance skills production-ready
-**Total Tools:** 7 Python automation tools
+**Last Updated:** April 2026
+**Skills Deployed:** 3/3 finance skills production-ready
+**Total Tools:** 11 Python automation tools
 **Commands:** /financial-health, /saas-health
