@@ -222,8 +222,14 @@ ul { list-style: none; }
 }
 
 .logo-img {
-    height: 50px;
+    height: 70px;
     width: auto;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        height: 45px;
+    }
 }
 
 .nav-links {
