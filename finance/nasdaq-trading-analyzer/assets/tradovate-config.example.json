@@ -1,0 +1,21 @@
+{
+    "username": "your_tradovate_username",
+    "password": "your_tradovate_password",
+    "app_id": "NQAnalyzer",
+    "app_version": "1.0",
+    "cid": 0,
+    "sec": "your_client_secret",
+
+    "environment": "demo",
+    "symbol": "NQM6",
+    "instrument": "NQ",
+
+    "apex_account": "50k",
+    "apex_balance": 50000.00,
+
+    "_comment_environment": "Use 'demo' for paper trading, 'live' for real account",
+    "_comment_symbol": "NQ contract: NQM6 (Jun), NQU6 (Sep), NQZ6 (Dec). MNQ: MNQM6, etc.",
+    "_comment_apex_account": "Your Apex account size: 25k, 50k, 75k, 100k, 150k, 250k, 300k",
+    "_comment_apex_balance": "Your current EOD closing balance (update daily)",
+    "_comment_cid_sec": "Client ID and secret from Tradovate API dashboard"
+}

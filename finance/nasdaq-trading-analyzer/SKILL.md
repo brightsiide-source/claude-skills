@@ -172,6 +172,41 @@ python3 scripts/news_scanner.py --news
 python3 scripts/news_scanner.py --format json
 ```
 
+### 5. Live Connector (`scripts/live_connector.py`)
+
+**Real-time trading co-pilot** that connects to Tradovate's API and runs analysis as you trade.
+
+**Requirements:** `pip install websocket-client`
+
+**Features:**
+- Streams live 1m candle data from Tradovate via WebSocket
+- Aggregates 1m bars into 5m candles automatically
+- Runs full technical analysis (RSI, MACD, EMA, Bollinger, VWAP, ATR) on every new bar
+- Detects playbook setups in real-time (EMA Pullback, VWAP Bounce, Bollinger Squeeze, MACD Crossover, RSI Extremes)
+- Live EOD drawdown tracking against your Apex account
+- Auto-logs fills to a daily trade journal
+- Terminal dashboard refreshes every 1-2 seconds
+
+```bash
+# Start with demo account
+python3 scripts/live_connector.py --config assets/tradovate-config.example.json --demo
+
+# Live account
+python3 scripts/live_connector.py --config my-config.json
+
+# Override symbol to Micro NQ
+python3 scripts/live_connector.py --config my-config.json --symbol MNQM6
+```
+
+**Setup:**
+1. Copy `assets/tradovate-config.example.json` to your own config file
+2. Fill in your Tradovate credentials (username, password, API keys)
+3. Set your Apex account type and current EOD balance
+4. Run with `--demo` first to test, then switch to `--live`
+
+**Supporting Modules:**
+- `scripts/tradovate_api.py` — Tradovate REST auth, WebSocket client, market data subscriptions, account monitoring
+
 ## Workflow: Daily Trading Prep
 
 Use the tools together for a complete pre-market routine:
