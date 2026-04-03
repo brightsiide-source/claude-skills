@@ -19,7 +19,7 @@ const services = [
   {
     title: "Gutters",
     href: "/services/gutters",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a8?w=800&q=80&fit=crop&auto=format",
+    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80&fit=crop&auto=format",
     description:
       "Keep water flowing away from your foundation with our gutter removal, repair, and replacement services for efficient drainage.",
   },

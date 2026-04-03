@@ -46,7 +46,7 @@ export default function GuttersPage() {
             <div className="hidden lg:block">
               <div className="glass rounded-3xl p-3 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a8?w=800&q=80&fit=crop&auto=format"
+                  src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80&fit=crop&auto=format"
                   alt="Home exterior with professional gutter system"
                   className="w-full h-72 object-cover rounded-2xl"
                 />
@@ -121,7 +121,7 @@ export default function GuttersPage() {
 
       <section className="bg-brand-black text-white section-padding relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a8?w=1400&q=80&fit=crop&auto=format" alt="" className="w-full h-full object-cover opacity-15" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1400&q=80&fit=crop&auto=format" alt="" className="w-full h-full object-cover opacity-15" loading="lazy" />
         </div>
         <div className="absolute inset-0 bg-brand-black/70" />
         <div className="relative container-max text-center">
