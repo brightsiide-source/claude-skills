@@ -11,9 +11,15 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <section className="bg-brand-black text-white section-padding !pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-mesh-dark" />
-        <div className="absolute inset-0 diagonal-lines" />
-        <div className="absolute bottom-10 right-[10%] w-80 h-80 bg-brand-silver/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1400&q=80&fit=crop&auto=format"
+            alt="Professional contractor at work"
+            className="w-full h-full object-cover opacity-20"
+          />
+        </div>
+        <div className="absolute inset-0 bg-brand-black/60" />
+        <div className="absolute inset-0 gradient-mesh-dark opacity-50" />
         <div className="relative container-max">
           <span className="inline-block glass text-brand-silver font-semibold text-sm uppercase tracking-wider px-4 py-1.5 rounded-full">Contact Us</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mt-5 mb-6">

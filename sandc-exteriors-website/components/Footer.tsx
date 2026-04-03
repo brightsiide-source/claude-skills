@@ -19,8 +19,12 @@ export default function Footer() {
   return (
     <footer className="bg-brand-black text-white">
       {/* CTA Banner */}
-      <div className="bg-brand-charcoal">
-        <div className="container-max section-padding !py-12 text-center">
+      <div className="bg-brand-charcoal relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1400&q=80&fit=crop&auto=format" alt="" className="w-full h-full object-cover opacity-15" loading="lazy" />
+        </div>
+        <div className="absolute inset-0 bg-brand-charcoal/80" />
+        <div className="relative container-max section-padding !py-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Transform Your Property?
           </h2>

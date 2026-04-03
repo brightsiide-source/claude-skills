@@ -1,33 +1,32 @@
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
-import { HeroIllustration, RoofingIllustration, SidingIllustration, GutterIllustration, ConcreteIllustration } from "@/components/ServiceIllustrations";
 
 const services = [
   {
     title: "Roofing",
     href: "/services/roofing",
-    illustration: <RoofingIllustration className="w-full h-48" />,
+    image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=800&q=80&fit=crop&auto=format",
     description:
       "From asphalt shingles to metal and rubber roofs, we handle new construction, replacements, and reroofing for residential and commercial properties.",
   },
   {
     title: "Siding",
     href: "/services/siding",
-    illustration: <SidingIllustration className="w-full h-48" />,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&fit=crop&auto=format",
     description:
       "Enhance your property's curb appeal and protection with professional siding installation. We work with vinyl, fiber cement, and more.",
   },
   {
     title: "Gutters",
     href: "/services/gutters",
-    illustration: <GutterIllustration className="w-full h-48" />,
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a8?w=800&q=80&fit=crop&auto=format",
     description:
       "Keep water flowing away from your foundation with our gutter removal, repair, and replacement services for efficient drainage.",
   },
   {
     title: "Concrete",
     href: "/services/concrete",
-    illustration: <ConcreteIllustration className="w-full h-48" />,
+    image: "https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?w=800&q=80&fit=crop&auto=format",
     description:
       "Comprehensive concrete removal and replacement services. Whether upgrading deteriorating structures or full renovations, we deliver lasting results.",
   },
@@ -99,9 +98,16 @@ export default function HomePage() {
     <>
       {/* ===== HERO SECTION ===== */}
       <section className="relative bg-brand-black text-white overflow-hidden min-h-[90vh] flex items-center">
-        {/* Background effects */}
-        <div className="absolute inset-0 gradient-mesh-dark" />
-        <div className="absolute inset-0 diagonal-lines" />
+        {/* Background photo */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80&fit=crop&auto=format"
+            alt="Construction workers on scaffolding"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-brand-black/75" />
+        </div>
+        <div className="absolute inset-0 gradient-mesh-dark opacity-60" />
 
         {/* Animated decorative orbs */}
         <div className="absolute top-20 right-[10%] w-72 h-72 bg-brand-silver/5 rounded-full blur-3xl animate-float-slow" />
@@ -122,7 +128,7 @@ export default function HomePage() {
                 <span className="gradient-text">Roofing & Exterior</span>{" "}
                 Experts
               </h1>
-              <p className="text-lg lg:text-xl text-white/70 mb-10 max-w-xl leading-relaxed">
+              <p className="text-lg lg:text-xl text-white/80 mb-10 max-w-xl leading-relaxed">
                 Professional roofing, siding, gutter, and concrete services for
                 homeowners and businesses. Quality craftsmanship you can trust.
               </p>
@@ -139,12 +145,31 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero illustration */}
+            {/* Hero photo collage */}
             <div className="hidden lg:block animate-fade-in-right">
               <div className="relative">
-                <div className="absolute inset-0 bg-brand-silver/5 rounded-3xl blur-2xl scale-90" />
-                <div className="relative glass rounded-3xl p-8">
-                  <HeroIllustration className="w-full h-auto" />
+                <div className="absolute inset-0 bg-brand-silver/10 rounded-3xl blur-2xl scale-90" />
+                <div className="relative glass rounded-3xl p-3 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80&fit=crop&auto=format"
+                    alt="Professional roofing and exterior contractor at work"
+                    className="w-full h-80 object-cover rounded-2xl"
+                    loading="lazy"
+                  />
+                  <div className="grid grid-cols-2 gap-3 mt-3">
+                    <img
+                      src="https://images.unsplash.com/photo-1632759145351-1d592919f522?w=400&q=80&fit=crop&auto=format"
+                      alt="Roof construction and shingle installation"
+                      className="w-full h-36 object-cover rounded-xl"
+                      loading="lazy"
+                    />
+                    <img
+                      src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=80&fit=crop&auto=format"
+                      alt="Beautiful home exterior with quality siding"
+                      className="w-full h-36 object-cover rounded-xl"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -200,21 +225,29 @@ export default function HomePage() {
               <ScrollReveal key={service.title} delay={i * 100}>
                 <Link
                   href={service.href}
-                  className="group block p-8 rounded-2xl border-2 border-gray-100 bg-white card-hover card-glow overflow-hidden"
+                  className="group block rounded-2xl border-2 border-gray-100 bg-white card-hover card-glow overflow-hidden"
                 >
-                  <div className="bg-brand-light rounded-xl p-4 mb-6 overflow-hidden group-hover:bg-brand-black/5 transition-colors duration-500">
-                    {service.illustration}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={`${service.title} services by Black Ridge Contracting`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <h3 className="absolute bottom-4 left-6 text-2xl font-heading font-bold text-white">
+                      {service.title}
+                    </h3>
                   </div>
-                  <h3 className="text-2xl font-heading font-bold text-brand-black mb-3 group-hover:text-brand-charcoal transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-brand-slate leading-relaxed mb-4">{service.description}</p>
-                  <span className="inline-flex items-center gap-2 text-brand-black font-semibold group-hover:gap-3 transition-all">
-                    Learn More
-                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
+                  <div className="p-8 pt-5">
+                    <p className="text-brand-slate leading-relaxed mb-4">{service.description}</p>
+                    <span className="inline-flex items-center gap-2 text-brand-black font-semibold group-hover:gap-3 transition-all">
+                      Learn More
+                      <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </div>
                 </Link>
               </ScrollReveal>
             ))}
@@ -303,11 +336,16 @@ export default function HomePage() {
 
       {/* ===== SERVICE AREA ===== */}
       <section className="bg-brand-black text-white section-padding relative overflow-hidden">
-        <div className="absolute inset-0 gradient-mesh-dark" />
-        <div className="absolute inset-0 line-pattern opacity-30" />
-        {/* Decorative orbs */}
-        <div className="absolute top-10 left-[15%] w-64 h-64 bg-brand-silver/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-[10%] w-80 h-80 bg-brand-silver/3 rounded-full blur-3xl" />
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1400&q=80&fit=crop&auto=format"
+            alt="Aerial view of construction site"
+            className="w-full h-full object-cover opacity-15"
+            loading="lazy"
+          />
+        </div>
+        <div className="absolute inset-0 bg-brand-black/60" />
+        <div className="absolute inset-0 gradient-mesh-dark opacity-50" />
 
         <div className="relative container-max text-center">
           <ScrollReveal>

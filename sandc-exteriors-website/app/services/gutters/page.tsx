@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
-import { GutterIllustration } from "@/components/ServiceIllustrations";
 
 export const metadata: Metadata = {
   title: "Gutter Services | Black Ridge Contracting | Central Iowa",
@@ -45,7 +44,13 @@ export default function GuttersPage() {
               </p>
             </div>
             <div className="hidden lg:block">
-              <div className="glass rounded-3xl p-8"><GutterIllustration className="w-full h-auto" /></div>
+              <div className="glass rounded-3xl p-3 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a8?w=800&q=80&fit=crop&auto=format"
+                  alt="Home exterior with professional gutter system"
+                  className="w-full h-72 object-cover rounded-2xl"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -115,7 +120,10 @@ export default function GuttersPage() {
       </section>
 
       <section className="bg-brand-black text-white section-padding relative overflow-hidden">
-        <div className="absolute inset-0 gradient-mesh-dark" />
+        <div className="absolute inset-0">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a8?w=1400&q=80&fit=crop&auto=format" alt="" className="w-full h-full object-cover opacity-15" loading="lazy" />
+        </div>
+        <div className="absolute inset-0 bg-brand-black/70" />
         <div className="relative container-max text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">Protect Your Property from Water Damage</h2>
