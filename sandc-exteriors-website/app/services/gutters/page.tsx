@@ -4,8 +4,8 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { GutterIllustration } from "@/components/ServiceIllustrations";
 
 export const metadata: Metadata = {
-  title: "Gutter Services | S&C Exteriors | Johnston, Iowa",
-  description: "Professional gutter installation, repair, and replacement in Central Iowa. Protect your foundation with efficient water drainage from S&C Exteriors.",
+  title: "Gutter Services | Black Ridge Contracting | Central Iowa",
+  description: "Professional gutter installation, repair, and replacement in Central Iowa. Protect your foundation with efficient water drainage from Black Ridge Contracting.",
 };
 
 const services = [
@@ -81,7 +81,7 @@ export default function GuttersPage() {
                 <span className="inline-block bg-brand-black/5 text-brand-black font-semibold text-sm uppercase tracking-wider px-4 py-1.5 rounded-full">Warning Signs</span>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-5 mb-6">Signs You Need New Gutters</h2>
                 <p className="text-brand-slate leading-relaxed mb-8">
-                  Don&apos;t wait until water damage becomes expensive. If you notice any of these signs, it&apos;s time to call S&C Exteriors.
+                  Don&apos;t wait until water damage becomes expensive. If you notice any of these signs, it&apos;s time to call Black Ridge Contracting.
                 </p>
                 <ul className="space-y-3">
                   {signs.map((sign, i) => (
@@ -119,9 +119,9 @@ export default function GuttersPage() {
         <div className="relative container-max text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">Protect Your Property from Water Damage</h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10">Get a free gutter inspection and estimate from S&C Exteriors.</p>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10">Get a free gutter inspection and estimate from Black Ridge Contracting.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:5157831896" className="btn-primary text-center">Call (515) 783-1896</a>
+              <a href="tel:3098839319" className="btn-primary text-center">Call (309) 883-9319</a>
               <Link href="/contact" className="btn-secondary text-center">Request Free Estimate</Link>
             </div>
           </ScrollReveal>

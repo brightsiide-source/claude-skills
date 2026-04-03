@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Contact Us | S&C Exteriors | Johnston, Iowa",
-  description: "Contact S&C Exteriors for a free estimate on roofing, siding, gutters, and concrete services in Central Iowa. Call (515) 783-1896.",
+  title: "Contact Us | Black Ridge Contracting | Central Iowa",
+  description: "Contact Black Ridge Contracting for a free estimate on roofing, siding, gutters, and concrete services in Central Iowa. Call (309) 883-9319.",
 };
 
 export default function ContactPage() {
@@ -57,7 +57,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label htmlFor="address" className="block text-sm font-medium text-brand-black mb-2">Property Address</label>
-                    <input type="text" id="address" name="address" className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-brand-black focus:ring-0 focus:outline-none transition-colors" placeholder="123 Main St, Johnston, IA 50131" />
+                    <input type="text" id="address" name="address" className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-brand-black focus:ring-0 focus:outline-none transition-colors" placeholder="123 Main St, Central Iowa" />
                   </div>
                   <div>
                     <label htmlFor="service" className="block text-sm font-medium text-brand-black mb-2">Service Needed *</label>
@@ -90,13 +90,13 @@ export default function ContactPage() {
               <ScrollReveal delay={100}>
                 <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8">
                   <h3 className="text-lg font-heading font-bold text-brand-black mb-4">Call Us Directly</h3>
-                  <a href="tel:5157831896" className="flex items-center gap-3 text-2xl font-bold text-brand-black hover:text-brand-charcoal transition-colors group">
+                  <a href="tel:3098839319" className="flex items-center gap-3 text-2xl font-bold text-brand-black hover:text-brand-charcoal transition-colors group">
                     <div className="w-12 h-12 bg-brand-black rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                       <svg className="w-6 h-6 text-brand-silver" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
-                    (515) 783-1896
+                    (309) 883-9319
                   </a>
                   <p className="text-brand-slate text-sm mt-3">Available 24/7 for emergencies</p>
                 </div>
@@ -105,13 +105,13 @@ export default function ContactPage() {
               <ScrollReveal delay={200}>
                 <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8">
                   <h3 className="text-lg font-heading font-bold text-brand-black mb-4">Email Us</h3>
-                  <a href="mailto:Shawncarm@yahoo.com" className="flex items-center gap-3 text-brand-charcoal hover:text-brand-black transition-colors font-medium">
+                  <a href="mailto:info@blackridgecontracting.com" className="flex items-center gap-3 text-brand-charcoal hover:text-brand-black transition-colors font-medium">
                     <div className="w-10 h-10 bg-brand-black/5 rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg className="w-5 h-5 text-brand-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    Shawncarm@yahoo.com
+                    info@blackridgecontracting.com
                   </a>
                   <p className="text-brand-slate text-sm mt-3">We respond within 24 hours</p>
                 </div>
@@ -128,8 +128,8 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium text-brand-black">9624 Wickham Dr</p>
-                      <p>Johnston, IA 50131</p>
+                      <p className="font-medium text-brand-black">Contact us for address</p>
+                      <p>Central Iowa</p>
                     </div>
                   </div>
                 </div>
@@ -138,13 +138,13 @@ export default function ContactPage() {
               <ScrollReveal delay={400}>
                 <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8">
                   <h3 className="text-lg font-heading font-bold text-brand-black mb-4">Follow Us</h3>
-                  <a href="https://www.facebook.com/people/SC-Exteriors/61550792332080/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-brand-slate hover:text-brand-black transition-colors group">
+                  <a href="https://www.facebook.com/blackridgecontracting" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-brand-slate hover:text-brand-black transition-colors group">
                     <div className="w-10 h-10 bg-brand-black/5 rounded-lg flex items-center justify-center group-hover:bg-brand-black transition-colors">
                       <svg className="w-5 h-5 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
                     </div>
-                    S&C Exteriors on Facebook
+                    Follow us on Facebook
                   </a>
                 </div>
               </ScrollReveal>

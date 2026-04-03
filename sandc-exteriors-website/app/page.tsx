@@ -43,20 +43,20 @@ const stats = [
 const testimonials = [
   {
     name: "Mike R.",
-    location: "Johnston, IA",
-    text: "S&C Exteriors did an outstanding job on our roof replacement. Professional from start to finish, and they left our property spotless. Highly recommend!",
+    location: "Central Iowa",
+    text: "Black Ridge Contracting did an outstanding job on our roof replacement. Professional from start to finish, and they left our property spotless. Highly recommend!",
     rating: 5,
   },
   {
     name: "Sarah T.",
     location: "Urbandale, IA",
-    text: "We had our siding and gutters replaced by S&C. The quality of work was excellent and the price was very fair. They were responsive and completed the job on time.",
+    text: "We had our siding and gutters replaced by Black Ridge. The quality of work was excellent and the price was very fair. They were responsive and completed the job on time.",
     rating: 5,
   },
   {
     name: "David L.",
     location: "West Des Moines, IA",
-    text: "Great experience with S&C on our concrete driveway replacement. They handled everything and the finished product looks amazing. Will use them again.",
+    text: "Great experience with Black Ridge on our concrete driveway replacement. They handled everything and the finished product looks amazing. Will use them again.",
     rating: 5,
   },
 ];
@@ -74,7 +74,7 @@ const whyUs = [
   },
   {
     title: "Local & Trusted",
-    description: "Based right here in Johnston, Iowa, we're your neighbors. We take pride in serving our Central Iowa community.",
+    description: "Based right here in Central Iowa, we're your neighbors. We take pride in serving our Central Iowa community.",
     icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
   },
   {
@@ -127,8 +127,8 @@ export default function HomePage() {
                 homeowners and businesses. Quality craftsmanship you can trust.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="tel:5157831896" className="btn-primary text-center group">
-                  <span>Call (515) 783-1896</span>
+                <a href="tel:3098839319" className="btn-primary text-center group">
+                  <span>Call (309) 883-9319</span>
                   <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -228,7 +228,7 @@ export default function HomePage() {
         <div className="relative container-max">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <span className="inline-block bg-brand-black/5 text-brand-black font-semibold text-sm uppercase tracking-wider px-4 py-1.5 rounded-full">Why S&C Exteriors</span>
+              <span className="inline-block bg-brand-black/5 text-brand-black font-semibold text-sm uppercase tracking-wider px-4 py-1.5 rounded-full">Why Black Ridge Contracting</span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-brand-black mt-5 mb-4">
                 Why Homeowners Trust Us
               </h2>
@@ -316,7 +316,7 @@ export default function HomePage() {
               Proudly Serving <span className="gradient-text">Central Iowa</span>
             </h2>
             <p className="text-white/60 text-lg max-w-3xl mx-auto mb-12">
-              Based in Johnston, we serve homeowners and businesses across the greater
+              Based in Central Iowa, we serve homeowners and businesses across the greater
               Des Moines metro area and all of Central Iowa, including:
             </p>
           </ScrollReveal>

@@ -28,8 +28,8 @@ export default function Footer() {
             Get a free, no-obligation estimate from Central Iowa&apos;s trusted exterior experts.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:5157831896" className="btn-primary">
-              Call (515) 783-1896
+            <a href="tel:3098839319" className="btn-primary">
+              Call (309) 883-9319
             </a>
             <Link href="/contact" className="btn-secondary">
               Request Estimate Online
@@ -45,11 +45,11 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">S&C</span>
+                <span className="text-white font-bold text-xl">BRC</span>
               </div>
               <div>
-                <div className="text-xl font-bold leading-tight">S&C Exteriors</div>
-                <div className="text-sm text-white/60">Est. in Johnston, IA</div>
+                <div className="text-xl font-bold leading-tight">Black Ridge Contracting</div>
+                <div className="text-sm text-white/60">Est. in Central Iowa</div>
               </div>
             </div>
             <p className="text-white/70 mb-6 leading-relaxed">
@@ -57,7 +57,7 @@ export default function Footer() {
               Proudly serving all of Central Iowa with quality craftsmanship.
             </p>
             <a
-              href="https://www.facebook.com/people/SC-Exteriors/61550792332080/"
+              href="https://www.facebook.com/blackridgecontracting"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-white/70 hover:text-brand-silver transition-colors"
@@ -108,19 +108,19 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-6">Contact Us</h3>
             <ul className="space-y-4">
               <li>
-                <a href="tel:5157831896" className="flex items-start gap-3 text-white/70 hover:text-brand-silver transition-colors">
+                <a href="tel:3098839319" className="flex items-start gap-3 text-white/70 hover:text-brand-silver transition-colors">
                   <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  (515) 783-1896
+                  (309) 883-9319
                 </a>
               </li>
               <li>
-                <a href="mailto:Shawncarm@yahoo.com" className="flex items-start gap-3 text-white/70 hover:text-brand-silver transition-colors">
+                <a href="mailto:info@blackridgecontracting.com" className="flex items-start gap-3 text-white/70 hover:text-brand-silver transition-colors">
                   <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  Shawncarm@yahoo.com
+                  info@blackridgecontracting.com
                 </a>
               </li>
               <li className="flex items-start gap-3 text-white/70">
@@ -129,8 +129,8 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <span>
-                  9624 Wickham Dr<br />
-                  Johnston, IA 50131
+                  Contact us for address<br />
+                  Central Iowa
                 </span>
               </li>
               <li className="flex items-start gap-3 text-white/70">
@@ -147,7 +147,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="container-max px-4 sm:px-6 lg:px-8 py-6 text-center text-white/50 text-sm">
-          <p>&copy; {currentYear} S&C Exteriors. All rights reserved. Proudly serving Central Iowa.</p>
+          <p>&copy; {currentYear} Black Ridge Contracting. All rights reserved. Proudly serving Central Iowa.</p>
         </div>
       </div>
     </footer>

@@ -4,9 +4,9 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { RoofingIllustration } from "@/components/ServiceIllustrations";
 
 export const metadata: Metadata = {
-  title: "Roofing Services | S&C Exteriors | Johnston, Iowa",
+  title: "Roofing Services | Black Ridge Contracting | Central Iowa",
   description:
-    "Professional roofing services in Central Iowa. Asphalt shingles, metal roofs, rubber roofing, new construction, replacements & reroofing. Free estimates from S&C Exteriors.",
+    "Professional roofing services in Central Iowa. Asphalt shingles, metal roofs, rubber roofing, new construction, replacements & reroofing. Free estimates from Black Ridge Contracting.",
 };
 
 const roofingTypes = [
@@ -58,7 +58,7 @@ export default function RoofingPage() {
                 Professional <span className="gradient-text">Roofing</span> Services
               </h1>
               <p className="text-white/70 text-xl max-w-xl leading-relaxed">
-                With a wealth of experience and a team of seasoned professionals, S&C Exteriors
+                With a wealth of experience and a team of seasoned professionals, Black Ridge Contracting
                 is equipped to handle all your roofing needs with precision and care.
               </p>
             </div>
@@ -145,7 +145,7 @@ export default function RoofingPage() {
               We&apos;ll assess your needs and recommend the best solution for your property and budget.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:5157831896" className="btn-primary text-center">Call (515) 783-1896</a>
+              <a href="tel:3098839319" className="btn-primary text-center">Call (309) 883-9319</a>
               <Link href="/contact" className="btn-secondary text-center">Request Free Estimate</Link>
             </div>
           </ScrollReveal>

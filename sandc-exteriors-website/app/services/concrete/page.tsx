@@ -4,8 +4,8 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { ConcreteIllustration } from "@/components/ServiceIllustrations";
 
 export const metadata: Metadata = {
-  title: "Concrete Services | S&C Exteriors | Johnston, Iowa",
-  description: "Professional concrete removal and replacement in Central Iowa. Driveways, sidewalks, patios, and more. Free estimates from S&C Exteriors in Johnston, IA.",
+  title: "Concrete Services | Black Ridge Contracting | Central Iowa",
+  description: "Professional concrete removal and replacement in Central Iowa. Driveways, sidewalks, patios, and more. Free estimates from Black Ridge Contracting in Central Iowa.",
 };
 
 const services = [
@@ -111,7 +111,7 @@ export default function ConcretePage() {
                 <h2 className="text-2xl md:text-3xl font-heading font-bold text-brand-black mb-6">Why Iowa Concrete Needs Expert Care</h2>
                 <div className="space-y-4 text-brand-slate leading-relaxed">
                   <p>Central Iowa&apos;s freeze-thaw cycles are one of the toughest environments for concrete. Water seeps into tiny cracks, freezes, expands, and breaks the concrete apart over time.</p>
-                  <p>That&apos;s why proper sub-base preparation, correct concrete mix, strategic joint placement, and quality finishing are critical. At S&C Exteriors, we understand Iowa&apos;s climate and build concrete that&apos;s made to endure it.</p>
+                  <p>That&apos;s why proper sub-base preparation, correct concrete mix, strategic joint placement, and quality finishing are critical. At Black Ridge Contracting, we understand Iowa&apos;s climate and build concrete that&apos;s made to endure it.</p>
                   <p>Don&apos;t let crumbling concrete become a safety hazard or drag down your property value. Our team delivers durable, professionally finished concrete work you can rely on for years.</p>
                 </div>
               </div>
@@ -125,9 +125,9 @@ export default function ConcretePage() {
         <div className="relative container-max text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">Ready to Replace Your Concrete?</h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10">Get a free concrete estimate from S&C Exteriors. We&apos;ll assess your needs and deliver a solution built to last.</p>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10">Get a free concrete estimate from Black Ridge Contracting. We&apos;ll assess your needs and deliver a solution built to last.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:5157831896" className="btn-primary text-center">Call (515) 783-1896</a>
+              <a href="tel:3098839319" className="btn-primary text-center">Call (309) 883-9319</a>
               <Link href="/contact" className="btn-secondary text-center">Request Free Estimate</Link>
             </div>
           </ScrollReveal>

@@ -4,9 +4,9 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { SidingIllustration } from "@/components/ServiceIllustrations";
 
 export const metadata: Metadata = {
-  title: "Siding Services | S&C Exteriors | Johnston, Iowa",
+  title: "Siding Services | Black Ridge Contracting | Central Iowa",
   description:
-    "Professional siding installation and repair in Central Iowa. Vinyl, fiber cement, and more. Enhance your home's curb appeal with S&C Exteriors.",
+    "Professional siding installation and repair in Central Iowa. Vinyl, fiber cement, and more. Enhance your home's curb appeal with Black Ridge Contracting.",
 };
 
 const sidingTypes = [
@@ -43,7 +43,7 @@ export default function SidingPage() {
               </h1>
               <p className="text-white/70 text-xl max-w-xl leading-relaxed">
                 Enhance your property&apos;s charm and protection with expert siding installation
-                from S&C Exteriors.
+                from Black Ridge Contracting.
               </p>
             </div>
             <div className="hidden lg:block">
@@ -114,7 +114,7 @@ export default function SidingPage() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">Ready for New Siding?</h2>
             <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10">Get a free estimate on siding installation for your Central Iowa home or business.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:5157831896" className="btn-primary text-center">Call (515) 783-1896</a>
+              <a href="tel:3098839319" className="btn-primary text-center">Call (309) 883-9319</a>
               <Link href="/contact" className="btn-secondary text-center">Request Free Estimate</Link>
             </div>
           </ScrollReveal>

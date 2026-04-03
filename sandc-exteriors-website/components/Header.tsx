@@ -29,17 +29,11 @@ export default function Header() {
       <div className="bg-brand-black text-white text-sm">
         <div className="container-max flex justify-between items-center py-2 px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-6">
-            <a href="tel:5157831896" className="flex items-center gap-2 hover:text-brand-silver transition-colors">
+            <a href="tel:3098839319" className="flex items-center gap-2 hover:text-brand-silver transition-colors">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              (515) 783-1896
-            </a>
-            <a href="mailto:Shawncarm@yahoo.com" className="hidden sm:flex items-center gap-2 hover:text-brand-silver transition-colors">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Shawncarm@yahoo.com
+              (309) 883-9319
             </a>
           </div>
           <div className="flex items-center gap-2">
@@ -47,8 +41,8 @@ export default function Header() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            <span className="hidden sm:inline">Johnston, Iowa</span>
-            <span className="sm:hidden">Johnston, IA</span>
+            <span className="hidden sm:inline">Central Iowa</span>
+            <span className="sm:hidden">Central IA</span>
           </div>
         </div>
       </div>
@@ -57,10 +51,10 @@ export default function Header() {
       <nav className="container-max flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
           <div className="w-12 h-12 bg-brand-black rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-xl">S&C</span>
+            <span className="text-white font-bold text-lg">BRC</span>
           </div>
           <div>
-            <div className="text-xl font-bold text-brand-black leading-tight">S&C Exteriors</div>
+            <div className="text-xl font-bold text-brand-black leading-tight">Black Ridge Contracting</div>
             <div className="text-xs text-brand-slate">Central Iowa&apos;s Exterior Experts</div>
           </div>
         </Link>
@@ -105,7 +99,7 @@ export default function Header() {
               </Link>
             )
           )}
-          <a href="tel:5157831896" className="btn-primary !py-3 !px-6 !text-base">
+          <a href="tel:3098839319" className="btn-primary !py-3 !px-6 !text-base">
             Get Free Estimate
           </a>
         </div>
@@ -158,7 +152,7 @@ export default function Header() {
                 </Link>
               )
             )}
-            <a href="tel:5157831896" className="btn-primary w-full !mt-4 text-center">
+            <a href="tel:3098839319" className="btn-primary w-full !mt-4 text-center">
               Get Free Estimate
             </a>
           </div>

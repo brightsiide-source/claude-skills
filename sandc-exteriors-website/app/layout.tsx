@@ -4,23 +4,23 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "S&C Exteriors | Roofing, Siding, Gutters & Concrete | Johnston, Iowa",
+  title: "Black Ridge Contracting | Roofing, Siding, Gutters & Concrete | Central Iowa",
   description:
-    "Your Central Iowa roofing and exterior experts. S&C Exteriors provides professional roofing, siding, gutter, and concrete services for residential and commercial properties in Johnston and all of Central Iowa.",
+    "Your Central Iowa roofing and exterior experts. Black Ridge Contracting provides professional roofing, siding, gutter, and concrete services for residential and commercial properties across all of Central Iowa.",
   keywords: [
     "roofing contractor Johnston Iowa",
     "siding installation Central Iowa",
     "gutter repair Des Moines",
     "concrete contractor Iowa",
-    "S&C Exteriors",
+    "Black Ridge Contracting",
     "exterior services Johnston IA",
   ],
   openGraph: {
-    title: "S&C Exteriors | Central Iowa Roofing & Exterior Experts",
+    title: "Black Ridge Contracting | Central Iowa Roofing & Exterior Experts",
     description:
       "Professional roofing, siding, gutter, and concrete services for residential and commercial properties in Central Iowa.",
-    url: "https://www.sandcexteriors.com",
-    siteName: "S&C Exteriors",
+    url: "https://www.blackridgecontracting.com",
+    siteName: "Black Ridge Contracting",
     locale: "en_US",
     type: "website",
   },
