@@ -101,8 +101,8 @@ export default function HomePage() {
         {/* Background photo */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80&fit=crop&auto=format"
-            alt="Construction workers on scaffolding"
+            src="https://images.pexels.com/photos/7788264/pexels-photo-7788264.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            alt="Roofer working on residential roof"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-brand-black/75" />
@@ -151,21 +151,21 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-brand-silver/10 rounded-3xl blur-2xl scale-90" />
                 <div className="relative glass rounded-3xl p-3 overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80&fit=crop&auto=format"
-                    alt="Professional roofing and exterior contractor at work"
+                    src="https://images.pexels.com/photos/8288954/pexels-photo-8288954.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Beautiful suburban home with quality exterior"
                     className="w-full h-80 object-cover rounded-2xl"
                     loading="lazy"
                   />
                   <div className="grid grid-cols-2 gap-3 mt-3">
                     <img
-                      src="https://images.unsplash.com/photo-1632759145351-1d592919f522?w=400&q=80&fit=crop&auto=format"
-                      alt="Roof construction and shingle installation"
+                      src="https://images.pexels.com/photos/1453799/pexels-photo-1453799.jpeg?auto=compress&cs=tinysrgb&w=400"
+                      alt="Roof shingles close-up showing quality craftsmanship"
                       className="w-full h-36 object-cover rounded-xl"
                       loading="lazy"
                     />
                     <img
-                      src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=80&fit=crop&auto=format"
-                      alt="Beautiful home exterior with quality siding"
+                      src="https://images.pexels.com/photos/8504300/pexels-photo-8504300.jpeg?auto=compress&cs=tinysrgb&w=400"
+                      alt="American suburban neighborhood homes"
                       className="w-full h-36 object-cover rounded-xl"
                       loading="lazy"
                     />

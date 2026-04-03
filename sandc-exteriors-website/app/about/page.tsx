@@ -121,7 +121,7 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="bg-brand-black text-white section-padding relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80&fit=crop&auto=format" alt="" className="w-full h-full object-cover opacity-15" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1400&q=80&fit=crop&auto=format" alt="" className="w-full h-full object-cover opacity-15" loading="lazy" />
         </div>
         <div className="absolute inset-0 bg-brand-black/70" />
         <div className="relative container-max text-center">
