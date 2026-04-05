@@ -6,6 +6,10 @@ Connects to Alpaca's free paper trading API for real-time market data.
 Runs technical analysis on 1m/5m candles, monitors EOD drawdown against
 your Apex account, detects playbook setups, and auto-logs trades.
 
+ALERT SYSTEM: Beeps and flashes when high-confluence setups appear.
+Only shows trades worth taking. Includes exact entry/stop/target with
+position sizing for your Apex account.
+
 Uses TQQQ/QQQ as a real-time NASDAQ proxy (tracks NQ closely).
 You watch NQ price on Tradovate on another screen.
 
@@ -20,6 +24,8 @@ Setup:
 Usage:
     python3 live_connector_alpaca.py --config alpaca-config.json
     python3 live_connector_alpaca.py --config alpaca-config.json --symbol TQQQ
+    python3 live_connector_alpaca.py --config alpaca-config.json --min-score 60
+    python3 live_connector_alpaca.py --config alpaca-config.json --alert-log alerts.txt
 """
 
 import argparse
@@ -35,7 +41,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from technical_analyzer import analyze
 from alpaca_api import AlpacaREST, AlpacaStream, check_dependencies
-from risk_manager import APEX_ACCOUNTS
+from risk_manager import APEX_ACCOUNTS, NQ_POINT_VALUE, MNQ_POINT_VALUE, NQ_TICK_VALUE, MNQ_TICK_VALUE
 
 
 # ---- Candle Aggregator ------------------------------------------------
@@ -96,12 +102,21 @@ class CandleAggregator:
         return len(self._bars_1m)
 
 
-# ---- Setup Detector ---------------------------------------------------
+# ---- Setup Detector (with Confluence Scoring) -------------------------
 
 class SetupDetector:
-    """Detects playbook setups from indicator analysis results."""
+    """Detects playbook setups with confluence scoring (0-100).
 
-    def detect_all(self, analysis_1m: Dict, analysis_5m: Dict) -> List[Dict]:
+    Each setup starts at a base score and earns bonus points for:
+    - RSI confirmation (direction alignment)
+    - EMA spacing (strong trend)
+    - Price proximity to key level
+    - Volatility conditions (low vol pullbacks, squeezes)
+    - Multi-timeframe alignment (1m confirms 5m)
+    """
+
+    def detect_all(self, analysis_1m: Dict, analysis_5m: Dict,
+                   bars_5m: List[Dict] = None) -> List[Dict]:
         setups = []
         if not analysis_5m or not analysis_1m:
             return setups
@@ -109,110 +124,272 @@ class SetupDetector:
         price = analysis_5m.get("current_price", 0)
         ind_5m = analysis_5m.get("indicators", {})
         ind_1m = analysis_1m.get("indicators", {})
-        sig_5m = analysis_5m.get("signals", {})
+        bias_1m = analysis_1m.get("overall_bias", "")
+        bias_5m = analysis_5m.get("overall_bias", "")
 
-        setups.extend(self._check_ema_pullback(price, ind_5m))
-        setups.extend(self._check_vwap_bounce(price, ind_5m))
-        setups.extend(self._check_bollinger_squeeze(price, ind_5m))
-        setups.extend(self._check_macd_crossover(price, ind_5m))
-        setups.extend(self._check_rsi_extreme(price, ind_5m))
+        setups.extend(self._check_ema_pullback(price, ind_5m, ind_1m, bias_1m, bars_5m))
+        setups.extend(self._check_vwap_bounce(price, ind_5m, ind_1m))
+        setups.extend(self._check_bollinger_squeeze(price, ind_5m, ind_1m))
+        setups.extend(self._check_macd_crossover(price, ind_5m, ind_1m, bias_1m))
+        setups.extend(self._check_rsi_extreme(price, ind_5m, ind_1m))
+
+        # Sort by score descending — best trades first
+        setups.sort(key=lambda s: s.get("score", 0), reverse=True)
         return setups
 
-    def _check_ema_pullback(self, price, ind_5m):
+    def _get_rsi(self, ind):
+        rsi = ind.get("rsi", {})
+        return rsi.get("value") if isinstance(rsi, dict) else None
+
+    def _check_ema_pullback(self, price, ind_5m, ind_1m, bias_1m, bars_5m=None):
         ema = ind_5m.get("ema", {})
-        rsi = ind_5m.get("rsi", {})
         e9 = ema.get("ema_9")
         e21 = ema.get("ema_21")
-        rsi_val = rsi.get("value") if isinstance(rsi, dict) else None
-        if not all([e9, e21, rsi_val]):
+        e50 = ema.get("ema_50")
+        rsi_5m = self._get_rsi(ind_5m)
+        rsi_1m = self._get_rsi(ind_1m)
+        if not all([e9, e21, rsi_5m]):
             return []
-        # Use percentage-based proximity for any price level (works for QQQ, TQQQ, etc.)
-        proximity = price * 0.001  # 0.1% of price
-        if e9 > e21 and abs(price - e9) < proximity and rsi_val > 45:
-            return [{"name": "EMA Pullback (Long)", "direction": "LONG",
-                     "confidence": "HIGH" if rsi_val > 50 else "MEDIUM",
-                     "entry": round(e9, 2), "stop": round(e21 - proximity, 2),
-                     "target": round(price + abs(price - e21) * 2, 2),
-                     "description": f"5m EMA9({e9:.2f}) > EMA21({e21:.2f}), pullback. RSI {rsi_val:.1f}"}]
-        if e9 < e21 and abs(price - e9) < proximity and rsi_val < 55:
-            return [{"name": "EMA Pullback (Short)", "direction": "SHORT",
-                     "confidence": "HIGH" if rsi_val < 50 else "MEDIUM",
-                     "entry": round(e9, 2), "stop": round(e21 + proximity, 2),
-                     "target": round(price - abs(price - e21) * 2, 2),
-                     "description": f"5m EMA9({e9:.2f}) < EMA21({e21:.2f}), rally back. RSI {rsi_val:.1f}"}]
+        proximity = price * 0.001
+
+        # LONG pullback
+        if e9 > e21 and abs(price - e9) < proximity and rsi_5m > 45:
+            score = 50
+            if rsi_5m > 50: score += 10
+            if rsi_5m > 55: score += 5
+            if price > e9: score += 5
+            if e50 and e9 > e21 > e50: score += 10  # EMAs stacked bullish
+            if abs(e9 - e21) > price * 0.003: score += 5  # Strong trend spacing
+            if rsi_1m and rsi_1m > 45: score += 5  # 1m confirms
+            if "BULL" in bias_1m.upper(): score += 5  # 1m bias aligns
+            # Low volatility pullback candle
+            if bars_5m and len(bars_5m) > 14:
+                recent = bars_5m[-14:]
+                avg_range = sum(b["high"] - b["low"] for b in recent) / len(recent)
+                if bars_5m[-1]["high"] - bars_5m[-1]["low"] < avg_range * 0.8:
+                    score += 5
+
+            stop = round(e21 - proximity, 2)
+            target = round(price + abs(price - e21) * 2, 2)
+            rr = abs(target - price) / max(abs(price - stop), 0.01)
+            return [{"name": "EMA Pullback", "direction": "LONG", "score": min(score, 100),
+                     "entry": round(e9, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                     "description": f"EMA9({e9:.2f})>21({e21:.2f}), RSI {rsi_5m:.0f}, pullback to 9EMA"}]
+
+        # SHORT pullback
+        if e9 < e21 and abs(price - e9) < proximity and rsi_5m < 55:
+            score = 50
+            if rsi_5m < 50: score += 10
+            if rsi_5m < 45: score += 5
+            if price < e9: score += 5
+            if e50 and e9 < e21 < e50: score += 10
+            if abs(e9 - e21) > price * 0.003: score += 5
+            if rsi_1m and rsi_1m < 55: score += 5
+            if "BEAR" in bias_1m.upper(): score += 5
+
+            stop = round(e21 + proximity, 2)
+            target = round(price - abs(price - e21) * 2, 2)
+            rr = abs(price - target) / max(abs(stop - price), 0.01)
+            return [{"name": "EMA Pullback", "direction": "SHORT", "score": min(score, 100),
+                     "entry": round(e9, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                     "description": f"EMA9({e9:.2f})<21({e21:.2f}), RSI {rsi_5m:.0f}, rally to 9EMA"}]
         return []
 
-    def _check_vwap_bounce(self, price, ind_5m):
+    def _check_vwap_bounce(self, price, ind_5m, ind_1m):
         vwap = ind_5m.get("vwap")
-        rsi = ind_5m.get("rsi", {})
-        rsi_val = rsi.get("value") if isinstance(rsi, dict) else None
-        if not all([vwap, rsi_val]):
+        rsi_5m = self._get_rsi(ind_5m)
+        rsi_1m = self._get_rsi(ind_1m)
+        if not all([vwap, rsi_5m]):
             return []
         proximity = price * 0.002
-        if abs(price - vwap) < proximity and 38 < rsi_val < 62:
+        if abs(price - vwap) < proximity and 38 < rsi_5m < 62:
+            score = 45
+            if 42 < rsi_5m < 58: score += 10  # RSI truly neutral
+            if abs(price - vwap) < proximity * 0.5: score += 15  # Very close to VWAP
+            if rsi_1m:
+                if price <= vwap and rsi_1m < 45: score += 10  # 1m oversold at VWAP
+                if price > vwap and rsi_1m > 55: score += 10   # 1m overbought at VWAP
+
             direction = "LONG" if price <= vwap else "SHORT"
-            return [{"name": "VWAP Bounce", "direction": direction,
-                     "confidence": "MEDIUM",
-                     "entry": round(vwap, 2),
-                     "stop": round(vwap - proximity * 2 if direction == "LONG" else vwap + proximity * 2, 2),
-                     "target": round(vwap + proximity * 3 if direction == "LONG" else vwap - proximity * 3, 2),
-                     "description": f"Price near VWAP ({vwap:.2f}), RSI neutral ({rsi_val:.1f})"}]
+            stop = round(vwap - proximity * 2, 2) if direction == "LONG" else round(vwap + proximity * 2, 2)
+            target = round(vwap + proximity * 3, 2) if direction == "LONG" else round(vwap - proximity * 3, 2)
+            rr = abs(target - price) / max(abs(price - stop), 0.01)
+            return [{"name": "VWAP Bounce", "direction": direction, "score": min(score, 100),
+                     "entry": round(vwap, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                     "description": f"Price at VWAP({vwap:.2f}), RSI {rsi_5m:.0f} neutral"}]
         return []
 
-    def _check_bollinger_squeeze(self, price, ind_5m):
+    def _check_bollinger_squeeze(self, price, ind_5m, ind_1m):
         bb = ind_5m.get("bollinger", {})
         width = bb.get("width")
-        if width is not None and width < 0.3:
-            return [{"name": "Bollinger Squeeze", "direction": "NEUTRAL",
-                     "confidence": "MEDIUM", "entry": round(price, 2),
-                     "stop": round(bb.get("lower", price * 0.995), 2),
-                     "target": round(bb.get("upper", price * 1.005), 2),
-                     "description": f"BB width {width:.4f}% — tight. Breakout imminent."}]
-        return []
+        upper = bb.get("upper")
+        lower = bb.get("lower")
+        if width is None or width >= 0.3 or not upper or not lower:
+            return []
+        score = 55
+        if width < 0.2: score += 10
+        if width < 0.15: score += 5
+        rsi_1m = self._get_rsi(ind_1m)
+        if rsi_1m:
+            if rsi_1m > 55: score += 5  # Bias long
+            elif rsi_1m < 45: score += 5  # Bias short
 
-    def _check_macd_crossover(self, price, ind_5m):
+        # Direction hint from 1m momentum
+        direction = "NEUTRAL"
+        macd_1m = ind_1m.get("macd", {}) if ind_1m else {}
+        if macd_1m.get("histogram") and macd_1m["histogram"] > 0:
+            direction = "LONG"
+        elif macd_1m.get("histogram") and macd_1m["histogram"] < 0:
+            direction = "SHORT"
+
+        stop = round(lower, 2)
+        target = round(upper, 2)
+        rr = abs(target - price) / max(abs(price - stop), 0.01) if direction == "LONG" else abs(price - stop) / max(abs(target - price), 0.01)
+        return [{"name": "Bollinger Squeeze", "direction": direction, "score": min(score, 100),
+                 "entry": round(price, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                 "description": f"BB width {width:.3f}% — squeeze. Breakout imminent."}]
+
+    def _check_macd_crossover(self, price, ind_5m, ind_1m, bias_1m):
         macd = ind_5m.get("macd", {})
         m, s, h = macd.get("macd"), macd.get("signal"), macd.get("histogram")
         if not all(v is not None for v in [m, s, h]):
             return []
         threshold = price * 0.0005
         if abs(h) < threshold and abs(m - s) < threshold:
+            score = 50
+            if abs(m) < price * 0.001: score += 10  # Near zero line (stronger signal)
+            rsi_5m = self._get_rsi(ind_5m)
             if m > s and h > 0:
-                return [{"name": "MACD Bullish Cross", "direction": "LONG",
-                         "confidence": "MEDIUM", "entry": round(price, 2),
-                         "stop": round(price * 0.995, 2), "target": round(price * 1.008, 2),
-                         "description": f"MACD ({m:.2f}) crossing above signal ({s:.2f})"}]
+                if rsi_5m and rsi_5m > 45: score += 5
+                if "BULL" in bias_1m.upper(): score += 5
+                stop = round(price * 0.995, 2)
+                target = round(price * 1.008, 2)
+                rr = abs(target - price) / max(abs(price - stop), 0.01)
+                return [{"name": "MACD Bullish Cross", "direction": "LONG", "score": min(score, 100),
+                         "entry": round(price, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                         "description": f"MACD({m:.3f}) crossing above signal({s:.3f})"}]
             elif m < s and h < 0:
-                return [{"name": "MACD Bearish Cross", "direction": "SHORT",
-                         "confidence": "MEDIUM", "entry": round(price, 2),
-                         "stop": round(price * 1.005, 2), "target": round(price * 0.992, 2),
-                         "description": f"MACD ({m:.2f}) crossing below signal ({s:.2f})"}]
+                if rsi_5m and rsi_5m < 55: score += 5
+                if "BEAR" in bias_1m.upper(): score += 5
+                stop = round(price * 1.005, 2)
+                target = round(price * 0.992, 2)
+                rr = abs(price - target) / max(abs(stop - price), 0.01)
+                return [{"name": "MACD Bearish Cross", "direction": "SHORT", "score": min(score, 100),
+                         "entry": round(price, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                         "description": f"MACD({m:.3f}) crossing below signal({s:.3f})"}]
         return []
 
-    def _check_rsi_extreme(self, price, ind_5m):
-        rsi = ind_5m.get("rsi", {})
-        rsi_val = rsi.get("value") if isinstance(rsi, dict) else None
+    def _check_rsi_extreme(self, price, ind_5m, ind_1m):
+        rsi_5m = self._get_rsi(ind_5m)
         sr = ind_5m.get("support_resistance", {})
-        if rsi_val is None:
+        if rsi_5m is None:
             return []
         supports = sr.get("support", [])
         resistances = sr.get("resistance", [])
         proximity = price * 0.003
-        if rsi_val < 30 and supports:
+
+        if rsi_5m < 30 and supports:
             nearest = supports[0]
             if abs(price - nearest) < proximity:
-                return [{"name": "RSI Oversold at Support", "direction": "LONG",
-                         "confidence": "HIGH", "entry": round(nearest, 2),
-                         "stop": round(nearest * 0.997, 2), "target": round(nearest * 1.006, 2),
-                         "description": f"RSI {rsi_val:.1f} oversold near support {nearest:.2f}"}]
-        if rsi_val > 70 and resistances:
+                score = 60
+                if rsi_5m < 25: score += 15
+                if rsi_5m < 20: score += 5
+                if abs(price - nearest) < proximity * 0.5: score += 10
+                rsi_1m = self._get_rsi(ind_1m)
+                if rsi_1m and rsi_1m < 35: score += 5  # 1m also oversold
+                stop = round(nearest * 0.997, 2)
+                target = round(nearest * 1.006, 2)
+                rr = abs(target - nearest) / max(abs(nearest - stop), 0.01)
+                return [{"name": "RSI Oversold + Support", "direction": "LONG", "score": min(score, 100),
+                         "entry": round(nearest, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                         "description": f"RSI {rsi_5m:.0f} oversold at support {nearest:.2f}"}]
+        if rsi_5m > 70 and resistances:
             nearest = resistances[0]
             if abs(price - nearest) < proximity:
-                return [{"name": "RSI Overbought at Resistance", "direction": "SHORT",
-                         "confidence": "HIGH", "entry": round(nearest, 2),
-                         "stop": round(nearest * 1.003, 2), "target": round(nearest * 0.994, 2),
-                         "description": f"RSI {rsi_val:.1f} overbought near resistance {nearest:.2f}"}]
+                score = 60
+                if rsi_5m > 75: score += 15
+                if rsi_5m > 80: score += 5
+                if abs(price - nearest) < proximity * 0.5: score += 10
+                rsi_1m = self._get_rsi(ind_1m)
+                if rsi_1m and rsi_1m > 65: score += 5
+                stop = round(nearest * 1.003, 2)
+                target = round(nearest * 0.994, 2)
+                rr = abs(nearest - target) / max(abs(stop - nearest), 0.01)
+                return [{"name": "RSI Overbought + Resistance", "direction": "SHORT", "score": min(score, 100),
+                         "entry": round(nearest, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                         "description": f"RSI {rsi_5m:.0f} overbought at resistance {nearest:.2f}"}]
         return []
+
+
+# ---- Alert Manager ----------------------------------------------------
+
+class AlertManager:
+    """Tracks alerts, deduplicates, beeps on new high-confluence setups."""
+
+    def __init__(self, min_score: int = 50, alert_log_path: str = None):
+        self.min_score = min_score
+        self.alert_log_path = alert_log_path
+        self.alert_history: List[Dict] = []
+        self._seen_keys: set = set()  # Dedup: "setup_name|direction|entry" within 5min
+        self._last_beep_time = 0.0
+        self._lock = threading.Lock()
+
+    def process_setups(self, setups: List[Dict]) -> List[Dict]:
+        """Filter setups by min score, deduplicate, beep on new ones."""
+        qualified = [s for s in setups if s.get("score", 0) >= self.min_score]
+        new_alerts = []
+
+        with self._lock:
+            now = time.time()
+            # Clean stale keys (older than 5 minutes)
+            if len(self._seen_keys) > 100:
+                self._seen_keys.clear()
+
+            for setup in qualified:
+                key = f"{setup['name']}|{setup['direction']}|{setup['entry']}"
+                if key not in self._seen_keys:
+                    self._seen_keys.add(key)
+                    setup["alert_time"] = datetime.now().strftime("%H:%M:%S")
+                    new_alerts.append(setup)
+                    self.alert_history.append(setup)
+                    # Keep last 20 alerts
+                    if len(self.alert_history) > 20:
+                        self.alert_history = self.alert_history[-20:]
+
+            # Beep on new alerts (max once per 3 seconds)
+            if new_alerts and (now - self._last_beep_time) > 3.0:
+                best = new_alerts[0]
+                beep_count = 3 if best["score"] >= 75 else 2 if best["score"] >= 60 else 1
+                for _ in range(beep_count):
+                    print("\a", end="", flush=True)
+                    time.sleep(0.15)
+                self._last_beep_time = now
+
+            # Log to file
+            if new_alerts and self.alert_log_path:
+                self._write_log(new_alerts)
+
+        return qualified
+
+    def _write_log(self, alerts: List[Dict]):
+        try:
+            with open(self.alert_log_path, "a") as f:
+                for a in alerts:
+                    ts = a.get("alert_time", "?")
+                    f.write(f"[{ts}] SCORE:{a['score']} {a['name']} {a['direction']} "
+                            f"Entry:{a['entry']} Stop:{a['stop']} Target:{a['target']} "
+                            f"R:R={a.get('rr', '?')} — {a['description']}\n")
+        except Exception:
+            pass
+
+    def get_recent_alerts(self, count: int = 5) -> List[Dict]:
+        with self._lock:
+            return list(self.alert_history[-count:])
+
+    def clear_stale(self):
+        """Called periodically to allow setups to re-trigger."""
+        with self._lock:
+            self._seen_keys.clear()
 
 
 # ---- Trade Logger -----------------------------------------------------
@@ -239,32 +416,80 @@ class TradeLogger:
             f.write(f"| {ts} | {side} | {qty} | {price} | |\n")
 
 
+# ---- Position Sizer (for alert display) --------------------------------
+
+def calc_position_size(entry: float, stop: float, apex_account: str,
+                       balance: float, instrument: str = "NQ") -> Dict:
+    """Calculate position size for an alert. Returns contracts and dollar risk."""
+    acct = APEX_ACCOUNTS.get(apex_account.lower(), APEX_ACCOUNTS["50k"])
+    point_value = NQ_POINT_VALUE if instrument.upper() == "NQ" else MNQ_POINT_VALUE
+    tick_value = NQ_TICK_VALUE if instrument.upper() == "NQ" else MNQ_TICK_VALUE
+    max_contracts = acct["max_nq"] if instrument.upper() == "NQ" else acct["max_mnq"]
+
+    stop_distance = abs(entry - stop)
+    risk_per_contract = stop_distance * point_value
+    dd_limit = acct["drawdown"]
+
+    # Conservative: 15% of drawdown per trade for scalping
+    max_risk = dd_limit * 0.15
+    if risk_per_contract > 0:
+        contracts = min(int(max_risk / risk_per_contract), max_contracts)
+    else:
+        contracts = 1
+    contracts = max(contracts, 1)
+
+    total_risk = contracts * risk_per_contract
+    return {
+        "contracts": contracts,
+        "risk_per_contract": round(risk_per_contract, 2),
+        "total_risk": round(total_risk, 2),
+        "instrument": instrument.upper(),
+        "max_contracts": max_contracts,
+    }
+
+
 # ---- Terminal Dashboard -----------------------------------------------
 
 class Dashboard:
-    """Terminal display for live trading co-pilot."""
+    """Terminal display for live trading co-pilot with aggressive alerts."""
+
+    SCORE_BAR = {
+        90: "\033[42;30m  A+  \033[0m",  # Green bg
+        75: "\033[42;30m  A   \033[0m",
+        60: "\033[43;30m  B+  \033[0m",  # Yellow bg
+        50: "\033[43;30m  B   \033[0m",
+        0:  "\033[41;37m  C   \033[0m",   # Red bg
+    }
 
     @staticmethod
     def clear():
         print("\033[2J\033[H", end="", flush=True)
 
+    def _score_badge(self, score: int) -> str:
+        for threshold, badge in self.SCORE_BAR.items():
+            if score >= threshold:
+                return badge
+        return "  ?  "
+
     def render(self, symbol: str, price: float, analysis_5m: Dict,
                analysis_1m: Dict, setups: List[Dict], account_info: Dict,
-               bar_count: int, nq_price: float = None):
+               bar_count: int, alert_history: List[Dict] = None,
+               min_score: int = 50, nq_price: float = None):
         self.clear()
         now = datetime.now()
 
         # Header
-        print("=" * 64)
+        print("=" * 72)
         price_display = f"{symbol} {price:.2f}"
         if nq_price:
             price_display += f"  |  NQ ~{nq_price:.2f}"
         print(f"  NQ LIVE CO-PILOT  |  {price_display}  |  {now.strftime('%H:%M:%S')}")
-        print("=" * 64)
+        print("=" * 72)
 
         # EOD Drawdown Status
         apex_acct = account_info.get("apex_account", "50k")
         balance = account_info.get("balance", 0)
+        instrument = account_info.get("instrument", "NQ")
         acct_rules = APEX_ACCOUNTS.get(apex_acct.lower(), {})
         dd_limit = acct_rules.get("drawdown", 2500)
         floor = balance - dd_limit
@@ -272,79 +497,105 @@ class Dashboard:
 
         status = "SAFE"
         if remaining < dd_limit * 0.2:
-            status = "!! CRITICAL !!"
+            status = "\033[41;37m !! CRITICAL !! \033[0m"
         elif remaining < dd_limit * 0.4:
-            status = "CAUTION"
+            status = "\033[43;30m CAUTION \033[0m"
         elif remaining < dd_limit * 0.6:
             status = "WATCH"
 
-        print(f"  Apex {apex_acct.upper()}  |  Balance: ${balance:,.2f}  |  "
-              f"EOD Floor: ${floor:,.0f}  |  Remaining: ${remaining:,.0f}  |  {status}")
-        print("-" * 64)
+        print(f"  Apex {apex_acct.upper()}  |  Bal: ${balance:,.2f}  |  "
+              f"Floor: ${floor:,.0f}  |  Left: ${remaining:,.0f}  |  {status}")
+        print("-" * 72)
 
-        # 5-min Signals
+        # ========== ACTIVE ALERTS (TOP OF SCREEN — MOST VISIBLE) ==========
+        if setups:
+            top = setups[0]
+            badge = self._score_badge(top["score"])
+            print()
+            print(f"  {badge}  \033[1m>>> {top['name']} — {top['direction']} <<<\033[0m  Score: {top['score']}/100")
+            print(f"        Entry: {top['entry']}   Stop: {top['stop']}   Target: {top['target']}   R:R {top.get('rr', '?')}:1")
+
+            # Position sizing
+            sizing = calc_position_size(top["entry"], top["stop"], apex_acct, balance, instrument)
+            print(f"        Size: {sizing['contracts']} {sizing['instrument']}   "
+                  f"Risk: ${sizing['total_risk']:.0f} (${sizing['risk_per_contract']:.0f}/ct)")
+            print(f"        {top['description']}")
+            print()
+
+            # Additional setups (compact)
+            if len(setups) > 1:
+                for s in setups[1:3]:
+                    print(f"  [{s['score']:>3}] {s['name']} {s['direction']}  "
+                          f"E:{s['entry']} S:{s['stop']} T:{s['target']}  R:R {s.get('rr','?')}:1")
+            print("-" * 72)
+        else:
+            print(f"  No setups >= {min_score} score. Scanning...  (filter: --min-score {min_score})")
+            print("-" * 72)
+
+        # 5-min + 1-min Signals (compact dual-column)
         sig_5m = analysis_5m.get("signals", {})
         ind_5m = analysis_5m.get("indicators", {})
-        bias = analysis_5m.get("overall_bias", "Waiting for data...")
+        bias_5m = analysis_5m.get("overall_bias", "Waiting...")
+        bias_1m = analysis_1m.get("overall_bias", "Waiting...")
 
-        print(f"  5min BIAS: {bias}")
-        for key in ["trend", "rsi", "macd", "vwap", "bollinger", "stochastic"]:
-            if sig_5m.get(key):
-                label = key.upper()
-                extra = ""
-                if key == "rsi":
-                    rv = ind_5m.get("rsi", {})
-                    if isinstance(rv, dict):
-                        extra = f" ({rv.get('value', '?')})"
-                elif key == "vwap":
-                    extra = f" ({ind_5m.get('vwap', '?')})"
-                print(f"    {label}:{extra}  {sig_5m[key]}")
+        print(f"  5m: {bias_5m}  |  1m: {bias_1m}")
 
+        # Key indicators inline
+        parts = []
+        rsi_5m = ind_5m.get("rsi", {})
+        if isinstance(rsi_5m, dict) and rsi_5m.get("value"):
+            parts.append(f"RSI:{rsi_5m['value']:.0f}")
+        macd = ind_5m.get("macd", {})
+        if macd.get("histogram") is not None:
+            h = macd["histogram"]
+            parts.append(f"MACD-H:{'+'if h>0 else ''}{h:.3f}")
+        vwap = ind_5m.get("vwap")
+        if vwap:
+            parts.append(f"VWAP:{vwap:.2f}")
         atr = ind_5m.get("atr", {})
         if isinstance(atr, dict) and atr.get("value"):
-            print(f"    ATR(14):  {atr['value']} pts")
-        print("-" * 64)
-
-        # 1-min Signals (compact)
-        sig_1m = analysis_1m.get("signals", {})
-        bias_1m = analysis_1m.get("overall_bias", "Waiting...")
-        line = f"  1min BIAS: {bias_1m}"
-        if sig_1m.get("rsi"):
-            line += f"  |  RSI: {sig_1m['rsi']}"
-        print(line)
-        print("-" * 64)
+            parts.append(f"ATR:{atr['value']}")
+        bb = ind_5m.get("bollinger", {})
+        if bb.get("width") is not None:
+            parts.append(f"BBW:{bb['width']:.3f}%")
+        if parts:
+            print(f"  {' | '.join(parts)}")
+        print("-" * 72)
 
         # Key Levels
         sr = ind_5m.get("support_resistance", {})
         pivots = ind_5m.get("pivot_points", {})
+        levels = []
         if sr.get("resistance"):
-            print(f"  Resistance: {', '.join(f'{r:.2f}' for r in sr['resistance'][:3])}")
+            levels.append(f"R: {', '.join(f'{r:.2f}' for r in sr['resistance'][:3])}")
         if pivots.get("pp"):
-            print(f"  Pivot: {pivots['pp']}  R1: {pivots.get('r1','-')}  S1: {pivots.get('s1','-')}")
+            levels.append(f"PP: {pivots['pp']}")
         if sr.get("support"):
-            print(f"  Support:    {', '.join(f'{s:.2f}' for s in sr['support'][:3])}")
-        print("-" * 64)
+            levels.append(f"S: {', '.join(f'{s:.2f}' for s in sr['support'][:3])}")
+        if levels:
+            print(f"  {' | '.join(levels)}")
+            print("-" * 72)
 
-        # Setup Alerts
-        if setups:
-            print("  ** SETUP ALERTS **")
-            for s in setups[:3]:
-                print(f"  [{s['confidence']}] {s['name']} -- {s['direction']}")
-                print(f"    Entry: {s['entry']}  Stop: {s['stop']}  Target: {s['target']}")
-                print(f"    {s['description']}")
-        else:
-            print("  No active setups. Watching...")
+        # Recent Alert History
+        history = alert_history or []
+        if history:
+            print("  RECENT ALERTS:")
+            for a in history[-5:]:
+                ts = a.get("alert_time", "?")
+                print(f"    {ts}  [{a['score']:>3}] {a['name']} {a['direction']}  "
+                      f"E:{a['entry']} T:{a['target']}")
+            print("-" * 72)
 
-        print("=" * 64)
-        print(f"  Bars: {bar_count}  |  Data: Alpaca (paper)  |  Ctrl+C to stop")
+        print(f"  Bars: {bar_count} | Min Score: {min_score} | Alerts: {len(history)} today | Ctrl+C to stop")
 
 
 # ---- Live Connector (Main Orchestrator) --------------------------------
 
 class LiveConnector:
-    """Connects to Alpaca, streams data, runs analysis in real-time."""
+    """Connects to Alpaca, streams data, runs analysis, and fires alerts."""
 
-    def __init__(self, config: Dict):
+    def __init__(self, config: Dict, min_score: int = 50,
+                 alert_log: str = None):
         self.config = config
         self.api_key = config["api_key"]
         self.secret_key = config["secret_key"]
@@ -352,9 +603,12 @@ class LiveConnector:
         self.symbol = config.get("symbol", "TQQQ")
         self.apex_account = config.get("apex_account", "50k")
         self.apex_balance = config.get("apex_balance", 50000.0)
+        self.instrument = config.get("instrument", "NQ")
+        self.min_score = min_score
 
         self.candles = CandleAggregator()
         self.detector = SetupDetector()
+        self.alerts = AlertManager(min_score=min_score, alert_log_path=alert_log)
         self.dashboard = Dashboard()
 
         log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -367,13 +621,16 @@ class LiveConnector:
         self._running = False
         self._last_price = 0.0
         self._new_bar_event = threading.Event()
+        self._stale_clear_counter = 0
 
     def run(self):
         """Main entry point."""
         check_dependencies()
-        print("=" * 64)
-        print("  NQ LIVE CO-PILOT (Alpaca) — Starting up...")
-        print("=" * 64)
+        print("=" * 72)
+        print(f"  NQ LIVE CO-PILOT (Alpaca) — Alert Mode ON")
+        print(f"  Min confluence score: {self.min_score}  |  Instrument: {self.instrument}")
+        print(f"  Apex {self.apex_account.upper()}  |  Balance: ${self.apex_balance:,.2f}")
+        print("=" * 72)
 
         try:
             self._connect()
@@ -393,7 +650,6 @@ class LiveConnector:
         print(f"  Connecting to Alpaca ({self.env})...")
         self.rest = AlpacaREST(self.api_key, self.secret_key, self.env)
 
-        # Verify credentials
         try:
             account = self.rest.get_account()
             print(f"  Account verified: {account.get('id', 'OK')}")
@@ -403,7 +659,6 @@ class LiveConnector:
             print(f"\n  Check your API key and secret in the config file.", file=sys.stderr)
             sys.exit(1)
 
-        # Connect WebSocket
         print(f"  Connecting to real-time stream...")
         self.stream = AlpacaStream(
             api_key=self.api_key,
@@ -445,7 +700,7 @@ class LiveConnector:
             bars=[self.symbol],
             trades=[self.symbol],
         )
-        print(f"  Subscribed. Waiting for market data...\n")
+        print(f"  Subscribed. Listening for alerts (score >= {self.min_score})...\n")
 
     def _on_bar(self, bar: Dict):
         """Handle a new 1-min bar from the stream."""
@@ -462,13 +717,12 @@ class LiveConnector:
 
     def _on_stream_error(self, error: str):
         """Handle stream errors."""
-        pass  # Silently ignore — dashboard will show stale data
+        pass
 
     def _analysis_loop(self):
-        """Main analysis loop."""
+        """Main analysis loop — detects setups and fires alerts."""
         self._running = True
 
-        # Wait for minimum data
         while self._running and self.candles.bar_count < 5:
             time.sleep(1)
             if self.candles.bar_count > 0:
@@ -500,11 +754,18 @@ class LiveConnector:
                     except Exception:
                         pass
 
-                setups = self.detector.detect_all(analysis_1m, analysis_5m)
+                # Detect setups with confluence scoring
+                raw_setups = self.detector.detect_all(
+                    analysis_1m, analysis_5m, bars_5m
+                )
+
+                # Process through alert manager (filter, dedupe, beep)
+                qualified_setups = self.alerts.process_setups(raw_setups)
 
                 account_info = {
                     "apex_account": self.apex_account,
                     "balance": self.apex_balance,
+                    "instrument": self.instrument,
                 }
 
                 self.dashboard.render(
@@ -512,10 +773,18 @@ class LiveConnector:
                     price=price,
                     analysis_5m=analysis_5m or {"signals": {}, "indicators": {}, "overall_bias": "Waiting..."},
                     analysis_1m=analysis_1m or {"signals": {}, "indicators": {}, "overall_bias": "Waiting..."},
-                    setups=setups,
+                    setups=qualified_setups,
                     account_info=account_info,
                     bar_count=self.candles.bar_count,
+                    alert_history=self.alerts.get_recent_alerts(),
+                    min_score=self.min_score,
                 )
+
+                # Every 5 minutes, clear stale alert keys so setups can re-fire
+                self._stale_clear_counter += 1
+                if self._stale_clear_counter >= 150:  # ~5 min at 2s refresh
+                    self.alerts.clear_stale()
+                    self._stale_clear_counter = 0
 
                 self._new_bar_event.clear()
                 self._new_bar_event.wait(timeout=2.0)
@@ -530,7 +799,8 @@ class LiveConnector:
         self._running = False
         if self.stream:
             self.stream.close()
-        print("  Disconnected. Session ended.")
+        total = len(self.alerts.alert_history)
+        print(f"  Session ended. {total} alerts fired today.")
 
 
 # ---- Config & Main ----------------------------------------------------
@@ -549,20 +819,30 @@ def load_config(path: str) -> Dict:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Alpaca Live Connector — Real-Time NQ Trading Co-Pilot"
+        description="Alpaca Live Connector — Real-Time NQ Trading Co-Pilot with Alerts"
     )
     parser.add_argument("--config", required=True,
                         help="Path to Alpaca config JSON file")
     parser.add_argument("--symbol", default=None,
                         help="Symbol to track (default: TQQQ). Try QQQ, SPY, etc.")
+    parser.add_argument("--min-score", type=int, default=50,
+                        help="Minimum confluence score to trigger alert (0-100, default: 50). "
+                             "Use 60+ for high-quality only, 75+ for A-grade setups.")
+    parser.add_argument("--alert-log", default=None,
+                        help="Path to write alert log file (optional)")
+    parser.add_argument("--instrument", default=None, choices=["NQ", "MNQ"],
+                        help="NQ or MNQ for position sizing (default: from config or NQ)")
 
     args = parser.parse_args()
     config = load_config(args.config)
 
     if args.symbol:
         config["symbol"] = args.symbol
+    if args.instrument:
+        config["instrument"] = args.instrument
 
-    connector = LiveConnector(config)
+    connector = LiveConnector(config, min_score=args.min_score,
+                              alert_log=args.alert_log)
     connector.run()
 
 
