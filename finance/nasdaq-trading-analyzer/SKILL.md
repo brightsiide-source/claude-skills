@@ -207,6 +207,44 @@ python3 scripts/live_connector.py --config my-config.json --symbol MNQM6
 **Supporting Modules:**
 - `scripts/tradovate_api.py` — Tradovate REST auth, WebSocket client, market data subscriptions, account monitoring
 
+### 6. Alpaca Live Connector (`scripts/live_connector_alpaca.py`) — RECOMMENDED
+
+**Real-time trading co-pilot** using Alpaca's free paper trading API. No approval needed — get API keys in 2 minutes.
+
+**Requirements:** `pip install websocket-client`
+
+**Why Alpaca?** Tradovate requires API approval which can take days. Alpaca gives you instant API keys with real-time market data. Use it as your analysis screen while trading on Apex/Tradovate on another screen.
+
+**Setup:**
+1. Sign up free at https://alpaca.markets
+2. Go to Paper Trading > API Keys > Generate
+3. Copy `assets/alpaca-config.example.json`, fill in your API key + secret
+4. Set your Apex account size and current EOD balance
+5. Run it!
+
+```bash
+# Quick start
+python3 scripts/live_connector_alpaca.py --config my-alpaca-config.json
+
+# Track QQQ instead of TQQQ
+python3 scripts/live_connector_alpaca.py --config my-alpaca-config.json --symbol QQQ
+```
+
+**What it shows:**
+- Live price with real-time updates
+- 5-min and 1-min indicator signals (RSI, MACD, EMA, VWAP, Bollinger)
+- Overall bias (BULLISH/BEARISH/NEUTRAL)
+- Support/resistance levels and pivot points
+- Setup alerts (EMA Pullback, VWAP Bounce, Bollinger Squeeze, MACD Cross, RSI Extreme)
+- Your Apex EOD drawdown status (balance, floor, remaining)
+
+**Supporting Modules:**
+- `scripts/alpaca_api.py` — Alpaca REST client, WebSocket streaming, quote/trade/bar handlers
+
+**Recommended Workflow:**
+- **Screen 1:** Tradovate with your Apex account (actual trading)
+- **Screen 2:** Terminal running the Alpaca live connector (analysis co-pilot)
+
 ## Workflow: Daily Trading Prep
 
 Use the tools together for a complete pre-market routine:

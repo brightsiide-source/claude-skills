@@ -1,0 +1,14 @@
+{
+    "api_key": "YOUR_ALPACA_API_KEY_ID",
+    "secret_key": "YOUR_ALPACA_SECRET_KEY",
+
+    "environment": "paper",
+    "symbol": "TQQQ",
+
+    "apex_account": "50k",
+    "apex_balance": 47957.60,
+
+    "_comment_keys": "Get your keys at: https://app.alpaca.markets/paper/dashboard/overview > API Keys",
+    "_comment_symbol": "TQQQ tracks NASDAQ 3x. Also try: QQQ (1x NASDAQ), SPY (S&P 500)",
+    "_comment_apex": "Your real Apex account size and current EOD balance"
+}
