@@ -37,7 +37,8 @@ python3 scripts/session_analyzer.py --timezone US/Eastern
 python3 scripts/news_scanner.py --date 2026-04-01
 ```
 
-## Tools Overview
+## Tools Overview (7 Python scripts)
+
 
 ### 1. Technical Analyzer (`scripts/technical_analyzer.py`)
 
@@ -244,6 +245,41 @@ python3 scripts/live_connector_alpaca.py --config my-alpaca-config.json --symbol
 **Recommended Workflow:**
 - **Screen 1:** Tradovate with your Apex account (actual trading)
 - **Screen 2:** Terminal running the Alpaca live connector (analysis co-pilot)
+
+### 7. Backtester (`scripts/backtester.py`)
+
+**Test every playbook setup against historical data** to find your actual edge.
+
+```bash
+# Full backtest with all setups
+python3 scripts/backtester.py prices.csv --account 50k --balance 47957.60
+
+# Test one specific setup
+python3 scripts/backtester.py prices.csv --setup ema_pullback
+
+# Only take high-confluence trades (score 60+)
+python3 scripts/backtester.py prices.csv --min-score 60
+
+# Export all trades to CSV for further analysis
+python3 scripts/backtester.py prices.csv --export my_trades.csv
+
+# Test with MNQ instead of NQ
+python3 scripts/backtester.py prices.csv --instrument MNQ
+```
+
+**Setups Tested:** EMA Pullback, VWAP Bounce, MACD Crossover, RSI Extreme, Bollinger Squeeze, Opening Range Breakout
+
+**Reports include:**
+- Win rate, P&L, profit factor, expectancy per trade
+- Results **by setup** (which setups to keep vs drop)
+- Results **by confluence score** (which score threshold maximizes profit)
+- Results **by hour** (best/worst times to trade)
+- Results **by exit reason** (stopped out vs target hit vs time exit)
+- **Apex survival check** — would this strategy have breached your drawdown?
+- Equity curve tracking
+- Actionable recommendations (best setup, setups to drop, score filters)
+
+**Confluence Scoring (0-100):** Each setup entry is scored based on how many factors align (RSI confirmation, EMA spacing, volatility, price proximity). Use `--min-score 60` to filter for higher-probability trades.
 
 ## Workflow: Daily Trading Prep
 
