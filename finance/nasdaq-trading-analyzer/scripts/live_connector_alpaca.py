@@ -675,7 +675,7 @@ class LiveConnector:
         """Load historical bars to seed the indicators."""
         print(f"  Loading historical 1-min bars for {self.symbol}...")
         try:
-            bars = self.rest.get_bars(self.symbol, timeframe="1Min", limit=200)
+            bars = self.rest.get_bars(self.symbol, timeframe="1Min", limit=500, days_back=3)
             for bar_data in bars:
                 bar = {
                     "open": float(bar_data.get("o", bar_data.get("open", 0))),
