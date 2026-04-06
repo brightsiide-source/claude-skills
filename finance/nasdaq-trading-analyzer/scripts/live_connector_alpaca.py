@@ -116,7 +116,7 @@ class SetupDetector:
     """
 
     def detect_all(self, analysis_1m: Dict, analysis_5m: Dict,
-                   bars_5m: List[Dict] = None) -> List[Dict]:
+                   bars_5m: List[Dict] = None, bars_1m: List[Dict] = None) -> List[Dict]:
         setups = []
         if not analysis_5m or not analysis_1m:
             return setups
@@ -128,14 +128,36 @@ class SetupDetector:
         bias_5m = analysis_5m.get("overall_bias", "")
 
         setups.extend(self._check_ema_pullback(price, ind_5m, ind_1m, bias_1m, bars_5m))
-        setups.extend(self._check_vwap_bounce(price, ind_5m, ind_1m))
+        setups.extend(self._check_vwap_bounce(price, ind_5m, ind_1m, bias_5m, bars_1m))
         setups.extend(self._check_bollinger_squeeze(price, ind_5m, ind_1m))
-        setups.extend(self._check_macd_crossover(price, ind_5m, ind_1m, bias_1m))
+        setups.extend(self._check_macd_crossover(price, ind_5m, ind_1m, bias_1m, bias_5m))
         setups.extend(self._check_rsi_extreme(price, ind_5m, ind_1m))
 
+        # GLOBAL FILTERS — applied to every setup
+        filtered = []
+        for s in setups:
+            # Skip anything below 1.5:1 R:R
+            if s.get("rr", 0) < 1.5:
+                continue
+            # Penalize when 1m and 5m bias conflict
+            direction = s.get("direction", "")
+            if direction == "LONG" and "BEAR" in bias_5m.upper():
+                s["score"] -= 15  # Fighting the 5m trend
+                s["description"] += " [!5m conflict]"
+            elif direction == "SHORT" and "BULL" in bias_5m.upper():
+                s["score"] -= 15
+                s["description"] += " [!5m conflict]"
+            # Bonus when both timeframes agree
+            if direction == "LONG" and "BULL" in bias_5m.upper() and "BULL" in bias_1m.upper():
+                s["score"] += 10
+            elif direction == "SHORT" and "BEAR" in bias_5m.upper() and "BEAR" in bias_1m.upper():
+                s["score"] += 10
+            s["score"] = max(0, min(s["score"], 100))
+            filtered.append(s)
+
         # Sort by score descending — best trades first
-        setups.sort(key=lambda s: s.get("score", 0), reverse=True)
-        return setups
+        filtered.sort(key=lambda s: s.get("score", 0), reverse=True)
+        return filtered
 
     def _get_rsi(self, ind):
         rsi = ind.get("rsi", {})
@@ -195,28 +217,72 @@ class SetupDetector:
                      "description": f"EMA9({e9:.2f})<21({e21:.2f}), RSI {rsi_5m:.0f}, rally to 9EMA"}]
         return []
 
-    def _check_vwap_bounce(self, price, ind_5m, ind_1m):
+    def _check_vwap_bounce(self, price, ind_5m, ind_1m, bias_5m="", bars_1m=None):
         vwap = ind_5m.get("vwap")
         rsi_5m = self._get_rsi(ind_5m)
         rsi_1m = self._get_rsi(ind_1m)
         if not all([vwap, rsi_5m]):
             return []
         proximity = price * 0.002
-        if abs(price - vwap) < proximity and 38 < rsi_5m < 62:
-            score = 45
-            if 42 < rsi_5m < 58: score += 10  # RSI truly neutral
-            if abs(price - vwap) < proximity * 0.5: score += 15  # Very close to VWAP
-            if rsi_1m:
-                if price <= vwap and rsi_1m < 45: score += 10  # 1m oversold at VWAP
-                if price > vwap and rsi_1m > 55: score += 10   # 1m overbought at VWAP
 
-            direction = "LONG" if price <= vwap else "SHORT"
-            stop = round(vwap - proximity * 2, 2) if direction == "LONG" else round(vwap + proximity * 2, 2)
-            target = round(vwap + proximity * 3, 2) if direction == "LONG" else round(vwap - proximity * 3, 2)
+        # CHOP FILTER: If price has been oscillating around VWAP, skip.
+        # Check if price crossed VWAP multiple times in recent bars
+        if bars_1m and len(bars_1m) > 10:
+            recent = bars_1m[-10:]
+            crosses = 0
+            for i in range(1, len(recent)):
+                prev_side = recent[i-1]["close"] > vwap
+                curr_side = recent[i]["close"] > vwap
+                if prev_side != curr_side:
+                    crosses += 1
+            if crosses >= 3:
+                return []  # Too choppy — price keeps crossing VWAP
+
+        # APPROACH FILTER: Price must be coming FROM a direction toward VWAP,
+        # not just sitting on it. Check if price moved toward VWAP recently.
+        approaching = False
+        if bars_1m and len(bars_1m) > 5:
+            five_ago = bars_1m[-5]["close"]
+            # Price was further from VWAP 5 bars ago than now
+            if abs(five_ago - vwap) > abs(price - vwap) * 1.5:
+                approaching = True
+        if not approaching:
+            return []  # Price isn't approaching VWAP, just hovering
+
+        if abs(price - vwap) < proximity and 35 < rsi_5m < 65:
+            score = 45
+            if 42 < rsi_5m < 58: score += 5   # RSI truly neutral
+            if abs(price - vwap) < proximity * 0.5: score += 10  # Very close
+            if rsi_1m:
+                if price <= vwap and rsi_1m < 40: score += 10  # 1m oversold at VWAP
+                if price > vwap and rsi_1m > 60: score += 10   # 1m overbought at VWAP
+
+            # Direction must align with 5m bias (no counter-trend VWAP bounces)
+            if "BULL" in bias_5m.upper():
+                direction = "LONG"
+                if price > vwap:
+                    return []  # Already above VWAP in uptrend — no bounce to play
+            elif "BEAR" in bias_5m.upper():
+                direction = "SHORT"
+                if price < vwap:
+                    return []  # Already below VWAP in downtrend
+            else:
+                # Neutral 5m — need strong 1m signal to pick direction
+                if rsi_1m and rsi_1m < 40:
+                    direction = "LONG"
+                    score -= 5  # Lower confidence without trend
+                elif rsi_1m and rsi_1m > 60:
+                    direction = "SHORT"
+                    score -= 5
+                else:
+                    return []  # No clear direction — skip
+
+            stop = round(vwap - proximity * 2.5, 2) if direction == "LONG" else round(vwap + proximity * 2.5, 2)
+            target = round(vwap + proximity * 4, 2) if direction == "LONG" else round(vwap - proximity * 4, 2)
             rr = abs(target - price) / max(abs(price - stop), 0.01)
             return [{"name": "VWAP Bounce", "direction": direction, "score": min(score, 100),
                      "entry": round(vwap, 2), "stop": stop, "target": target, "rr": round(rr, 1),
-                     "description": f"Price at VWAP({vwap:.2f}), RSI {rsi_5m:.0f} neutral"}]
+                     "description": f"Price approaching VWAP({vwap:.2f}), RSI {rsi_5m:.0f}"}]
         return []
 
     def _check_bollinger_squeeze(self, price, ind_5m, ind_1m):
@@ -249,7 +315,7 @@ class SetupDetector:
                  "entry": round(price, 2), "stop": stop, "target": target, "rr": round(rr, 1),
                  "description": f"BB width {width:.3f}% — squeeze. Breakout imminent."}]
 
-    def _check_macd_crossover(self, price, ind_5m, ind_1m, bias_1m):
+    def _check_macd_crossover(self, price, ind_5m, ind_1m, bias_1m, bias_5m=""):
         macd = ind_5m.get("macd", {})
         m, s, h = macd.get("macd"), macd.get("signal"), macd.get("histogram")
         if not all(v is not None for v in [m, s, h]):
@@ -756,7 +822,7 @@ class LiveConnector:
 
                 # Detect setups with confluence scoring
                 raw_setups = self.detector.detect_all(
-                    analysis_1m, analysis_5m, bars_5m
+                    analysis_1m, analysis_5m, bars_5m, bars_1m
                 )
 
                 # Process through alert manager (filter, dedupe, beep)
@@ -782,7 +848,7 @@ class LiveConnector:
 
                 # Every 5 minutes, clear stale alert keys so setups can re-fire
                 self._stale_clear_counter += 1
-                if self._stale_clear_counter >= 150:  # ~5 min at 2s refresh
+                if self._stale_clear_counter >= 300:  # ~10 min at 2s refresh
                     self.alerts.clear_stale()
                     self._stale_clear_counter = 0
 
