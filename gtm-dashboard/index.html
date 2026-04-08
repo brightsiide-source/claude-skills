@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTM Performance Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h2>GTM Dashboard</h2>
+      <span class="sidebar-subtitle">Performance Tracker</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="nav-link active" data-view="cm-tracker">&#x1F4CA; CM Tracker</a></li>
+      <li><a href="#" class="nav-link" data-view="cma-tracker">&#x1F4CB; CMA Tracker</a></li>
+      <li><a href="#" class="nav-link" data-view="alerts">&#x1F6A8; Alerts</a></li>
+      <li><a href="#" class="nav-link" data-view="trends">&#x1F4C8; Weekly Trends</a></li>
+      <li><a href="#" class="nav-link" data-view="brands">&#x1F3E2; Brand Comparison</a></li>
+      <li><a href="#" class="nav-link" data-view="revenue">&#x1F4B0; Revenue Impact</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <span class="version">v1.0 &middot; Demo Data</span>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Top Bar -->
+    <header id="top-bar">
+      <div class="top-bar-left">
+        <h1 id="page-title">CM Tracker</h1>
+        <span class="data-badge">Sample Data &middot; Last Updated: Today</span>
+      </div>
+      <div class="top-bar-right">
+        <label for="brand-filter">Brand:</label>
+        <select id="brand-filter">
+          <option value="All">All Brands</option>
+        </select>
+        <label for="search-input">Search:</label>
+        <input type="text" id="search-input" placeholder="Search by name...">
+      </div>
+    </header>
+
+    <!-- Dashboard Summary Cards -->
+    <div id="summary-cards" class="summary-cards"></div>
+
+    <!-- View Container -->
+    <div id="view-container"></div>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div id="modal-content" class="modal-content">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
