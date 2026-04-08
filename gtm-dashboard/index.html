@@ -3,53 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTM Performance Dashboard</title>
+  <title>GlobalTekMed Performance Dashboard</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <nav id="sidebar">
-    <div class="sidebar-header">
-      <h2>GTM Dashboard</h2>
-      <span class="sidebar-subtitle">Performance Tracker</span>
+  <!-- Header -->
+  <header id="header">
+    <div class="header-left">
+      <h1>GlobalTekMed Performance Dashboard</h1>
+      <p>Real-Time CM &amp; CMA Accountability | Click any CM name for full detail</p>
     </div>
-    <ul class="nav-links">
-      <li><a href="#" class="nav-link active" data-view="cm-tracker">&#x1F4CA; CM Tracker</a></li>
-      <li><a href="#" class="nav-link" data-view="cma-tracker">&#x1F4CB; CMA Tracker</a></li>
-      <li><a href="#" class="nav-link" data-view="alerts">&#x1F6A8; Alerts</a></li>
-      <li><a href="#" class="nav-link" data-view="trends">&#x1F4C8; Weekly Trends</a></li>
-      <li><a href="#" class="nav-link" data-view="brands">&#x1F3E2; Brand Comparison</a></li>
-      <li><a href="#" class="nav-link" data-view="revenue">&#x1F4B0; Revenue Impact</a></li>
-    </ul>
-    <div class="sidebar-footer">
-      <span class="version">v1.0 &middot; Demo Data</span>
+    <div class="header-right">
+      <span class="sample-badge">SAMPLE</span>
+      <span class="date-badge" id="date-badge"></span>
     </div>
+  </header>
+
+  <!-- Tab Navigation -->
+  <nav id="tab-nav">
+    <a href="#" class="tab active" data-view="cm-tracker">&#x1F4DE; CM Tracker</a>
+    <a href="#" class="tab" data-view="cma-tracker">&#x1F4CB; CMA Tracker</a>
+    <a href="#" class="tab" data-view="conversion">&#x1F4CA; Conversion</a>
+    <a href="#" class="tab" data-view="alerts">&#x1F6A8; Alerts</a>
+    <a href="#" class="tab" data-view="revenue">&#x1F4B0; Revenue Impact</a>
+    <a href="#" class="tab" data-view="brands">&#x1F3E2; Brand Compare</a>
+    <a href="#" class="tab" data-view="trends">&#x1F4C8; Trends</a>
   </nav>
 
-  <!-- Main Content -->
-  <main id="main-content">
-    <!-- Top Bar -->
-    <header id="top-bar">
-      <div class="top-bar-left">
-        <h1 id="page-title">CM Tracker</h1>
-        <span class="data-badge">Sample Data &middot; Last Updated: Today</span>
-      </div>
-      <div class="top-bar-right">
-        <label for="brand-filter">Brand:</label>
-        <select id="brand-filter">
-          <option value="All">All Brands</option>
-        </select>
-        <label for="search-input">Search:</label>
-        <input type="text" id="search-input" placeholder="Search by name...">
-      </div>
-    </header>
+  <!-- Brand Filter Pills -->
+  <div id="brand-filter" class="brand-pills">
+    <span class="pill active" data-brand="All">All</span>
+  </div>
 
-    <!-- Dashboard Summary Cards -->
-    <div id="summary-cards" class="summary-cards"></div>
+  <!-- Summary Cards -->
+  <div id="summary-cards" class="summary-cards"></div>
 
-    <!-- View Container -->
-    <div id="view-container"></div>
-  </main>
+  <!-- Status Indicator -->
+  <div id="status-indicator" class="status-indicator"></div>
+
+  <!-- Alert Metric Cards -->
+  <div id="alert-metrics" class="alert-metrics"></div>
+
+  <!-- View Container -->
+  <div id="view-container"></div>
 
   <!-- Modal -->
   <div id="modal-overlay" class="modal-overlay hidden">
