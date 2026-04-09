@@ -1,0 +1,124 @@
+[build]
+  publish = "."
+
+# Security and performance headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'"
+
+# Cache static assets aggressively
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML pages - short cache for freshness
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Redirects
+[[redirects]]
+  from = "/index"
+  to = "/"
+  status = 301
+
+# Pretty URLs for city pages
+[[redirects]]
+  from = "/boise"
+  to = "/cities/boise.html"
+  status = 301
+
+[[redirects]]
+  from = "/meridian"
+  to = "/cities/meridian.html"
+  status = 301
+
+[[redirects]]
+  from = "/nampa"
+  to = "/cities/nampa.html"
+  status = 301
+
+[[redirects]]
+  from = "/caldwell"
+  to = "/cities/caldwell.html"
+  status = 301
+
+[[redirects]]
+  from = "/eagle"
+  to = "/cities/eagle.html"
+  status = 301
+
+[[redirects]]
+  from = "/twin-falls"
+  to = "/cities/twin-falls.html"
+  status = 301
+
+[[redirects]]
+  from = "/idaho-falls"
+  to = "/cities/idaho-falls.html"
+  status = 301
+
+[[redirects]]
+  from = "/pocatello"
+  to = "/cities/pocatello.html"
+  status = 301
+
+[[redirects]]
+  from = "/coeur-d-alene"
+  to = "/cities/coeur-d-alene.html"
+  status = 301
+
+[[redirects]]
+  from = "/post-falls"
+  to = "/cities/post-falls.html"
+  status = 301
+
+[[redirects]]
+  from = "/lewiston"
+  to = "/cities/lewiston.html"
+  status = 301
+
+[[redirects]]
+  from = "/kuna"
+  to = "/cities/kuna.html"
+  status = 301
+
+# How it works pretty URL
+[[redirects]]
+  from = "/how-it-works"
+  to = "/how-it-works.html"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 301
+
+# 404 handling
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
