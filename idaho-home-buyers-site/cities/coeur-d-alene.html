@@ -98,7 +98,9 @@
 
         <div class="city-sidebar" id="city-form">
           <h3>Get Your Free Cash Offer</h3>
-          <form id="leadForm" action="#" method="POST" novalidate>
+          <form id="leadForm" name="lead-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="lead-form">
+            <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
             <div class="form-group">
               <label for="firstName">First Name *</label>
               <input type="text" id="firstName" name="firstName" placeholder="John" required>

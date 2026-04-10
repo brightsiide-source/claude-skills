@@ -190,7 +190,9 @@
       <div class="hero-form-wrapper" id="get-offer">
         <h2 class="hero-form-title">Get Your Free Cash Offer</h2>
         <p class="hero-form-subtitle">Fill out the form and we'll contact you within 24 hours.</p>
-        <form id="leadForm" action="#" method="POST" novalidate>
+        <form id="leadForm" name="lead-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="lead-form">
+            <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name *</label>
