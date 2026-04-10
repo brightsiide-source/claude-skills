@@ -20,7 +20,7 @@ export default function CTAForm() {
       });
       setSubmitted(true);
     } catch {
-      alert("Something went wrong. Please call us directly at (210) 555-1234.");
+      alert("Something went wrong. Please call us directly at (309) 883-9464.");
     } finally {
       setSubmitting(false);
     }
@@ -49,7 +49,7 @@ export default function CTAForm() {
               </svg>
               <h3 className="text-2xl font-bold text-adobe mb-2">Thank You!</h3>
               <p className="text-sand-dark mb-4">We&apos;ve received your info and will reach out within 24 hours with your no-obligation cash offer.</p>
-              <p className="text-sm text-sand-dark">Need to talk sooner? Call us at <a href="tel:+12105551234" className="text-terra font-semibold">(210) 555-1234</a></p>
+              <p className="text-sm text-sand-dark">Need to talk sooner? Call us at <a href="tel:+13098839464" className="text-terra font-semibold">(309) 883-9464</a></p>
             </div>
           ) : (
             <form name="cash-offer" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-5">

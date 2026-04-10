@@ -57,7 +57,7 @@ const localBusinessSchema = {
   description:
     "We buy houses for cash in San Antonio, TX. Fast closings, no repairs, no fees.",
   url: SITE_URL,
-  telephone: "+1-210-555-1234",
+  telephone: "+1-309-883-9464",
   email: "info@sacashhomebuyers.com",
   address: {
     "@type": "PostalAddress",
