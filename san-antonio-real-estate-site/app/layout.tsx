@@ -55,12 +55,15 @@ const localBusinessSchema = {
   "@type": "RealEstateAgent",
   name: "SA Cash Home Buyers",
   description:
-    "We buy houses for cash in San Antonio, TX. Fast closings, no repairs, no fees.",
+    "We buy houses for cash in San Antonio, TX. Fast closings, no repairs, no fees. Get a fair cash offer in 24 hours and close in as little as 7 days.",
   url: SITE_URL,
   telephone: "+1-309-883-9464",
   email: "info@sacashhomebuyers.com",
+  image: `${SITE_URL}/og-image.png`,
+  logo: `${SITE_URL}/og-image.png`,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "San Antonio",
     addressLocality: "San Antonio",
     addressRegion: "TX",
     postalCode: "78201",
@@ -71,30 +74,135 @@ const localBusinessSchema = {
     latitude: 29.4241,
     longitude: -98.4936,
   },
+  areaServed: [
+    { "@type": "City", name: "San Antonio", sameAs: "https://en.wikipedia.org/wiki/San_Antonio" },
+    { "@type": "City", name: "Converse" },
+    { "@type": "City", name: "Schertz" },
+    { "@type": "City", name: "New Braunfels" },
+    { "@type": "City", name: "Boerne" },
+    { "@type": "City", name: "Seguin" },
+    { "@type": "City", name: "Helotes" },
+    { "@type": "City", name: "Leon Valley" },
+    { "@type": "City", name: "Live Oak" },
+    { "@type": "City", name: "Universal City" },
+    { "@type": "City", name: "Floresville" },
+    { "@type": "City", name: "Pleasanton" },
+    { "@type": "AdministrativeArea", name: "Bexar County" },
+  ],
+  sameAs: [],
+  priceRange: "$$",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: 4.9,
+    reviewCount: 200,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Maria G." },
+      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
+      reviewBody:
+        "I was facing foreclosure and didn't know what to do. These guys gave me a fair cash offer and closed in 12 days. They literally saved my credit. I can't thank them enough.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "James T." },
+      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
+      reviewBody:
+        "Inherited my mother's house and it needed a LOT of work. They bought it as-is and I didn't have to spend a dime. The whole process was smooth and professional.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Sandra & Mike R." },
+      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
+      reviewBody:
+        "We needed to relocate for work in 3 weeks. They made us a fair offer the same day we called and we closed in 10 days. No showings, no hassle. Just done.",
+    },
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "14:00",
+    },
+  ],
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Sell Your House for Cash in San Antonio",
+  description:
+    "We buy houses in any condition for cash in San Antonio, TX. No repairs, no closing costs, no commissions. Get a fair cash offer in 24 hours and close in as little as 7 days.",
+  provider: {
+    "@type": "RealEstateAgent",
+    name: "SA Cash Home Buyers",
+    url: SITE_URL,
+  },
   areaServed: {
     "@type": "City",
     name: "San Antonio",
     sameAs: "https://en.wikipedia.org/wiki/San_Antonio",
   },
-  priceRange: "$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "200",
-    bestRating: "5",
+  serviceType: "Cash Home Buying",
+  offers: {
+    "@type": "Offer",
+    description:
+      "Free, no-obligation cash offer for your San Antonio home — any condition, close in as few as 7 days",
+    price: "0",
+    priceCurrency: "USD",
   },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ],
-    opens: "08:00",
-    closes: "18:00",
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Sell Your House for Cash in San Antonio",
+  description:
+    "Sell your San Antonio house in 3 simple steps — contact us, get a cash offer, and close on your timeline.",
+  totalTime: "P30D",
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Contact Us",
+      text: "Fill out our quick form or give us a call. Tell us about your property — any condition, any situation. No judgment, just solutions.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Get Your Cash Offer",
+      text: "We'll evaluate your home and present a fair, no-obligation cash offer within 24 hours. No hidden fees, no surprises.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Close on Your Timeline",
+      text: "Accept our offer and choose your closing date — as fast as 7 days or up to 30. We pay ALL closing costs. You walk away with cash.",
+    },
+  ],
+};
+
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  url: SITE_URL,
+  name: "SA Cash Home Buyers",
+  description:
+    "We buy houses for cash in San Antonio, TX. Fast closings, no repairs, no fees.",
+  publisher: {
+    "@type": "Organization",
+    name: "SA Cash Home Buyers",
+    url: SITE_URL,
   },
 };
 
@@ -194,6 +302,24 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(faqSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(serviceSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(howToSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(webSiteSchema),
           }}
         />
       </head>
