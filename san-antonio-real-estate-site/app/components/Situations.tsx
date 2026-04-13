@@ -11,7 +11,7 @@ export default function Situations() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section id="situations" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-adobe mb-4">
@@ -34,6 +34,14 @@ export default function Situations() {
               <p className="text-sand-dark text-sm">{situation.description}</p>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <p className="text-sand-dark mb-4 text-lg">Whatever your situation, we can help.</p>
+          <a href="#get-offer" className="inline-flex items-center gap-2 bg-terra hover:bg-terra-dark text-white px-8 py-4 rounded-md text-lg font-bold transition-colors">
+            Get Your No-Obligation Offer
+          </a>
+          <p className="mt-3 text-sand-dark text-sm">or call <a href="tel:+13098839464" className="text-terra font-semibold">(309) 883-9464</a> right now</p>
         </div>
       </div>
     </section>

@@ -5,10 +5,12 @@ import { useState, FormEvent } from "react";
 export default function CTAForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
+    setError(null);
     const form = e.currentTarget;
     const formData = new FormData(form);
 
@@ -20,7 +22,7 @@ export default function CTAForm() {
       });
       setSubmitted(true);
     } catch {
-      alert("Something went wrong. Please call us directly at (309) 883-9464.");
+      setError("Something went wrong. Please try again or call us directly.");
     } finally {
       setSubmitting(false);
     }
@@ -47,8 +49,13 @@ export default function CTAForm() {
               <svg className="w-20 h-20 text-terra mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <h3 className="text-2xl font-bold text-adobe mb-2">Thank You!</h3>
-              <p className="text-sand-dark mb-4">We&apos;ve received your info and will reach out within 24 hours with your no-obligation cash offer.</p>
+              <h3 className="text-2xl font-bold text-adobe mb-2">Your Offer Is On the Way!</h3>
+              <p className="text-sand-dark mb-4">Here&apos;s what happens next:</p>
+              <ol className="text-left text-sand-dark text-sm space-y-2 max-w-sm mx-auto mb-6">
+                <li className="flex gap-2"><span className="font-bold text-terra">1.</span> We review your property details</li>
+                <li className="flex gap-2"><span className="font-bold text-terra">2.</span> We call you within 24 hours with a cash offer</li>
+                <li className="flex gap-2"><span className="font-bold text-terra">3.</span> If you accept, we close on your schedule</li>
+              </ol>
               <p className="text-sm text-sand-dark">Need to talk sooner? Call us at <a href="tel:+13098839464" className="text-terra font-semibold">(309) 883-9464</a></p>
             </div>
           ) : (
@@ -61,7 +68,8 @@ export default function CTAForm() {
                     type="text"
                     name="name"
                     required
-                    placeholder="John Smith"
+                    autoComplete="name"
+                    placeholder="Maria Garcia"
                     className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                   />
                 </div>
@@ -71,6 +79,7 @@ export default function CTAForm() {
                     type="tel"
                     name="phone"
                     required
+                    autoComplete="tel"
                     placeholder="(210) 555-0000"
                     className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                   />
@@ -83,7 +92,8 @@ export default function CTAForm() {
                   type="email"
                   name="email"
                   required
-                  placeholder="john@email.com"
+                  autoComplete="email"
+                  placeholder="maria@email.com"
                   className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
               </div>
@@ -94,6 +104,7 @@ export default function CTAForm() {
                   type="text"
                   name="address"
                   required
+                  autoComplete="street-address"
                   placeholder="123 Main St, San Antonio, TX 78201"
                   className="w-full px-4 py-3 rounded-md border border-sand bg-limestone text-adobe placeholder:text-sand-dark focus:outline-none focus:ring-2 focus:ring-terra focus:border-transparent"
                 />
@@ -134,18 +145,32 @@ export default function CTAForm() {
                 />
               </div>
 
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-md p-3 text-sm text-red-700">
+                  {error} Call us at <a href="tel:+13098839464" className="font-semibold underline">(309) 883-9464</a>
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={submitting}
                 className="w-full bg-terra hover:bg-terra-dark disabled:opacity-50 text-white py-4 rounded-md text-lg font-bold transition-colors"
               >
-                {submitting ? "Sending..." : "Get My Free Cash Offer \u2192"}
+                {submitting ? "Getting Your Offer Ready..." : "Get My Free Cash Offer \u2192"}
               </button>
 
               <p className="text-xs text-sand-dark text-center">
                 By submitting, you agree to be contacted about your property. No spam, ever. Your information is 100% confidential.
               </p>
+              <p className="text-sm text-sand-dark text-center">
+                Prefer to talk? Call <a href="tel:+13098839464" className="text-terra font-semibold">(309) 883-9464</a>
+              </p>
             </form>
+
+            <div className="mt-6 pt-6 border-t border-sand/20 text-center">
+              <p className="text-sm text-sand-dark italic">&ldquo;They gave me a fair offer and closed in 12 days. They saved my credit.&rdquo;</p>
+              <p className="text-xs text-terra mt-1">&mdash; Maria G., South Side San Antonio</p>
+            </div>
           )}
         </div>
       </div>
