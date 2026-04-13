@@ -304,28 +304,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
-      // If Netlify handles the form, let it through
-      if (contactForm.hasAttribute('data-netlify') || contactForm.hasAttribute('netlify')) {
-        return;
-      }
-
       e.preventDefault();
 
-      // Success animation
       const btn = contactForm.querySelector('button[type="submit"]');
-      if (btn) {
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;">Sent <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>';
-        btn.disabled = true;
-        btn.style.opacity = '0.85';
+      if (!btn) return;
 
-        setTimeout(() => {
-          btn.innerHTML = originalText;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;">Sending&hellip;</span>';
+      btn.disabled = true;
+
+      // Submit via fetch so we stay on the page (works with Netlify Forms)
+      const formData = new FormData(contactForm);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+        .then((res) => {
+          if (res.ok) {
+            btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;">Sent! We\'ll be in touch <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>';
+            btn.style.opacity = '0.85';
+            contactForm.reset();
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+              btn.style.opacity = '';
+            }, 4000);
+          } else {
+            throw new Error('Form submission failed');
+          }
+        })
+        .catch(() => {
+          btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;">Something went wrong — please try again</span>';
           btn.disabled = false;
-          btn.style.opacity = '';
-          contactForm.reset();
-        }, 3000);
-      }
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+          }, 3000);
+        });
     });
   }
 
