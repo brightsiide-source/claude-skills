@@ -9,6 +9,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'"
 
 [[headers]]
   for = "*.css"
@@ -25,6 +26,17 @@
   [headers.values]
     Cache-Control = "no-cache"
 
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+# SPA fallback — must be LAST (Netlify processes redirects in order)
 [[redirects]]
   from = "/*"
   to = "/index.html"
