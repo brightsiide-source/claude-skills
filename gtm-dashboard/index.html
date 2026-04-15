@@ -4,58 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GlobalTekMed Performance Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: #f8f6f1; }
+  </style>
 </head>
 <body>
-  <!-- Header -->
-  <header id="header">
-    <div class="header-left">
-      <h1>GlobalTekMed Performance Dashboard</h1>
-      <p>Real-Time CM &amp; CMA Accountability | Click any CM name for full detail</p>
-    </div>
-    <div class="header-right">
-      <span class="sample-badge">SAMPLE</span>
-      <span class="date-badge" id="date-badge"></span>
-    </div>
-  </header>
-
-  <!-- Tab Navigation -->
-  <nav id="tab-nav">
-    <a href="#" class="tab active" data-view="cm-tracker">&#x1F4DE; CM Tracker</a>
-    <a href="#" class="tab" data-view="cma-tracker">&#x1F4CB; CMA Tracker</a>
-    <a href="#" class="tab" data-view="conversion">&#x1F4CA; Conversion</a>
-    <a href="#" class="tab" data-view="alerts">&#x1F6A8; Alerts</a>
-    <a href="#" class="tab" data-view="revenue">&#x1F4B0; Revenue Impact</a>
-    <a href="#" class="tab" data-view="brands">&#x1F3E2; Brand Compare</a>
-    <a href="#" class="tab" data-view="trends">&#x1F4C8; Trends</a>
-  </nav>
-
-  <!-- Brand Filter Pills -->
-  <div id="brand-filter" class="brand-pills">
-    <span class="pill active" data-brand="All">All</span>
-  </div>
-
-  <!-- Summary Cards -->
-  <div id="summary-cards" class="summary-cards"></div>
-
-  <!-- Status Indicator -->
-  <div id="status-indicator" class="status-indicator"></div>
-
-  <!-- Alert Metric Cards -->
-  <div id="alert-metrics" class="alert-metrics"></div>
-
-  <!-- View Container -->
-  <div id="view-container"></div>
-
-  <!-- Modal -->
-  <div id="modal-overlay" class="modal-overlay hidden">
-    <div id="modal-content" class="modal-content">
-      <button id="modal-close" class="modal-close">&times;</button>
-      <div id="modal-body"></div>
-    </div>
-  </div>
-
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
