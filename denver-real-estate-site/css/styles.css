@@ -153,6 +153,8 @@ input, select, textarea {
 .logo-icon { color: var(--teal); font-size: 1.5rem; display: flex; align-items: center; }
 .logo-icon svg { flex-shrink: 0; }
 .logo-accent { color: var(--copper); }
+.logo-img { height: 48px; width: auto; display: block; }
+.footer-brand .logo-img { height: 56px; }
 .nav-menu {
   display: flex;
   align-items: center;
