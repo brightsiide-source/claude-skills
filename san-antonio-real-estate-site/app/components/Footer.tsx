@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-adobe border-t border-white/10 py-16">
@@ -5,13 +7,14 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-terra rounded-sm flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                </svg>
-              </div>
-              <span className="text-white font-bold text-lg">SA Cash Home Buyers</span>
+            <div className="inline-block bg-white rounded-md px-3 py-2 mb-4">
+              <Image
+                src="/sacash-logo.png"
+                alt="SA Cash Home Buyers"
+                width={1952}
+                height={903}
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-sand-dark text-sm max-w-md mb-6 leading-relaxed">
               We buy houses for cash in San Antonio, TX and surrounding areas. Fast closings, no repairs, no fees, no hassle. Get your fair cash offer today.

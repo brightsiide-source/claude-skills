@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -9,13 +10,17 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-adobe/95 backdrop-blur-sm border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-terra rounded-sm flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-              </svg>
+          <a href="#" className="flex items-center" aria-label="SA Cash Home Buyers — Home">
+            <div className="bg-white rounded-md px-2 py-1">
+              <Image
+                src="/sacash-logo.png"
+                alt="SA Cash Home Buyers"
+                width={1952}
+                height={903}
+                priority
+                className="h-8 w-auto"
+              />
             </div>
-            <span className="text-white font-bold text-lg">SA Cash Home Buyers</span>
           </a>
 
           <div className="hidden md:flex items-center gap-8">

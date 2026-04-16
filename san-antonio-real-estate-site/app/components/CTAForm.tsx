@@ -59,6 +59,7 @@ export default function CTAForm() {
               <p className="text-sm text-sand-dark">Need to talk sooner? Call us at <a href="tel:+13098839464" className="text-terra font-semibold">(309) 883-9464</a></p>
             </div>
           ) : (
+            <>
             <form name="cash-offer" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-5">
               <input type="hidden" name="form-name" value="cash-offer" />
               <div className="grid sm:grid-cols-2 gap-5">
@@ -171,6 +172,7 @@ export default function CTAForm() {
               <p className="text-sm text-sand-dark italic">&ldquo;They gave me a fair offer and closed in 12 days. They saved my credit.&rdquo;</p>
               <p className="text-xs text-terra mt-1">&mdash; Maria G., South Side San Antonio</p>
             </div>
+            </>
           )}
         </div>
       </div>
