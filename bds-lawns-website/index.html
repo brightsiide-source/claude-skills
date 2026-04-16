@@ -591,7 +591,11 @@
                 <p class="section-desc">Fill out the form below or give us a call. We'll get back to you within 24 hours.</p>
             </div>
             <div class="contact-grid">
-                <form class="contact-form" data-aos="fade-right" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <form class="contact-form" data-aos="fade-right" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p class="hidden" style="display:none;">
+                        <label>Don't fill this out: <input name="bot-field"></label>
+                    </p>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Full Name</label>

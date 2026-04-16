@@ -144,28 +144,46 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('scroll', navHighlight, { passive: true });
 
-    // ---------- Contact Form ----------
+    // ---------- Contact Form (Netlify Forms) ----------
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
-            // If using Formspree or similar, let it handle submission
-            // For demo purposes, show a success message
-            const action = contactForm.getAttribute('action');
-            if (action && action.includes('YOUR_FORM_ID')) {
-                e.preventDefault();
-                const btn = contactForm.querySelector('button[type="submit"]');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Message Sent!';
-                btn.style.background = 'var(--green-dark)';
-                btn.disabled = true;
+            e.preventDefault();
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg> Sending...';
+            btn.disabled = true;
 
+            const formData = new FormData(contactForm);
+
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(response => {
+                if (response.ok) {
+                    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Message Sent!';
+                    btn.style.background = 'var(--green-dark)';
+                    contactForm.reset();
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = '';
+                        btn.disabled = false;
+                    }, 4000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(() => {
+                btn.innerHTML = 'Something went wrong. Please call us!';
+                btn.style.background = '#c62828';
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.style.background = '';
                     btn.disabled = false;
-                    contactForm.reset();
-                }, 3000);
-            }
+                }, 4000);
+            });
         });
     }
 
