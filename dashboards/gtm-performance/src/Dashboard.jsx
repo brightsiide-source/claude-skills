@@ -10,9 +10,9 @@ import { useState, useMemo } from "react";
 const MOCK_CMS = [
   // ═══ INC CMs ═══
   { id: 1, name: "Cesar Sanchez", brand: "VDC", type: "INC", rank: 1, calls: 65, talkTime: 4.2, pipeline: 48, contacted: 45, gpvs: 16, csaClosed: 12, csaSent: 4, untouched: 3, score: 96, weekHistory: [88,91,85,94,96], gpvHistory: [12,14,11,15,16], passGP: 16, fileToVa: 9, tPsych: 9, actions: 335, realCalls: 323, leads: [
-    { name: "Robert M.", status: "GPV Submitted", daysInPipeline: 12, lastContact: 0 },
-    { name: "James T.", status: "Docs Received", daysInPipeline: 5, lastContact: 1 },
-    { name: "Patricia W.", status: "CSA Signed", daysInPipeline: 3, lastContact: 0 },
+    { name: "Lead #4821", status: "GPV Submitted", daysInPipeline: 12, lastContact: 0 },
+    { name: "Lead #4837", status: "Docs Received", daysInPipeline: 5, lastContact: 1 },
+    { name: "Lead #4842", status: "CSA Signed", daysInPipeline: 3, lastContact: 0 },
   ]},
   { id: 2, name: "Patricia Seary", brand: "VO", type: "INC", rank: 2, calls: 53, talkTime: 3.1, pipeline: 42, contacted: 36, gpvs: 12, csaClosed: 8, csaSent: 4, untouched: 8, score: 78, weekHistory: [72,74,76,77,78], gpvHistory: [9,10,11,11,12], passGP: 12, fileToVa: 5, tPsych: 7, actions: 190, realCalls: 267, leads: []},
   { id: 3, name: "Eric Torres", brand: "VAC", type: "INC", rank: 3, calls: 51, talkTime: 3.0, pipeline: 44, contacted: 38, gpvs: 11, csaClosed: 8, csaSent: 3, untouched: 5, score: 82, weekHistory: [76,78,79,81,82], gpvHistory: [8,9,10,11,11], passGP: 11, fileToVa: 15, tPsych: 15, actions: 161, realCalls: 254, leads: []},
@@ -48,9 +48,9 @@ const MOCK_CMS = [
   { id: 31, name: "Edward De Los Reyes", brand: "MULTI", type: "FTF", rank: 12, calls: 30, talkTime: 2.0, pipeline: 32, contacted: 22, gpvs: 6, csaClosed: 4, csaSent: 2, untouched: 12, score: 50, weekHistory: [45,46,47,49,50], gpvHistory: [4,5,5,6,6], passGP: 6, fileToVa: 5, tPsych: 0, actions: 41, realCalls: 151, leads: []},
   { id: 32, name: "Matthew Recce", brand: "VDR", type: "FTF", rank: 13, calls: 53, talkTime: 3.0, pipeline: 42, contacted: 30, gpvs: 3, csaClosed: 2, csaSent: 1, untouched: 14, score: 42, weekHistory: [38,40,41,41,42], gpvHistory: [2,2,3,3,3], passGP: 3, fileToVa: 4, tPsych: 1, actions: 99, realCalls: 265, leads: []},
   { id: 33, name: "Kimberly Montoya", brand: "AVC", type: "FTF", rank: 14, calls: 26, talkTime: 1.8, pipeline: 36, contacted: 18, gpvs: 1, csaClosed: 0, csaSent: 1, untouched: 28, score: 22, weekHistory: [28,26,24,23,22], gpvHistory: [0,1,0,1,1], passGP: 1, fileToVa: 1, tPsych: 0, actions: 87, realCalls: 129, leads: [
-    { name: "New Lead 1", status: "New Lead", daysInPipeline: 8, lastContact: 8 },
-    { name: "New Lead 2", status: "New Lead", daysInPipeline: 6, lastContact: 6 },
-    { name: "New Lead 3", status: "Contacted", daysInPipeline: 12, lastContact: 5 },
+    { name: "Lead #8129", status: "New Lead", daysInPipeline: 8, lastContact: 8 },
+    { name: "Lead #8143", status: "New Lead", daysInPipeline: 6, lastContact: 6 },
+    { name: "Lead #8156", status: "Contacted", daysInPipeline: 12, lastContact: 5 },
   ]},
 ];
 
