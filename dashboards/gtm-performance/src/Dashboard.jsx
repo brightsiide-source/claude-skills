@@ -355,7 +355,7 @@ export default function Dashboard() {
   const [ytdRoleFilter, setYtdRoleFilter] = useState("All");
   const [ytdSearchText, setYtdSearchText] = useState("");
   const [attribRoleFilter, setAttribRoleFilter] = useState("All");
-  const [consultView, setConsultView] = useState("oversight"); // oversight | attribution | revenue | brands
+  const [consultView, setConsultView] = useState("oversight"); // oversight | attribution | revenue | brands | ytd
   const [newLog, setNewLog] = useState({ manager: "", employee: "", brand: "", type: "Stage 1 Coaching", trigger: "", action: "", followUpDate: "" });
 
   const filteredCMs = useMemo(() => {
@@ -656,28 +656,14 @@ export default function Dashboard() {
             { key: "cma", label: "📋 CMA Tracker" },
             { key: "alerts", label: "🚨 Alerts" },
             { key: "log", label: "📝 Accountability Log" },
+            { key: "funnel", label: "🔄 Conversion" },
+            { key: "speed", label: "⏱ Speed" },
           ].map(tab => (
             <button key={tab.key} onClick={() => setView(tab.key)} style={{
               padding: "6px 14px", borderRadius: 6, border: "none", cursor: "pointer",
               fontSize: 11, fontWeight: 600, fontFamily: "inherit",
               background: view === tab.key ? "white" : "rgba(255,255,255,0.1)",
               color: view === tab.key ? "#1B2A4A" : "rgba(255,255,255,0.7)",
-            }}>{tab.label}</button>
-          ))}
-
-          <div style={{ width: 1, height: 20, background: "rgba(255,255,255,0.2)", margin: "0 2px" }} />
-
-          {[
-            { key: "ytd", label: "📅 YTD Full Data" },
-            { key: "funnel", label: "🔄 Conversion" },
-            { key: "speed", label: "⏱ Speed" },
-            { key: "trends", label: "📊 Trends" },
-          ].map(tab => (
-            <button key={tab.key} onClick={() => setView(tab.key)} style={{
-              padding: "6px 10px", borderRadius: 6, border: "none", cursor: "pointer",
-              fontSize: 10, fontWeight: 500, fontFamily: "inherit",
-              background: view === tab.key ? "white" : "rgba(255,255,255,0.06)",
-              color: view === tab.key ? "#1B2A4A" : "rgba(255,255,255,0.5)",
             }}>{tab.label}</button>
           ))}
 
@@ -736,6 +722,7 @@ export default function Dashboard() {
               { key: "attribution", label: "🎯 Role Attribution", desc: "Who did the GPV work vs. who closed the CSA" },
               { key: "revenue", label: "💰 Revenue Impact", desc: "Dollar value of gaps and leakage" },
               { key: "brands", label: "🏢 Brand Comparison", desc: "Head-to-head brand performance" },
+              { key: "ytd", label: "📅 YTD Full Data", desc: "All users across all brands — raw YTD metrics" },
             ].map(tab => (
               <button key={tab.key} onClick={() => setConsultView(tab.key)} title={tab.desc} style={{
                 padding: "5px 12px", borderRadius: 6, border: "1px solid", cursor: "pointer",
@@ -1418,52 +1405,8 @@ export default function Dashboard() {
           );
         })()}
 
-        {/* ═══ TRENDS ═══ */}
-        {view === "trends" && (
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <div style={{ background: "white", borderRadius: 10, padding: 20, border: "1px solid #e5e7eb" }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#1B2A4A", marginBottom: 14 }}>Weekly Call Volume</div>
-              <div style={{ display: "flex", alignItems: "flex-end", gap: 14, height: 160 }}>
-                {WEEKLY.map(d => (
-                  <div key={d.day} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: "#1B2A4A" }}>{d.totalCalls}</span>
-                    <div style={{ width: "100%", maxWidth: 60, height: (d.totalCalls/2500)*140, borderRadius: "6px 6px 0 0", background: "linear-gradient(180deg, #3B7DD8, #2C3E6B)" }} />
-                    <span style={{ fontSize: 11, fontWeight: 600, color: "#6b7280" }}>{d.day}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{ display: "flex", gap: 14 }}>
-              <div style={{ flex: 1, background: "white", borderRadius: 10, padding: 20, border: "1px solid #e5e7eb" }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#1B2A4A", marginBottom: 14 }}>Daily GPVs</div>
-                <div style={{ display: "flex", alignItems: "flex-end", gap: 14, height: 120 }}>
-                  {WEEKLY.map(d => (
-                    <div key={d.day} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-                      <span style={{ fontSize: 14, fontWeight: 700, color: "#2D8B4E" }}>{d.totalGPVs}</span>
-                      <div style={{ width: "100%", maxWidth: 50, height: (d.totalGPVs/70)*100, borderRadius: "6px 6px 0 0", background: "#2D8B4E" }} />
-                      <span style={{ fontSize: 11, color: "#6b7280" }}>{d.day}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div style={{ flex: 1, background: "white", borderRadius: 10, padding: 20, border: "1px solid #e5e7eb" }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#1B2A4A", marginBottom: 14 }}>Avg Talk Time</div>
-                <div style={{ display: "flex", alignItems: "flex-end", gap: 14, height: 120 }}>
-                  {WEEKLY.map(d => (
-                    <div key={d.day} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-                      <span style={{ fontSize: 14, fontWeight: 700, color: d.avgTalkTime >= 3 ? "#6C3FA0" : "#D4860B" }}>{d.avgTalkTime}h</span>
-                      <div style={{ width: "100%", maxWidth: 50, height: (d.avgTalkTime/4)*100, borderRadius: "6px 6px 0 0", background: d.avgTalkTime >= 3 ? "#6C3FA0" : "#D4860B" }} />
-                      <span style={{ fontSize: 11, color: "#6b7280" }}>{d.day}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ═══ YTD FULL DATA (from PowerBI) ═══ */}
-        {view === "ytd" && (() => {
+        {/* ═══ YTD FULL DATA (from PowerBI) — Consultant-only ═══ */}
+        {view === "corp" && consultView === "ytd" && (() => {
           const ytdSort = ytdSortKey;
           const ytdFilter = ytdRoleFilter;
           const ytdSearch = ytdSearchText;
