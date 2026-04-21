@@ -16,16 +16,33 @@ The skill is deliberately **draft-only** — it never sends email or SMS. Human 
 3. **Enriches** leads with publicly available emails, phones, and social links
 4. **Drafts** an email, SMS, and voicemail script tailored to the lead's situation — no site / broken site / dated site
 
+## Recommended ICP
+
+**Google-verified businesses with good reviews but no website.** Proven demand + zero web presence = highest-signal outreach target. Default filters:
+
+- `min_rating >= 4.0`
+- `min_reviews >= 20`
+- `missing_website = true`
+- `operational_only = true`
+
 ## Data sources
 
 | Source | Cost | Key required | Use for |
 |--------|------|--------------|---------|
-| OpenStreetMap Overpass | Free | No | Default discovery (good worldwide coverage, noisier data) |
-| Google Places | Free tier + paid | `GOOGLE_PLACES_API_KEY` | Cleaner discovery, includes `website` field |
+| `google_places_grid` (**recommended**) | Free credit covers most use | `GOOGLE_PLACES_API_KEY` | Tile a city, dedupe, filter on rating + no-website |
+| `google_places_text` | Same | Same | 60-result text query with locationBias |
+| `google_places_nearby` | Same | Same | Single 20-result circle (cheapest test) |
+| OpenStreetMap Overpass | Free | No | Rough reconnaissance, no review data |
 | PageSpeed Insights | Free | `PAGESPEED_API_KEY` | Performance / accessibility / SEO scoring |
 | Public website HTML | Free | No | Heuristic site assessment + contact enrichment |
 
-See [references/api-setup.md](references/api-setup.md) for how to get keys.
+All Google modes use **Places API (New)** (`places.googleapis.com/v1`) with a minimal field mask — see [references/api-setup.md](references/api-setup.md) for pricing and key setup.
+
+### Cost guardrails
+
+- `--max-tiles` (default 100) caps grid expansion — you cannot accidentally run a 2,000-tile sweep.
+- The field mask is restricted to the fields we actually filter on; each extra field class bumps the SKU tier.
+- `--keyword-sweep` multiplies calls (1 per keyword per tile) — use 2-3 variants, not 10.
 
 ## Installation
 
@@ -91,15 +108,32 @@ python scripts/draft_outreach.py assets/sample_lead_payload.json
 
 ### Phase 2: Discover leads
 
+**Recommended — Google Places grid sweep for the ICP:**
+
 ```bash
-python scripts/discover_businesses.py --source osm \
-  --lat <lat> --lng <lng> --radius-m 3000 --keyword <niche> \
-  --missing-website --limit 50 --format json > leads.json
+python scripts/discover_businesses.py --source google_places_grid \
+  --lat 40.7128 --lng -74.0060 \
+  --city-radius-m 5000 --tile-radius-m 500 --max-tiles 100 \
+  --included-types "plumber" \
+  --missing-website --min-rating 4.0 --min-reviews 20 \
+  --operational-only --format json > leads.json
 ```
 
-For higher-quality data (with cleaner `website` fields), use `--source google_places` and set `GOOGLE_PLACES_API_KEY`.
+Add a keyword sweep to catch niche synonyms:
 
-**Validation checkpoint:** At least 15 leads with a category match before moving on. If fewer, widen `--radius-m` or drop `--missing-website`.
+```bash
+python scripts/discover_businesses.py --source google_places_grid \
+  --lat 40.7128 --lng -74.0060 --city-radius-m 5000 \
+  --keyword-sweep "plumber,plumbing repair,emergency plumber" \
+  --missing-website --min-rating 4.0 --min-reviews 20 --format json
+```
+
+**Cheaper modes:**
+- `--source google_places_nearby` — single 20-result circle (1 API call)
+- `--source google_places_text --keyword "plumber in exampletown"` — up to 60 results (3 calls)
+- `--source osm` — free, no key, but no rating data
+
+**Validation checkpoint:** At least 15 leads matching rating + no-website before moving on. If fewer, lower `--min-reviews` to 10, widen `--city-radius-m`, or add more keyword-sweep variants.
 
 ---
 

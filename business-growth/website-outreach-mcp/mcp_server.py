@@ -52,39 +52,86 @@ mcp = FastMCP(name="website-outreach-mcp")
 
 @mcp.tool()
 def discover_businesses_tool(
-    source: str = "osm",
+    source: str = "google_places_grid",
     lat: float | None = None,
     lng: float | None = None,
     radius_m: int = 2000,
+    city_radius_m: int = 5000,
+    tile_radius_m: int = 1000,
+    max_tiles: int = 150,
     keyword: str = "",
+    included_types: list[str] | None = None,
+    keyword_sweep: list[str] | None = None,
     file: str | None = None,
-    missing_website_only: bool = False,
+    missing_website: bool = True,
+    min_rating: float | None = 4.0,
+    min_reviews: int | None = 20,
+    operational_only: bool = True,
     limit: int = 0,
 ) -> dict[str, Any]:
     """Find local businesses to target for outreach.
 
+    The default settings implement the recommended ICP:
+    Google-verified businesses with good reviews (>= 4.0, >= 20 reviews)
+    that currently have NO WEBSITE, swept across a city via grid tiling.
+
     Args:
-      source: "osm" (free, no key), "google_places" (needs GOOGLE_PLACES_API_KEY),
-              or "local" (reads from a JSON file).
-      lat, lng: Search center (required for osm / google_places).
-      radius_m: Search radius in meters (default 2000).
-      keyword: Optional category/name filter (e.g. "plumber", "bakery").
-      file: Path to a local JSON file (for source="local").
-      missing_website_only: If true, drop any lead that already has a website.
+      source: One of "google_places_nearby" (single 20-result call),
+              "google_places_text" (text query, up to 60 results),
+              "google_places_grid" (tile a city — default, highest yield),
+              "osm" (free, no key), "local" (JSON file).
+      lat, lng: Search center.
+      radius_m: Radius for nearby/text modes (default 2000).
+      city_radius_m: Outer sweep radius for grid mode (default 5000).
+      tile_radius_m: Per-tile radius for grid mode (default 500).
+      max_tiles: Hard cap on grid tiles (default 100) — cost guardrail.
+      keyword: Free-text keyword (OSM filter, or query for text search).
+      included_types: Places types for nearby/grid (e.g. ["plumber"]).
+      keyword_sweep: Text queries to run per tile in grid mode (e.g.
+                     ["plumber", "plumbing repair", "emergency plumber"]).
+      file: Path to local JSON (source="local").
+      missing_website: Drop any lead that already has a website (default True).
+      min_rating: Keep leads rated >= this on Google (default 4.0).
+      min_reviews: Keep leads with at least N reviews (default 20).
+      operational_only: Drop CLOSED_TEMPORARILY / CLOSED_PERMANENTLY.
       limit: Cap results (0 = no cap).
 
     Returns:
-      {"count": int, "businesses": [...]}
+      {"count": int, "businesses": [...]}  — each row includes rating,
+      review_count, business_status, and google_maps_uri when available.
     """
     try:
-        if source == "google_places":
+        if source.startswith("google_places"):
             key = os.environ.get("GOOGLE_PLACES_API_KEY")
             if not key:
                 return {"error": {"code": "missing_key",
                                   "message": "GOOGLE_PLACES_API_KEY not set"}}
-            if lat is None or lng is None:
-                return {"error": {"code": "bad_input", "message": "lat/lng required"}}
-            rows = discover_businesses.discover_google(lat, lng, radius_m, keyword, key)
+            if source == "google_places_nearby":
+                if lat is None or lng is None:
+                    return {"error": {"code": "bad_input", "message": "lat/lng required"}}
+                rows = discover_businesses.discover_google_nearby(
+                    lat, lng, radius_m, included_types or None, key
+                )
+            elif source == "google_places_text":
+                if not keyword:
+                    return {"error": {"code": "bad_input",
+                                      "message": "keyword required for google_places_text"}}
+                rows = discover_businesses.discover_google_text(
+                    keyword, key, lat=lat, lng=lng, radius_m=radius_m
+                )
+            elif source == "google_places_grid":
+                if lat is None or lng is None:
+                    return {"error": {"code": "bad_input", "message": "lat/lng required"}}
+                if not included_types and not keyword_sweep:
+                    return {"error": {"code": "bad_input",
+                                      "message": "grid needs included_types or keyword_sweep"}}
+                rows = discover_businesses.discover_google_grid(
+                    lat, lng, city_radius_m, included_types or None, key,
+                    tile_radius_m=tile_radius_m, max_tiles=max_tiles,
+                    keyword_sweep=keyword_sweep or None,
+                )
+            else:
+                return {"error": {"code": "bad_input", "message": f"unknown source {source}"}}
         elif source == "osm":
             if lat is None or lng is None:
                 return {"error": {"code": "bad_input", "message": "lat/lng required"}}
@@ -98,8 +145,13 @@ def discover_businesses_tool(
     except Exception as e:
         return {"error": {"code": "discovery_failed", "message": str(e)}}
 
-    if missing_website_only:
-        rows = [r for r in rows if not (r.get("website") or "").strip()]
+    rows = discover_businesses.filter_leads(
+        rows,
+        min_rating=min_rating,
+        min_reviews=min_reviews,
+        missing_website=missing_website,
+        operational_only=operational_only,
+    )
     if limit and limit > 0:
         rows = rows[:limit]
     return {"count": len(rows), "businesses": rows}
@@ -162,26 +214,46 @@ def draft_outreach_tool(business: dict[str, Any], assessment: dict[str, Any],
 
 @mcp.tool()
 def build_campaign(
-    source: str = "osm",
+    source: str = "google_places_grid",
     lat: float | None = None,
     lng: float | None = None,
     radius_m: int = 2000,
+    city_radius_m: int = 5000,
+    tile_radius_m: int = 1000,
+    max_tiles: int = 150,
     keyword: str = "",
+    included_types: list[str] | None = None,
+    keyword_sweep: list[str] | None = None,
     file: str | None = None,
-    limit: int = 10,
+    limit: int = 50,
+    missing_website: bool = True,
+    min_rating: float | None = 4.0,
+    min_reviews: int | None = 20,
+    operational_only: bool = True,
     min_upgrade_priority: int = 40,
     use_pagespeed: bool = False,
     signer: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     """End-to-end: discover -> assess -> draft for each qualifying lead.
 
-    Filters leads to those whose assessed upgrade_priority is at or above
-    `min_upgrade_priority`. Returns a list of ready-to-review drafts, each
-    paired with the business record and assessment findings.
+    Default behavior targets the recommended ICP: good-reviews + no-website
+    businesses within a city grid. Because `missing_website=True` by default,
+    every qualifying lead will assess at upgrade_priority 100.
+
+    Filters:
+      - Google: min_rating, min_reviews, operational_only, missing_website
+      - Site:   min_upgrade_priority (only matters for leads WITH a website)
     """
-    disc = discover_businesses_tool(source=source, lat=lat, lng=lng,
-                                    radius_m=radius_m, keyword=keyword, file=file,
-                                    missing_website_only=False, limit=limit)
+    disc = discover_businesses_tool(
+        source=source, lat=lat, lng=lng,
+        radius_m=radius_m, city_radius_m=city_radius_m,
+        tile_radius_m=tile_radius_m, max_tiles=max_tiles,
+        keyword=keyword, included_types=included_types,
+        keyword_sweep=keyword_sweep, file=file,
+        missing_website=missing_website,
+        min_rating=min_rating, min_reviews=min_reviews,
+        operational_only=operational_only, limit=limit,
+    )
     if "error" in disc:
         return disc
 
