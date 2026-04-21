@@ -1,0 +1,4 @@
+lead_name,category,city,website,upgrade_priority,classification,primary_finding,email_1_sent,email_1_replied,email_2_sent,voicemail_left,sms_sent,status,notes
+Corner Bakery,bakery,Exampletown,,100,no_site,No website on record,,,,,,prospect,
+Acme Plumbing,plumber,Exampletown,http://acmeplumbing.example,78,needs_upgrade_major,No HTTPS,,,,,,prospect,
+Sunrise Dental,dentist,Exampletown,https://sunrisedental.example,35,healthy,None,,,,,,skip,Site is fine

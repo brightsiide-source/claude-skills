@@ -1,0 +1,30 @@
+{
+  "business": {
+    "name": "Acme Plumbing",
+    "category": "plumber",
+    "address": "123 Main St, Exampletown",
+    "phone": "+1-555-0111",
+    "website": "http://acmeplumbing.example",
+    "source": "osm",
+    "raw_id": "node/1234567"
+  },
+  "assessment": {
+    "input_url": "http://acmeplumbing.example",
+    "reachable": true,
+    "https": false,
+    "looks_parked": false,
+    "upgrade_priority": 78,
+    "findings": [
+      "No HTTPS — browsers mark the site 'Not secure'.",
+      "No mobile viewport meta tag — site likely not mobile-friendly.",
+      "Footer copyright shows 2018 — site looks abandoned."
+    ]
+  },
+  "signer": {
+    "name": "Jane Doe",
+    "company": "Doe Web Studio",
+    "phone": "+1-555-0123",
+    "offer_summary": "fast, mobile-first websites for local service businesses",
+    "offer_price_anchor": "usually a fixed $1,200 for a three-page site"
+  }
+}

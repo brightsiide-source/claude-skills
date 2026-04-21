@@ -1,0 +1,37 @@
+{
+  "businesses": [
+    {
+      "name": "Corner Bakery",
+      "category": "bakery",
+      "address": "12 Elm St, Exampletown",
+      "phone": "+1-555-0100",
+      "website": "",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "source": "local",
+      "raw_id": "local-1"
+    },
+    {
+      "name": "Acme Plumbing",
+      "category": "plumber",
+      "address": "123 Main St, Exampletown",
+      "phone": "+1-555-0111",
+      "website": "http://acmeplumbing.example",
+      "lat": 40.714,
+      "lng": -74.008,
+      "source": "local",
+      "raw_id": "local-2"
+    },
+    {
+      "name": "Sunrise Dental",
+      "category": "dentist",
+      "address": "7 Oak Ave, Exampletown",
+      "phone": "+1-555-0134",
+      "website": "https://sunrisedental.example",
+      "lat": 40.715,
+      "lng": -74.004,
+      "source": "local",
+      "raw_id": "local-3"
+    }
+  ]
+}
