@@ -1,0 +1,27 @@
+# Netlify config at repo root so the branch deploys cleanly
+# without manual "Base directory" configuration in the Netlify UI.
+# The doorhash retail + delivery site lives in ./doorhash-site/.
+
+[build]
+  base = "doorhash-site"
+  command = "pnpm build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--version"
+  PNPM_VERSION = "9"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/og.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

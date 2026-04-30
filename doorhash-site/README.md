@@ -32,14 +32,20 @@ pnpm start
 
 ## Deploy to Netlify
 
-The repo is pre-wired for Netlify (`netlify.toml` + `@netlify/plugin-nextjs`).
+The repo root has a `netlify.toml` with `base = "doorhash-site"`, so deploying is essentially one click:
 
-1. Connect the GitHub repo in Netlify → "Add new site" → "Import an existing project".
-2. Set base directory: `doorhash-site`.
-3. Build command: `pnpm build` (auto-detected from `netlify.toml`).
-4. Publish directory: `.next` (auto-detected).
-5. Node version: 22 (set via `netlify.toml`).
-6. The Next.js Runtime plugin auto-installs and handles SSR/ISR/edge.
+**One-click deploy from GitHub:**
+
+1. Go to <https://app.netlify.com/start>.
+2. Click **Import an existing project** → **Deploy with GitHub**.
+3. Pick the `brightsiide-source/claude-skills` repo.
+4. Choose branch `claude/doorhash-retail-site-hGCl7` (or whichever branch you want to deploy).
+5. Leave all build settings as defaults — `netlify.toml` configures everything (base directory, build command, publish dir, Node 22, pnpm 9, Next.js Runtime plugin).
+6. Click **Deploy**.
+
+First build takes ~2 min. Subsequent builds are incremental.
+
+**Custom domain:** Add it in Netlify → Site settings → Domain management. Update `metadataBase` in `app/layout.tsx` and `BASE` in `app/sitemap.ts`, `components/JsonLd.tsx` to match.
 
 ## Structure
 
