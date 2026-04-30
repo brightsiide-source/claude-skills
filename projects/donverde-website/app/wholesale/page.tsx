@@ -12,7 +12,7 @@ export default function WholesalePage() {
     <>
       <section className="bg-ink text-bone">
         <div className="mx-auto max-w-8xl px-6 pb-16 pt-28 lg:px-12 lg:pb-24">
-          <p className="eyebrow text-verde-glow">For dispensary buyers</p>
+          <p className="eyebrow text-gold-glow">For dispensary buyers</p>
           <h1 className="mt-8 max-w-5xl font-display text-7xl leading-[0.95] tracking-tightest md:text-9xl">
             Carry Don Verde.
           </h1>
@@ -43,7 +43,7 @@ export default function WholesalePage() {
               </p>
               <p className="mt-6 text-sm text-ink/60">
                 Prefer email?{" "}
-                <a className="text-verde hover:text-verde-deep" href="mailto:info@donverdefarms.com">
+                <a className="text-gold hover:text-gold-deep" href="mailto:info@donverdefarms.com">
                   info@donverdefarms.com
                 </a>
               </p>

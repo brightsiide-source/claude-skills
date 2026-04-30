@@ -25,8 +25,9 @@ function Hero() {
         <svg className="h-full w-full" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden>
           <defs>
             <radialGradient id="hero-glow" cx="65%" cy="35%" r="55%">
-              <stop offset="0%" stopColor="#7DA15F" stopOpacity="0.45" />
-              <stop offset="50%" stopColor="#2C4A2A" stopOpacity="0.35" />
+              <stop offset="0%" stopColor="#C8A23A" stopOpacity="0.35" />
+              <stop offset="40%" stopColor="#5C4810" stopOpacity="0.45" />
+              <stop offset="80%" stopColor="#2C4A2A" stopOpacity="0.25" />
               <stop offset="100%" stopColor="#000000" stopOpacity="0" />
             </radialGradient>
             <filter id="hero-grain">
@@ -46,7 +47,7 @@ function Hero() {
             <p className="eyebrow">Southern New Mexico · Indoor Craft Cannabis</p>
             <h1 className="mt-8 font-display text-[14vw] leading-[0.92] tracking-tightest text-bone md:text-[10vw] lg:text-[8.5vw]">
               The desert<br />
-              <span className="italic text-verde-glow">grows quiet.</span><br />
+              <span className="italic text-gold-bright">grows quiet.</span><br />
               We answer back.
             </h1>
           </div>
@@ -57,7 +58,7 @@ function Hero() {
               Southern New Mexico into the most honest flower on a dispensary shelf.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/strains" className="btn-verde text-[11px]">
+              <Link href="/strains" className="btn-gold text-[11px]">
                 See the strains
               </Link>
               <Link href="/wholesale" className="btn-ghost-bone text-[11px]">
@@ -94,7 +95,7 @@ function ManifestoBand() {
         <p className="eyebrow">A note from the farm</p>
         <h2 className="mt-8 max-w-5xl font-display text-5xl leading-[1.05] tracking-tightest text-ink md:text-7xl">
           We don&rsquo;t chase percentages.
-          <span className="text-verde"> We chase the smoke.</span>
+          <span className="text-gold"> We chase the smoke.</span>
         </h2>
         <div className="mt-12 grid gap-12 text-base leading-relaxed text-ink/80 md:grid-cols-3">
           <p>
@@ -168,8 +169,8 @@ function FarmStory() {
 
           <div className="grid grid-cols-2 gap-4 lg:col-span-7">
             <FarmTile label="Cultivar count" value="6" hint="In rotation" />
-            <FarmTile label="Cure time" value="21 days" hint="Minimum" tone="verde" />
-            <FarmTile label="Lab verified" value="Every batch" hint="Public COAs" />
+            <FarmTile label="Cure time" value="21 days" hint="Minimum" tone="gold" />
+            <FarmTile label="Lab verified" value="Every batch" hint="Public COAs" tone="verde" />
             <FarmTile label="Founded by" value="3 operators" hint="NM × SoCal" tone="ink" />
           </div>
         </div>
@@ -187,11 +188,12 @@ function FarmTile({
   label: string;
   value: string;
   hint: string;
-  tone?: "default" | "verde" | "ink";
+  tone?: "default" | "verde" | "ink" | "gold";
 }) {
   const styles = {
     default: "bg-bone-warm text-ink border-ink/10",
     verde: "bg-verde text-bone border-verde",
+    gold: "bg-gold text-bone border-gold",
     ink: "bg-ink text-bone border-ink"
   } as const;
   return (
@@ -214,7 +216,7 @@ function BudtenderRail() {
   return (
     <section className="bg-verde-deep py-24 text-bone lg:py-32">
       <div className="mx-auto max-w-8xl px-6 lg:px-12">
-        <p className="eyebrow text-verde-glow">Built for budtenders</p>
+        <p className="eyebrow text-gold-glow">Built for budtenders</p>
         <h2 className="mt-6 max-w-3xl font-display text-5xl leading-[1.05] tracking-tightest md:text-6xl">
           The brand your floor staff actually wants to recommend.
         </h2>
@@ -222,7 +224,7 @@ function BudtenderRail() {
         <div className="mt-16 grid gap-10 md:grid-cols-3">
           {items.map((it) => (
             <div key={it.k} className="border-t border-bone/15 pt-6">
-              <p className="font-display text-3xl tracking-tightest text-verde-glow">{it.k}</p>
+              <p className="font-display text-3xl tracking-tightest text-gold-glow">{it.k}</p>
               <h3 className="mt-4 font-display text-2xl tracking-tightest">{it.h}</h3>
               <p className="mt-4 text-sm leading-relaxed text-bone/75">{it.b}</p>
             </div>
@@ -275,7 +277,8 @@ function WholesaleCta() {
         <svg viewBox="0 0 1600 600" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
           <defs>
             <linearGradient id="ws-grad" x1="0" x2="1">
-              <stop offset="0%" stopColor="#2C4A2A" />
+              <stop offset="0%" stopColor="#5C4810" />
+              <stop offset="55%" stopColor="#2C4A2A" stopOpacity="0.7" />
               <stop offset="100%" stopColor="#000000" />
             </linearGradient>
           </defs>
@@ -285,7 +288,7 @@ function WholesaleCta() {
       <div className="relative mx-auto max-w-8xl px-6 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-8">
-            <p className="eyebrow text-verde-glow">For dispensary buyers</p>
+            <p className="eyebrow text-gold-glow">For dispensary buyers</p>
             <h2 className="mt-6 font-display text-5xl leading-[1.02] tracking-tightest md:text-7xl">
               Carry Don Verde.
             </h2>
@@ -295,7 +298,7 @@ function WholesaleCta() {
             </p>
           </div>
           <div className="lg:col-span-4 lg:text-right">
-            <Link href="/wholesale" className="btn-verde text-[11px]">
+            <Link href="/wholesale" className="btn-gold text-[11px]">
               Open a wholesale account
             </Link>
           </div>

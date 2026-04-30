@@ -19,6 +19,12 @@ const config: Config = {
           warm: "#F2EFE8",
           line: "#E5E2D9"
         },
+        gold: {
+          DEFAULT: "#9B7A1A",
+          deep: "#5C4810",
+          bright: "#C8A23A",
+          glow: "#E5C76B"
+        },
         verde: {
           DEFAULT: "#4A6741",
           deep: "#2C4A2A",

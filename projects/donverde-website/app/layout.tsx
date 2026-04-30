@@ -48,21 +48,58 @@ export const metadata: Metadata = {
 
 const orgSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Don Verde Farms",
-  url: "https://donverdefarms.com",
-  email: "info@donverdefarms.com",
-  description:
-    "Premium indoor cannabis cultivator in Southern New Mexico. License CCD-VICE-2023-0010.",
-  sameAs: [
-    "https://www.instagram.com/donverdefarms/",
-    "https://www.facebook.com/p/Don-Verde-Farms-61553599491326/"
-  ],
-  address: {
-    "@type": "PostalAddress",
-    addressRegion: "NM",
-    addressCountry: "US"
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://donverdefarms.com/#organization",
+      name: "Don Verde Farms",
+      legalName: "Don Verde, LLC",
+      url: "https://donverdefarms.com",
+      email: "info@donverdefarms.com",
+      logo: "https://donverdefarms.com/favicon.svg",
+      description:
+        "Operator-owned indoor cannabis cultivator in Southern New Mexico. NM license CCD-VICE-2023-0010.",
+      foundingDate: "2023",
+      sameAs: [
+        "https://www.instagram.com/donverdefarms/",
+        "https://www.facebook.com/p/Don-Verde-Farms-61553599491326/"
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "NM",
+        addressCountry: "US"
+      },
+      areaServed: {
+        "@type": "State",
+        name: "New Mexico"
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://donverdefarms.com/#localbusiness",
+      name: "Don Verde Farms",
+      image: "https://donverdefarms.com/favicon.svg",
+      url: "https://donverdefarms.com",
+      email: "info@donverdefarms.com",
+      priceRange: "$$$",
+      description:
+        "New Mexico craft indoor cannabis cultivator. Wholesale to NM-licensed dispensaries.",
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "NM",
+        addressCountry: "US"
+      },
+      areaServed: ["Albuquerque", "Las Cruces", "Santa Fe", "Sunland Park", "Roswell"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://donverdefarms.com/#website",
+      url: "https://donverdefarms.com",
+      name: "Don Verde Farms",
+      publisher: { "@id": "https://donverdefarms.com/#organization" },
+      inLanguage: "en-US"
+    }
+  ]
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

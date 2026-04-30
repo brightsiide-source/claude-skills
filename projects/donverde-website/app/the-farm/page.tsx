@@ -12,7 +12,7 @@ export default function TheFarmPage() {
     <>
       <section className="bg-ink text-bone">
         <div className="mx-auto max-w-8xl px-6 pb-20 pt-28 lg:px-12 lg:pb-28 lg:pt-32">
-          <p className="eyebrow text-verde-glow">The farm</p>
+          <p className="eyebrow text-gold-glow">The farm</p>
           <h1 className="mt-8 max-w-5xl font-display text-7xl leading-[0.95] tracking-tightest md:text-9xl">
             Three operators, one quiet room, no boss but the plant.
           </h1>
@@ -49,7 +49,7 @@ export default function TheFarmPage() {
                 </p>
                 <p>
                   We hold New Mexico cultivation license{" "}
-                  <span className="font-mono text-verde">CCD-VICE-2023-0010</span> and grow
+                  <span className="font-mono text-gold">CCD-VICE-2023-0010</span> and grow
                   exclusively under it. Every batch that ships under our label is grown,
                   harvested, and cured in this facility &mdash; nothing white-labeled, nothing
                   resold.
@@ -99,7 +99,7 @@ export default function TheFarmPage() {
         <div className="mx-auto max-w-8xl px-6 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-verde-glow">Operators</p>
+              <p className="eyebrow text-gold-glow">Operators</p>
               <h2 className="mt-4 font-display text-5xl leading-[1.02] tracking-tightest md:text-6xl">
                 Mike. Javi. Neal.
               </h2>
@@ -126,7 +126,7 @@ export default function TheFarmPage() {
             </p>
           </div>
           <div className="flex gap-3">
-            <Link href="/strains" className="btn-verde text-[11px]">Browse strains</Link>
+            <Link href="/strains" className="btn-gold text-[11px]">Browse strains</Link>
             <Link href="/wholesale" className="btn-ghost-bone text-[11px]">Wholesale →</Link>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function TheFarmPage() {
 function Method({ kicker, title, body }: { kicker: string; title: string; body: string }) {
   return (
     <div className="grid gap-6 border-t border-ink/15 pt-8 sm:grid-cols-[auto_1fr]">
-      <p className="font-display text-3xl tracking-tightest text-verde">{kicker}</p>
+      <p className="font-display text-3xl tracking-tightest text-gold">{kicker}</p>
       <div>
         <h3 className="font-display text-2xl tracking-tightest text-ink">{title}</h3>
         <p className="mt-3 text-base leading-relaxed text-ink/75">{body}</p>

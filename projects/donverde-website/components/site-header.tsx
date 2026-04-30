@@ -7,8 +7,8 @@ const nav = [
   { label: "Strains", href: "/strains" },
   { label: "The Farm", href: "/the-farm" },
   { label: "Find Us", href: "/find-us" },
-  { label: "Wholesale", href: "/wholesale" },
-  { label: "Contact", href: "/contact" }
+  { label: "Journal", href: "/journal" },
+  { label: "Wholesale", href: "/wholesale" }
 ];
 
 export function SiteHeader() {
@@ -26,7 +26,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-xs uppercase tracking-[0.2em] text-ink/70 transition-colors hover:text-verde"
+              className="text-xs uppercase tracking-[0.2em] text-ink/70 transition-colors hover:text-gold"
             >
               {item.label}
             </Link>
@@ -34,7 +34,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:block">
-          <Link href="/wholesale" className="btn-verde text-[11px]">
+          <Link href="/wholesale" className="btn-gold text-[11px]">
             Wholesale Inquiry
           </Link>
         </div>
@@ -71,7 +71,7 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <Link href="/wholesale" onClick={() => setOpen(false)} className="btn-verde mt-6 text-[11px]">
+            <Link href="/wholesale" onClick={() => setOpen(false)} className="btn-gold mt-6 text-[11px]">
               Wholesale Inquiry
             </Link>
           </nav>
@@ -87,7 +87,7 @@ function Wordmark() {
       <span className="font-display text-2xl tracking-tightest text-ink">
         Don Verde
       </span>
-      <span className="hidden text-[10px] uppercase tracking-[0.3em] text-verde sm:inline">
+      <span className="hidden text-[10px] uppercase tracking-[0.3em] text-gold sm:inline">
         Farms
       </span>
     </div>

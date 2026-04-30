@@ -34,7 +34,7 @@ export function WholesaleForm() {
 
   if (done) {
     return (
-      <div className="border border-verde bg-bone-warm p-12 text-center">
+      <div className="border border-gold bg-bone-warm p-12 text-center">
         <p className="eyebrow">Received</p>
         <h3 className="mt-6 font-display text-4xl tracking-tightest text-ink">
           We&rsquo;ll be in touch within two business days.
@@ -93,13 +93,13 @@ export function WholesaleForm() {
       />
 
       {error && (
-        <p className="text-sm text-verde-deep">{error}</p>
+        <p className="text-sm text-gold-deep">{error}</p>
       )}
 
       <button
         type="submit"
         disabled={submitting}
-        className="btn-verde text-[11px] disabled:opacity-50"
+        className="btn-gold text-[11px] disabled:opacity-50"
       >
         {submitting ? "Sending..." : "Submit wholesale inquiry"}
       </button>
@@ -124,14 +124,14 @@ function Field({
     <label className="block">
       <span className="text-[11px] uppercase tracking-[0.22em] text-ink/60">
         {label}
-        {required && <span className="ml-1 text-verde">*</span>}
+        {required && <span className="ml-1 text-gold">*</span>}
       </span>
       <input
         type={type}
         name={name}
         required={required}
         placeholder={placeholder}
-        className="mt-2 w-full border border-ink/20 bg-bone-warm px-4 py-3 text-base text-ink outline-none transition-colors placeholder:text-ink/30 focus:border-verde"
+        className="mt-2 w-full border border-ink/20 bg-bone-warm px-4 py-3 text-base text-ink outline-none transition-colors placeholder:text-ink/30 focus:border-gold"
       />
     </label>
   );
@@ -152,13 +152,13 @@ function Select({
     <label className="block">
       <span className="text-[11px] uppercase tracking-[0.22em] text-ink/60">
         {label}
-        {required && <span className="ml-1 text-verde">*</span>}
+        {required && <span className="ml-1 text-gold">*</span>}
       </span>
       <select
         name={name}
         required={required}
         defaultValue=""
-        className="mt-2 w-full border border-ink/20 bg-bone-warm px-4 py-3 text-base text-ink outline-none transition-colors focus:border-verde"
+        className="mt-2 w-full border border-ink/20 bg-bone-warm px-4 py-3 text-base text-ink outline-none transition-colors focus:border-gold"
       >
         <option value="" disabled>Select one</option>
         {options.map((o) => (
@@ -174,13 +174,13 @@ function TextArea({ label, name, required }: { label: string; name: string; requ
     <label className="block">
       <span className="text-[11px] uppercase tracking-[0.22em] text-ink/60">
         {label}
-        {required && <span className="ml-1 text-verde">*</span>}
+        {required && <span className="ml-1 text-gold">*</span>}
       </span>
       <textarea
         name={name}
         required={required}
         rows={5}
-        className="mt-2 w-full border border-ink/20 bg-bone-warm px-4 py-3 text-base text-ink outline-none transition-colors placeholder:text-ink/30 focus:border-verde"
+        className="mt-2 w-full border border-ink/20 bg-bone-warm px-4 py-3 text-base text-ink outline-none transition-colors placeholder:text-ink/30 focus:border-gold"
       />
     </label>
   );

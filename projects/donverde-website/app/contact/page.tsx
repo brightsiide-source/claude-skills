@@ -12,7 +12,7 @@ export default function ContactPage() {
     <>
       <section className="bg-ink text-bone">
         <div className="mx-auto max-w-8xl px-6 pb-16 pt-28 lg:px-12 lg:pb-24">
-          <p className="eyebrow text-verde-glow">Reach the farm</p>
+          <p className="eyebrow text-gold-glow">Reach the farm</p>
           <h1 className="mt-8 max-w-5xl font-display text-7xl leading-[0.95] tracking-tightest md:text-9xl">
             Get in touch.
           </h1>
@@ -72,23 +72,23 @@ export default function ContactPage() {
                     name="name"
                     required
                     placeholder="Your name"
-                    className="w-full border border-ink/20 bg-bone px-4 py-3 text-base text-ink outline-none placeholder:text-ink/40 focus:border-verde"
+                    className="w-full border border-ink/20 bg-bone px-4 py-3 text-base text-ink outline-none placeholder:text-ink/40 focus:border-gold"
                   />
                   <input
                     type="email"
                     name="email"
                     required
                     placeholder="Email"
-                    className="w-full border border-ink/20 bg-bone px-4 py-3 text-base text-ink outline-none placeholder:text-ink/40 focus:border-verde"
+                    className="w-full border border-ink/20 bg-bone px-4 py-3 text-base text-ink outline-none placeholder:text-ink/40 focus:border-gold"
                   />
                   <textarea
                     name="message"
                     rows={6}
                     required
                     placeholder="What's the message?"
-                    className="w-full border border-ink/20 bg-bone px-4 py-3 text-base text-ink outline-none placeholder:text-ink/40 focus:border-verde"
+                    className="w-full border border-ink/20 bg-bone px-4 py-3 text-base text-ink outline-none placeholder:text-ink/40 focus:border-gold"
                   />
-                  <button type="submit" className="btn-verde text-[11px]">Send</button>
+                  <button type="submit" className="btn-gold text-[11px]">Send</button>
                 </form>
               </div>
             </div>
@@ -113,21 +113,21 @@ function ContactBlock({
   const external = ctaHref.startsWith("http") || ctaHref.startsWith("mailto:");
   return (
     <div className="border-t border-ink/10 pt-6">
-      <p className="text-[11px] uppercase tracking-[0.22em] text-verde">{label}</p>
+      <p className="text-[11px] uppercase tracking-[0.22em] text-gold">{label}</p>
       <p className="mt-3 text-base leading-relaxed text-ink/75">{body}</p>
       {external ? (
         <a
           href={ctaHref}
           target={ctaHref.startsWith("http") ? "_blank" : undefined}
           rel={ctaHref.startsWith("http") ? "noreferrer noopener" : undefined}
-          className="mt-3 inline-block font-display text-2xl tracking-tightest text-ink hover:text-verde"
+          className="mt-3 inline-block font-display text-2xl tracking-tightest text-ink hover:text-gold"
         >
           {ctaLabel}
         </a>
       ) : (
         <Link
           href={ctaHref}
-          className="mt-3 inline-block font-display text-2xl tracking-tightest text-ink hover:text-verde"
+          className="mt-3 inline-block font-display text-2xl tracking-tightest text-ink hover:text-gold"
         >
           {ctaLabel}
         </Link>

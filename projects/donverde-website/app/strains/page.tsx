@@ -17,7 +17,7 @@ export default function StrainsPage() {
     <>
       <section className="bg-ink py-24 text-bone lg:py-32">
         <div className="mx-auto max-w-8xl px-6 lg:px-12">
-          <p className="eyebrow text-verde-glow">The catalog</p>
+          <p className="eyebrow text-gold-glow">The catalog</p>
           <h1 className="mt-6 font-display text-6xl leading-[1] tracking-tightest md:text-8xl">
             Strains in rotation.
           </h1>

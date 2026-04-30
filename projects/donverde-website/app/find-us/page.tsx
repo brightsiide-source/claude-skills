@@ -46,7 +46,7 @@ export default function FindUsPage() {
     <>
       <section className="bg-ink text-bone">
         <div className="mx-auto max-w-8xl px-6 pb-16 pt-28 lg:px-12 lg:pb-24">
-          <p className="eyebrow text-verde-glow">Find Don Verde</p>
+          <p className="eyebrow text-gold-glow">Find Don Verde</p>
           <h1 className="mt-8 max-w-5xl font-display text-7xl leading-[0.95] tracking-tightest md:text-9xl">
             Where the flower lives.
           </h1>
@@ -70,7 +70,7 @@ export default function FindUsPage() {
                 We update this list every drop. If your dispensary should be on it, the wholesale
                 inquiry form gets you to us in under a minute.
               </p>
-              <Link href="/wholesale" className="btn-verde mt-8 text-[11px]">
+              <Link href="/wholesale" className="btn-gold mt-8 text-[11px]">
                 Wholesale inquiry
               </Link>
             </div>
@@ -78,7 +78,7 @@ export default function FindUsPage() {
             <div className="lg:col-span-8 space-y-10">
               {stocking.map((s) => (
                 <div key={s.city} className="border-t border-ink/10 pt-8">
-                  <p className="text-[11px] uppercase tracking-[0.24em] text-verde">{s.city}</p>
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-gold">{s.city}</p>
                   <ul className="mt-4 space-y-3">
                     {s.shops.map((shop) => (
                       <li key={shop.name} className="flex items-baseline justify-between gap-6 border-b border-ink/10 pb-3">
@@ -90,7 +90,7 @@ export default function FindUsPage() {
                             href={shop.href}
                             target="_blank"
                             rel="noreferrer noopener"
-                            className="text-xs uppercase tracking-[0.18em] text-verde hover:text-verde-deep"
+                            className="text-xs uppercase tracking-[0.18em] text-gold hover:text-gold-deep"
                           >
                             Visit →
                           </a>

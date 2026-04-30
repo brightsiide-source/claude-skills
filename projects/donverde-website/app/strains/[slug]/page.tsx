@@ -58,11 +58,11 @@ export default function StrainPage({ params }: Props) {
         <div className="mx-auto max-w-8xl px-6 pb-16 pt-28 lg:px-12 lg:pb-24">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="order-2 lg:order-1 lg:col-span-7">
-              <p className="eyebrow text-verde-glow">{typeLabel[strain.type]} · {strain.cultivar === "in-house" ? "DVF Original" : strain.cultivar}</p>
+              <p className="eyebrow text-gold-glow">{typeLabel[strain.type]} · {strain.cultivar === "in-house" ? "DVF Original" : strain.cultivar}</p>
               <h1 className="mt-8 font-display text-7xl leading-[0.95] tracking-tightest md:text-9xl">
                 {strain.name}
               </h1>
-              <p className="mt-8 max-w-2xl font-display text-2xl italic leading-snug text-verde-glow md:text-3xl">
+              <p className="mt-8 max-w-2xl font-display text-2xl italic leading-snug text-gold-glow md:text-3xl">
                 {strain.tagline}
               </p>
               <p className="mt-10 max-w-2xl text-lg leading-relaxed text-bone/80">

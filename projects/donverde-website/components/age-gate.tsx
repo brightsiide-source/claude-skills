@@ -38,7 +38,7 @@ export function AgeGate() {
               } catch {}
               setVerified(true);
             }}
-            className="btn-verde text-[11px]"
+            className="btn-gold text-[11px]"
           >
             Yes, I am 21+
           </button>

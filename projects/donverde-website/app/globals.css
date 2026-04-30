@@ -19,7 +19,7 @@
   }
 
   ::selection {
-    @apply bg-verde text-bone;
+    @apply bg-gold text-bone;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -38,7 +38,11 @@
   }
 
   .btn-primary {
-    @apply btn bg-ink text-bone hover:bg-verde-deep;
+    @apply btn bg-ink text-bone hover:bg-gold-deep;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-bone hover:bg-gold-deep;
   }
 
   .btn-verde {
@@ -46,15 +50,15 @@
   }
 
   .btn-ghost {
-    @apply btn border border-ink/20 text-ink hover:border-verde hover:text-verde;
+    @apply btn border border-ink/20 text-ink hover:border-gold hover:text-gold;
   }
 
   .btn-ghost-bone {
-    @apply btn border border-bone/30 text-bone hover:border-verde-glow hover:text-verde-glow;
+    @apply btn border border-bone/30 text-bone hover:border-gold-glow hover:text-gold-glow;
   }
 
   .eyebrow {
-    @apply text-xs uppercase tracking-[0.28em] text-verde;
+    @apply text-xs uppercase tracking-[0.28em] text-gold;
   }
 
   .hairline {

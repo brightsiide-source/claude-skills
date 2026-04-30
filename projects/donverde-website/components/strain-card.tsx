@@ -13,8 +13,8 @@ export function StrainCard({ strain, dark = false }: { strain: Strain; dark?: bo
       href={`/strains/${strain.slug}`}
       className={`group relative block overflow-hidden border transition-colors ${
         dark
-          ? "border-bone/15 bg-ink/40 hover:border-verde-glow"
-          : "border-ink/10 bg-bone hover:border-verde"
+          ? "border-bone/15 bg-ink/40 hover:border-gold-glow"
+          : "border-ink/10 bg-bone hover:border-gold"
       }`}
     >
       <div
@@ -27,7 +27,7 @@ export function StrainCard({ strain, dark = false }: { strain: Strain; dark?: bo
           <span className="bg-bone/90 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-ink">
             {typeLabel[strain.type]}
           </span>
-          <span className="bg-verde px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-bone">
+          <span className="bg-gold px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-bone">
             {strain.thc} THC
           </span>
         </div>
