@@ -67,25 +67,25 @@ export default function ContactPage() {
               {c.href ? (
                 <a
                   href={c.href}
-                  className="group rounded-3xl glass p-8 block hover:border-leaf-500/30 transition-colors h-full"
+                  className="group rounded-3xl card-paper p-8 block h-full"
                 >
-                  <c.icon className="w-6 h-6 text-leaf-300 mb-6" />
-                  <h2 className="text-ink-300 text-sm uppercase tracking-widest mb-2">
+                  <c.icon className="w-6 h-6 text-leaf-700 mb-6" />
+                  <h2 className="text-paper-muted text-sm uppercase tracking-widest mb-2 font-bold">
                     {c.label}
                   </h2>
-                  <div className="text-cream font-display text-xl font-bold mb-3 break-words">
+                  <div className="text-ink-950 font-display text-xl font-bold mb-3 break-words">
                     {c.value}
                   </div>
-                  <p className="text-ink-400 text-sm">{c.note}</p>
+                  <p className="text-paper-soft text-sm">{c.note}</p>
                 </a>
               ) : (
-                <div className="rounded-3xl glass p-8 h-full">
-                  <c.icon className="w-6 h-6 text-leaf-300 mb-6" />
-                  <h2 className="text-ink-300 text-sm uppercase tracking-widest mb-2">
+                <div className="rounded-3xl card-paper p-8 h-full">
+                  <c.icon className="w-6 h-6 text-leaf-700 mb-6" />
+                  <h2 className="text-paper-muted text-sm uppercase tracking-widest mb-2 font-bold">
                     {c.label}
                   </h2>
-                  <div className="text-cream font-display text-xl font-bold mb-3">{c.value}</div>
-                  <p className="text-ink-400 text-sm">{c.note}</p>
+                  <div className="text-ink-950 font-display text-xl font-bold mb-3">{c.value}</div>
+                  <p className="text-paper-soft text-sm">{c.note}</p>
                 </div>
               )}
             </Reveal>
@@ -93,13 +93,13 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="relative py-20">
+      <section className="relative surface-paper-warm py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
-            <h2 className="text-display-3 font-display text-cream mb-4 text-balance">
-              Pick the right <span className="gradient-text">inbox.</span>
+            <h2 className="text-display-3 font-display text-ink-950 mb-4 text-balance">
+              Pick the right <span className="text-leaf-600">inbox.</span>
             </h2>
-            <p className="text-ink-200 max-w-2xl mb-12 text-pretty">
+            <p className="text-paper-muted max-w-2xl mb-12 text-pretty">
               We sort messages by topic so the right teammate gets back to you fast. If
               you&apos;re not sure where to start, default to hello@doorhash.com and
               we&apos;ll route it.
@@ -108,12 +108,12 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-3 gap-5">
             {topics.map((t, i) => (
               <Reveal key={t.title} delay={i * 0.06}>
-                <div className="rounded-3xl glass p-8 h-full hover:border-leaf-500/20 transition-colors">
-                  <div className="w-12 h-12 rounded-2xl bg-leaf-500/10 border border-leaf-500/20 grid place-items-center mb-6">
-                    <t.icon className="w-5 h-5 text-leaf-300" />
+                <div className="rounded-3xl card-paper p-8 h-full">
+                  <div className="w-12 h-12 rounded-2xl bg-leaf-500/15 border border-leaf-500/30 grid place-items-center mb-6">
+                    <t.icon className="w-5 h-5 text-leaf-700" />
                   </div>
-                  <h3 className="font-display text-cream text-xl font-bold mb-3">{t.title}</h3>
-                  <p className="text-ink-300 text-sm leading-relaxed text-pretty">{t.body}</p>
+                  <h3 className="font-display text-ink-950 text-xl font-bold mb-3">{t.title}</h3>
+                  <p className="text-paper-muted text-sm leading-relaxed text-pretty">{t.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -121,16 +121,16 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="relative py-16 pb-32">
+      <section className="relative surface-paper py-16 pb-32">
         <div className="mx-auto max-w-4xl px-6 lg:px-10">
           <Reveal>
-            <div className="rounded-3xl glass-leaf p-10 text-center">
-              <h2 className="text-display-3 font-display text-cream mb-4">Hours of operation.</h2>
-              <p className="text-ink-200 mb-2 text-pretty">
+            <div className="rounded-3xl card-paper-leaf p-10 text-center">
+              <h2 className="text-display-3 font-display text-ink-950 mb-4">Hours of operation.</h2>
+              <p className="text-paper-muted mb-2 text-pretty">
                 Delivery operates seven days a week. Hours vary by zone — confirm your local
                 window when you place an order.
               </p>
-              <p className="text-ink-300 text-sm">
+              <p className="text-paper-soft text-sm">
                 Las Cruces &amp; Mesilla: 10am – 10pm &middot; Sunland Park, Anthony &amp; Doña
                 Ana: 11am – 9pm
               </p>

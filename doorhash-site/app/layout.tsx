@@ -83,7 +83,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${jetbrains.variable}`}>
-      <body className="bg-ink-950 text-cream antialiased">
+      <body className="bg-paper text-ink-950 antialiased">
         <LocalBusinessJsonLd />
         <WebsiteJsonLd />
         <SmoothScroll>

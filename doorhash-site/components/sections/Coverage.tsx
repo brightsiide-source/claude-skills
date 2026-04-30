@@ -7,19 +7,19 @@ import { site } from "@/lib/site";
 
 export function Coverage() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative surface-paper py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="rounded-[2.5rem] glass overflow-hidden border-leaf-500/10">
+        <div className="rounded-[2.5rem] card-paper overflow-hidden">
           <div className="grid lg:grid-cols-5 gap-0">
             <div className="lg:col-span-2 p-10 lg:p-14 flex flex-col justify-center">
               <Reveal>
-                <span className="inline-block text-leaf-400 text-sm font-bold uppercase tracking-widest mb-4">
+                <span className="inline-block text-leaf-700 text-sm font-bold uppercase tracking-widest mb-4">
                   Delivery zones
                 </span>
-                <h2 className="text-display-3 font-display text-cream text-balance">
-                  We go where the others <span className="gradient-text">don&apos;t.</span>
+                <h2 className="text-display-3 font-display text-ink-950 text-balance">
+                  We go where the others <span className="text-leaf-600">don&apos;t.</span>
                 </h2>
-                <p className="mt-6 text-ink-200 text-pretty">
+                <p className="mt-6 text-paper-muted text-pretty">
                   doorhash delivers across Southern New Mexico — including the corners of the map
                   no one else covers. Drop your address at checkout to confirm coverage and ETA.
                 </p>
@@ -29,9 +29,9 @@ export function Coverage() {
                   {site.delivery.cities.map((c) => (
                     <li
                       key={c}
-                      className="inline-flex items-center gap-2 rounded-full glass-leaf px-4 py-2 text-sm text-leaf-100"
+                      className="inline-flex items-center gap-2 rounded-full bg-leaf-50 border border-leaf-500/30 px-4 py-2 text-sm text-leaf-800 font-semibold"
                     >
-                      <MapPin className="w-3.5 h-3.5 text-leaf-400" />
+                      <MapPin className="w-3.5 h-3.5 text-leaf-600" />
                       {c}
                     </li>
                   ))}

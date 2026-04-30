@@ -15,7 +15,7 @@ export function Nav() {
   const bg = useTransform(
     scrollY,
     [0, 80],
-    ["rgba(10,10,10,0)", "rgba(10,10,10,0.72)"]
+    ["rgba(10,10,10,0)", "rgba(10,10,10,0.78)"]
   );
   const border = useTransform(
     scrollY,

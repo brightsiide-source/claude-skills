@@ -39,16 +39,16 @@ const reviews = [
 
 function Card({ r }: { r: (typeof reviews)[number] }) {
   return (
-    <div className="w-[360px] shrink-0 rounded-3xl glass p-7">
-      <div className="flex gap-0.5 text-leaf-400 mb-4">
+    <div className="w-[360px] shrink-0 rounded-3xl card-paper p-7">
+      <div className="flex gap-0.5 text-leaf-500 mb-4">
         {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} className="w-4 h-4 fill-leaf-400" />
+          <Star key={i} className="w-4 h-4 fill-leaf-500" />
         ))}
       </div>
-      <p className="text-cream text-pretty leading-relaxed mb-6">&ldquo;{r.body}&rdquo;</p>
+      <p className="text-ink-950 text-pretty leading-relaxed mb-6">&ldquo;{r.body}&rdquo;</p>
       <div className="text-sm">
-        <div className="text-cream font-semibold">{r.name}</div>
-        <div className="text-ink-400">{r.city}, NM</div>
+        <div className="text-ink-950 font-semibold">{r.name}</div>
+        <div className="text-paper-soft">{r.city}, NM</div>
       </div>
     </div>
   );
@@ -56,14 +56,14 @@ function Card({ r }: { r: (typeof reviews)[number] }) {
 
 export function Reviews() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative surface-paper py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 mb-14">
         <Reveal className="max-w-2xl">
-          <span className="inline-block text-leaf-400 text-sm font-bold uppercase tracking-widest mb-4">
+          <span className="inline-block text-leaf-700 text-sm font-bold uppercase tracking-widest mb-4">
             Loved across the borderland
           </span>
-          <h2 className="text-display-2 font-display text-cream text-balance">
-            1,200+ five-star <span className="gradient-text">reviews.</span>
+          <h2 className="text-display-2 font-display text-ink-950 text-balance">
+            1,200+ five-star <span className="text-leaf-600">reviews.</span>
           </h2>
         </Reveal>
       </div>

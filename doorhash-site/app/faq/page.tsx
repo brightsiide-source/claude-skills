@@ -58,24 +58,24 @@ export default function FaqPage() {
       />
       <FaqTeaser />
 
-      <section className="relative py-16 pb-32">
+      <section className="relative surface-paper py-16 pb-32">
         <div className="mx-auto max-w-4xl px-6 lg:px-10">
           <Reveal>
-            <h2 className="text-display-3 font-display text-cream mb-12 text-center text-balance">
-              More <span className="gradient-text">good questions.</span>
+            <h2 className="text-display-3 font-display text-ink-950 mb-12 text-center text-balance">
+              More <span className="text-leaf-600">good questions.</span>
             </h2>
           </Reveal>
           <div className="space-y-4">
             {more.map((f, i) => (
               <Reveal key={f.q} delay={i * 0.04}>
-                <details className="group rounded-2xl glass p-6 hover:border-leaf-500/20 transition-colors">
-                  <summary className="cursor-pointer flex items-center justify-between text-cream font-display font-bold text-lg">
+                <details className="group rounded-2xl card-paper p-6">
+                  <summary className="cursor-pointer flex items-center justify-between text-ink-950 font-display font-bold text-lg">
                     {f.q}
-                    <span className="ml-4 text-leaf-300 group-open:rotate-45 transition-transform text-2xl leading-none">
+                    <span className="ml-4 text-leaf-700 group-open:rotate-45 transition-transform text-2xl leading-none">
                       +
                     </span>
                   </summary>
-                  <p className="mt-4 text-ink-300 leading-relaxed text-pretty">{f.a}</p>
+                  <p className="mt-4 text-paper-muted leading-relaxed text-pretty">{f.a}</p>
                 </details>
               </Reveal>
             ))}

@@ -36,6 +36,12 @@ const config: Config = {
           950: "#0a0a0a", // brand near-black
         },
         cream: "#f7f4ec",
+        paper: {
+          DEFAULT: "#faf7f0",
+          warm: "#f3ede0",
+          card: "#ffffff",
+          edge: "#eae3d3",
+        },
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
@@ -80,6 +86,8 @@ const config: Config = {
       boxShadow: {
         "glow-leaf": "0 0 60px -10px rgba(141,198,63,0.5)",
         "tile": "0 30px 60px -20px rgba(0,0,0,0.3), 0 18px 36px -18px rgba(0,0,0,0.25)",
+        "paper": "0 1px 2px rgba(20,20,15,0.04), 0 8px 24px -12px rgba(20,20,15,0.10)",
+        "paper-lift": "0 1px 2px rgba(20,20,15,0.05), 0 24px 60px -20px rgba(20,20,15,0.18), 0 12px 24px -16px rgba(20,20,15,0.12)",
       },
     },
   },

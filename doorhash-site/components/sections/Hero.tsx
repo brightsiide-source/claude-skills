@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative isolate overflow-hidden pt-32 pb-24 lg:pt-44 lg:pb-32"
+      className="relative isolate overflow-hidden surface-dark pt-32 pb-24 lg:pt-44 lg:pb-32"
     >
       {/* Layered gradient backdrop */}
       <div className="absolute inset-0 bg-leaf-mesh" />

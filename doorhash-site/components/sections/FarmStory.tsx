@@ -18,7 +18,7 @@ export function FarmStory() {
   return (
     <section
       ref={ref}
-      className="relative py-24 lg:py-40 overflow-hidden grain"
+      className="relative surface-dark py-24 lg:py-40 overflow-hidden grain"
     >
       <div className="absolute inset-0 bg-leaf-mesh opacity-50" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">

@@ -37,20 +37,20 @@ export default function FarmPage() {
         description="doorhash is the retail arm of Don Verde Farms — a Southern New Mexico cultivator with roots in NM and Southern California."
       />
       <FarmStory />
-      <section className="relative py-16">
+      <section className="relative surface-paper-warm py-16">
         <div className="mx-auto max-w-4xl px-6 lg:px-10">
           <Reveal>
-            <h2 className="text-display-3 font-display text-cream mb-4 text-balance">
-              How we grow at <span className="gradient-text">Don Verde.</span>
+            <h2 className="text-display-3 font-display text-ink-950 mb-4 text-balance">
+              How we grow at <span className="text-leaf-600">Don Verde.</span>
             </h2>
-            <p className="text-ink-200 mb-4 text-pretty">
+            <p className="text-paper-muted mb-4 text-pretty">
               Every Don Verde Farms strain starts indoors in a climate-controlled cultivation
               facility in Southern New Mexico. We dial humidity, temperature, light, and
               nutrient delivery for each phenotype individually — no shortcuts, no rushing the
               flower curing schedule. The result is bag appeal you can feel and a smoke that
               actually matches the lab numbers on the package.
             </p>
-            <p className="text-ink-200 text-pretty">
+            <p className="text-paper-muted text-pretty">
               We rotate small batches constantly, hand-trim every plant, and only put
               phenotypes on the menu after the team agrees the cut is elite. If a strain
               underperforms, we cull it. If it&apos;s special, we make sure DoorHash customers
@@ -59,14 +59,14 @@ export default function FarmPage() {
           </Reveal>
         </div>
       </section>
-      <section className="relative pb-32">
+      <section className="relative surface-paper pb-32 pt-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {principles.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.06}>
-                <div className="h-full rounded-3xl glass p-8 hover:border-leaf-500/20 transition-colors">
-                  <h3 className="font-display text-cream text-xl font-bold mb-3">{p.title}</h3>
-                  <p className="text-ink-300 text-sm leading-relaxed text-pretty">{p.body}</p>
+                <div className="h-full rounded-3xl card-paper p-8">
+                  <h3 className="font-display text-ink-950 text-xl font-bold mb-3">{p.title}</h3>
+                  <p className="text-paper-muted text-sm leading-relaxed text-pretty">{p.body}</p>
                 </div>
               </Reveal>
             ))}
