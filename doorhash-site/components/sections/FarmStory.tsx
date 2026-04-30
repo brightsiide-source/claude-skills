@@ -20,7 +20,8 @@ export function FarmStory() {
       ref={ref}
       className="relative surface-dark py-24 lg:py-40 overflow-hidden grain"
     >
-      <div className="absolute inset-0 bg-leaf-mesh opacity-50" />
+      <div className="absolute inset-0 bg-leaf-mesh opacity-30" />
+      <div className="absolute -top-40 -right-32 w-[500px] h-[500px] rounded-full bg-gold-500/10 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
         {/* Image stack */}
         <div className="relative h-[520px] lg:h-[640px] order-last lg:order-first">
@@ -45,11 +46,13 @@ export function FarmStory() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-leaf rounded-2xl px-6 py-4 shadow-glow-leaf"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl px-6 py-4 bg-black/85 backdrop-blur-md border border-gold-500/40 shadow-[0_20px_60px_-20px_rgba(201,169,97,0.4)]"
           >
-            <div className="text-leaf-300 text-xs uppercase tracking-widest">Lot #DV-04-26</div>
-            <div className="text-cream font-display font-bold text-2xl mt-1">Tropic Thunder</div>
-            <div className="text-ink-300 text-sm mt-1">Harvested 12 days ago</div>
+            <div className="text-gold-400 text-xs uppercase tracking-widest font-bold">Lot #DV-04-26</div>
+            <div className="text-white font-display font-bold text-2xl mt-1">Tropic Thunder</div>
+            <div className="text-white/70 text-sm mt-1">Harvested 12 days ago</div>
+            <div className="gold-divider mt-3 mb-2" />
+            <div className="text-gold-300 text-[10px] uppercase tracking-[0.2em]">Don Verde Farms · NM</div>
           </motion.div>
         </div>
 

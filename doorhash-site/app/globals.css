@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: 250 247 240;
-  --foreground: 10 10 10;
+  --background: 255 255 255;
+  --foreground: 0 0 0;
   --leaf: 141 198 63;
+  --gold: 201 169 97;
 }
 
 * {
@@ -37,8 +38,8 @@ html.lenis body {
 }
 
 body {
-  background: #faf7f0;
-  color: #0a0a0a;
+  background: #ffffff;
+  color: #000000;
   font-feature-settings: "ss01", "cv11";
 }
 
@@ -99,31 +100,51 @@ body {
 
   /* Section surfaces */
   .surface-paper {
-    background: #faf7f0;
-    color: #0a0a0a;
+    background: #ffffff;
+    color: #000000;
   }
 
   .surface-paper-warm {
-    background: #f3ede0;
-    color: #0a0a0a;
+    background: #f7f7f6;
+    color: #000000;
   }
 
   .surface-dark {
-    background: #0a0a0a;
-    color: #f7f4ec;
+    background: #000000;
+    color: #ffffff;
   }
 
   /* Paper-tone text helpers */
   .text-paper-ink {
-    color: #0a0a0a;
+    color: #000000;
   }
 
   .text-paper-muted {
-    color: #525252;
+    color: #4a4a4a;
   }
 
   .text-paper-soft {
-    color: #6d6d6d;
+    color: #6b6b6b;
+  }
+
+  /* Gold accents */
+  .text-gold {
+    color: #c9a961;
+  }
+
+  .border-gold {
+    border-color: #c9a961;
+  }
+
+  .gold-divider {
+    background: linear-gradient(90deg, transparent, #c9a961 50%, transparent);
+    height: 1px;
+  }
+
+  .card-gold {
+    background: linear-gradient(180deg, rgba(201, 169, 97, 0.08) 0%, rgba(255, 255, 255, 0.6) 100%), #ffffff;
+    border: 1px solid rgba(201, 169, 97, 0.35);
+    box-shadow: 0 1px 2px rgba(20, 20, 15, 0.04), 0 8px 24px -12px rgba(201, 169, 97, 0.18);
   }
 
   /* Light leaf-mesh for paper sections */

@@ -60,7 +60,14 @@ export function FeaturedDrops() {
                   </motion.div>
 
                   {p.badge && (
-                    <span className="absolute top-4 left-4 inline-flex items-center rounded-full bg-leaf-500 text-ink-950 text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-paper">
+                    <span
+                      className={cn(
+                        "absolute top-4 left-4 inline-flex items-center rounded-full text-xs font-bold px-3 py-1 uppercase tracking-wider shadow-paper",
+                        p.badge === "Top Shelf"
+                          ? "bg-gold-500 text-black"
+                          : "bg-leaf-500 text-black"
+                      )}
+                    >
                       {p.badge}
                     </span>
                   )}

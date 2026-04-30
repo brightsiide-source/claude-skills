@@ -37,14 +37,14 @@ export function RewardsCTA() {
           <div className="relative grid lg:grid-cols-5 gap-12 items-center">
             <div className="lg:col-span-3">
               <Reveal>
-                <span className="inline-flex items-center gap-2 rounded-full bg-ink-950 text-leaf-300 px-4 py-2 text-xs font-bold uppercase tracking-widest mb-6">
+                <span className="inline-flex items-center gap-2 rounded-full bg-black text-leaf-300 px-4 py-2 text-xs font-bold uppercase tracking-widest mb-6">
                   <Sparkles className="w-3.5 h-3.5" />
                   Hash Pass rewards
                 </span>
-                <h2 className="text-display-2 font-display text-ink-950 text-balance">
+                <h2 className="text-display-2 font-display text-black text-balance">
                   Get paid to smoke good.
                 </h2>
-                <p className="mt-6 text-ink-900/80 text-lg max-w-lg text-pretty">
+                <p className="mt-6 text-black/80 text-lg max-w-lg text-pretty">
                   Every order earns Hash Pass points. Stack them for credit, exclusive drops from
                   Don Verde Farms, and members-only happy hours.
                 </p>
@@ -53,14 +53,14 @@ export function RewardsCTA() {
                 <div className="mt-10 flex flex-wrap gap-3">
                   <Link
                     href="/rewards"
-                    className="group inline-flex items-center gap-2 rounded-full bg-ink-950 hover:bg-ink-800 text-leaf-300 font-bold px-7 py-4 transition-colors"
+                    className="group inline-flex items-center gap-2 rounded-full bg-black hover:bg-ink-900 text-leaf-300 font-bold px-7 py-4 transition-colors"
                   >
                     Join Hash Pass
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                   <Link
                     href="/menu"
-                    className="inline-flex items-center gap-2 rounded-full bg-cream/80 hover:bg-cream text-ink-950 font-semibold px-7 py-4 transition-colors backdrop-blur-sm"
+                    className="inline-flex items-center gap-2 rounded-full bg-white/90 hover:bg-white text-black font-semibold px-7 py-4 transition-colors backdrop-blur-sm"
                   >
                     Shop the menu
                   </Link>
@@ -71,9 +71,9 @@ export function RewardsCTA() {
             <div className="lg:col-span-2 grid grid-cols-2 gap-4">
               {perks.map((p, i) => (
                 <Reveal key={p.label} delay={0.05 * i}>
-                  <div className="rounded-2xl bg-ink-950/90 backdrop-blur p-6 hover:scale-105 transition-transform">
+                  <div className="rounded-2xl bg-black backdrop-blur p-6 hover:scale-105 transition-transform">
                     <div className="text-leaf-300 text-3xl font-display font-black">{p.value}</div>
-                    <div className="text-ink-300 text-sm mt-1">{p.label}</div>
+                    <div className="text-white/70 text-sm mt-1">{p.label}</div>
                   </div>
                 </Reveal>
               ))}

@@ -10,7 +10,15 @@ export const metadata = {
   alternates: { canonical: "/rewards" },
 };
 
-const tiers = [
+type Tier = {
+  name: string;
+  pts: string;
+  perks: string[];
+  featured?: boolean;
+  vip?: boolean;
+};
+
+const tiers: Tier[] = [
   {
     name: "Hash",
     pts: "0–999 pts",
@@ -25,7 +33,12 @@ const tiers = [
   {
     name: "Hash VIP",
     pts: "5,000+ pts",
-    perks: ["3pts per $1 spent", "Members-only happy hours", "1:1 budtender concierge"],
+    perks: [
+      "3pts per $1 spent",
+      "Members-only happy hours",
+      "1:1 budtender concierge",
+    ],
+    vip: true,
   },
 ];
 
@@ -74,59 +87,56 @@ export default function RewardsPage() {
             </p>
           </Reveal>
           <div className="grid md:grid-cols-3 gap-5">
-            {tiers.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.08}>
-                <div
-                  className={
-                    t.featured
-                      ? "relative rounded-3xl bg-gradient-to-br from-leaf-500 to-leaf-300 p-1 shadow-glow-leaf"
-                      : "relative rounded-3xl"
-                  }
-                >
-                  <div
-                    className={
-                      t.featured
-                        ? "rounded-[1.4rem] bg-ink-950 p-8 h-full"
-                        : "rounded-3xl card-paper p-8 h-full"
-                    }
-                  >
-                    <div
-                      className={
-                        t.featured
-                          ? "text-leaf-300 text-xs uppercase tracking-widest mb-2"
-                          : "text-leaf-700 text-xs uppercase tracking-widest mb-2 font-bold"
-                      }
-                    >
-                      {t.pts}
+            {tiers.map((t, i) => {
+              const wrapperClass = t.featured
+                ? "relative rounded-3xl bg-gradient-to-br from-leaf-500 to-leaf-300 p-1 shadow-glow-leaf"
+                : t.vip
+                ? "relative rounded-3xl bg-gradient-to-br from-gold-500 via-gold-300 to-gold-500 p-1 shadow-[0_20px_60px_-20px_rgba(201,169,97,0.5)]"
+                : "relative rounded-3xl";
+              const innerClass = t.featured
+                ? "rounded-[1.4rem] bg-black p-8 h-full"
+                : t.vip
+                ? "rounded-[1.4rem] bg-black p-8 h-full"
+                : "rounded-3xl card-paper p-8 h-full";
+              const ptsClass = t.featured
+                ? "text-leaf-300 text-xs uppercase tracking-widest mb-2 font-bold"
+                : t.vip
+                ? "text-gold-300 text-xs uppercase tracking-[0.18em] mb-2 font-bold"
+                : "text-leaf-700 text-xs uppercase tracking-widest mb-2 font-bold";
+              const titleClass = t.featured
+                ? "font-display text-white text-3xl font-bold mb-6"
+                : t.vip
+                ? "font-display text-white text-3xl font-bold mb-6"
+                : "font-display text-black text-3xl font-bold mb-6";
+              const perkClass = t.featured
+                ? "flex items-start gap-3 text-white/85 text-sm"
+                : t.vip
+                ? "flex items-start gap-3 text-white/85 text-sm"
+                : "flex items-start gap-3 text-paper-muted text-sm";
+              const dotClass = t.vip
+                ? "mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0"
+                : "mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-leaf-500 shrink-0";
+
+              return (
+                <Reveal key={t.name} delay={i * 0.08}>
+                  <div className={wrapperClass}>
+                    <div className={innerClass}>
+                      <div className={ptsClass}>{t.pts}</div>
+                      <h3 className={titleClass}>{t.name}</h3>
+                      {t.vip && <div className="gold-divider mb-6" />}
+                      <ul className="space-y-3">
+                        {t.perks.map((p) => (
+                          <li key={p} className={perkClass}>
+                            <span className={dotClass} />
+                            {p}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <h3
-                      className={
-                        t.featured
-                          ? "font-display text-cream text-3xl font-bold mb-6"
-                          : "font-display text-ink-950 text-3xl font-bold mb-6"
-                      }
-                    >
-                      {t.name}
-                    </h3>
-                    <ul className="space-y-3">
-                      {t.perks.map((p) => (
-                        <li
-                          key={p}
-                          className={
-                            t.featured
-                              ? "flex items-start gap-3 text-ink-200 text-sm"
-                              : "flex items-start gap-3 text-paper-muted text-sm"
-                          }
-                        >
-                          <span className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-leaf-500 shrink-0" />
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
