@@ -7,19 +7,20 @@ import { site } from "@/lib/site";
 
 export function Coverage() {
   return (
-    <section className="relative surface-paper py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="rounded-[2.5rem] card-paper overflow-hidden">
+    <section className="relative surface-dark py-24 lg:py-32 overflow-hidden">
+      <div className="absolute inset-0 bg-leaf-mesh opacity-40 pointer-events-none" />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="rounded-[2.5rem] card-dark overflow-hidden">
           <div className="grid lg:grid-cols-5 gap-0">
             <div className="lg:col-span-2 p-10 lg:p-14 flex flex-col justify-center">
               <Reveal>
-                <span className="inline-block text-leaf-700 text-sm font-bold uppercase tracking-widest mb-4">
+                <span className="inline-block text-leaf-300 text-sm font-bold uppercase tracking-widest mb-4">
                   Delivery zones
                 </span>
-                <h2 className="text-display-3 font-display text-ink-950 text-balance">
-                  We go where the others <span className="text-leaf-600">don&apos;t.</span>
+                <h2 className="text-display-3 font-display text-white text-balance">
+                  We go where the others <span className="text-leaf-300">don&apos;t.</span>
                 </h2>
-                <p className="mt-6 text-paper-muted text-pretty">
+                <p className="mt-6 text-white/70 text-pretty">
                   doorhash delivers across Southern New Mexico — including the corners of the map
                   no one else covers. Drop your address at checkout to confirm coverage and ETA.
                 </p>
@@ -29,9 +30,9 @@ export function Coverage() {
                   {site.delivery.cities.map((c) => (
                     <li
                       key={c}
-                      className="inline-flex items-center gap-2 rounded-full bg-leaf-50 border border-leaf-500/30 px-4 py-2 text-sm text-leaf-800 font-semibold"
+                      className="inline-flex items-center gap-2 rounded-full bg-leaf-500/15 border border-leaf-400/40 px-4 py-2 text-sm text-leaf-100 font-semibold"
                     >
-                      <MapPin className="w-3.5 h-3.5 text-leaf-600" />
+                      <MapPin className="w-3.5 h-3.5 text-leaf-300" />
                       {c}
                     </li>
                   ))}

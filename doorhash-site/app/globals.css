@@ -38,8 +38,8 @@ html.lenis body {
 }
 
 body {
-  background: #ffffff;
-  color: #000000;
+  background: #000000;
+  color: #ffffff;
   font-feature-settings: "ss01", "cv11";
 }
 
@@ -112,6 +112,45 @@ body {
   .surface-dark {
     background: #000000;
     color: #ffffff;
+  }
+
+  /* Forest-green dark surfaces — the brand-immersive treatment */
+  .surface-leaf-dark {
+    background: linear-gradient(180deg, #34501c 0%, #1a2c0c 50%, #000000 100%);
+    color: #ffffff;
+  }
+
+  .surface-leaf-deep {
+    background: #1a2c0c;
+    color: #ffffff;
+  }
+
+  .surface-leaf-deep-mesh {
+    background:
+      radial-gradient(at 20% 10%, rgba(141, 198, 63, 0.22) 0px, transparent 50%),
+      radial-gradient(at 80% 30%, rgba(141, 198, 63, 0.14) 0px, transparent 50%),
+      radial-gradient(at 50% 90%, rgba(141, 198, 63, 0.18) 0px, transparent 50%),
+      #1a2c0c;
+    color: #ffffff;
+  }
+
+  /* Dark cards with leaf hover */
+  .card-dark {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(140%);
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .card-dark:hover {
+    background: rgba(141, 198, 63, 0.06);
+    border-color: rgba(141, 198, 63, 0.4);
+  }
+
+  .card-dark-leaf {
+    background: linear-gradient(180deg, rgba(141, 198, 63, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(141, 198, 63, 0.28);
+    backdrop-filter: blur(20px) saturate(160%);
   }
 
   /* Paper-tone text helpers */

@@ -28,16 +28,16 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="relative surface-paper-warm py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section className="relative surface-leaf-deep-mesh py-24 lg:py-32 overflow-hidden">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal className="text-center max-w-2xl mx-auto mb-20">
-          <span className="inline-block text-leaf-700 text-sm font-bold uppercase tracking-widest mb-4">
+          <span className="inline-block text-leaf-300 text-sm font-bold uppercase tracking-widest mb-4">
             How it works
           </span>
-          <h2 className="text-display-2 font-display text-ink-950 text-balance">
-            Order in <span className="text-leaf-600">under a minute.</span>
+          <h2 className="text-display-2 font-display text-white text-balance">
+            Order in <span className="text-leaf-300">under a minute.</span>
           </h2>
-          <p className="text-lg text-paper-muted mt-6 text-pretty">
+          <p className="text-lg text-white/70 mt-6 text-pretty">
             We built doorhash to feel like the food-delivery apps you already love — except every
             order ships with provenance, paperwork, and care.
           </p>
@@ -46,16 +46,16 @@ export function HowItWorks() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
-              <div className="relative h-full rounded-3xl card-paper p-8 group">
-                <div className="absolute top-6 right-6 text-7xl font-display font-black text-leaf-100 leading-none">
+              <div className="relative h-full rounded-3xl card-dark p-8 group">
+                <div className="absolute top-6 right-6 text-7xl font-display font-black text-leaf-500/15 leading-none">
                   0{i + 1}
                 </div>
                 <div className="relative">
-                  <div className="w-12 h-12 rounded-2xl bg-leaf-500/15 border border-leaf-500/30 grid place-items-center mb-6 group-hover:bg-leaf-500/25 transition-colors">
-                    <s.icon className="w-5 h-5 text-leaf-700" />
+                  <div className="w-12 h-12 rounded-2xl bg-leaf-500/15 border border-leaf-400/40 grid place-items-center mb-6 group-hover:bg-leaf-500/30 transition-colors">
+                    <s.icon className="w-5 h-5 text-leaf-300" />
                   </div>
-                  <h3 className="font-display text-ink-950 text-xl font-bold mb-3">{s.title}</h3>
-                  <p className="text-paper-muted text-sm text-pretty leading-relaxed">{s.body}</p>
+                  <h3 className="font-display text-white text-xl font-bold mb-3">{s.title}</h3>
+                  <p className="text-white/65 text-sm text-pretty leading-relaxed">{s.body}</p>
                 </div>
               </div>
             </Reveal>

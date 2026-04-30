@@ -45,39 +45,39 @@ export function AgeGate() {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 12, opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-lg bg-white rounded-3xl p-10 text-center shadow-2xl"
+            className="relative w-full max-w-lg surface-leaf-deep-mesh rounded-3xl p-10 text-center shadow-glow-leaf border border-leaf-500/30"
           >
             <div className="mx-auto mb-8 w-44">
               <Logo />
             </div>
-            <h1 className="text-display-3 text-black font-display mb-4">
+            <h1 className="text-display-3 text-white font-display mb-4">
               Are you {site.age} or older?
             </h1>
-            <p className="text-paper-muted mb-8 text-pretty">
+            <p className="text-white/75 mb-8 text-pretty">
               You must be {site.age}+ to enter doorhash. By entering, you confirm you are of legal
               age and agree to our terms.
             </p>
             {denied ? (
-              <p className="text-leaf-700 font-semibold">
+              <p className="text-leaf-300 font-semibold">
                 Sorry, you must be {site.age} or older to access this site.
               </p>
             ) : (
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <button
                   onClick={confirm}
-                  className="rounded-full bg-black hover:bg-ink-900 text-white font-bold px-8 py-4 transition-colors"
+                  className="rounded-full bg-leaf-500 hover:bg-leaf-400 text-black font-bold px-8 py-4 transition-colors shadow-glow-leaf"
                 >
                   I&apos;m {site.age}+ &mdash; Enter
                 </button>
                 <button
                   onClick={() => setDenied(true)}
-                  className="rounded-full border border-paper-edge hover:border-black/30 text-paper-muted font-medium px-8 py-4 transition-colors"
+                  className="rounded-full border border-white/20 hover:border-white/40 text-white/75 font-medium px-8 py-4 transition-colors"
                 >
                   Under {site.age}
                 </button>
               </div>
             )}
-            <p className="text-xs text-paper-soft mt-8">
+            <p className="text-xs text-white/55 mt-8">
               Cannabis products are for use only by adults {site.age}+. Keep out of reach of
               children. Please consume responsibly.
             </p>

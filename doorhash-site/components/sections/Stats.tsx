@@ -37,16 +37,17 @@ function Counter({ to, suffix = "", prefix = "" }: { to: number; suffix?: string
 
 export function Stats() {
   return (
-    <section className="relative surface-paper py-24 lg:py-32 border-y border-paper-edge">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section className="relative surface-dark py-24 lg:py-32 border-y border-white/5 overflow-hidden">
+      <div className="absolute inset-0 bg-leaf-mesh opacity-50 pointer-events-none" />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
               <div className="text-center lg:text-left">
-                <div className="text-display-2 font-display text-leaf-700">
+                <div className="text-display-2 gradient-text font-display">
                   <Counter to={s.value} suffix={s.suffix} prefix={s.prefix} />
                 </div>
-                <div className="mt-3 text-paper-muted text-sm uppercase tracking-wider">
+                <div className="mt-3 text-white/55 text-sm uppercase tracking-wider">
                   {s.label}
                 </div>
               </div>

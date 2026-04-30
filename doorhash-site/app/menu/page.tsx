@@ -46,9 +46,9 @@ export default function MenuPage() {
         description={`Real-time inventory, powered by Dutchie. Same-day delivery across ${site.region}.`}
       />
 
-      <section className="relative surface-paper pb-16">
+      <section className="relative surface-dark pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="rounded-3xl card-paper overflow-hidden">
+          <div className="rounded-3xl card-dark overflow-hidden">
             <iframe
               src={site.dutchie.embedUrl}
               title="DoorHash cannabis menu — live inventory"
@@ -56,22 +56,22 @@ export default function MenuPage() {
               loading="lazy"
             />
           </div>
-          <p className="mt-8 text-center text-paper-soft text-sm">
+          <p className="mt-8 text-center text-white/55 text-sm">
             Trouble loading the menu?{" "}
-            <a href={site.dutchie.embedUrl} className="text-leaf-700 hover:underline font-semibold">
+            <a href={site.dutchie.embedUrl} className="text-leaf-300 hover:underline font-semibold">
               Open it in a new tab.
             </a>
           </p>
         </div>
       </section>
 
-      <section className="relative surface-paper-warm py-24">
+      <section className="relative surface-dark py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
-            <h2 className="text-display-3 font-display text-ink-950 mb-4 text-balance">
-              What&apos;s on the <span className="text-leaf-600">DoorHash menu.</span>
+            <h2 className="text-display-3 font-display text-white mb-4 text-balance">
+              What&apos;s on the <span className="text-leaf-300">DoorHash menu.</span>
             </h2>
-            <p className="text-paper-muted max-w-2xl text-pretty mb-12">
+            <p className="text-white/70 max-w-2xl text-pretty mb-12">
               Our cannabis menu rotates with the harvest. House-grown Don Verde Farms flower
               anchors the catalog, complemented by a curated lineup of partner brands we trust
               and personally vet. Inventory and pricing update in real time — the menu you see
@@ -81,9 +81,9 @@ export default function MenuPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {categories.map((c, i) => (
               <Reveal key={c.name} delay={i * 0.05}>
-                <div className="rounded-3xl card-paper p-8 h-full">
-                  <h3 className="font-display text-ink-950 text-2xl font-bold mb-3">{c.name}</h3>
-                  <p className="text-paper-muted text-sm leading-relaxed text-pretty">{c.body}</p>
+                <div className="rounded-3xl card-dark p-8 h-full">
+                  <h3 className="font-display text-white text-2xl font-bold mb-3">{c.name}</h3>
+                  <p className="text-white/70 text-sm leading-relaxed text-pretty">{c.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -91,21 +91,21 @@ export default function MenuPage() {
         </div>
       </section>
 
-      <section className="relative surface-paper py-16 pb-32">
+      <section className="relative surface-dark py-16 pb-32">
         <div className="mx-auto max-w-4xl px-6 lg:px-10">
           <Reveal>
-            <div className="rounded-3xl card-paper-leaf p-10 text-center">
-              <h2 className="text-display-3 font-display text-ink-950 mb-4">
+            <div className="rounded-3xl card-dark-leaf p-10 text-center">
+              <h2 className="text-display-3 font-display text-white mb-4">
                 Delivery, pickup, and in-store coming soon.
               </h2>
-              <p className="text-paper-muted mb-8 text-pretty">
+              <p className="text-white/70 mb-8 text-pretty">
                 Right now, every DoorHash order is delivered to your door across Las Cruces and
                 Southern New Mexico. Average ETA is {site.delivery.avgEta}. Our flagship retail
                 dispensary opens in Las Cruces in 2026 — until then, your couch is our counter.
               </p>
               <Link
                 href="/delivery"
-                className="inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-ink-950 font-bold px-7 py-3 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-black font-bold px-7 py-3 transition-colors"
               >
                 See delivery zones
               </Link>
