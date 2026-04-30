@@ -1,7 +1,12 @@
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 
-export const metadata = { title: "About" };
+export const metadata = {
+  title: { absolute: "About DoorHash — Founders, Mission & Don Verde Farms" },
+  description:
+    "DoorHash is the retail and delivery arm of Don Verde Farms — a Southern New Mexico cultivator. No corporate money. Just a craft team obsessed with the plant.",
+  alternates: { canonical: "/about" },
+};
 
 const team = [
   {
@@ -45,6 +50,23 @@ export default function AboutPage() {
               doorhash is what happens next. A delivery experience that feels as fast as the apps
               you use every day, with the provenance and product quality the legacy market never
               gave you. Our flagship retail location opens in Las Cruces in 2026.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="text-ink-200 text-lg leading-relaxed mt-8 text-pretty">
+              We don&apos;t take corporate money and we don&apos;t plan to. The advantage of
+              owning the farm, the delivery network, and the retail experience under one roof
+              is that we control the entire customer experience — from how a strain is grown
+              and cured all the way through the moment a driver hands you the bag. Most
+              cannabis brands can&apos;t say the same. Most operate on someone else&apos;s
+              flower, in someone else&apos;s storefront, on someone else&apos;s rules.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <p className="text-ink-200 text-lg leading-relaxed mt-8 text-pretty">
+              Our mission is to be the best cannabis brand in New Mexico — measured not by
+              store count or revenue, but by the quality of the product, the speed of the
+              delivery, and the trust we earn from our customers and our team.
             </p>
           </Reveal>
         </div>

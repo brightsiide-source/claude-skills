@@ -5,7 +5,7 @@ export const site = {
   longTagline:
     "Cannabis delivery and retail in Southern New Mexico — straight from our farm to your door.",
   description:
-    "DoorHash is the fastest cannabis delivery and retail experience in Southern New Mexico. Top-shelf flower, vapes, edibles and concentrates from Don Verde Farms and the brands you trust — at your door in under an hour.",
+    "Cannabis delivery in Las Cruces and Southern New Mexico. Top-shelf flower, vapes, edibles and concentrates from Don Verde Farms — at your door in under an hour.",
   parent: "Don Verde Farms",
   region: "Southern New Mexico",
   hq: "Las Cruces, NM",

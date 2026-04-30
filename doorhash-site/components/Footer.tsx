@@ -36,9 +36,9 @@ export function Footer() {
 
           {site.footerLinks.map((col) => (
             <div key={col.title} className="col-span-1 lg:col-span-2">
-              <h4 className="text-cream text-sm font-bold uppercase tracking-wider mb-4">
+              <h3 className="text-cream text-sm font-bold uppercase tracking-wider mb-4">
                 {col.title}
-              </h4>
+              </h3>
               <ul className="space-y-3">
                 {col.items.map((item) => (
                   <li key={item.href}>
@@ -55,9 +55,9 @@ export function Footer() {
           ))}
 
           <div className="col-span-2 lg:col-span-2">
-            <h4 className="text-cream text-sm font-bold uppercase tracking-wider mb-4">
+            <h3 className="text-cream text-sm font-bold uppercase tracking-wider mb-4">
               Visit
-            </h4>
+            </h3>
             <p className="text-ink-300 text-sm mb-2">{site.hq}</p>
             <a
               href={`tel:${site.phone}`}

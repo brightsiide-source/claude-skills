@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { AgeGate } from "@/components/AgeGate";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { LocalBusinessJsonLd, WebsiteJsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
 
 const dmSans = DM_Sans({
@@ -22,23 +23,57 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.legalName} — ${site.tagline}`,
-    template: `%s — ${site.legalName}`,
+    default: "DoorHash — Cannabis Delivery in Southern New Mexico",
+    template: `%s | ${site.legalName} Cannabis Delivery NM`,
   },
   description: site.description,
   metadataBase: new URL("https://doorhash.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: `${site.legalName} — ${site.tagline}`,
+    title: "DoorHash — Cannabis Delivery in Southern New Mexico",
     description: site.description,
     siteName: site.legalName,
     type: "website",
     locale: "en_US",
+    url: "https://doorhash.com",
+    images: [
+      {
+        url: "/og.svg",
+        width: 1200,
+        height: 630,
+        alt: "DoorHash — cannabis delivery in Southern New Mexico",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.legalName} — ${site.tagline}`,
+    title: "DoorHash — Cannabis Delivery in Southern New Mexico",
     description: site.description,
+    images: ["/og.svg"],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+  manifest: "/manifest.webmanifest",
+  applicationName: site.legalName,
+  authors: [{ name: site.legalName }],
+  category: "Cannabis Retail",
+  keywords: [
+    "cannabis delivery Las Cruces",
+    "weed delivery Southern New Mexico",
+    "dispensary Las Cruces NM",
+    "Don Verde Farms",
+    "doorhash",
+    "marijuana delivery NM",
+  ],
 };
 
 export default function RootLayout({
@@ -49,6 +84,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${jetbrains.variable}`}>
       <body className="bg-ink-950 text-cream antialiased">
+        <LocalBusinessJsonLd />
+        <WebsiteJsonLd />
         <SmoothScroll>
           <Nav />
           <main className="relative">{children}</main>

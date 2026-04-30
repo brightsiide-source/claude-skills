@@ -1,0 +1,17 @@
+{
+  "name": "DoorHash — Cannabis Delivery in Southern New Mexico",
+  "short_name": "DoorHash",
+  "description": "Cannabis delivery in Las Cruces and Southern New Mexico from Don Verde Farms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#8dc63f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
