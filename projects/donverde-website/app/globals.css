@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --grain-opacity: 0.05;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-bone text-ink font-sans;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    @apply bg-verde text-bone;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tightest;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm uppercase tracking-[0.18em] transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-bone hover:bg-verde-deep;
+  }
+
+  .btn-verde {
+    @apply btn bg-verde text-bone hover:bg-verde-deep;
+  }
+
+  .btn-ghost {
+    @apply btn border border-ink/20 text-ink hover:border-verde hover:text-verde;
+  }
+
+  .btn-ghost-bone {
+    @apply btn border border-bone/30 text-bone hover:border-verde-glow hover:text-verde-glow;
+  }
+
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.28em] text-verde;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-ink/10;
+  }
+
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 0, 0, var(--grain-opacity)) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+}
