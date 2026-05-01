@@ -90,7 +90,52 @@ doorhash-site/
     └── products.ts          # Featured product placeholders
 ```
 
-## To do before launch
+## Workflow — GSD (Get Shit Done)
+
+This project ships with **GSD v1.39.0** (`get-shit-done`) installed locally at `.claude/`. GSD is a spec-driven development + meta-prompting system for Claude Code: 65 slash commands, 33 specialist agents, and quality-gate hooks (schema drift, security, scope reduction, prompt-injection guard).
+
+### Usage
+
+Open a Claude Code session inside `doorhash-site/`. The `.claude/` directory wires up:
+
+- `/gsd-help` — list all GSD commands
+- `/gsd-discuss-phase` — discuss what to build next, get a spec
+- `/gsd-plan-phase` — turn the spec into a step-by-step plan
+- `/gsd-execute-phase` — execute the plan in a fresh context window
+- `/gsd-ship` — ship the phase
+- `/gsd-resume-work` — resume an in-flight phase across sessions
+- `/gsd-progress` — see where the project stands
+- `/gsd-fast` — skip the discuss step for small changes
+
+The whole loop is **discuss → plan → execute → verify → ship**. The point is to externalize project state into files so context survives session resets and `/compact`.
+
+### Hooks active
+
+- **SessionStart** — version check + session orientation
+- **PreToolUse** — prompt-injection guard, read-before-edit guard, workflow guard, commit validation
+- **PostToolUse** — context-window monitor, read-injection scanner, phase boundary detection
+
+### When NOT to use GSD
+
+Tiny one-shot edits ("change this color," "fix this typo") don't need the full discuss/plan/execute loop — use `/gsd-fast` or just edit directly. GSD shines on multi-day phases where you want resumability and quality gates.
+
+### Updating
+
+```bash
+cd doorhash-site
+npx -y get-shit-done-cc --local --claude
+```
+
+Re-running the installer pulls the latest version.
+
+### Uninstalling
+
+```bash
+cd doorhash-site
+npx -y get-shit-done-cc --local --claude --uninstall
+```
+
+
 
 - [ ] Replace inline `Logo` with the official SVG export.
 - [ ] Confirm Dutchie embed URL in `lib/site.ts` (`site.dutchie.embedUrl`).
