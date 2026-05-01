@@ -8,3 +8,12 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .netlify/
+
+# GSD runtime state — checked-in: commands/, agents/, hooks/, skill files
+# ignored: per-session state, snapshots, cache
+.claude/state/
+.claude/snapshots/
+.claude/sessions/
+.claude/.gsd-cache/
+.claude/logs/
+.claude/tmp/
