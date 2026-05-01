@@ -63,9 +63,17 @@ pnpm lint           # eslint
 ## What's installed
 
 - **GSD v1.39.0** — `.claude/` has 65 slash commands + 33 specialist subagents. See **Workflow** below.
-- **JSON-LD schemas** — `components/JsonLd.tsx` injects LocalBusiness, WebSite, FAQPage, BreadcrumbList globally on `/` and per-page where applicable.
+- **JSON-LD schemas** — `components/JsonLd.tsx` injects 7 schema types: Organization, LocalBusiness (Store), WebSite, Service, HowTo, FAQPage, BreadcrumbList, Speakable. Organization + LocalBusiness + WebSite + DeliveryService load globally via root layout; per-page schemas load on relevant pages.
+- **AI SEO** — `app/robots.ts` explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Applebot, etc. `public/llms.txt` provides curated AI-discovery doc.
+- **Definition blocks** — first-paragraph "**doorhash** is X" extractable definitions on `/about`, `/delivery`, `/how-to-order`. Targets "what is X" queries from AI engines.
+- **Comparison pages** — `/vs/top-crop` and `/vs/mango` for buyer-intent AI/SEO traffic.
 - **Sitemap** + **robots.txt** — auto-generated at `app/sitemap.ts` and `app/robots.ts`.
 - **Age gate** — `components/AgeGate.tsx`, localStorage-gated, fires on first visit.
+
+## SEO scoring
+
+- **Traditional SEO:** 100/100 across all 13 pages on `marketing-skill/seo-audit/scripts/seo_checker.py`
+- **AI SEO:** Pass-1 shipped (see [DECISIONS.md #16](./DECISIONS.md)). Re-audit quarterly via `marketing-skill/ai-seo` skill.
 
 ## Workflow — GSD (Get Shit Done)
 

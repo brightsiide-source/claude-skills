@@ -234,6 +234,34 @@ Runtime SEO assets emit at build time: `app/sitemap.ts`, `app/robots.ts`, JSON-L
 
 ---
 
+## [#16] AI SEO — separate optimization pass beyond traditional SEO
+
+**Date:** 2026-04-30
+**Status:** Initial pass shipped
+
+**Context:** Traditional SEO (the 100/100 score) gets us ranked in blue links. AI SEO gets us *cited* in AI answers from ChatGPT, Perplexity, Google AI Overviews, Claude, Gemini, and Copilot — different game, different rules.
+
+**Decision:** Run a dedicated AI SEO optimization pass alongside traditional SEO. Treat AI citation as a primary distribution channel, not an afterthought.
+
+**What shipped:**
+- **`robots.ts`** — explicit allow rules for AI crawlers: GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, anthropic-ai, PerplexityBot, Perplexity-User, Google-Extended, GoogleOther, Applebot, Applebot-Extended, CCBot, Bytespider, DuckAssistBot, YouBot, Meta-ExternalAgent, FacebookBot, Cohere-Ai, Diffbot
+- **`public/llms.txt`** — emerging AI-discovery standard. Curated map of the site with key facts, common questions, and brand information formatted for LLM extraction
+- **Expanded JSON-LD:** added Organization (founder graph), Service (cannabis delivery service with offer catalog), HowTo (step-by-step ordering), Speakable (voice-search-friendly passages). LocalBusiness now references @id graph properly
+- **Definition blocks** on `/about`, `/delivery`, `/how-to-order` — first-paragraph "**doorhash** is X" sentences AI engines extract for "what is X" queries
+- **`/how-to-order`** — new page with full HowTo JSON-LD + 5 numbered steps + ID requirements. Targets "how to order cannabis delivery NM" queries
+- **`/vs/top-crop`** and **`/vs/mango`** — comparison pages with side-by-side tables. Targets buyer-intent comparison queries that AI engines love
+
+**Alternatives considered:**
+- Run a paid GEO platform (Profound, Otterly.AI, AthenaHQ) — useful for monitoring but doesn't replace on-page work
+- Skip AI SEO and rely on traditional rankings — leaves citations on the table; AI search share is growing 30%+ YoY
+- Wait for Phase 3 strain library to ship before AI SEO — strain library will compound on this foundation
+
+**Why this:** Best practices that take days of work but compound for months. The 3 pillars from `marketing-skill/ai-seo`: structure (extractable), authority (citable), coverage (discoverable). All three addressed in this pass.
+
+**Revisit when:** Phase 3 (strain library) ships — each strain page should have its own definition block + extractable Q&A. Phase 5 (live tracker) ships — add Article schema for any blog content. Re-audit AI citation share quarterly.
+
+---
+
 ## [#15] Component pattern — surface utilities + card primitives
 
 **Date:** 2026-04-30

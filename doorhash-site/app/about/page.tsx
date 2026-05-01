@@ -35,14 +35,25 @@ export default function AboutPage() {
         description="No corporate money. No middlemen. Just three founders, one farm, and a delivery team obsessed with the experience."
       />
 
-      <section className="relative surface-dark pb-24">
+      <section id="definition" className="relative surface-dark pb-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-10">
           <Reveal>
             <p className="text-white text-lg leading-relaxed text-pretty">
-              doorhash is the retail and delivery arm of <strong>Don Verde Farms</strong>,
-              a Southern New Mexico cultivator with roots in NM and Southern California. We started
-              Don Verde because we believed Southern New Mexico deserved cannabis as good as the
-              best of California — grown locally, by people who actually care about the plant.
+              <strong className="text-leaf-300">doorhash</strong> is a cannabis delivery service
+              and (opening 2026) retail dispensary serving Southern New Mexico — including Las
+              Cruces, Mesilla, Sunland Park, Anthony, and Doña Ana. doorhash is the retail and
+              delivery arm of <strong>Don Verde Farms</strong>, an indoor cannabis cultivator
+              based in Southern New Mexico. The company was founded by Mike, Javi, and Neal Lucas
+              (a 20+ year cannabis cultivation veteran), and differentiates from competitors
+              through full vertical integration — owning the cannabis farm, the delivery network,
+              and the retail experience under one brand.
+            </p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <p className="text-white/85 text-lg leading-relaxed mt-6 text-pretty">
+              We started Don Verde because we believed Southern New Mexico deserved cannabis as
+              good as the best of California — grown locally, by people who actually care about
+              the plant.
             </p>
           </Reveal>
           <Reveal delay={0.1}>

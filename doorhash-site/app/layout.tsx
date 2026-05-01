@@ -5,7 +5,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { AgeGate } from "@/components/AgeGate";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { LocalBusinessJsonLd, WebsiteJsonLd } from "@/components/JsonLd";
+import { LocalBusinessJsonLd, OrganizationJsonLd, WebsiteJsonLd, DeliveryServiceJsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
 
 const dmSans = DM_Sans({
@@ -84,8 +84,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${jetbrains.variable}`}>
       <body className="bg-black text-white antialiased">
+        <OrganizationJsonLd />
         <LocalBusinessJsonLd />
         <WebsiteJsonLd />
+        <DeliveryServiceJsonLd />
         <SmoothScroll>
           <Nav />
           <main className="relative">{children}</main>
