@@ -17,12 +17,12 @@ const reviews = [
   },
   {
     name: "Alyssa M.",
-    city: "Sunland Park",
+    city: "Picacho Hills",
     body: "Discreet packaging, great prices, and the rewards stack actually adds up. Switched from Top Crop a month ago.",
   },
   {
     name: "Diego H.",
-    city: "Anthony",
+    city: "University Park",
     body: "Easy to reorder, great selection of brands, and the budtender chat was super helpful for picking a strain.",
   },
   {
@@ -32,7 +32,7 @@ const reviews = [
   },
   {
     name: "Sam R.",
-    city: "Doña Ana",
+    city: "Mesilla",
     body: "Got a free pre-roll on my first order and it converted me. Now I'm in deep on Hash Pass points.",
   },
 ];

@@ -15,28 +15,39 @@ export function Coverage() {
             <div className="lg:col-span-2 p-10 lg:p-14 flex flex-col justify-center">
               <Reveal>
                 <span className="inline-block text-leaf-300 text-sm font-bold uppercase tracking-widest mb-4">
-                  Delivery zones
+                  Delivery zone
                 </span>
                 <h2 className="text-display-3 font-display text-white text-balance">
-                  We go where the others <span className="text-leaf-300">don&apos;t.</span>
+                  Las Cruces, fast. <br />
+                  <span className="text-leaf-300">5 to 10 miles from 88007.</span>
                 </h2>
                 <p className="mt-6 text-white/70 text-pretty">
-                  doorhash delivers across Southern New Mexico — including the corners of the map
-                  no one else covers. Drop your address at checkout to confirm coverage and ETA.
+                  doorhash delivers across Las Cruces and the immediate surrounding area —
+                  centered on 88007, within a 5 to 10 mile radius. Drop your address at
+                  checkout to confirm coverage and ETA.
                 </p>
               </Reveal>
               <Reveal delay={0.1}>
-                <ul className="mt-8 grid grid-cols-2 gap-3">
-                  {site.delivery.cities.map((c) => (
-                    <li
-                      key={c}
-                      className="inline-flex items-center gap-2 rounded-full bg-leaf-500/15 border border-leaf-400/40 px-4 py-2 text-sm text-leaf-100 font-semibold"
-                    >
-                      <MapPin className="w-3.5 h-3.5 text-leaf-300" />
-                      {c}
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-8">
+                  <div className="text-xs uppercase tracking-widest text-white/55 mb-3 font-bold">
+                    Within range
+                  </div>
+                  <ul className="flex flex-wrap gap-2">
+                    {[site.delivery.primaryCity, ...site.delivery.neighborhoods].map((c, i) => (
+                      <li
+                        key={c}
+                        className={
+                          i === 0
+                            ? "inline-flex items-center gap-2 rounded-full bg-leaf-500 text-black px-4 py-2 text-sm font-bold shadow-glow-leaf"
+                            : "inline-flex items-center gap-2 rounded-full bg-leaf-500/15 border border-leaf-400/40 px-4 py-2 text-sm text-leaf-100 font-semibold"
+                        }
+                      >
+                        <MapPin className="w-3.5 h-3.5" />
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </Reveal>
             </div>
 
@@ -63,11 +74,11 @@ export function Coverage() {
 
               {/* Pins */}
               {[
-                { x: "30%", y: "45%", label: "Las Cruces", primary: true },
-                { x: "55%", y: "30%", label: "Mesilla" },
-                { x: "20%", y: "70%", label: "Sunland Park" },
-                { x: "70%", y: "55%", label: "Anthony" },
-                { x: "45%", y: "65%", label: "Doña Ana" },
+                { x: "50%", y: "50%", label: "Las Cruces · 88007", primary: true, ring: true },
+                { x: "38%", y: "62%", label: "Mesilla" },
+                { x: "60%", y: "38%", label: "NW Las Cruces" },
+                { x: "62%", y: "62%", label: "Univ. Park" },
+                { x: "40%", y: "38%", label: "Picacho Hills" },
               ].map((pin, i) => (
                 <motion.div
                   key={pin.label}

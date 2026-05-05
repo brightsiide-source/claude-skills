@@ -39,10 +39,10 @@ export default function VsIndexPage() {
           <Reveal>
             <p className="text-white/85 text-lg leading-relaxed text-pretty">
               <strong className="text-leaf-300">DoorHash</strong> is a cannabis delivery service
-              operating across Southern New Mexico — Las Cruces, Mesilla, Sunland Park, Anthony,
-              and Doña Ana. The site you&apos;re on right now is the brand and ordering surface;
-              the live menu is powered by Dutchie. DoorHash is the retail and delivery arm of
-              Don Verde Farms, an indoor cannabis cultivator based in Southern New Mexico.
+              operating in Las Cruces, New Mexico — centered on zip code 88007 with a 5 to 10
+              mile delivery radius. The site you&apos;re on right now is the brand and ordering
+              surface; the live menu is powered by Dutchie. DoorHash is the retail and delivery
+              arm of Don Verde Farms, an indoor cannabis cultivator based in Las Cruces.
             </p>
           </Reveal>
           <Reveal delay={0.05}>
@@ -59,13 +59,13 @@ export default function VsIndexPage() {
           <Reveal delay={0.1}>
             <p className="text-white/85 text-lg leading-relaxed text-pretty">
               We don&apos;t hide the fact that DoorHash isn&apos;t the right answer for everyone.
-              If you&apos;re in Albuquerque, Top Crop probably serves you better today. If
-              you&apos;re browsing in-person at an Oklahoma store, Mango is your move. But if
-              you&apos;re in Southern New Mexico and you want craft-cultivated cannabis at your
-              door in 30 to 55 minutes, DoorHash is the only brand built for that exact use
-              case. Read the deep dives to see how the brands compare side-by-side on delivery
-              zones, ETAs, prices, products, loyalty programs, cultivation ownership, and
-              everything else that matters.
+              If you&apos;re in Albuquerque or El Paso, Top Crop or another local dispensary
+              probably serves you better today. If you&apos;re in Oklahoma, Mango is your move.
+              But if you live within 5 to 10 miles of Las Cruces 88007 and you want
+              craft-cultivated cannabis at your door in 30 to 55 minutes, DoorHash is the only
+              brand built for that exact use case. Read the deep dives to see how the brands
+              compare side-by-side on delivery zones, ETAs, prices, products, loyalty programs,
+              cultivation ownership, and everything else that matters.
             </p>
           </Reveal>
         </div>

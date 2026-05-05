@@ -1,6 +1,6 @@
 import { site } from "@/lib/site";
 
-const BASE = "https://doorhash.com";
+const BASE = "https://doorhashnm.com";
 
 /**
  * LocalBusiness — entity definition for the doorhash dispensary + delivery.
@@ -140,7 +140,7 @@ export function DeliveryServiceJsonLd() {
     serviceType: "Cannabis Delivery",
     name: "DoorHash Cannabis Delivery",
     description:
-      "DoorHash delivers cannabis flower, vapes, edibles, and concentrates across Southern New Mexico with an average delivery time of 30 to 55 minutes. Order minimum is $50; delivery is free over $100.",
+      "DoorHash delivers cannabis flower, vapes, edibles, and concentrates across Las Cruces, New Mexico — centered on zip code 88007 with a 5 to 10 mile delivery radius — with an average delivery time of 30 to 55 minutes. Order minimum is $50; delivery is free over $100.",
     provider: { "@id": `${BASE}/#store` },
     areaServed: site.delivery.cities.map((c) => ({
       "@type": "City",
@@ -191,9 +191,9 @@ export function HowToOrderJsonLd() {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "@id": `${BASE}/#how-to-order`,
-    name: "How to order cannabis delivery from DoorHash in Southern New Mexico",
+    name: "How to order cannabis delivery from DoorHash in Las Cruces, NM",
     description:
-      "Step-by-step process to order cannabis delivery from DoorHash in Las Cruces, Mesilla, Sunland Park, Anthony, or Doña Ana, New Mexico.",
+      "Step-by-step process to order cannabis delivery from DoorHash in Las Cruces, New Mexico.",
     totalTime: "PT2M",
     estimatedCost: {
       "@type": "MonetaryAmount",
@@ -210,7 +210,7 @@ export function HowToOrderJsonLd() {
         "@type": "HowToStep",
         position: 1,
         name: "Enter your delivery address",
-        text: "Visit doorhash.com and enter your delivery address. The site confirms whether your location is within the DoorHash service area across Southern New Mexico.",
+        text: "Visit doorhashnm.com and enter your delivery address. The site confirms whether your location is within the DoorHash service area — Las Cruces, NM, centered on zip code 88007 with a 5 to 10 mile radius.",
       },
       {
         "@type": "HowToStep",

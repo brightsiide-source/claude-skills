@@ -57,7 +57,7 @@ export default function CareersPage() {
             <p className="text-white/70 max-w-2xl mb-12 text-pretty">
               We&apos;re actively interviewing across cultivation, retail, and delivery as we
               approach the flagship opening. Even if you don&apos;t see your exact role listed,
-              email careers@doorhash.com — strong people get hired into roles they invent.
+              email careers@doorhashnm.com — strong people get hired into roles they invent.
             </p>
           </Reveal>
           <div className="grid md:grid-cols-2 gap-5">
@@ -109,10 +109,10 @@ export default function CareersPage() {
                 resume is optional — a real conversation is not. We respond to every applicant.
               </p>
               <a
-                href="mailto:careers@doorhash.com"
+                href="mailto:careers@doorhashnm.com"
                 className="inline-flex items-center gap-2 rounded-full bg-leaf-500 hover:bg-leaf-400 text-black font-bold px-7 py-3 transition-colors"
               >
-                careers@doorhash.com
+                careers@doorhashnm.com
               </a>
             </div>
           </Reveal>

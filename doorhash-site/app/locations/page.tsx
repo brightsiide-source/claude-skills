@@ -31,7 +31,7 @@ export default function LocationsPage() {
       <PageHeader
         eyebrow="Visit us"
         title="Our retail flagship is coming soon."
-        description="Our first brick-and-mortar dispensary is opening in Las Cruces. Until then, we deliver everything you need straight to your door across Southern New Mexico."
+        description="Our first brick-and-mortar dispensary is opening in Las Cruces. Until then, we deliver straight to your door across Las Cruces (88007 + 5 to 10 mile radius)."
       />
 
       <section className="relative surface-dark pb-16">
@@ -115,7 +115,7 @@ export default function LocationsPage() {
               </h2>
               <p className="text-white/70 mb-8 text-pretty">
                 Until the flagship opens, every DoorHash order ships straight to your door
-                across Las Cruces, Mesilla, Sunland Park, Anthony, and Doña Ana.
+                across Las Cruces (88007, 5-10 mile radius).
               </p>
               <Link
                 href="/menu"

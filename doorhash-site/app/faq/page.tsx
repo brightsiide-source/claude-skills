@@ -33,7 +33,7 @@ const more = [
   },
   {
     q: "What if my order arrives wrong or damaged?",
-    a: "Email orders@doorhash.com with your order number and a photo of the issue. We resolve incorrect or damaged orders within one business day — refund, replacement, or store credit, your choice. We do not gatekeep customer service.",
+    a: "Email orders@doorhashnm.com with your order number and a photo of the issue. We resolve incorrect or damaged orders within one business day — refund, replacement, or store credit, your choice. We do not gatekeep customer service.",
   },
   {
     q: "Where are your products grown?",
@@ -54,7 +54,7 @@ export default function FaqPage() {
       <PageHeader
         eyebrow="FAQ"
         title="Questions, answered."
-        description="Delivery, payments, products, compliance — the things people ask us most. If we miss yours, email hello@doorhash.com and we'll add it."
+        description="Delivery, payments, products, compliance — the things people ask us most. If we miss yours, email hello@doorhashnm.com and we'll add it."
       />
       <FaqTeaser />
 

@@ -6,7 +6,7 @@ import Link from "next/link";
 export const metadata = {
   title: { absolute: "Cannabis Menu — Order Online for Delivery | DoorHash NM" },
   description:
-    "Browse the full DoorHash cannabis menu. Real-time inventory of flower, vapes, edibles, and concentrates. Same-day delivery across Southern New Mexico.",
+    "Browse the DoorHash cannabis menu. Live inventory of flower, vapes, edibles, and concentrates. Same-day delivery in Las Cruces (88007 + 5-10 mile radius).",
   alternates: { canonical: "/menu" },
 };
 
@@ -99,9 +99,10 @@ export default function MenuPage() {
                 Delivery, pickup, and in-store coming soon.
               </h2>
               <p className="text-white/70 mb-8 text-pretty">
-                Right now, every DoorHash order is delivered to your door across Las Cruces and
-                Southern New Mexico. Average ETA is {site.delivery.avgEta}. Our flagship retail
-                dispensary opens in Las Cruces in 2026 — until then, your couch is our counter.
+                Right now, every DoorHash order is delivered to your door in Las Cruces, NM
+                (88007 plus a 5 to 10 mile radius). Average ETA is {site.delivery.avgEta}. Our
+                flagship retail dispensary opens in Las Cruces in 2026 — until then, your couch
+                is our counter.
               </p>
               <Link
                 href="/delivery"

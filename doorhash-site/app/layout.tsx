@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.legalName} Cannabis Delivery NM`,
   },
   description: site.description,
-  metadataBase: new URL("https://doorhash.com"),
+  metadataBase: new URL("https://doorhashnm.com"),
   alternates: {
     canonical: "/",
   },
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: site.legalName,
     type: "website",
     locale: "en_US",
-    url: "https://doorhash.com",
+    url: "https://doorhashnm.com",
     images: [
       {
         url: "/og.svg",

@@ -104,7 +104,7 @@ This project uses [GSD](https://github.com/gsd-build/get-shit-done) for spec-dri
 
 ## Things that need real assets / contracts (still TBD)
 
-- Domain (`doorhash.com` ideal — confirm registration)
+- Domain — owners hold **doorhashnm.com**. doorhash.com is taken (held by another party); revisit if it becomes available.
 - Official logo SVG (currently inline approximation in `components/Logo.tsx`)
 - Brand photography (homepage placeholder is emoji + gradients)
 - Real Dutchie embed URL (`lib/site.ts` → `site.dutchie.embedUrl`)

@@ -119,7 +119,7 @@ export default function VsMangoPage() {
             </p>
             <p className="text-white/85 leading-relaxed text-pretty">
               <strong className="text-leaf-300">Choose DoorHash if:</strong> You&apos;re in Southern
-              New Mexico (Las Cruces, Mesilla, Sunland Park, Anthony, or Doña Ana), you want
+              New Mexico (Las Cruces), you want
               cannabis delivered in 30 to 55 minutes, or you value craft-cultivation provenance
               from Don Verde Farms.
             </p>

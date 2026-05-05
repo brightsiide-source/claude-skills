@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "Where do you deliver?",
-    a: "Currently across Las Cruces, Mesilla, Sunland Park, Anthony, and Doña Ana. We're adding new zones every month — drop your address at checkout to confirm.",
+    a: "Currently across Las Cruces (88007, 5-10 mile radius). We're adding new zones every month — drop your address at checkout to confirm.",
   },
   {
     q: "What payment methods do you accept?",

@@ -3,15 +3,17 @@ export const site = {
   legalName: "DoorHash",
   tagline: "Speed. Discretion. Soul.",
   longTagline:
-    "Cannabis delivery and retail in Southern New Mexico — straight from our farm to your door.",
+    "Cannabis delivery in Las Cruces, New Mexico — straight from Don Verde Farms to your door.",
   description:
-    "Cannabis delivery in Las Cruces and Southern New Mexico. Top-shelf flower, vapes, edibles and concentrates from Don Verde Farms — at your door in under an hour.",
+    "Cannabis delivery in Las Cruces, NM. Top-shelf flower, vapes, edibles, and concentrates from Don Verde Farms — same-day within 5 to 10 miles of 88007.",
   parent: "Don Verde Farms",
-  region: "Southern New Mexico",
-  hq: "Las Cruces, NM",
+  region: "Las Cruces, NM",
+  hq: "Las Cruces, NM 88007",
+  domain: "doorhashnm.com",
+  baseUrl: "https://doorhashnm.com",
   age: 21,
   phone: "(575) 555-0420",
-  email: "hello@doorhash.com",
+  email: "hello@doorhashnm.com",
   social: {
     instagram: "https://instagram.com/doorhash",
     twitter: "https://twitter.com/doorhash",
@@ -25,7 +27,17 @@ export const site = {
   delivery: {
     minOrder: 50,
     freeDeliveryOver: 100,
-    cities: ["Las Cruces", "Mesilla", "Sunland Park", "Anthony", "Doña Ana"],
+    // Single zone: 5–10 mile radius from 88007 (NW Las Cruces).
+    // Realistically covers Las Cruces proper + Mesilla; outer edges may
+    // include parts of Doña Ana (the unincorporated community).
+    centerZip: "88007",
+    radiusMiles: { inner: 5, outer: 10 },
+    cities: ["Las Cruces"],
+    primaryCity: "Las Cruces",
+    // Neighborhoods inside the 5–10 mile radius — used for the coverage
+    // map pins and for "do you deliver to ___" answers, not as separate
+    // marketing cities.
+    neighborhoods: ["Mesilla", "Picacho Hills", "University Park", "NW Las Cruces"],
     avgEta: "30–55 min",
   },
   nav: [
@@ -68,3 +80,4 @@ export const site = {
 };
 
 export type Site = typeof site;
+

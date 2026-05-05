@@ -37,17 +37,17 @@ const topics = [
   {
     icon: MessageCircle,
     title: "Order or delivery question?",
-    body: "Email orders@doorhash.com with your order number. Our delivery team can update ETAs, swap items, and handle refunds.",
+    body: "Email orders@doorhashnm.com with your order number. Our delivery team can update ETAs, swap items, and handle refunds.",
   },
   {
     icon: Newspaper,
     title: "Press, partnerships, or wholesale?",
-    body: "Reach press@doorhash.com for media inquiries. For Don Verde Farms wholesale and brand partnerships, email partnerships@doorhash.com.",
+    body: "Reach press@doorhashnm.com for media inquiries. For Don Verde Farms wholesale and brand partnerships, email partnerships@doorhashnm.com.",
   },
   {
     icon: Clock,
     title: "After hours?",
-    body: "Drop us a note any time — we batch overnight messages first thing the next morning. Compliance-related questions go to compliance@doorhash.com.",
+    body: "Drop us a note any time — we batch overnight messages first thing the next morning. Compliance-related questions go to compliance@doorhashnm.com.",
   },
 ];
 
@@ -101,7 +101,7 @@ export default function ContactPage() {
             </h2>
             <p className="text-white/70 max-w-2xl mb-12 text-pretty">
               We sort messages by topic so the right teammate gets back to you fast. If
-              you&apos;re not sure where to start, default to hello@doorhash.com and
+              you&apos;re not sure where to start, default to hello@doorhashnm.com and
               we&apos;ll route it.
             </p>
           </Reveal>
@@ -127,12 +127,11 @@ export default function ContactPage() {
             <div className="rounded-3xl card-dark-leaf p-10 text-center">
               <h2 className="text-display-3 font-display text-white mb-4">Hours of operation.</h2>
               <p className="text-white/70 mb-2 text-pretty">
-                Delivery operates seven days a week. Hours vary by zone — confirm your local
-                window when you place an order.
+                Delivery operates seven days a week across Las Cruces (88007 + 5 to 10 mile radius).
+                Confirm your window when you place an order.
               </p>
               <p className="text-white/55 text-sm">
-                Las Cruces &amp; Mesilla: 10am – 10pm &middot; Sunland Park, Anthony &amp; Doña
-                Ana: 11am – 9pm
+                Las Cruces &amp; surrounding: 10am – 10pm daily
               </p>
             </div>
           </Reveal>

@@ -41,10 +41,42 @@ Format per entry: `## [#NN] <title>` · context · decision · alternatives cons
 
 ---
 
-## [#03] Menu engine — Dutchie embed for v1, Jane Roots for v2
+## [#20] Pre-revenue budget reality — keep the stack lean
 
 **Date:** 2026-04-30
-**Status:** Locked for v1, planning for v2
+**Status:** Locked
+
+**Context:** Owner shared real numbers. Pre-launch, doing a few deliveries, doing a few thousand a month at most. Existing scoped roadmap (Dutchie Plus API at ~$1k+/mo, Alpine IQ at $400-1500/mo, Onfleet at $300-1500/mo, Klaviyo at $50-300/mo, Mapbox, etc.) is appropriate at $30-50k/mo MRR — not now.
+
+**Decision:** Run lean until store opens + revenue clears $5k/mo. Specifically:
+
+- **Menu** — stay on **Dutchie embed-only** tier (~$200-300/mo), not Plus. Owner is "not a fan" of Dutchie and feels the cost is high for current revenue. We agree it's the cheapest viable option that's already integrated; **renegotiate the tier with Dutchie** to drop to embed-only if we're on a higher tier today.
+- **Loyalty** — use **Dutchie's built-in customer loyalty** (free with the platform). Skip Alpine IQ ($400+/mo) and Springbig ($200+/mo) until $20k/mo MRR. The Hash Pass UI on `/rewards` is the marketing surface; the backend is Dutchie until we outgrow it.
+- **SMS / email** — Klaviyo's free tier covers up to 250 contacts. Pre-launch list-building costs $0. Upgrade to paid (~$45/mo at 500 contacts, scaling from there) only when we have list size to justify it.
+- **Delivery dispatch** — manual / spreadsheet for now. Onfleet ($300+/mo) goes in Phase 5 when we have order volume to justify routing optimization. Pre-store-open, the founders are doing the few deliveries themselves.
+- **Mapping** — the Coverage map is a stylized illustration, not a live Mapbox embed. Adds $0/mo. Real Mapbox comes with the live tracker phase.
+- **Photography** — emoji + gradient placeholders stay until budget allows a real product shoot. Not blocking launch.
+
+**Why this:** Cannabis retail margins are thin. Software stacks can eat $2k+/mo before a single order ships. Keeping the stack at <$500/mo until revenue justifies an upgrade is the difference between a brand that survives 18 months and a brand that runs out of cash.
+
+**Recalibrated phase priorities (v2):**
+
+1. **Phase 1 — Klaviyo free tier + SMS opt-in** (free at <250 contacts, $45/mo at 500). Ship list-building flows.
+2. **Phase 2 — Strain finder quiz** (engineering only, $0 ongoing).
+3. **Phase 3 — Strain library + programmatic SEO** (engineering + content, $0 ongoing). Compounds.
+4. **Phase 4 — Provenance receipts** (engineering only — Don Verde already has lot data per their site schema). $0 ongoing.
+5. **Phase 5 — Live tracker** (DEFERRED until $20k+/mo MRR. Onfleet at $300+/mo is the cost wall.)
+
+The first 4 phases are essentially free to operate post-launch. Phase 5 is the one that needs revenue.
+
+**Revisit when:** Monthly revenue clears $5k (upgrade Klaviyo paid tier), $20k (consider Springbig or Alpine IQ migration), $50k (consider Dutchie Plus / Jane Roots migration).
+
+---
+
+## [#03] Menu engine — Dutchie embed for v1 (lean tier), Jane evaluation deferred
+
+**Date:** 2026-04-30 (revised — see also #20)
+**Status:** Locked for v1, evaluation deferred
 
 **Context:** doorhash already exists on Dutchie (`dutchie.com/dispensary/door-hash`). Cannabis e-commerce requires Metrc track-and-trace, cannabis-friendly payments, ID verification — none of which we're building from scratch.
 
@@ -57,6 +89,8 @@ Format per entry: `## [#NN] <title>` · context · decision · alternatives cons
 - Treez / Flowhub / Meadow / Tymber — viable but smaller market presence in NM
 
 **Why Jane Roots eventually:** Productized headless solution with verified review data, per-product URLs (programmatic SEO), prebuilt React components, and connection to the iHeartJane consumer marketplace for discovery.
+
+**Pre-revenue revision (per #20):** Owner is not a fan of Dutchie — too expensive for current revenue. Industry sentiment confirms it (4/20 outages, sales lock-in, pricing creep). However, doorhash is *already* on Dutchie via the existing dispensary listing, and migration cost (4-8 weeks + contract penalty) is real. Plan: **stay on Dutchie embed-only tier**, renegotiate to the cheapest tier possible, and **plan migration to Jane at the next contract renewal point** (or when MRR clears $20k and the migration cost is justified). Do NOT migrate during the launch window — switching menus during a launch loses money.
 
 ---
 
@@ -101,16 +135,27 @@ Forest green gradient (leaf-700 → leaf-950 → black) is the signature hero/pa
 
 ---
 
-## [#06] Loyalty program name — "Hash Pass"
+## [#06] Loyalty program — "Hash Pass" name + Dutchie loyalty backend
 
-**Date:** 2026-04-30
+**Date:** 2026-04-30 (revised — see also #20)
 **Status:** Locked
 
-**Context:** Top Crop has "Chron Club Rewards." We need our own name.
+**Context:** Owner has flagged loyalty as **very important**. Top Crop has "Chron Club Rewards." We need our own name + an actual functioning rewards backend, not just a marketing page.
 
-**Decision:** **Hash Pass**, with three tiers: Hash (default), Hash+ (1k–5k pts), Hash VIP (5k+ pts). VIP gets gold treatment (gradient frame, gold accents).
+**Decision:**
 
-**Alternatives:** "Verde Club" (too on-the-nose to parent farm), "Door Club" (weak), "Smoker's Pass" (off-brand voice).
+- **Name:** **Hash Pass**, with three tiers: Hash (default), Hash+ (1k–5k pts), Hash VIP (5k+ pts). VIP gets gold treatment (gradient frame, gold accents) on `/rewards`.
+- **Backend (v1, pre-revenue):** Use **Dutchie's built-in customer loyalty** (included free with the menu platform). The Hash Pass UI on the doorhash site is the marketing surface; Dutchie tracks points, customer accounts, and redemption codes server-side.
+- **Backend (v2, ~$20k+ MRR):** Migrate to **Springbig** (~$200/mo) or **Alpine IQ** (~$400+/mo) for richer segmentation, SMS-tied loyalty, and integrated marketing automation. Springbig is the cheaper option and most-used in cannabis retail.
+
+**Alternatives considered:**
+- "Verde Club" — too on-the-nose to parent farm
+- "Door Club" — weak
+- Custom-built loyalty tracker — extra engineering, no advantage at this scale
+- Skip loyalty entirely — not viable; owner has called it very important
+- Standalone Klaviyo loyalty — Klaviyo handles email/SMS but not points-based loyalty natively
+
+**Why this:** Maximum impact, zero backend cost at the current revenue stage. The name "Hash Pass" is the brand asset; the Dutchie backend is rented infrastructure that can be swapped later.
 
 ---
 
@@ -231,6 +276,34 @@ Runtime SEO assets emit at build time: `app/sitemap.ts`, `app/robots.ts`, JSON-L
 **Decision:** Phase 1 ships **SMS + Klaviyo**. Highest ROI, lowest engineering effort. Doubles repeat order rate at well-run cannabis brands. Then Phase 2 (Strain Quiz) for email capture and brand differentiation.
 
 **Why deviation from PDF order:** Roadmap PDF orders by *strategic impact* (Drew-facing); execution sequence orders by *revenue lift per week of work* (us-facing). Both are true.
+
+---
+
+## [#19] Service area locked — Las Cruces 88007 + 5-10 mile radius
+
+**Date:** 2026-04-30
+**Status:** Locked (per owner directive)
+
+**Context:** Earlier copy listed five cities (Las Cruces, Mesilla, Sunland Park, Anthony, Doña Ana). Owner clarified the actual delivery zone is **only Las Cruces**, centered on **zip code 88007**, with a **5 to 10 mile radius**. Sunland Park (~40 mi south), Anthony (~25 mi south), and Doña Ana (the unincorporated community ~10 mi N) are outside or borderline outside this radius.
+
+**Decision:** All site copy, JSON-LD `areaServed`, llms.txt, FAQ, and comparison pages reference **Las Cruces, NM 88007** as the single service city. Mesilla, Picacho Hills, University Park, and NW Las Cruces are referenced as *neighborhoods within range* (used on the coverage map and "do you deliver to ___" Q&A), not as separate marketed cities.
+
+**Why this:** Honesty over aspiration. Stop marketing zones we can't actually reach in the 30–55 min ETA. Tighter targeting also helps SEO — every page now ranks specifically for "cannabis delivery Las Cruces" instead of competing for a regional term.
+
+**Revisit when:** The team expands the delivery radius or adds a second store. Update `lib/site.ts` `delivery.cities`, `delivery.neighborhoods`, and `delivery.radiusMiles`.
+
+---
+
+## [#18] Domain — doorhashnm.com (doorhash.com unavailable)
+
+**Date:** 2026-04-30
+**Status:** Locked
+
+**Context:** Owner holds **doorhashnm.com**. **doorhash.com** is registered to another party and not available for purchase as of this writing.
+
+**Decision:** Site canonical URL, OG tags, sitemap, robots, llms.txt, JSON-LD `@id` graph, and email aliases all use `doorhashnm.com`. Email aliases shifted from `@doorhash.com` to `@doorhashnm.com` (hello@, careers@, orders@, press@, partnerships@, compliance@).
+
+**Watch for:** If `doorhash.com` becomes available later, swapping is a single `lib/site.ts` config change + a global find/replace + a 301 redirect from doorhashnm.com. Cheap to migrate; flag it as a reminder for the team to check periodically (every 6 months on `whois`).
 
 ---
 

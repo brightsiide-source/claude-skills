@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE = "https://doorhash.com";
+const BASE = "https://doorhashnm.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

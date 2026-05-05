@@ -17,7 +17,7 @@ const rows = [
   ["States operating", "New Mexico (Southern)", "New Mexico, Oregon"],
   ["Retail stores", "1 flagship (Las Cruces, opening 2026)", "6 (3 NM, 3 OR)"],
   ["Delivery service", "Yes — primary channel", "Limited / pickup-first"],
-  ["NM cities served (delivery)", "Las Cruces, Mesilla, Sunland Park, Anthony, Doña Ana", "Local pickup zones around Albuquerque, Sunland Park, Las Cruces stores"],
+  ["NM cities served (delivery)", "Las Cruces", "Local pickup zones around Albuquerque, Sunland Park, Las Cruces stores"],
   ["Average delivery ETA", "30 to 55 minutes", "Pickup-only at most locations"],
   ["Order minimum (delivery)", "$50", "N/A (pickup)"],
   ["Free delivery threshold", "$100+", "N/A"],
@@ -119,8 +119,8 @@ export default function VsTopCropPage() {
             <p className="text-white/85 leading-relaxed text-pretty">
               <strong className="text-leaf-300">Choose DoorHash if:</strong> You want cannabis
               delivered to your door in 30 to 55 minutes, you value cultivation provenance and
-              owning your own grow operation, or you live in Las Cruces, Mesilla, Sunland Park,
-              Anthony, or Doña Ana and don&apos;t want to drive to a dispensary.
+              owning your own grow operation, or you live within a 5 to 10 mile radius of
+              Las Cruces 88007 and don&apos;t want to drive to a dispensary.
             </p>
           </Reveal>
         </div>

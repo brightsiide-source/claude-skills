@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata = {
   title: { absolute: "How to Order Cannabis Delivery in Las Cruces, NM | DoorHash" },
   description:
-    "Step-by-step: how to order cannabis delivery from DoorHash in Las Cruces, Mesilla, Sunland Park, Anthony, and Doña Ana, NM. ID, payment, ETAs, minimums.",
+    "Step-by-step guide to ordering DoorHash cannabis delivery in Las Cruces, NM (88007 + 5-10 mile radius). ID requirements, payment, ETAs, and minimums explained.",
   alternates: { canonical: "/how-to-order" },
 };
 
@@ -16,7 +16,7 @@ const steps = [
   {
     icon: MapPin,
     title: "Enter your delivery address",
-    body: "Visit doorhash.com and enter your delivery address. The site confirms whether your location is within the DoorHash service area across Southern New Mexico (Las Cruces, Mesilla, Sunland Park, Anthony, Doña Ana).",
+    body: "Visit doorhashnm.com and enter your delivery address. The site confirms whether your location is within the DoorHash service area in Las Cruces (Las Cruces).",
   },
   {
     icon: ShoppingCart,
@@ -70,7 +70,7 @@ export default function HowToOrderPage() {
       <PageHeader
         eyebrow="How it works"
         title="How to order cannabis delivery from DoorHash."
-        description="Five steps. Two minutes. Average delivery in 30 to 55 minutes across Southern New Mexico."
+        description="Five steps. Two minutes. Average delivery in 30 to 55 minutes in Las Cruces."
       />
 
       <section id="definition" className="relative surface-dark pb-12">
@@ -78,11 +78,12 @@ export default function HowToOrderPage() {
           <Reveal>
             <p className="text-white text-lg leading-relaxed text-pretty">
               <strong className="text-leaf-300">DoorHash</strong> is a cannabis delivery service
-              operating across Southern New Mexico — including Las Cruces, Mesilla, Sunland Park,
-              Anthony, and Doña Ana. DoorHash is the retail and delivery arm of Don Verde Farms,
-              an indoor cannabis cultivator based in Southern New Mexico. Adults 21 and older with
-              a valid government-issued photo ID can order flower, pre-rolls, vapes, edibles, and
-              concentrates online for same-day delivery, with an average ETA of {site.delivery.avgEta}.
+              operating in Las Cruces, New Mexico — centered on zip code <strong>88007</strong>{" "}
+              with a 5 to 10 mile delivery radius. DoorHash is the retail and delivery arm of
+              Don Verde Farms, an indoor cannabis cultivator based in Las Cruces. Adults 21 and
+              older with a valid government-issued photo ID can order flower, pre-rolls, vapes,
+              edibles, and concentrates online for same-day delivery, with an average ETA of{" "}
+              {site.delivery.avgEta}.
             </p>
           </Reveal>
         </div>

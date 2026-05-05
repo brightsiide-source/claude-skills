@@ -56,7 +56,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/account/"],
       })),
     ],
-    sitemap: "https://doorhash.com/sitemap.xml",
-    host: "https://doorhash.com",
+    sitemap: "https://doorhashnm.com/sitemap.xml",
+    host: "https://doorhashnm.com",
   };
 }

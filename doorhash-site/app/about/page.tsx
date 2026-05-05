@@ -4,7 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export const metadata = {
   title: { absolute: "About DoorHash — Founders, Mission & Don Verde Farms" },
   description:
-    "DoorHash is the retail and delivery arm of Don Verde Farms — a Southern New Mexico cultivator. No corporate money. Just a craft team obsessed with the plant.",
+    "DoorHash is the retail + delivery arm of Don Verde Farms — a Las Cruces, NM cannabis cultivator. No corporate money. A craft team obsessed with the plant.",
   alternates: { canonical: "/about" },
 };
 
@@ -41,7 +41,7 @@ export default function AboutPage() {
             <p className="text-white text-lg leading-relaxed text-pretty">
               <strong className="text-leaf-300">doorhash</strong> is a cannabis delivery service
               and (opening 2026) retail dispensary serving Southern New Mexico — including Las
-              Cruces, Mesilla, Sunland Park, Anthony, and Doña Ana. doorhash is the retail and
+              Cruces (zip 88007, with delivery within a 5 to 10 mile radius). doorhash is the retail and
               delivery arm of <strong>Don Verde Farms</strong>, an indoor cannabis cultivator
               based in Southern New Mexico. The company was founded by Mike, Javi, and Neal Lucas
               (a 20+ year cannabis cultivation veteran), and differentiates from competitors
