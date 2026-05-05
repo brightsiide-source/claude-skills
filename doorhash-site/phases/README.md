@@ -20,6 +20,16 @@ Machine-readable specs for GSD's `/gsd-discuss-phase` → `/gsd-plan-phase` → 
 - ✅ **Shipped** — deployed, in production
 - ⏸ **Paused** — partial work, can be resumed via `/gsd-resume-work`
 
+## Deferred (small, low-risk, do-when-you-have-time)
+
+These are scoped enough to skip a full phase spec but worth tracking so they don't get lost:
+
+- **Don Walker pre-rolls as menu sub-category** — Don Verde Farms ships an infused pre-roll sub-brand called Don Walker. Worth surfacing as its own category card on `/menu` and a tile slot in `FeaturedDrops`. Effort: ~2 hours.
+- **Cross-brand JSON-LD graph linkage** — link our `Organization.parentOrganization.@id` to Don Verde's `https://donverdefarms.com/#org` so AI engines see the same entity graph from either site. Effort: ~15 min.
+- **Founding date + license number on Organization schema** — once we have the official NM dispensary license number, populate `lib/site.ts` and the `Organization` JSON-LD. Effort: ~10 min.
+- **Replace inline `Logo.tsx` SVG with official asset** — currently an approximation; swap when brand team delivers vector file. Effort: ~5 min.
+- **Real photography swap** — once product/cultivation/team photos exist, replace emoji placeholders in `FeaturedDrops`, `FarmStory`, and `/about` team avatars. Effort: ~1 day.
+
 ## How to use
 
 In a Claude Code session inside `doorhash-site/`:
