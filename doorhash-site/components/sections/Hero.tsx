@@ -39,34 +39,54 @@ export function Hero() {
         className="absolute bottom-10 -left-10 w-[500px] h-[500px] rounded-full bg-leaf-700/40 blur-3xl"
         aria-hidden
       />
-      {/* Cannabis leaf silhouette — proper 7-blade leaf with pointed tips
-          and rounded bases. Straight up, no tilt. Mirrors the leaf accent
-          in the doorhash logo. Parallax-tracked. */}
+      {/* Cannabis leaf silhouette — proper 7-blade leaf with serrated
+          edges (the iconic cannabis sawtooth pattern), pointed tips, and
+          slender blades. Straight up, no tilt. Parallax-tracked. */}
       <motion.svg
         style={{ y: y3 }}
-        viewBox="-150 -260 300 320"
+        viewBox="-160 -300 320 360"
         aria-hidden
-        className="absolute -top-10 -right-20 lg:-right-4 w-[600px] h-[640px] lg:w-[780px] lg:h-[820px] text-leaf-300 opacity-50 pointer-events-none"
+        className="absolute -top-10 -right-16 lg:-right-4 w-[600px] h-[680px] lg:w-[800px] lg:h-[900px] text-leaf-300 opacity-55 pointer-events-none"
         fill="currentColor"
       >
-        {/* 7 blades fanning upward — center is longest, outers shortest */}
+        {/* 7 blades fanning upward, each with serrated edges */}
         {[
-          { angle: 0,   length: 240, width: 26 },
-          { angle: -28, length: 200, width: 24 },
-          { angle: 28,  length: 200, width: 24 },
-          { angle: -58, length: 150, width: 20 },
-          { angle: 58,  length: 150, width: 20 },
-          { angle: -88, length: 100, width: 16 },
-          { angle: 88,  length: 100, width: 16 },
-        ].map((b, i) => (
-          <path
-            key={i}
-            d={`M 0 0 Q -${b.width} -${b.length / 2} 0 -${b.length} Q ${b.width} -${b.length / 2} 0 0 Z`}
-            transform={`rotate(${b.angle})`}
-          />
-        ))}
+          { angle: 0,   length: 280, width: 28 },
+          { angle: -26, length: 245, width: 26 },
+          { angle: 26,  length: 245, width: 26 },
+          { angle: -55, length: 185, width: 22 },
+          { angle: 55,  length: 185, width: 22 },
+          { angle: -88, length: 115, width: 14 },
+          { angle: 88,  length: 115, width: 14 },
+        ].map((b, i) => {
+          // Generate serrated leaf-blade path:
+          // base → zigzag up the left edge → tip → zigzag down the right edge → close
+          const serrations = 9;
+          const pts: [number, number][] = [[0, 0]];
+          // Left edge (base → tip)
+          for (let s = 1; s <= serrations; s++) {
+            const t = s / (serrations + 1);
+            const y = -t * b.length;
+            const w = b.width * (1 - t * 0.92);
+            // valley (closer to spine), then peak (serration tip)
+            pts.push([-w * 0.45, y + 3]);
+            pts.push([-w, y]);
+          }
+          // Tip
+          pts.push([0, -b.length]);
+          // Right edge mirror (tip → base)
+          for (let s = serrations; s >= 1; s--) {
+            const t = s / (serrations + 1);
+            const y = -t * b.length;
+            const w = b.width * (1 - t * 0.92);
+            pts.push([w, y]);
+            pts.push([w * 0.45, y + 3]);
+          }
+          const d = "M " + pts.map((p) => p.join(" ")).join(" L ") + " Z";
+          return <path key={i} d={d} transform={`rotate(${b.angle})`} />;
+        })}
         {/* stem / petiole going down */}
-        <path d="M -3 0 L 3 0 L 2 55 L -2 55 Z" />
+        <path d="M -3 0 L 3 0 L 2 65 L -2 65 Z" />
       </motion.svg>
       <div
         className="absolute -top-20 right-1/3 w-64 h-64 rounded-full bg-gold-500/20 blur-3xl"
