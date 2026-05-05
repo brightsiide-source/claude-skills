@@ -39,11 +39,44 @@ export function Hero() {
         className="absolute bottom-10 -left-10 w-[500px] h-[500px] rounded-full bg-leaf-700/40 blur-3xl"
         aria-hidden
       />
-      <motion.div
+      {/* Giant abstract cannabis leaf silhouette — replaces the previous
+          geometric circle. Mirrors the leaf accent in the doorhash logo,
+          reads as botanical/brand not "tech startup." Very low opacity,
+          parallax-tracked, fades at the edges. */}
+      <motion.svg
         style={{ y: y3 }}
-        className="absolute top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full border border-leaf-400/20"
+        viewBox="0 0 600 600"
         aria-hidden
-      />
+        className="absolute -top-20 -right-32 lg:right-0 w-[700px] h-[700px] opacity-[0.07] mix-blend-screen pointer-events-none"
+        fill="none"
+      >
+        <defs>
+          <radialGradient id="leafFade" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#8dc63f" stopOpacity="0.9" />
+            <stop offset="70%" stopColor="#8dc63f" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#8dc63f" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        {/* 7-blade cannabis leaf — abstract, flowing, no hard edges */}
+        <g transform="translate(300 300)">
+          {[-75, -50, -25, 0, 25, 50, 75].map((angle, i) => {
+            const len = 220 - Math.abs(angle) * 1.4;
+            return (
+              <ellipse
+                key={i}
+                cx="0"
+                cy={-len / 2}
+                rx="22"
+                ry={len / 2}
+                fill="url(#leafFade)"
+                transform={`rotate(${angle})`}
+              />
+            );
+          })}
+          {/* center stem */}
+          <ellipse cx="0" cy="0" rx="3" ry="240" fill="url(#leafFade)" />
+        </g>
+      </motion.svg>
       <div
         className="absolute -top-20 right-1/3 w-64 h-64 rounded-full bg-gold-500/20 blur-3xl"
         aria-hidden
