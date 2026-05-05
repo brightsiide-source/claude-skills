@@ -120,16 +120,27 @@ Forest green gradient (leaf-700 → leaf-950 → black) is the signature hero/pa
 
 ---
 
-## [#05] Typography — DM Sans (working choice)
+## [#05] Typography — Outfit (revised from DM Sans)
 
-**Date:** 2026-04-30
-**Status:** Provisional
+**Date:** 2026-04-30 (revised same day after closer logo audit)
+**Status:** Locked
 
-**Context:** The doorhash logo wordmark reads as a geometric rounded sans (Gotham Rounded / DM Sans / Avenir Next Rounded family).
+**Context:** Initial pick was DM Sans (geometric grotesk family). On closer inspection of the doorhash logo wordmark, the lowercase `a` is single-story (no hat), `o`s are nearly perfect circles, and `r` has a fully smooth rounded terminal — features DM Sans doesn't quite hit. The logo reads as a more aggressively rounded geometric sans.
 
-**Decision:** Use **DM Sans** via `next/font/google` for now. Variable font weights 400–800. JetBrains Mono for any monospace needs.
+**Decision:** Switch to **Outfit** (Google Font, variable, 400–800). Outfit has the single-story `a`, near-circular `o`s, and smooth rounded terminals that match the logo. Drop-in replacement for DM Sans — same loading pattern via `next/font/google`. JetBrains Mono retained for monospace.
 
-**Alternatives:** Custom display font license (Druk, Söhne, Untitled Sans) — premium move but $$. Reserved for Phase 7+ if budget supports.
+**Alternatives considered:**
+- **Quicksand** — even more rounded but verges on playful/childish
+- **Nunito** — friendly rounded but feels casual, double-story `a`
+- **Mulish** — close but slightly less rounded
+- **Plus Jakarta Sans** — geometric premium but double-story `a`
+- **Sora** — geometric clean but no special edge over Outfit
+- **DM Sans** (original pick) — same family but slightly squarish, double-story `a`
+- Custom display font license (Druk, Söhne, Untitled Sans) — reserve for Phase 7+ when budget supports
+
+**Why Outfit:** Best free Google Font match for the doorhash logo's character. Used by Linear and similar premium-app brands. Variable font keeps bundle tight.
+
+**Files updated:** `app/layout.tsx` (next/font/google import + CSS var), `tailwind.config.ts` (theme reference), `components/Logo.tsx` (SVG fallback), `public/favicon.svg` + `public/og.svg` (SVG text font-family), `BRAND.md`.
 
 **Revisit when:** Brand budget allows licensing a distinctive display face.
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -8,9 +8,9 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { LocalBusinessJsonLd, OrganizationJsonLd, WebsiteJsonLd, DeliveryServiceJsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
 
-const dmSans = DM_Sans({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-outfit",
   display: "swap",
   weight: ["400", "500", "600", "700", "800"],
 });
@@ -82,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${jetbrains.variable}`}>
       <body className="bg-black text-white antialiased">
         <OrganizationJsonLd />
         <LocalBusinessJsonLd />

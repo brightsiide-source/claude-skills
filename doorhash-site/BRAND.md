@@ -142,7 +142,7 @@ Three rules to live by:
 
 | Use | Font | Notes |
 |---|---|---|
-| Display + body | **DM Sans** (variable, 400–800) | Loaded via `next/font/google` |
+| Display + body | **Outfit** (variable, 400–800) | Loaded via `next/font/google`. Chosen for its single-story `a` and near-circular `o`s — closest free Google Font match to the doorhash logo wordmark. |
 | Mono | **JetBrains Mono** | Rare — code samples, lot numbers |
 
 `text-display-1` clamps to 3rem→7.5rem with -0.04em letter-spacing. Defined in `tailwind.config.ts`.

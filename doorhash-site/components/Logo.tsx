@@ -21,7 +21,7 @@ export function Logo({ className, invert = false }: Props) {
       <text
         x="0"
         y="60"
-        fontFamily="DM Sans, system-ui, sans-serif"
+        fontFamily="Outfit, system-ui, sans-serif"
         fontSize="64"
         fontWeight="800"
         letterSpacing="-2"
@@ -32,7 +32,7 @@ export function Logo({ className, invert = false }: Props) {
       <text
         x="160"
         y="60"
-        fontFamily="DM Sans, system-ui, sans-serif"
+        fontFamily="Outfit, system-ui, sans-serif"
         fontSize="64"
         fontWeight="800"
         letterSpacing="-2"
@@ -66,7 +66,7 @@ export function LogoMark({ className }: { className?: string }) {
         x="32"
         y="44"
         textAnchor="middle"
-        fontFamily="DM Sans, system-ui, sans-serif"
+        fontFamily="Outfit, system-ui, sans-serif"
         fontSize="36"
         fontWeight="800"
         fill="#0a0a0a"
