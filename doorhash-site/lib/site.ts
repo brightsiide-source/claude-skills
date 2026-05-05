@@ -41,6 +41,7 @@ export const site = {
     avgEta: "30–55 min",
   },
   nav: [
+    { href: "/", label: "Home" },
     { href: "/menu", label: "Menu" },
     { href: "/delivery", label: "Delivery" },
     { href: "/locations", label: "Locations" },
