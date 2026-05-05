@@ -16,7 +16,7 @@ const steps = [
   {
     icon: MapPin,
     title: "Enter your delivery address",
-    body: "Visit doorhashnm.com and enter your delivery address. The site confirms whether your location is within the DoorHash service area in Las Cruces (Las Cruces).",
+    body: "Visit doorhashnm.com and enter your delivery address. The site confirms whether your location is within the DoorHash service area in Las Cruces (88007 + 5 to 10 mile radius).",
   },
   {
     icon: ShoppingCart,

@@ -294,16 +294,16 @@ Runtime SEO assets emit at build time: `app/sitemap.ts`, `app/robots.ts`, JSON-L
 
 ---
 
-## [#18] Domain — doorhashnm.com (doorhash.com unavailable)
+## [#18] Domain — doorhashnm.com (doorhashnm.com unavailable)
 
 **Date:** 2026-04-30
 **Status:** Locked
 
-**Context:** Owner holds **doorhashnm.com**. **doorhash.com** is registered to another party and not available for purchase as of this writing.
+**Context:** Owner holds **doorhashnm.com**. **doorhashnm.com** is registered to another party and not available for purchase as of this writing.
 
-**Decision:** Site canonical URL, OG tags, sitemap, robots, llms.txt, JSON-LD `@id` graph, and email aliases all use `doorhashnm.com`. Email aliases shifted from `@doorhash.com` to `@doorhashnm.com` (hello@, careers@, orders@, press@, partnerships@, compliance@).
+**Decision:** Site canonical URL, OG tags, sitemap, robots, llms.txt, JSON-LD `@id` graph, and email aliases all use `doorhashnm.com`. Email aliases shifted from `@doorhashnm.com` to `@doorhashnm.com` (hello@, careers@, orders@, press@, partnerships@, compliance@).
 
-**Watch for:** If `doorhash.com` becomes available later, swapping is a single `lib/site.ts` config change + a global find/replace + a 301 redirect from doorhashnm.com. Cheap to migrate; flag it as a reminder for the team to check periodically (every 6 months on `whois`).
+**Watch for:** If `doorhashnm.com` becomes available later, swapping is a single `lib/site.ts` config change + a global find/replace + a 301 redirect from doorhashnm.com. Cheap to migrate; flag it as a reminder for the team to check periodically (every 6 months on `whois`).
 
 ---
 
