@@ -171,6 +171,52 @@ Three rules to live by:
 **Closer to:** DoorDash, Caviar, Gopuff, modern Apple product pages
 **Not like:** Mango Cannabis, Eaze, Top Crop's "premier / exceptional / widest selection"
 
+## Sister-brand voice — doorhash + Don Verde Farms
+
+doorhash and Don Verde Farms are **voice cousins, not voice twins**. They share DNA but speak to different audiences. Get this wrong and the brands either feel like one diluted voice or two unrelated ones. Get it right and they reinforce each other.
+
+### Shared DNA — true on both sites
+
+- Short declarative sentences
+- Specific facts over vague claims (*"three indoor flower rooms in Las Cruces"* — not *"premium cultivation"*)
+- No hedging language ("we believe," "kind of," "may help")
+- No corporate-cannabis euphemisms
+- Anti-corporate posture: *"no outside capital, more than twenty years on the plant"*
+- Receipts over assertions: if a number can't be traced to a document, it doesn't go on a page
+
+### Where they diverge — voice splits
+
+| | **Don Verde Farms** (B2B / wholesale) | **doorhash** (B2C / retail + delivery) |
+|---|---|---|
+| Audience | Dispensary buyers and trade press | End customers ordering tonight |
+| Tone | Technical, factual, expert | App-coded, fast, confident |
+| Tagline | *"Elevate your standards."* | *"Speed. Discretion. Soul."* |
+| Headline rhythm | *"Three indoor flower rooms. Coco coir. Hand-tended."* | *"Top-shelf cannabis, at your door."* |
+| Vocabulary | Cultivation jargon (terps, phenotypes, COA, IPM, soilless) | Consumer cannabis vocabulary (vibe, drop, on the way) |
+| Energy | Master grower talking shop with a buyer | Delivery app you'd actually open at 9pm |
+| Punctuation | Periods. Stops. Confidence. | More commas, more flow, more rhythm. |
+
+### Quick test for any new copy
+
+When writing for either site, ask: *"Would the master grower say this, or would the delivery driver say this?"* The answer should match the audience. If both could plausibly say it, the line is brand-neutral and works on both — that's fine, but rare.
+
+### What never happens
+
+- ❌ Don Verde never sounds like a delivery app ("get the goods!")
+- ❌ doorhash never sounds like a wholesaler ("our cultivation methodology…")
+- ❌ Either brand using emoji as part of the brand voice (decorative on doorhash UI is fine; never inside body copy)
+- ❌ Either brand making health claims, dosage prescriptions, or anything implying medical efficacy
+
+### Example pairings
+
+The same idea, expressed for each audience:
+
+| Idea | Don Verde voice | doorhash voice |
+|---|---|---|
+| The flower is fresh | *"Cured 21 days. Hand-trimmed before packaging."* | *"Harvested 12 days ago. At your door tonight."* |
+| We grow it ourselves | *"Three indoor rooms. Soilless coco coir. Hand-tended."* | *"From our farm to your door — we grow what we sell."* |
+| The product tested clean | *"Every batch lab-tested. COA on every package."* | *"Every drop is lab-tested. We don't ship what we wouldn't smoke."* |
+
 ## Photography direction (TBD — placeholder behavior)
 
 Until real photography lands, the site uses:

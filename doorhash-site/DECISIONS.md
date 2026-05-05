@@ -234,6 +234,36 @@ Runtime SEO assets emit at build time: `app/sitemap.ts`, `app/robots.ts`, JSON-L
 
 ---
 
+## [#17] Sister-brand voice alignment — Don Verde Farms (B2B) vs doorhash (B2C)
+
+**Date:** 2026-04-30
+**Status:** Documented in BRAND.md
+
+**Context:** Don Verde Farms is the parent (wholesale, B2B). doorhash is the child (retail + delivery, B2C). The two brands need to feel related but distinct — voice cousins, not voice twins. After reviewing the Don Verde Farms site JSON-LD, we now have a clear picture of their voice and can deliberately position doorhash's voice in relation.
+
+**Decision:** Lock in two voice rules:
+
+1. **Shared DNA** (true on both): short declarative sentences, specific facts over vague claims, no hedging, anti-corporate posture, receipts over assertions.
+2. **Distinct personality** (deliberately different):
+   - Don Verde = master grower talking to a buyer (technical, factual, cultivation jargon)
+   - doorhash = delivery app you'd actually open at 9pm (app-coded, consumer vocabulary, more rhythm)
+
+Quick test for any new copy: *"Would the master grower say this, or would the delivery driver say this?"* — answer should match the audience.
+
+**Alternatives considered:**
+- Identical voice on both sites — felt like one diluted brand, hides the wholesaler/retailer relationship
+- Totally separate voices with no shared DNA — felt like two unrelated brands, loses the parent-child credibility transfer
+- Don Verde primary voice on doorhash — would feel B2B-stilted to consumers
+- Cannabis-industry-default voice on both — generic, indistinguishable from Mango or Top Crop
+
+**Why this:** Anchors the brands as a *family* with a clear hierarchy (parent + child) rather than two competing voices. Lets doorhash get away with being playful and app-coded *because* Don Verde is technical and rigorous behind it.
+
+**Documentation:** Full ruleset and example pairings in [BRAND.md → "Sister-brand voice"](./BRAND.md#sister-brand-voice--doorhash--don-verde-farms).
+
+**Revisit when:** A third sister brand launches, or if Don Verde repositions for a new audience.
+
+---
+
 ## [#16] AI SEO — separate optimization pass beyond traditional SEO
 
 **Date:** 2026-04-30
