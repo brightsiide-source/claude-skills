@@ -3,13 +3,24 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MapPin, Clock, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Marquee } from "@/components/ui/Marquee";
 import { strainTickerWords } from "@/lib/products";
 import { site } from "@/lib/site";
 
 export function Hero() {
   const [address, setAddress] = useState("");
+  // Mobile perf: skip expensive parallax + extra blur layers on small viewports.
+  // Blurred orbs being scroll-animated is the worst case for mobile GPUs.
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -28,25 +39,28 @@ export function Hero() {
       {/* Layered leaf-mesh + gradient backdrop */}
       <div className="absolute inset-0 bg-leaf-mesh" />
 
-      {/* Floating decorative leaf orbs — bigger, brighter */}
+      {/* Floating decorative leaf orbs.
+          Desktop: parallax y + full blur. Mobile: static (no scroll repaint
+          on a blurred layer) + reduced blur radius. Second orb hides on
+          mobile entirely to drop a paint layer. */}
       <motion.div
-        style={{ y: y1 }}
-        className="absolute top-20 -right-10 w-96 h-96 rounded-full bg-leaf-500/30 blur-3xl"
+        style={{ y: isDesktop ? y1 : 0 }}
+        className="absolute top-20 -right-10 w-72 h-72 md:w-96 md:h-96 rounded-full bg-leaf-500/30 blur-2xl md:blur-3xl will-change-transform"
         aria-hidden
       />
       <motion.div
-        style={{ y: y2 }}
-        className="absolute bottom-10 -left-10 w-[500px] h-[500px] rounded-full bg-leaf-700/40 blur-3xl"
+        style={{ y: isDesktop ? y2 : 0 }}
+        className="hidden md:block absolute bottom-10 -left-10 w-[500px] h-[500px] rounded-full bg-leaf-700/40 blur-3xl will-change-transform"
         aria-hidden
       />
       {/* Cannabis leaf silhouette — proper 7-blade leaf with pointed tips
           and rounded bases. Straight up, no tilt. Mirrors the leaf accent
           in the doorhash logo. Parallax-tracked. */}
       <motion.svg
-        style={{ y: y3 }}
+        style={{ y: isDesktop ? y3 : 0 }}
         viewBox="-150 -260 300 320"
         aria-hidden
-        className="absolute -top-10 -right-20 lg:-right-4 w-[600px] h-[640px] lg:w-[780px] lg:h-[820px] text-leaf-300 opacity-50 pointer-events-none"
+        className="absolute -top-10 -right-20 lg:-right-4 w-[600px] h-[640px] lg:w-[780px] lg:h-[820px] text-leaf-300 opacity-50 pointer-events-none will-change-transform"
         fill="currentColor"
       >
         {/* 7 blades fanning upward — center is longest, outers shortest */}
@@ -69,7 +83,7 @@ export function Hero() {
         <path d="M -3 0 L 3 0 L 2 55 L -2 55 Z" />
       </motion.svg>
       <div
-        className="absolute -top-20 right-1/3 w-64 h-64 rounded-full bg-gold-500/20 blur-3xl"
+        className="hidden md:block absolute -top-20 right-1/3 w-64 h-64 rounded-full bg-gold-500/20 blur-3xl"
         aria-hidden
       />
 
