@@ -39,46 +39,34 @@ export function Hero() {
         className="absolute bottom-10 -left-10 w-[500px] h-[500px] rounded-full bg-leaf-700/40 blur-3xl"
         aria-hidden
       />
-      {/* Giant abstract cannabis leaf silhouette — replaces the previous
-          geometric circle. Mirrors the leaf accent in the doorhash logo,
-          reads as botanical/brand not "tech startup." Light leaf tone
-          on dark green, visible but not loud. Parallax-tracked. */}
+      {/* Cannabis leaf silhouette — proper 7-blade leaf with pointed tips
+          and rounded bases. Straight up, no tilt. Mirrors the leaf accent
+          in the doorhash logo. Parallax-tracked. */}
       <motion.svg
         style={{ y: y3 }}
-        viewBox="0 0 600 600"
+        viewBox="-150 -260 300 320"
         aria-hidden
-        className="absolute -top-10 -right-24 lg:-right-10 w-[640px] h-[640px] lg:w-[820px] lg:h-[820px] opacity-25 pointer-events-none"
-        fill="none"
+        className="absolute -top-10 -right-20 lg:-right-4 w-[600px] h-[640px] lg:w-[780px] lg:h-[820px] text-leaf-300 opacity-50 pointer-events-none"
+        fill="currentColor"
       >
-        <defs>
-          <radialGradient id="leafFade" cx="50%" cy="50%" r="55%">
-            <stop offset="0%" stopColor="#cfe9a3" stopOpacity="1" />
-            <stop offset="60%" stopColor="#b3da72" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#8dc63f" stopOpacity="0" />
-          </radialGradient>
-          <filter id="leafBlur" x="-10%" y="-10%" width="120%" height="120%">
-            <feGaussianBlur stdDeviation="1.2" />
-          </filter>
-        </defs>
-        {/* 7-blade cannabis leaf — abstract, flowing, no hard edges */}
-        <g transform="translate(300 300) rotate(-12)" filter="url(#leafBlur)">
-          {[-75, -50, -25, 0, 25, 50, 75].map((angle, i) => {
-            const len = 230 - Math.abs(angle) * 1.4;
-            return (
-              <ellipse
-                key={i}
-                cx="0"
-                cy={-len / 2}
-                rx="24"
-                ry={len / 2}
-                fill="url(#leafFade)"
-                transform={`rotate(${angle})`}
-              />
-            );
-          })}
-          {/* center stem */}
-          <ellipse cx="0" cy="0" rx="3" ry="250" fill="url(#leafFade)" />
-        </g>
+        {/* 7 blades fanning upward — center is longest, outers shortest */}
+        {[
+          { angle: 0,   length: 240, width: 26 },
+          { angle: -28, length: 200, width: 24 },
+          { angle: 28,  length: 200, width: 24 },
+          { angle: -58, length: 150, width: 20 },
+          { angle: 58,  length: 150, width: 20 },
+          { angle: -88, length: 100, width: 16 },
+          { angle: 88,  length: 100, width: 16 },
+        ].map((b, i) => (
+          <path
+            key={i}
+            d={`M 0 0 Q -${b.width} -${b.length / 2} 0 -${b.length} Q ${b.width} -${b.length / 2} 0 0 Z`}
+            transform={`rotate(${b.angle})`}
+          />
+        ))}
+        {/* stem / petiole going down */}
+        <path d="M -3 0 L 3 0 L 2 55 L -2 55 Z" />
       </motion.svg>
       <div
         className="absolute -top-20 right-1/3 w-64 h-64 rounded-full bg-gold-500/20 blur-3xl"
