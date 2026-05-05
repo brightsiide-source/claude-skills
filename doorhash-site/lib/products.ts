@@ -9,13 +9,19 @@ export type Product = {
   hue: string; // accent gradient
   emoji: string;
   badge?: string;
+  // Documentary metadata — show on the card to signal craft + provenance.
+  // Only populated for Don Verde house strains; partner brands leave blank.
+  tastingNotes?: string[];      // e.g., ["citrus", "cherry", "cream"]
+  harvestedDaysAgo?: number;    // e.g., 12  → "12d from harvest"
+  lot?: string;                 // e.g., "DV-04-26"
 };
 
 // Featured product catalog used for floating tiles on the homepage.
 // Strain names match the real Don Verde Farms cultivation catalog (rotates
 // quarterly). Partner brands match what doorhash actually carries on the
-// Dutchie menu. THC %s and prices are illustrative placeholders until live
-// inventory wires through — see `lib/site.ts` for the Dutchie embed URL.
+// Dutchie menu. THC %s, prices, lot numbers, and harvest dates are
+// illustrative placeholders until live inventory wires through —
+// see `lib/site.ts` for the Dutchie embed URL.
 export const featuredProducts: Product[] = [
   {
     id: "dv-lemon-cherry-gelato",
@@ -28,6 +34,9 @@ export const featuredProducts: Product[] = [
     hue: "from-yellow-400 to-rose-500",
     emoji: "🍋",
     badge: "Top Shelf",
+    tastingNotes: ["citrus", "cherry", "cream"],
+    harvestedDaysAgo: 12,
+    lot: "DV-04-26",
   },
   {
     id: "dv-runtz-rs11",
@@ -40,6 +49,9 @@ export const featuredProducts: Product[] = [
     hue: "from-purple-500 to-pink-500",
     emoji: "🍇",
     badge: "House",
+    tastingNotes: ["candy", "gas", "tropical"],
+    harvestedDaysAgo: 18,
+    lot: "DV-03-26",
   },
   {
     id: "dv-tropicana-cherry",
@@ -52,6 +64,9 @@ export const featuredProducts: Product[] = [
     hue: "from-orange-400 to-red-500",
     emoji: "🍒",
     badge: "House",
+    tastingNotes: ["orange", "cherry", "zest"],
+    harvestedDaysAgo: 21,
+    lot: "DV-02-26",
   },
   {
     id: "dv-french-macarons",
@@ -64,6 +79,9 @@ export const featuredProducts: Product[] = [
     hue: "from-pink-300 to-fuchsia-500",
     emoji: "🌸",
     badge: "Drop",
+    tastingNotes: ["vanilla", "almond", "berry"],
+    harvestedDaysAgo: 9,
+    lot: "DV-05-26",
   },
   {
     id: "dv-julius-cesar",
@@ -75,6 +93,9 @@ export const featuredProducts: Product[] = [
     price: 48,
     hue: "from-amber-400 to-yellow-600",
     emoji: "👑",
+    tastingNotes: ["earth", "spice", "citrus"],
+    harvestedDaysAgo: 24,
+    lot: "DV-01-26",
   },
   {
     id: "kurvana-aspd-og",
@@ -86,6 +107,7 @@ export const featuredProducts: Product[] = [
     price: 60,
     hue: "from-amber-400 to-orange-500",
     emoji: "💨",
+    tastingNotes: ["pine", "kush", "earth"],
   },
   {
     id: "claybourne-blueberry",
@@ -97,6 +119,7 @@ export const featuredProducts: Product[] = [
     price: 35,
     hue: "from-sky-400 to-indigo-500",
     emoji: "🚀",
+    tastingNotes: ["blueberry", "cake", "sweet"],
   },
   {
     id: "emerald-rso-1g",
@@ -109,6 +132,7 @@ export const featuredProducts: Product[] = [
     hue: "from-emerald-500 to-teal-600",
     emoji: "🟢",
     badge: "Med",
+    tastingNotes: ["earth", "gas", "full spectrum"],
   },
 ];
 

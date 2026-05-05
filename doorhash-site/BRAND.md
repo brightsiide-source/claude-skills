@@ -217,6 +217,55 @@ The same idea, expressed for each audience:
 | We grow it ourselves | *"Three indoor rooms. Soilless coco coir. Hand-tended."* | *"From our farm to your door — we grow what we sell."* |
 | The product tested clean | *"Every batch lab-tested. COA on every package."* | *"Every drop is lab-tested. We don't ship what we wouldn't smoke."* |
 
+## Anti-patterns — what doorhash does NOT do
+
+The category is full of pick-me energy. doorhash's brand is built as the deliberate inverse. Every choice on this list is intentional — drift toward any of them and the brand starts looking like Mango Cannabis instead of itself.
+
+### Voice anti-patterns
+
+- ❌ **Exclamation points in marketing copy.** Period. (One exception: error states like "Order failed!" — never headlines, taglines, or CTAs.)
+- ❌ **"Best deals in town"** / **"Lowest prices"** / **"Crazy savings"** / **"Mango Madness"-style** deal-spam framing.
+- ❌ **"Welcome to our family"** / **"Your trusted dispensary"** / **"Local family-owned"** opener clichés.
+- ❌ **Hedging language**: "we believe," "kind of," "may help," "potentially," "we like to think."
+- ❌ **Vague claims**: *"fast delivery," "premium quality," "wide selection"* — replace with specific facts and numbers.
+- ❌ **Cannabis euphemisms** ("plant medicine," "bud," "smoke" used as adjective). Just call it cannabis or flower.
+- ❌ **Health claims or dose prescriptions** beyond manufacturer guidance. Never "helps with anxiety / pain / sleep" — that's an FDA boundary and a NM compliance risk.
+
+### Visual anti-patterns
+
+- ❌ **Tropical / mango / island theming.** That's Mango Cannabis's territory. Our category cue is the leaf, not the fruit.
+- ❌ **Cream / beige / warm-tinted off-whites.** Palette is black, white, leaf-500 green, gold-500 — period.
+- ❌ **Stock photos of smiling people, leaf macros from Shutterstock, "diversity in business" stock.** Real product, real people, real cultivation only.
+- ❌ **Sticker-style deal callouts.** No "25% OFF!" starbursts, no banner pop-ups, no "limited time!" blinking text.
+- ❌ **Multi-color CTAs.** Primary CTA is leaf-500 with black text. Secondary is bordered or glass. Never red, blue, orange, or rainbow gradient.
+
+### IA / SEO anti-patterns
+
+- ❌ **Doorway pages for nearby cities we don't serve.** Mango runs ~10 sub-pages: "near Anthony NM," "near Santa Teresa NM," "near Mesquite NM," "dispensary El Paso near me." That's SEO carpet-bombing — Google's penalized this since 2015. doorhash's tight Las Cruces 88007 + 5–10 mile radius is a *moat*, not a limitation. Don't pretend we serve cities we can't reach in 30 min.
+- ❌ **Hours bragging.** *"Open 7am to midnight!"* signals a brand that competes on availability because it can't compete on product. We don't compete on hours.
+- ❌ **Size bragging.** *"9,000 square foot superstore!"* — that's Walmart positioning. Boutique > big.
+- ❌ **Multi-funnel sub-page proliferation.** One canonical menu, one canonical delivery page, one canonical rewards page. Don't fragment into "deals page" vs "menu page" vs "weekly specials page."
+
+### UX anti-patterns
+
+- ❌ **Pop-up modals for newsletter signup or "first-time discount."** Inline forms only.
+- ❌ **Live chat widget bottom-right.** Adds noise, looks needy. Use a real contact page.
+- ❌ **Sticky banner countdown timers** — "Sale ends in 02:14:33." That's e-commerce theater. We don't sell on urgency.
+- ❌ **"As seen on" / "Featured in" press strips with logos we haven't actually earned.** No fake credibility.
+- ❌ **Auto-playing video with sound.** Ever.
+
+### What we do *instead*
+
+For every anti-pattern above, the inverse is the brand:
+
+- Specific facts over hype (*"30 to 55 min average ETA"* not *"FAST DELIVERY!"*)
+- One leaf-green CTA per moment, repeated consistently
+- Real product, real people, real cultivation imagery (when shot)
+- Tight zone, deep brand — not wide zone, shallow brand
+- Restraint — confidence reads quietly
+
+If you ever feel a copy line or design choice tipping toward Mango's energy, kill it. That's the test.
+
 ## Photography direction (TBD — placeholder behavior)
 
 Until real photography lands, the site uses:

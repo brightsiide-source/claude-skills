@@ -77,13 +77,28 @@ export function FeaturedDrops() {
                       <span className="uppercase tracking-wider">{p.brand}</span>
                       <span className="text-leaf-300 font-semibold">{p.strain}</span>
                     </div>
-                    <h3 className="font-display text-white text-xl font-bold leading-tight mb-3 text-balance">
+                    <h3 className="font-display text-white text-xl font-bold leading-tight mb-2 text-balance">
                       {p.name}
                     </h3>
+                    {p.tastingNotes && p.tastingNotes.length > 0 && (
+                      <div className="text-[10px] uppercase tracking-[0.18em] text-white/50 mb-3 font-mono">
+                        {p.tastingNotes.join(" · ")}
+                      </div>
+                    )}
                     <div className="flex items-center justify-between">
-                      <span className="text-white/65 text-sm">{p.thc} THC</span>
-                      <span className="text-white font-bold">${p.price}</span>
+                      <span className="text-white/65 text-sm tabular-nums">
+                        {p.thc} THC
+                        {typeof p.harvestedDaysAgo === "number" && (
+                          <span className="text-leaf-300/70"> · {p.harvestedDaysAgo}d</span>
+                        )}
+                      </span>
+                      <span className="text-white font-bold tabular-nums">${p.price}</span>
                     </div>
+                    {p.lot && (
+                      <div className="mt-2 pt-2 border-t border-white/5 text-[10px] font-mono text-white/40 uppercase tracking-[0.15em]">
+                        Lot {p.lot}
+                      </div>
+                    )}
                   </div>
                 </div>
               </TiltCard>

@@ -116,24 +116,24 @@ export function Hero() {
           </Link>
         </motion.form>
 
-        {/* Trust strip */}
+        {/* Trust strip — specific commitments, no vague claims */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-10 flex flex-wrap gap-6 text-sm text-white/70"
+          className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/75"
         >
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4 text-leaf-300" />
-            {site.delivery.avgEta} delivery
+            {site.delivery.avgEta} average ETA, every order
           </span>
           <span className="inline-flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-leaf-300" />
-            Discreet packaging
+            Lab-tested · COA on every package
           </span>
           <span className="inline-flex items-center gap-2">
-            <span className="text-gold-400">●</span>
-            Free over ${site.delivery.freeDeliveryOver}
+            <span className="text-gold-400 text-xs">●</span>
+            Free over ${site.delivery.freeDeliveryOver} · no surge pricing
           </span>
         </motion.div>
       </motion.div>
