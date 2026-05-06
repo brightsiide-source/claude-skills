@@ -785,3 +785,21 @@ section { padding: clamp(72px, 9vw, 130px) 0; position: relative; }
   .site-header, .site-footer, .fab, .cta-block, .scroll-progress, .marquee { display: none !important; }
   body { color: #000; background: #fff; }
 }
+
+/* ---------- HARDENING / FALLBACKS ---------- */
+/* Card stack: collapse to a single static card on mobile so the 3D
+   stack never overlaps awkwardly on small screens. */
+@media (max-width: 720px) {
+  .card-stack { aspect-ratio: auto; max-width: 100%; }
+  .card-stack__card:nth-child(2),
+  .card-stack__card:nth-child(3) { display: none; }
+  .card-stack__card:nth-child(1) { position: relative; transform: none; }
+}
+
+/* Defensive: any inline svg without explicit dims gets capped. */
+.btn svg, .nav-links svg, .hero-meta svg, .service__icon svg,
+.service__more svg, .area svg, .marquee__item svg,
+.contact-card svg, .feature-card ul li svg, .quote svg,
+.process-step svg, .card-stack__icon svg, .nav-toggle svg {
+  max-width: 100%; max-height: 100%;
+}
