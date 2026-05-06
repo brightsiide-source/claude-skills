@@ -14,7 +14,9 @@
 <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/assets/images/favicon.svg" />
 <link rel="manifest" href="/manifest.webmanifest" />
-<link rel="preload" as="image" href="/assets/images/hero-trees.svg" />
+<link rel="preload" as="image" href="/assets/images/hero-bg.svg" />
+<link rel="preload" as="image" href="/assets/images/hero-mid.svg" />
+<link rel="preload" as="image" href="/assets/images/hero-front.svg" />
 <link rel="stylesheet" href="/assets/css/styles.css" />
 
 <!-- Open Graph -->
@@ -175,6 +177,8 @@
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 
+<div class="scroll-progress" aria-hidden="true"></div>
+
 <header class="site-header">
   <div class="container nav" aria-label="Primary">
     <a class="brand" href="/" aria-label="Tree Frogs home">
@@ -196,13 +200,19 @@
 <main id="main">
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-title">
+    <div class="aurora" aria-hidden="true">
+      <div class="aurora__blob aurora__blob--1"></div>
+      <div class="aurora__blob aurora__blob--2"></div>
+      <div class="aurora__blob aurora__blob--3"></div>
+    </div>
+    <div class="grain" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="reveal">
         <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Quad Cities Arborists · Since 2008</span>
         <h1 id="hero-title">Tree care that <span class="accent">leaves your yard better</span> than we found it.</h1>
         <p class="hero-lede">From precision pruning to full removals and round-the-clock storm response, Tree Frogs delivers safe, certified tree work across Moline, Davenport, Bettendorf, and the surrounding communities.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary btn-lg" href="/contact.html">Get a Free Quote</a>
+          <a class="btn btn-primary btn-lg btn-magnetic" href="/contact.html">Get a Free Quote</a>
           <a class="btn btn-secondary btn-lg" href="tel:+13095550137" aria-label="Call Tree Frogs at (309) 555-0137">Call (309) 555-0137</a>
         </div>
         <div class="hero-meta" aria-label="Trust signals">
@@ -211,11 +221,110 @@
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12l3 3 7-8M14 13l3 3 4-5"/></svg>Licensed & fully insured</span>
         </div>
       </div>
-      <div class="hero-art reveal" data-delay="2" aria-hidden="false" role="img" aria-label="Illustration of a green tree frog perched on a forest branch">
-        <img src="/assets/images/hero-trees.svg" alt="" loading="eager" decoding="async" width="800" height="600" />
+      <div class="hero-stage reveal" data-delay="2" role="img" aria-label="Layered illustration of a moonlit forest with a tree frog mascot">
+        <div class="hero-layer hero-layer--bg">
+          <img src="/assets/images/hero-bg.svg" alt="" loading="eager" decoding="async" width="800" height="600" />
+        </div>
+        <div class="hero-layer hero-layer--glow" aria-hidden="true"></div>
+        <div class="hero-layer hero-layer--mid">
+          <img src="/assets/images/hero-mid.svg" alt="" loading="eager" decoding="async" width="800" height="600" />
+        </div>
+        <div class="hero-layer hero-layer--front">
+          <img src="/assets/images/hero-front.svg" alt="" loading="eager" decoding="async" width="800" height="600" />
+        </div>
+        <span class="hero-chip hero-chip--1" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l3 3 7-8M14 13l3 3 4-5"/></svg>
+          ANSI A300
+        </span>
+        <span class="hero-chip hero-chip--2" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          24/7
+        </span>
+        <span class="hero-chip hero-chip--3" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke-linejoin="round"/></svg>
+          4.9 ★
+        </span>
         <div class="hero-badge" aria-label="24/7 emergency storm response">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v6m0 8v6m10-10h-6m-8 0H2m15.5-7.5l-4.2 4.2m-6.6 6.6L2.5 19.5m0-15l4.2 4.2m6.6 6.6l4.2 4.2"/></svg>
-          <div>24/7 Storm Response<small>Average dispatch in 60 minutes</small></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          <div>Storm Response<small>Avg dispatch · 60 min</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE: areas served ticker -->
+  <div class="marquee marquee--dark" aria-label="Service areas">
+    <div class="marquee__inner">
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Moline, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Davenport, IA</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Bettendorf, IA</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Milan, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Geneseo, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Kewanee, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Annawan, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Moline, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Davenport, IA</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Bettendorf, IA</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Milan, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Geneseo, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Kewanee, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+      <span class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-7 8-13a8 8 0 10-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>Annawan, IL</span>
+      <span class="marquee__dot" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <!-- BENTO STATS -->
+  <section class="bg-black" aria-labelledby="stats-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span>By the numbers</span>
+        <h2 id="stats-title">Built on 16 years of climbing.</h2>
+        <p>Real numbers from real jobs across the Quad Cities and Western Illinois.</p>
+      </header>
+      <div class="bento">
+        <div class="bento-card b-1 reveal">
+          <div class="bento-orb" style="top:-40px; right:-40px; width:280px; height:280px; background: radial-gradient(closest-side, rgba(58,156,108,0.55), transparent);"></div>
+          <span class="stat" data-count="16" data-suffix="+">0+</span>
+          <span class="stat-label">Years climbing</span>
+          <p style="margin-top:18px;">Founded in 2008 by a former municipal arborist who got tired of seeing trees butchered.</p>
+        </div>
+        <div class="bento-card bento-card--accent b-2 reveal" data-delay="1">
+          <span class="stat" data-count="187">0</span>
+          <span class="stat-label">5-star reviews</span>
+        </div>
+        <div class="bento-card b-3 reveal" data-delay="2">
+          <span class="stat" data-count="4.9" data-decimals="1">0.0</span>
+          <span class="stat-label">Average rating</span>
+        </div>
+        <div class="bento-card b-4 reveal" data-delay="3">
+          <span class="stat" data-count="60" data-suffix=" min">0</span>
+          <span class="stat-label">Storm dispatch</span>
+        </div>
+        <div class="bento-card bento-card--feature b-5 reveal">
+          <div>
+            <h3 style="margin-bottom:8px;">Licensed, insured, and ANSI-trained</h3>
+            <p>Every climber on every job. We carry full general liability and workers' comp coverage and follow ANSI A300 pruning + Z133 safety standards on every cut.</p>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;">
+            <span style="font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; border-radius:999px; background:var(--silver-100); color:var(--ink); border:1px solid var(--hairline);">ISA Certified</span>
+            <span style="font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; border-radius:999px; background:var(--silver-100); color:var(--ink); border:1px solid var(--hairline);">ANSI A300</span>
+            <span style="font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; border-radius:999px; background:var(--silver-100); color:var(--ink); border:1px solid var(--hairline);">Z133 Safety</span>
+            <span style="font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; border-radius:999px; background:var(--silver-100); color:var(--ink); border:1px solid var(--hairline);">Fully Insured</span>
+          </div>
         </div>
       </div>
     </div>
@@ -230,7 +339,7 @@
         <p>Six core services delivered by trained climbers using modern equipment and ANSI-compliant safety practices.</p>
       </header>
       <div class="grid">
-        <article class="card reveal">
+        <article class="card tilt reveal">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V10M12 10c-3 0-6-2-6-5 0 0 3-1 6 2 3-3 6-2 6-2 0 3-3 5-6 5zM7 22h10"/></svg></span>
           <h3>Tree Trimming & Pruning</h3>
           <p>Strategic crown thinning, deadwood removal, and structural pruning to keep trees healthy, safe, and beautifully shaped.</p>
@@ -239,7 +348,7 @@
           </ul>
         </article>
 
-        <article class="card reveal" data-delay="1">
+        <article class="card tilt reveal" data-delay="1">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l8-8M14 4l6 6-3 3-6-6 3-3zM10 8l6 6"/></svg></span>
           <h3>Tree Removal</h3>
           <p>Hazardous, dead, or unwanted trees taken down safely — including tight lots, near power lines, and over structures.</p>
@@ -248,7 +357,7 @@
           </ul>
         </article>
 
-        <article class="card reveal" data-delay="2">
+        <article class="card tilt reveal" data-delay="2">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></span>
           <h3>Stump Grinding</h3>
           <p>Grind below grade, backfill with mulch, and reclaim your yard. Single stumps to whole-lot grindouts.</p>
@@ -257,7 +366,7 @@
           </ul>
         </article>
 
-        <article class="card reveal" data-delay="3">
+        <article class="card tilt reveal" data-delay="3">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
           <h3>24/7 Storm Response</h3>
           <p>Trees down? Limbs on the roof? We dispatch crews around the clock for safe, fast emergency cleanup.</p>
@@ -266,7 +375,7 @@
           </ul>
         </article>
 
-        <article class="card reveal" data-delay="1">
+        <article class="card tilt reveal" data-delay="1">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M5 20V8l7-5 7 5v12M9 20v-6h6v6"/></svg></span>
           <h3>Lot & Land Clearing</h3>
           <p>Build pads, fence lines, pasture, and view corridors cleared with minimal site disruption and full debris haul-off.</p>
@@ -275,7 +384,7 @@
           </ul>
         </article>
 
-        <article class="card reveal" data-delay="2">
+        <article class="card tilt reveal" data-delay="2">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c4-4 12-4 16 0M4 18c4-4 12-4 16 0M4 6c4-4 12-4 16 0"/></svg></span>
           <h3>Cabling & Bracing</h3>
           <p>Save your favorite mature trees. We install hardware to support weak unions and reduce future failure risk.</p>
