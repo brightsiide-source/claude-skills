@@ -1,0 +1,17 @@
+{
+  "name": "Tree Frogs Tree Service",
+  "short_name": "Tree Frogs",
+  "description": "Professional tree cutting, trimming, and removal serving the Quad Cities and Western Illinois.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b3d2e",
+  "theme_color": "#0b3d2e",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

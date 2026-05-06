@@ -1,0 +1,72 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(self)"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+  from = "/services/*"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/areas/moline"
+  to = "/service-areas/moline-il.html"
+  status = 301
+
+[[redirects]]
+  from = "/areas/davenport"
+  to = "/service-areas/davenport-ia.html"
+  status = 301
+
+[[redirects]]
+  from = "/areas/bettendorf"
+  to = "/service-areas/bettendorf-ia.html"
+  status = 301
+
+[[redirects]]
+  from = "/areas/milan"
+  to = "/service-areas/milan-il.html"
+  status = 301
+
+[[redirects]]
+  from = "/areas/geneseo"
+  to = "/service-areas/geneseo-il.html"
+  status = 301
+
+[[redirects]]
+  from = "/areas/kewanee"
+  to = "/service-areas/kewanee-il.html"
+  status = 301
+
+[[redirects]]
+  from = "/areas/annawan"
+  to = "/service-areas/annawan-il.html"
+  status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

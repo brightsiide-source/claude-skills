@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Stylized illustration of forest canopy with a tree frog mascot" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b3d2e"/>
+      <stop offset="60%" stop-color="#125c44"/>
+      <stop offset="100%" stop-color="#1f7a3a"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="80%" cy="20%" r="35%">
+      <stop offset="0%" stop-color="#ffe28a" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffe28a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="t1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9ee493"/>
+      <stop offset="100%" stop-color="#246b3a"/>
+    </linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7ed957"/>
+      <stop offset="100%" stop-color="#1c5a30"/>
+    </linearGradient>
+    <radialGradient id="frog" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#9ee493"/>
+      <stop offset="100%" stop-color="#1f7a3a"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#sky)"/>
+  <rect width="800" height="600" fill="url(#sun)"/>
+
+  <!-- Distant mountains -->
+  <path d="M0 380 L120 300 L220 360 L340 280 L460 360 L600 300 L720 360 L800 320 L800 600 L0 600 Z" fill="#0a3327" opacity="0.7"/>
+
+  <!-- Trees back layer -->
+  <g opacity="0.8">
+    <ellipse cx="120" cy="380" rx="80" ry="100" fill="url(#t1)"/>
+    <ellipse cx="260" cy="360" rx="90" ry="120" fill="url(#t2)"/>
+    <ellipse cx="430" cy="380" rx="100" ry="110" fill="url(#t1)"/>
+    <ellipse cx="600" cy="360" rx="95" ry="120" fill="url(#t2)"/>
+    <ellipse cx="740" cy="390" rx="80" ry="100" fill="url(#t1)"/>
+  </g>
+
+  <!-- Foreground branch -->
+  <path d="M-20 470 C 200 430, 400 500, 820 440" stroke="#3a2418" stroke-width="22" fill="none" stroke-linecap="round"/>
+  <path d="M120 460 C 160 420, 200 410, 240 430" stroke="#3a2418" stroke-width="10" fill="none" stroke-linecap="round"/>
+
+  <!-- Leaves on branch -->
+  <g fill="#7ed957">
+    <ellipse cx="60" cy="455" rx="22" ry="10" transform="rotate(-20 60 455)"/>
+    <ellipse cx="160" cy="438" rx="22" ry="10" transform="rotate(-25 160 438)"/>
+    <ellipse cx="320" cy="468" rx="22" ry="10" transform="rotate(-10 320 468)"/>
+    <ellipse cx="500" cy="478" rx="22" ry="10" transform="rotate(-15 500 478)"/>
+    <ellipse cx="700" cy="455" rx="22" ry="10" transform="rotate(-22 700 455)"/>
+  </g>
+
+  <!-- Tree frog mascot -->
+  <g transform="translate(420 380)">
+    <ellipse cx="0" cy="40" rx="70" ry="50" fill="url(#frog)"/>
+    <circle cx="-30" cy="-5" r="26" fill="url(#frog)"/>
+    <circle cx="30" cy="-5" r="26" fill="url(#frog)"/>
+    <circle cx="-30" cy="-5" r="14" fill="#fff"/>
+    <circle cx="30" cy="-5" r="14" fill="#fff"/>
+    <circle cx="-28" cy="-2" r="7" fill="#0b3d2e"/>
+    <circle cx="32" cy="-2" r="7" fill="#0b3d2e"/>
+    <circle cx="-26" cy="-4" r="2" fill="#fff"/>
+    <circle cx="34" cy="-4" r="2" fill="#fff"/>
+    <path d="M-30 50 Q0 70 30 50" stroke="#0b3d2e" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Front toes gripping branch -->
+    <g fill="#9ee493" stroke="#1c5a30" stroke-width="2">
+      <circle cx="-50" cy="86" r="6"/>
+      <circle cx="-38" cy="92" r="6"/>
+      <circle cx="-26" cy="96" r="6"/>
+      <circle cx="50" cy="86" r="6"/>
+      <circle cx="38" cy="92" r="6"/>
+      <circle cx="26" cy="96" r="6"/>
+    </g>
+  </g>
+
+  <!-- Falling leaves -->
+  <g fill="#7ed957" opacity="0.85">
+    <ellipse cx="80" cy="120" rx="6" ry="3" transform="rotate(-30 80 120)"/>
+    <ellipse cx="200" cy="200" rx="7" ry="3" transform="rotate(20 200 200)"/>
+    <ellipse cx="700" cy="180" rx="6" ry="3" transform="rotate(-10 700 180)"/>
+    <ellipse cx="600" cy="120" rx="6" ry="3" transform="rotate(40 600 120)"/>
+    <ellipse cx="350" cy="80" rx="6" ry="3" transform="rotate(-50 350 80)"/>
+  </g>
+</svg>
