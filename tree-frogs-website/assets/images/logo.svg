@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-label="Tree Frogs Tree Service">
-  <g fill="#155a3f">
-    <ellipse cx="32" cy="40" rx="20" ry="15"/>
-    <circle cx="22" cy="24" r="9"/>
-    <circle cx="42" cy="24" r="9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" role="img" aria-label="Tree Frogs Tree Service">
+  <g transform="translate(0 4)">
+    <!-- Mark: stylized geometric tree -->
+    <g fill="#1d6b48">
+      <path d="M24 4 L34 22 L28 22 L40 42 L8 42 L20 22 L14 22 Z"/>
+    </g>
+    <rect x="22" y="42" width="4" height="6" fill="#15191a"/>
   </g>
-  <circle cx="22" cy="24" r="3" fill="#9aa3ad"/>
-  <circle cx="42" cy="24" r="3" fill="#9aa3ad"/>
-  <path d="M24 44 Q32 49 40 44" stroke="#0a0c0b" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <text x="68" y="32" font-family="'Segoe UI', system-ui, sans-serif" font-weight="800" font-size="20" letter-spacing="-0.5" fill="#0a0c0b">TREE FROGS</text>
-  <text x="68" y="49" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500" font-size="9" letter-spacing="2.5" fill="#5a6661">TREE SERVICE · QUAD CITIES</text>
+  <!-- Wordmark -->
+  <text x="56" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="20" letter-spacing="-0.5" fill="#15191a">TREE FROGS</text>
+  <text x="56" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Arial, sans-serif" font-weight="500" font-size="9" letter-spacing="2.4" fill="#6a7378">TREE SERVICE</text>
 </svg>

@@ -1,37 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Tree Frogs Tree Service - Quad Cities">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a0c0b"/>
-      <stop offset="100%" stop-color="#0a2a1f"/>
-    </linearGradient>
+    <radialGradient id="g1" cx="80%" cy="0%" r="60%">
+      <stop offset="0%" stop-color="rgba(78,200,142,0.35)"/>
+      <stop offset="100%" stop-color="rgba(78,200,142,0)"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="0%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="rgba(29,107,72,0.6)"/>
+      <stop offset="100%" stop-color="rgba(29,107,72,0)"/>
+    </radialGradient>
   </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="#0a0c0b"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
 
-  <!-- Subtle silver hairline -->
-  <line x1="120" y1="100" x2="1080" y2="100" stroke="#9aa3ad" stroke-width="1" opacity="0.3"/>
-  <line x1="120" y1="530" x2="1080" y2="530" stroke="#9aa3ad" stroke-width="1" opacity="0.3"/>
+  <line x1="100" y1="120" x2="200" y2="120" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="220" y="125" font-family="-apple-system, 'Inter', sans-serif" font-weight="600" font-size="14" letter-spacing="3" fill="rgba(255,255,255,0.7)">TREE SERVICE · QUAD CITIES · IL &amp; IA</text>
 
-  <!-- Mark -->
-  <g transform="translate(140 230)">
-    <ellipse cx="80" cy="100" rx="100" ry="74" fill="#155a3f"/>
-    <circle cx="35" cy="30" r="38" fill="#155a3f"/>
-    <circle cx="125" cy="30" r="38" fill="#155a3f"/>
-    <circle cx="35" cy="30" r="16" fill="#dde1e6"/>
-    <circle cx="125" cy="30" r="16" fill="#dde1e6"/>
-    <circle cx="35" cy="30" r="7" fill="#0a0c0b"/>
-    <circle cx="125" cy="30" r="7" fill="#0a0c0b"/>
-    <path d="M40 122 Q80 145 120 122" stroke="#0a0c0b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Tree mark -->
+  <g transform="translate(100 240)" fill="#4ec88e">
+    <path d="M50 0 L92 78 L72 78 L112 168 L-12 168 L28 78 L8 78 Z"/>
+    <rect x="46" y="168" width="8" height="22" fill="#ffffff"/>
   </g>
 
-  <!-- Wordmark -->
-  <text x="380" y="240" font-family="'Segoe UI', system-ui, sans-serif" font-weight="800" font-size="92" letter-spacing="-2" fill="#ffffff">TREE FROGS</text>
-  <text x="380" y="280" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500" font-size="18" letter-spacing="6" fill="#9aa3ad">TREE SERVICE · LICENSED &amp; INSURED</text>
+  <text x="260" y="320" font-family="-apple-system, 'Inter', sans-serif" font-weight="800" font-size="120" letter-spacing="-4" fill="#ffffff">Tree Frogs.</text>
+  <text x="260" y="380" font-family="-apple-system, 'Inter', sans-serif" font-weight="500" font-size="28" fill="rgba(255,255,255,0.7)">Trimming · Removal · Stump Grinding · 24/7 Storm Response</text>
 
-  <!-- Divider -->
-  <line x1="380" y1="320" x2="600" y2="320" stroke="#9aa3ad" stroke-width="1.5" opacity="0.5"/>
+  <line x1="100" y1="510" x2="1100" y2="510" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
 
-  <text x="380" y="380" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400" font-size="28" fill="#dde1e6">Trimming · Removal · Stump Grinding</text>
-  <text x="380" y="416" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400" font-size="28" fill="#dde1e6">24/7 Emergency Storm Response</text>
-
-  <text x="380" y="480" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" font-size="22" letter-spacing="2" fill="#3a9c6c">MOLINE · DAVENPORT · BETTENDORF · MILAN · GENESEO · KEWANEE · ANNAWAN</text>
+  <text x="100" y="555" font-family="-apple-system, 'Inter', sans-serif" font-weight="600" font-size="18" letter-spacing="3" fill="rgba(255,255,255,0.6)">MOLINE  ·  DAVENPORT  ·  BETTENDORF  ·  MILAN  ·  GENESEO  ·  KEWANEE  ·  ANNAWAN</text>
+  <text x="1020" y="555" font-family="-apple-system, 'Inter', sans-serif" font-weight="500" font-size="18" fill="#4ec88e">Est. 2008</text>
 </svg>

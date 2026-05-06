@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" role="img" aria-label="Tree Frogs Tree Service">
+  <g transform="translate(0 4)">
+    <g fill="#4ec88e">
+      <path d="M24 4 L34 22 L28 22 L40 42 L8 42 L20 22 L14 22 Z"/>
+    </g>
+    <rect x="22" y="42" width="4" height="6" fill="#ffffff"/>
+  </g>
+  <text x="56" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="20" letter-spacing="-0.5" fill="#ffffff">TREE FROGS</text>
+  <text x="56" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Arial, sans-serif" font-weight="500" font-size="9" letter-spacing="2.4" fill="rgba(255,255,255,0.6)">TREE SERVICE</text>
+</svg>

@@ -1,11 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tree Frogs">
-  <rect width="64" height="64" rx="8" fill="#0a0c0b"/>
-  <g fill="#155a3f">
-    <ellipse cx="32" cy="40" rx="20" ry="15"/>
-    <circle cx="22" cy="24" r="9"/>
-    <circle cx="42" cy="24" r="9"/>
+  <rect width="64" height="64" rx="14" fill="#0a0c0b"/>
+  <g transform="translate(20 12)" fill="#4ec88e">
+    <path d="M12 0 L22 18 L17 18 L26 38 L-2 38 L7 18 L2 18 Z"/>
   </g>
-  <circle cx="22" cy="24" r="3.2" fill="#c7ccd3"/>
-  <circle cx="42" cy="24" r="3.2" fill="#c7ccd3"/>
-  <path d="M24 44 Q32 49 40 44" stroke="#0a0c0b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <rect x="30" y="50" width="4" height="6" fill="#4ec88e"/>
 </svg>
