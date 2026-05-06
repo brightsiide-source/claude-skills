@@ -203,5 +203,49 @@
     document.querySelectorAll("[data-year]").forEach(
       (el) => (el.textContent = String(new Date().getFullYear()))
     );
+
+    // ---- Custom cursor (desktop, fine-pointer only) ----
+    const finePointer = window.matchMedia &&
+      window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1025px)").matches;
+    if (finePointer && !reduced) {
+      const dot = document.createElement("div");
+      const ring = document.createElement("div");
+      dot.className = "cursor-dot";
+      ring.className = "cursor-ring";
+      document.body.appendChild(dot);
+      document.body.appendChild(ring);
+      document.body.classList.add("has-cursor");
+
+      let dx = 0, dy = 0, rx = 0, ry = 0, mx = 0, my = 0;
+      let raf = 0;
+      const tick = () => {
+        dx += (mx - dx) * 0.6;
+        dy += (my - dy) * 0.6;
+        rx += (mx - rx) * 0.18;
+        ry += (my - ry) * 0.18;
+        dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%, -50%)`;
+        ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+        if (Math.abs(mx - rx) > 0.1 || Math.abs(my - ry) > 0.1) {
+          raf = requestAnimationFrame(tick);
+        } else {
+          raf = 0;
+        }
+      };
+      window.addEventListener("pointermove", (e) => {
+        mx = e.clientX; my = e.clientY;
+        if (!raf) raf = requestAnimationFrame(tick);
+      });
+      const hoverSel = "a, button, [role='button'], input, textarea, select, summary, .card, .area-chip, .step, .hero-chip";
+      document.querySelectorAll(hoverSel).forEach((el) => {
+        el.addEventListener("pointerenter", () => {
+          dot.classList.add("is-hover"); ring.classList.add("is-hover");
+        });
+        el.addEventListener("pointerleave", () => {
+          dot.classList.remove("is-hover"); ring.classList.remove("is-hover");
+        });
+      });
+      window.addEventListener("blur", () => { dot.style.opacity = 0; ring.style.opacity = 0; });
+      window.addEventListener("focus", () => { dot.style.opacity = ""; ring.style.opacity = ""; });
+    }
   });
 })();
