@@ -1,27 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Tree Frogs Tree Service - Quad Cities">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b3d2e"/>
-      <stop offset="100%" stop-color="#1f7a3a"/>
+      <stop offset="0%" stop-color="#0a0c0b"/>
+      <stop offset="100%" stop-color="#0a2a1f"/>
     </linearGradient>
-    <radialGradient id="f" cx="50%" cy="40%" r="60%">
-      <stop offset="0%" stop-color="#9ee493"/>
-      <stop offset="100%" stop-color="#1f7a3a"/>
-    </radialGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <g transform="translate(120 180)">
-    <ellipse cx="100" cy="120" rx="120" ry="90" fill="url(#f)"/>
-    <circle cx="50" cy="40" r="46" fill="url(#f)"/>
-    <circle cx="150" cy="40" r="46" fill="url(#f)"/>
-    <circle cx="50" cy="40" r="26" fill="#fff"/>
-    <circle cx="150" cy="40" r="26" fill="#fff"/>
-    <circle cx="52" cy="44" r="13" fill="#0b3d2e"/>
-    <circle cx="152" cy="44" r="13" fill="#0b3d2e"/>
-    <path d="M50 140 Q100 170 150 140" stroke="#0b3d2e" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- Subtle silver hairline -->
+  <line x1="120" y1="100" x2="1080" y2="100" stroke="#9aa3ad" stroke-width="1" opacity="0.3"/>
+  <line x1="120" y1="530" x2="1080" y2="530" stroke="#9aa3ad" stroke-width="1" opacity="0.3"/>
+
+  <!-- Mark -->
+  <g transform="translate(140 230)">
+    <ellipse cx="80" cy="100" rx="100" ry="74" fill="#155a3f"/>
+    <circle cx="35" cy="30" r="38" fill="#155a3f"/>
+    <circle cx="125" cy="30" r="38" fill="#155a3f"/>
+    <circle cx="35" cy="30" r="16" fill="#dde1e6"/>
+    <circle cx="125" cy="30" r="16" fill="#dde1e6"/>
+    <circle cx="35" cy="30" r="7" fill="#0a0c0b"/>
+    <circle cx="125" cy="30" r="7" fill="#0a0c0b"/>
+    <path d="M40 122 Q80 145 120 122" stroke="#0a0c0b" stroke-width="5" fill="none" stroke-linecap="round"/>
   </g>
-  <text x="430" y="280" font-family="'Segoe UI', system-ui, sans-serif" font-weight="800" font-size="92" fill="#fff">Tree Frogs</text>
-  <text x="430" y="345" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" font-size="38" fill="#9ee493">Tree Service · Quad Cities</text>
-  <text x="430" y="420" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400" font-size="28" fill="#e6f3ea">Tree Trimming · Removal · Stump Grinding · Emergency Storm Cleanup</text>
-  <text x="430" y="475" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" font-size="24" fill="#fff" opacity="0.85">Moline · Davenport · Bettendorf · Milan · Geneseo · Kewanee · Annawan</text>
+
+  <!-- Wordmark -->
+  <text x="380" y="240" font-family="'Segoe UI', system-ui, sans-serif" font-weight="800" font-size="92" letter-spacing="-2" fill="#ffffff">TREE FROGS</text>
+  <text x="380" y="280" font-family="'Segoe UI', system-ui, sans-serif" font-weight="500" font-size="18" letter-spacing="6" fill="#9aa3ad">TREE SERVICE · LICENSED &amp; INSURED</text>
+
+  <!-- Divider -->
+  <line x1="380" y1="320" x2="600" y2="320" stroke="#9aa3ad" stroke-width="1.5" opacity="0.5"/>
+
+  <text x="380" y="380" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400" font-size="28" fill="#dde1e6">Trimming · Removal · Stump Grinding</text>
+  <text x="380" y="416" font-family="'Segoe UI', system-ui, sans-serif" font-weight="400" font-size="28" fill="#dde1e6">24/7 Emergency Storm Response</text>
+
+  <text x="380" y="480" font-family="'Segoe UI', system-ui, sans-serif" font-weight="600" font-size="22" letter-spacing="2" fill="#3a9c6c">MOLINE · DAVENPORT · BETTENDORF · MILAN · GENESEO · KEWANEE · ANNAWAN</text>
 </svg>

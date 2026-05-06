@@ -1,17 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tree Frogs">
-  <defs>
-    <radialGradient id="fg" cx="50%" cy="40%" r="60%">
-      <stop offset="0%" stop-color="#7ed957"/>
-      <stop offset="100%" stop-color="#1f7a3a"/>
-    </radialGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="#0b3d2e"/>
-  <ellipse cx="32" cy="40" rx="20" ry="16" fill="url(#fg)"/>
-  <circle cx="22" cy="24" r="9" fill="url(#fg)"/>
-  <circle cx="42" cy="24" r="9" fill="url(#fg)"/>
-  <circle cx="22" cy="24" r="5" fill="#fff"/>
-  <circle cx="42" cy="24" r="5" fill="#fff"/>
-  <circle cx="22" cy="25" r="2.6" fill="#0b3d2e"/>
-  <circle cx="42" cy="25" r="2.6" fill="#0b3d2e"/>
-  <path d="M22 44 Q32 50 42 44" stroke="#0b3d2e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <rect width="64" height="64" rx="8" fill="#0a0c0b"/>
+  <g fill="#155a3f">
+    <ellipse cx="32" cy="40" rx="20" ry="15"/>
+    <circle cx="22" cy="24" r="9"/>
+    <circle cx="42" cy="24" r="9"/>
+  </g>
+  <circle cx="22" cy="24" r="3.2" fill="#c7ccd3"/>
+  <circle cx="42" cy="24" r="3.2" fill="#c7ccd3"/>
+  <path d="M24 44 Q32 49 40 44" stroke="#0a0c0b" stroke-width="2" fill="none" stroke-linecap="round"/>
 </svg>

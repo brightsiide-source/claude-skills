@@ -4,8 +4,8 @@
   "description": "Professional tree cutting, trimming, and removal serving the Quad Cities and Western Illinois.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b3d2e",
-  "theme_color": "#0b3d2e",
+  "background_color": "#0a0c0b",
+  "theme_color": "#0a0c0b",
   "icons": [
     {
       "src": "/assets/images/favicon.svg",
