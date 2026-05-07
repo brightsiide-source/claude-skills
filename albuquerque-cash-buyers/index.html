@@ -18,7 +18,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 
 <script type="application/ld+json">
@@ -59,21 +59,24 @@
 
 <header class="site">
   <div class="wrap site-inner">
-    <a href="#top" class="brand">
+    <a href="#top" class="brand" aria-label="ABQ Cash Home Buyers — home">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" rx="7" fill="#0a0a0a"/>
+        <path d="M8 21 L16 9 L24 21 L21 21 L21 24 L11 24 L11 21 Z" fill="#2563eb"/>
+      </svg>
       <span class="brand-name">ABQ Cash Home Buyers</span>
-      <span class="brand-tag">Albuquerque · est. local</span>
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#how">Process</a>
-      <a href="#contrast">The math</a>
+      <a href="#proof">Why us</a>
       <a href="#situations">Situations</a>
       <a href="#areas">Areas</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="phone-cta" href="tel:+15055550123">
-      <span class="phone-label">Call</span>
-      <span class="phone-num">(505) 555-0123</span>
-    </a>
+    <div class="site-cta">
+      <a class="phone-link" href="tel:+15055550123">(505) 555-0123</a>
+      <a href="#offer" class="btn btn-primary btn-sm">Get offer</a>
+    </div>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -83,48 +86,46 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap hero-inner">
-    <p class="kicker">Albuquerque, New Mexico</p>
-    <h1>
-      Skip the listing.<br />
-      We buy your house in cash, <em>on your timeline.</em>
-    </h1>
+    <span class="badge"><span class="dot"></span> Now serving Albuquerque &amp; Rio Rancho</span>
+    <h1>Sell your Albuquerque house for cash. <span class="text-accent">In days, not months.</span></h1>
     <p class="hero-lede">
       A locally owned home-buying company. We make a fair, written cash offer in 24 hours and close at a New Mexico title company in as little as seven days. No repairs, no cleaning, no commissions, no closing costs.
     </p>
     <div class="hero-actions">
-      <a href="#offer" class="btn btn-solid">Get my offer →</a>
-      <a href="tel:+15055550123" class="btn btn-line">or call (505) 555-0123</a>
+      <a href="#offer" class="btn btn-primary btn-lg">Get my cash offer</a>
+      <a href="tel:+15055550123" class="btn btn-secondary btn-lg">Call (505) 555-0123</a>
     </div>
-
-    <div class="hero-meta">
-      <span>★ 4.9 from 80+ Albuquerque sellers</span>
-      <span class="dot">·</span>
-      <span>500+ NM homes purchased</span>
-      <span class="dot">·</span>
-      <span>Family owned</span>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-num">24h</span>
+        <span class="trust-lab">Written offer</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">7d</span>
+        <span class="trust-lab">Fastest close</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">$0</span>
+        <span class="trust-lab">Fees &amp; closing costs</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">500+</span>
+        <span class="trust-lab">NM homes purchased</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- BY THE NUMBERS -->
-<section class="numbers">
-  <div class="wrap nums-grid">
-    <div class="num">
-      <div class="num-fig">24<span>hr</span></div>
-      <div class="num-lab">From form to written offer</div>
-    </div>
-    <div class="num">
-      <div class="num-fig">7<span>days</span></div>
-      <div class="num-lab">Fastest close to date</div>
-    </div>
-    <div class="num">
-      <div class="num-fig">$0</div>
-      <div class="num-lab">Fees, commissions, closing costs</div>
-    </div>
-    <div class="num">
-      <div class="num-fig">As-is</div>
-      <div class="num-lab">Any condition, anything left behind</div>
-    </div>
+<!-- LOGOS / SOCIAL PROOF STRIP -->
+<section class="proof-strip">
+  <div class="wrap proof-strip-inner">
+    <span class="proof-label">Trusted by Albuquerque homeowners since 2014</span>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <span class="proof-rating">★★★★★ <strong>4.9</strong> from 80+ reviews</span>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <span>BBB accredited · A+ rating</span>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <span>Family owned · Locally operated</span>
   </div>
 </section>
 
@@ -132,160 +133,181 @@
 <section class="section" id="how">
   <div class="wrap">
     <header class="head">
-      <p class="kicker">The process</p>
-      <h2>Three conversations. <em>One closing.</em></h2>
+      <span class="kicker">The process</span>
+      <h2>Three steps. No surprises.</h2>
+      <p class="head-lede">No listings, no showings, no waiting on buyer financing. We've streamlined the process for Albuquerque homeowners who need certainty and speed.</p>
     </header>
 
-    <ol class="steps">
-      <li class="step">
-        <div class="step-num">01</div>
-        <div class="step-body">
-          <h3>You tell us about the house</h3>
-          <p>A 90-second form or a quick phone call. Address, condition, your timeline. We never ask for income, credit, or financials — we're buying a house, not running an application.</p>
+    <div class="how-grid">
+      <article class="how-card">
+        <div class="how-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round"/>
+          </svg>
         </div>
-      </li>
-      <li class="step alt">
-        <div class="step-num">02</div>
-        <div class="step-body">
-          <h3>We send a written offer in 24 hours</h3>
-          <p>Real numbers, based on recent ABQ comps and the property's actual condition — not a verbal range we'll renegotiate later. The number we send is the number we close at.</p>
+        <span class="how-step">Step 01</span>
+        <h3>Tell us about the house</h3>
+        <p>A 90-second form or quick phone call. Address, condition, your timeline. We don't ask for income, credit, or financials — we're buying a house, not running an application.</p>
+      </article>
+      <article class="how-card">
+        <div class="how-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="4" y="3" width="16" height="18" rx="2"/>
+            <path d="M8 8h8M8 12h8M8 16h5" stroke-linecap="round"/>
+          </svg>
         </div>
-      </li>
-      <li class="step">
-        <div class="step-num">03</div>
-        <div class="step-body">
-          <h3>You pick the closing date</h3>
-          <p>We close at a reputable Albuquerque title company. Seven days, sixty days, or somewhere in between — your call. We pay the closing costs. You walk out with a check or wire.</p>
+        <span class="how-step">Step 02</span>
+        <h3>Get a written offer in 24 hours</h3>
+        <p>Real numbers, based on recent ABQ comps and the property's actual condition — not a verbal range we'll renegotiate later. The number we send is the number we close at.</p>
+      </article>
+      <article class="how-card">
+        <div class="how-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 10h18M8 15h3" stroke-linecap="round"/>
+          </svg>
         </div>
-      </li>
-    </ol>
+        <span class="how-step">Step 03</span>
+        <h3>Close on your timeline</h3>
+        <p>We close at a reputable Albuquerque title company. Seven days, sixty days, or somewhere in between — your call. We pay closing costs. You walk out with a check or wire.</p>
+      </article>
+    </div>
   </div>
 </section>
 
-<!-- CONTRAST (replaces comparison table) -->
-<section class="section section-cream" id="contrast">
-  <div class="wrap">
-    <header class="head">
-      <p class="kicker">The math, plainly</p>
-      <h2>What a listing actually costs you <em>vs.</em> selling to us.</h2>
+<!-- PROOF / METRIC PANEL (replaces comparison table) -->
+<section class="metric-panel" id="proof">
+  <div class="wrap metric-inner">
+    <header class="metric-head">
+      <span class="kicker kicker-light">By the numbers</span>
+      <h2>The math is simple.</h2>
+      <p class="metric-lede">Listing with an agent isn't free. Here's what the average Albuquerque seller actually loses to commissions, repairs, and time on market — and what they keep when they sell to us.</p>
     </header>
 
-    <div class="contrast">
-      <div class="col col-listing">
-        <h3>If you list with an agent</h3>
-        <ul>
-          <li><span>~6%</span> in agent commissions</li>
-          <li><span>1–2%</span> in seller closing costs</li>
-          <li><span>~$3–8k</span> in repairs, paint, staging</li>
-          <li><span>60–90+</span> days on market, on average</li>
-          <li><span>~15%</span> of deals fall through on financing</li>
-          <li><span>Many</span> showings, open houses, inspections</li>
-        </ul>
+    <div class="metric-grid">
+      <div class="metric">
+        <span class="metric-num">~6%</span>
+        <span class="metric-cap">Agent commission on a typical ABQ listing</span>
       </div>
-
-      <div class="divider" aria-hidden="true"></div>
-
-      <div class="col col-us">
-        <h3>If you sell to us</h3>
-        <ul>
-          <li><span>$0</span> in commissions</li>
-          <li><span>$0</span> in closing costs (we pay them)</li>
-          <li><span>$0</span> in repairs — we buy as-is</li>
-          <li><span>7–30</span> days to close, your choice</li>
-          <li><span>$0</span> financing risk — all cash</li>
-          <li><span>One</span> walk-through. That's it.</li>
-        </ul>
+      <div class="metric">
+        <span class="metric-num">$3–8k</span>
+        <span class="metric-cap">Average pre-sale repairs, paint, staging</span>
+      </div>
+      <div class="metric">
+        <span class="metric-num">75d</span>
+        <span class="metric-cap">Median time on market in Albuquerque</span>
+      </div>
+      <div class="metric metric-highlight">
+        <span class="metric-num">$0</span>
+        <span class="metric-cap">What it costs you to sell to us</span>
       </div>
     </div>
 
-    <p class="contrast-note">
-      Real talk: we won't always be the highest offer on the block. We're the <em>certain</em> offer. If you have time and a market-ready house, list it. If you want to be done — keep reading.
-    </p>
+    <p class="metric-foot">Real talk — we won't always be the highest offer on the block. We're the <em>certain</em> offer. If you have time and a market-ready house, list it. If you want to be done, get a number from us.</p>
   </div>
 </section>
 
 <!-- SITUATIONS -->
 <section class="section" id="situations">
-  <div class="wrap split">
-    <div class="split-l">
-      <p class="kicker">Why people call us</p>
-      <h2>Whatever's going on, we've probably bought from someone in it.</h2>
-      <p class="muted">No judgment, no sales script, no pressure. Just a way out of a house that's no longer the right fit.</p>
-    </div>
-    <div class="split-r">
-      <ul class="sits">
-        <li><strong>Inherited a house</strong> — out of state, mid-probate, or just complicated. We work with your attorney.</li>
-        <li><strong>Behind on payments</strong> — pre-foreclosure in NM moves fast. We can sometimes close in time to stop it.</li>
-        <li><strong>Going through a divorce</strong> — neutral process, fast close, both parties walk.</li>
-        <li><strong>Tired landlord</strong> — bad tenants, deferred maintenance, Section 8 paperwork. We'll take it occupied.</li>
-        <li><strong>Major repairs</strong> — foundation, roof, fire, hoarder, mold. Leave what you don't want.</li>
-        <li><strong>Relocating for work</strong> — close on the day you start the new job. No double mortgage.</li>
-        <li><strong>Vacant property</strong> — empty house in ABQ from another state? We handle everything from here.</li>
-        <li><strong>Downsizing or retiring</strong> — pick a move date, we close around it.</li>
-      </ul>
+  <div class="wrap">
+    <header class="head head-center">
+      <span class="kicker">Why people call us</span>
+      <h2>Whatever's going on, we've seen it.</h2>
+      <p class="head-lede">No judgment, no sales script. Just a straightforward way out of a house that's no longer the right fit.</p>
+    </header>
+
+    <div class="sit-grid">
+      <article class="sit"><h3>Inherited a house</h3><p>Out of state, mid-probate, or just complicated. We work with your attorney to make the close clean.</p></article>
+      <article class="sit"><h3>Behind on payments</h3><p>Pre-foreclosure in NM moves faster than people think. We can sometimes close in time to stop the auction.</p></article>
+      <article class="sit"><h3>Going through divorce</h3><p>Neutral process, fast close, both parties walk away. We handle the awkwardness so you don't have to.</p></article>
+      <article class="sit"><h3>Tired of being a landlord</h3><p>Bad tenants, deferred maintenance, Section 8 paperwork. We'll take it occupied or vacant.</p></article>
+      <article class="sit"><h3>Major repairs needed</h3><p>Foundation, roof, fire damage, hoarder situation, mold. Leave anything you don't want.</p></article>
+      <article class="sit"><h3>Relocating for work</h3><p>Close on the day you start the new job. No double mortgage, no remote sale headaches.</p></article>
+      <article class="sit"><h3>Vacant property</h3><p>Empty house in ABQ from another state? We'll handle utilities, locks, and everything else from here.</p></article>
+      <article class="sit"><h3>Downsizing or retiring</h3><p>Pick a move date that works for you. We close around it.</p></article>
     </div>
   </div>
 </section>
 
 <!-- AREAS -->
-<section class="section section-cream" id="areas">
+<section class="section section-soft" id="areas">
   <div class="wrap">
-    <header class="head">
-      <p class="kicker">Where we work</p>
-      <h2>Albuquerque <em>and</em> central New Mexico.</h2>
-      <p class="muted center">We're local. We know what a North Valley adobe is worth versus a Westside production build, and we price each one accordingly.</p>
+    <header class="head head-center">
+      <span class="kicker">Where we work</span>
+      <h2>Albuquerque and central New Mexico.</h2>
+      <p class="head-lede">We're local. We know the difference between a North Valley adobe and a Westside production build, and we price each one accordingly.</p>
     </header>
 
-    <div class="pills">
-      <span class="pill pill-strong">Albuquerque</span>
-      <span class="pill">Northeast Heights</span>
-      <span class="pill">North Valley</span>
-      <span class="pill">South Valley</span>
-      <span class="pill">Westside</span>
-      <span class="pill">Ventana Ranch</span>
-      <span class="pill">Nob Hill</span>
-      <span class="pill">Downtown / EDo</span>
-      <span class="pill">Four Hills</span>
-      <span class="pill">Tanoan</span>
-      <span class="pill">High Desert</span>
-      <span class="pill">Paradise Hills</span>
-      <span class="pill">Foothills</span>
-      <span class="pill pill-strong">Rio Rancho</span>
-      <span class="pill">Bernalillo</span>
-      <span class="pill">Corrales</span>
-      <span class="pill">Placitas</span>
-      <span class="pill">Los Lunas</span>
-      <span class="pill">Belen</span>
-      <span class="pill">Tijeras</span>
-      <span class="pill">Edgewood</span>
-      <span class="pill">Moriarty</span>
-      <span class="pill">Peralta</span>
-      <span class="pill">Bosque Farms</span>
+    <div class="areas">
+      <div class="area-block">
+        <h3>Albuquerque</h3>
+        <ul>
+          <li>Northeast Heights</li>
+          <li>North Valley</li>
+          <li>South Valley</li>
+          <li>Westside / Ventana Ranch</li>
+          <li>Nob Hill</li>
+          <li>Downtown / EDo</li>
+          <li>Four Hills</li>
+          <li>Tanoan / High Desert</li>
+          <li>Paradise Hills</li>
+          <li>Foothills</li>
+        </ul>
+      </div>
+      <div class="area-block">
+        <h3>Surrounding cities</h3>
+        <ul>
+          <li>Rio Rancho</li>
+          <li>Bernalillo</li>
+          <li>Corrales</li>
+          <li>Placitas</li>
+          <li>Los Lunas</li>
+          <li>Belen</li>
+          <li>Tijeras</li>
+          <li>Edgewood</li>
+          <li>Moriarty</li>
+          <li>Peralta &amp; Bosque Farms</li>
+        </ul>
+      </div>
+      <div class="area-block">
+        <h3>ZIP codes</h3>
+        <ul class="zips">
+          <li>87102</li><li>87104</li><li>87105</li><li>87106</li>
+          <li>87107</li><li>87108</li><li>87109</li><li>87110</li>
+          <li>87111</li><li>87112</li><li>87113</li><li>87114</li>
+          <li>87120</li><li>87121</li><li>87122</li><li>87123</li>
+          <li>87124</li><li>87144</li>
+        </ul>
+      </div>
     </div>
-
-    <p class="zip-line">
-      ZIPs: 87102 · 87104 · 87105 · 87106 · 87107 · 87108 · 87109 · 87110 · 87111 · 87112 · 87113 · 87114 · 87120 · 87121 · 87122 · 87123 · 87124 · 87144
-    </p>
   </div>
 </section>
 
-<!-- FEATURED TESTIMONIAL -->
-<section class="testimonial">
-  <div class="wrap testimonial-inner">
-    <p class="quote-mark" aria-hidden="true">“</p>
-    <blockquote>
-      Inherited my mom's house in the South Valley and I live in Phoenix. They handled the probate paperwork with my attorney and closed in <em>twenty-two days.</em> I never had to fly out.
-    </blockquote>
-    <p class="cite">Marisol R. — South Valley, ABQ</p>
+<!-- TESTIMONIAL -->
+<section class="section">
+  <div class="wrap">
+    <article class="quote-card">
+      <div class="quote-stars" aria-hidden="true">★★★★★</div>
+      <blockquote>
+        "Inherited my mom's house in the South Valley and I live in Phoenix. They handled the probate paperwork with my attorney and closed in twenty-two days. I never had to fly out. Honestly the easiest part of a hard year."
+      </blockquote>
+      <footer class="quote-foot">
+        <div class="quote-avatar" aria-hidden="true">MR</div>
+        <div>
+          <p class="quote-name">Marisol R.</p>
+          <p class="quote-meta">South Valley, ABQ · Sold July 2025</p>
+        </div>
+      </footer>
+    </article>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="section" id="faq">
+<section class="section section-soft" id="faq">
   <div class="wrap narrow">
-    <header class="head">
-      <p class="kicker">FAQ</p>
-      <h2>Common questions, <em>straight answers.</em></h2>
+    <header class="head head-center">
+      <span class="kicker">FAQ</span>
+      <h2>Common questions, straight answers.</h2>
     </header>
 
     <div class="faq">
@@ -299,7 +321,7 @@
       </details>
       <details>
         <summary>Are there really no fees?</summary>
-        <p>None. No commissions, no transaction fees, no junk fees. We pay standard seller closing costs. The number on your offer is the number you net (minus any existing mortgage payoff).</p>
+        <p>None. No commissions, no transaction fees, no junk fees. We pay standard seller closing costs. The number on your offer is the number you net, minus any existing mortgage payoff.</p>
       </details>
       <details>
         <summary>Do I need to clean or fix anything?</summary>
@@ -307,7 +329,7 @@
       </details>
       <details>
         <summary>Will you buy with tenants in place?</summary>
-        <p>Yes — occupied, vacant, Section 8, behind on rent, month-to-month. Tell us the situation, we'll structure around it.</p>
+        <p>Yes — occupied, vacant, Section 8, behind on rent, month-to-month. Tell us the situation and we'll structure around it.</p>
       </details>
       <details>
         <summary>What if I'm in foreclosure or behind on the mortgage?</summary>
@@ -319,7 +341,7 @@
       </details>
       <details>
         <summary>Are you a wholesaler or do you actually buy?</summary>
-        <p>Both, depending on the deal. Some properties we keep as rentals, some we renovate and resell, some we assign to a vetted partner buyer. Either way, you get a written offer, you sign one contract, and you close. That's all that changes for you.</p>
+        <p>Both, depending on the deal. Some properties we keep as rentals, some we renovate and resell, some we assign to a vetted partner buyer. Either way, you sign one contract, and you close. That's all that changes for you.</p>
       </details>
     </div>
   </div>
@@ -329,13 +351,13 @@
 <section class="offer" id="offer">
   <div class="wrap offer-inner">
     <div class="offer-copy">
-      <p class="kicker dark">Get your cash offer</p>
+      <span class="kicker">Get your cash offer</span>
       <h2>One short form. We do the rest.</h2>
-      <p class="muted-light">We'll review the property today and have a written offer in your inbox within 24 hours. Or call us right now at <a href="tel:+15055550123">(505) 555-0123</a> — we answer phones seven days a week.</p>
+      <p class="head-lede">We'll review the property today and have a written offer in your inbox within 24 hours. Or call us right now at <a href="tel:+15055550123">(505) 555-0123</a>. We answer phones seven days a week.</p>
       <ul class="offer-bullets">
         <li>No obligation, no fees, no spam follow-ups</li>
         <li>We never share your information</li>
-        <li>If we're not the right fit, we'll tell you</li>
+        <li>If we're not the right fit, we'll say so</li>
       </ul>
     </div>
 
@@ -374,7 +396,7 @@
             <option>Not sure</option>
           </select>
         </label>
-        <button type="submit" class="btn btn-solid btn-block">Send it →</button>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Send it →</button>
         <p class="micro">By submitting, you agree to be contacted about your property. We don't sell, share, or spam.</p>
       </form>
 
@@ -390,8 +412,14 @@
 <footer class="foot">
   <div class="wrap foot-inner">
     <div class="foot-brand">
-      <p class="brand-name">ABQ Cash Home Buyers</p>
-      <p class="muted-foot">Locally owned. Albuquerque-based. We answer the phone.</p>
+      <a href="#top" class="brand">
+        <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="#0a0a0a"/>
+          <path d="M8 21 L16 9 L24 21 L21 21 L21 24 L11 24 L11 21 Z" fill="#2563eb"/>
+        </svg>
+        <span class="brand-name">ABQ Cash Home Buyers</span>
+      </a>
+      <p class="foot-blurb">A locally owned, family operated home buying company serving Albuquerque and central New Mexico since 2014.</p>
     </div>
     <div class="foot-col">
       <h4>Reach us</h4>
@@ -402,26 +430,27 @@
     <div class="foot-col">
       <h4>Site</h4>
       <a href="#how">Process</a>
-      <a href="#contrast">The math</a>
+      <a href="#proof">Why us</a>
       <a href="#situations">Situations</a>
       <a href="#areas">Areas</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="foot-col">
       <h4>Hours</h4>
-      <p class="muted-foot">Mon – Sun, 7am – 9pm MT.<br />After-hours voicemails returned same day.</p>
+      <p>Mon – Sun, 7am – 9pm MT.</p>
+      <p>After-hours voicemails returned same day.</p>
     </div>
   </div>
   <div class="wrap foot-fine">
-    <p>© <span id="year"></span> ABQ Cash Home Buyers</p>
+    <p>© <span id="year"></span> ABQ Cash Home Buyers. All rights reserved.</p>
     <p class="disclaimer">Cash offers subject to property inspection and clear title. We are a private home-buying company, not a licensed brokerage, and not affiliated with any government agency.</p>
   </div>
 </footer>
 
-<!-- Mobile floating CTA bar (replaces the Carrot-style sidebar form) -->
+<!-- Mobile floating CTA -->
 <div class="mcta" aria-hidden="false">
-  <a href="#offer" class="mcta-primary">Get offer</a>
-  <a href="tel:+15055550123" class="mcta-secondary">Call now</a>
+  <a href="#offer" class="mcta-primary">Get my offer</a>
+  <a href="tel:+15055550123" class="mcta-secondary" aria-label="Call (505) 555-0123">📞</a>
 </div>
 
 <script src="script.js" defer></script>
