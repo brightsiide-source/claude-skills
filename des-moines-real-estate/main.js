@@ -1,12 +1,8 @@
-/* ===================================================
-   Des Moines Cash Home Buyers — JavaScript
-   =================================================== */
-
 document.addEventListener('DOMContentLoaded', function () {
 
   // ---- Mobile Nav Toggle ----
-  const hamburger = document.getElementById('hamburger');
-  const nav = document.getElementById('nav');
+  var hamburger = document.getElementById('hamburger');
+  var nav = document.getElementById('nav');
 
   if (hamburger && nav) {
     hamburger.addEventListener('click', function () {
@@ -15,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close nav on link click
     nav.querySelectorAll('.nav-link').forEach(function (link) {
       link.addEventListener('click', function () {
         hamburger.classList.remove('active');
@@ -26,14 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ---- Sticky Header Shadow ----
-  const header = document.getElementById('header');
+  var header = document.getElementById('header');
   if (header) {
     window.addEventListener('scroll', function () {
-      if (window.scrollY > 10) {
-        header.style.boxShadow = '0 4px 24px rgba(0,0,0,0.3)';
-      } else {
-        header.style.boxShadow = 'none';
-      }
+      header.style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,0.3)' : 'none';
     });
   }
 
@@ -43,13 +34,11 @@ document.addEventListener('DOMContentLoaded', function () {
       var item = btn.closest('.faq-item');
       var isActive = item.classList.contains('active');
 
-      // Close all
       document.querySelectorAll('.faq-item').forEach(function (el) {
         el.classList.remove('active');
         el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
       });
 
-      // Toggle current
       if (!isActive) {
         item.classList.add('active');
         btn.setAttribute('aria-expanded', 'true');
@@ -57,15 +46,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ---- Form Submission ----
-  // Let Netlify handle the native POST + redirect to /thank-you.html
-  // Just add loading state on the button for UX
+  // ---- Form Submission with Loading State ----
   function handleFormSubmit(form) {
     form.addEventListener('submit', function () {
       var btn = form.querySelector('button[type="submit"]');
-      btn.textContent = 'Sending...';
+      btn.innerHTML = '<span class="spinner"></span> Submitting...';
       btn.disabled = true;
-      // Form submits natively to Netlify — no fetch, no preventDefault
+      btn.style.opacity = '0.7';
     });
   }
 
@@ -74,11 +61,73 @@ document.addEventListener('DOMContentLoaded', function () {
   if (heroForm) handleFormSubmit(heroForm);
   if (contactForm) handleFormSubmit(contactForm);
 
+  // ---- Inline Validation ----
+  function addValidation(form) {
+    var phoneInputs = form.querySelectorAll('input[type="tel"]');
+    var emailInputs = form.querySelectorAll('input[type="email"]');
+
+    phoneInputs.forEach(function (input) {
+      input.addEventListener('blur', function () {
+        var digits = this.value.replace(/\D/g, '');
+        if (this.value && digits.length < 10) {
+          this.style.borderColor = '#ef4444';
+          showError(this, 'Please enter a 10-digit phone number');
+        } else {
+          this.style.borderColor = '';
+          clearError(this);
+          if (digits.length >= 10) {
+            this.style.borderColor = '#3A7550';
+          }
+        }
+      });
+    });
+
+    emailInputs.forEach(function (input) {
+      input.addEventListener('blur', function () {
+        if (this.value && !this.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+          this.style.borderColor = '#ef4444';
+          showError(this, 'Please enter a valid email address');
+        } else {
+          this.style.borderColor = '';
+          clearError(this);
+          if (this.value) this.style.borderColor = '#3A7550';
+        }
+      });
+    });
+  }
+
+  function showError(input, msg) {
+    clearError(input);
+    var err = document.createElement('span');
+    err.className = 'field-error';
+    err.textContent = msg;
+    err.style.cssText = 'color:#ef4444;font-size:0.8rem;display:block;margin-top:4px;';
+    input.parentNode.appendChild(err);
+  }
+
+  function clearError(input) {
+    var existing = input.parentNode.querySelector('.field-error');
+    if (existing) existing.remove();
+  }
+
+  if (heroForm) addValidation(heroForm);
+  if (contactForm) addValidation(contactForm);
+
+  // ---- Phone Number Formatting ----
+  document.querySelectorAll('input[type="tel"]').forEach(function (input) {
+    input.addEventListener('input', function () {
+      var digits = this.value.replace(/\D/g, '').slice(0, 10);
+      if (digits.length >= 6) {
+        this.value = '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
+      } else if (digits.length >= 3) {
+        this.value = '(' + digits.slice(0, 3) + ') ' + digits.slice(3);
+      }
+    });
+  });
+
   // ---- Google Maps Embed ----
   var mapContainer = document.getElementById('google-map');
   if (mapContainer) {
-    // Embed Google Maps centered on Des Moines metro area
-    // Uses a free embed (no API key required for basic embed)
     var iframe = document.createElement('iframe');
     iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d189898.27473792258!2d-93.7685167!3d41.5723667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87ee99a4c452b3e7%3A0x5ccc0deed8591203!2sDes%20Moines%2C%20IA!5e0!3m2!1sen!2sus!4v1!5m2!1sen!2sus';
     iframe.width = '100%';
@@ -91,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
     mapContainer.appendChild(iframe);
   }
 
-  // ---- Smooth Scroll for anchor links ----
+  // ---- Smooth Scroll ----
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
       var target = document.querySelector(this.getAttribute('href'));
@@ -102,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ---- Scroll Animations (Intersection Observer) ----
+  // ---- Scroll Animations ----
   var animateEls = document.querySelectorAll('.step, .situation-card, .testimonial-card, .compare-card');
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
@@ -122,15 +171,5 @@ document.addEventListener('DOMContentLoaded', function () {
       observer.observe(el);
     });
   }
-
-  // ---- Phone Number Formatting ----
-  document.querySelectorAll('input[type="tel"]').forEach(function (input) {
-    input.addEventListener('input', function () {
-      var digits = this.value.replace(/\D/g, '');
-      if (digits.length >= 10) {
-        this.value = '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6, 10);
-      }
-    });
-  });
 
 });
