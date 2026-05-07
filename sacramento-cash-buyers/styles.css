@@ -267,11 +267,16 @@ p  { margin: 0 0 1em; color: var(--ink-700); }
   max-width: 800px;
 }
 .areas li {
-  background: var(--white); padding: 12px; text-align: center;
+  background: var(--white); padding: 0; text-align: center;
   border-radius: var(--radius-sm);
   border: 1px solid var(--ink-100);
   font-weight: 600; color: var(--ink-700);
+  transition: border-color .15s ease, box-shadow .15s ease;
 }
+.areas li:has(a):hover { border-color: var(--purple-700); box-shadow: var(--shadow-sm); }
+.areas li > a { display: block; padding: 12px; color: var(--purple-700); }
+.areas li > a:hover { text-decoration: none; }
+.areas li:not(:has(a)) { padding: 12px; }
 @media (max-width: 700px) { .areas { grid-template-columns: 1fr 1fr; } }
 
 /* ----- FAQ ----- */
