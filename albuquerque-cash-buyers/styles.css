@@ -437,21 +437,27 @@ p { margin: 0 0 1em; }
   gap: 16px;
 }
 .sit {
+  display: block;
   background: var(--bg);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 24px;
+  text-decoration: none;
+  color: inherit;
   transition: border-color .15s, transform .15s, box-shadow .15s;
 }
-.sit:hover {
-  border-color: var(--ink);
+a.sit:hover {
+  border-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow);
+  color: inherit;
 }
+a.sit:hover h3 { color: var(--accent); }
 .sit h3 {
   font-size: 1.05rem;
   margin: 0 0 8px;
   color: var(--ink);
+  transition: color .15s;
 }
 .sit p {
   margin: 0;

@@ -3,23 +3,56 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="format-detection" content="telephone=yes" />
+<meta name="application-name" content="ABQ Cash Home Buyers" />
+<meta name="rating" content="general" />
+
 <title>Sell your Albuquerque house in cash — ABQ Cash Home Buyers</title>
-<meta name="description" content="A locally owned home buying company in Albuquerque, NM. Fair cash offer in 24 hours. Close in 30 days or less. No fees, no repairs, no commissions." />
-<meta name="keywords" content="sell house Albuquerque, cash home buyers Albuquerque, sell my house fast NM, we buy houses Rio Rancho, sell as-is Albuquerque" />
-<meta name="robots" content="index, follow" />
+<meta name="description" content="Locally owned cash home buyer in Albuquerque, NM. Fair written offer in 24 hours. Close in 7–30 days. No fees, no repairs, no commissions. Serving ABQ, Rio Rancho, and central New Mexico." />
+<meta name="keywords" content="sell house Albuquerque, cash home buyers Albuquerque, sell my house fast NM, we buy houses Rio Rancho, sell as-is Albuquerque, foreclosure help Albuquerque, inherited house New Mexico" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="author" content="ABQ Cash Home Buyers" />
 <link rel="canonical" href="https://example.com/" />
 
+<!-- Geo / local (Bing + legacy) -->
+<meta name="geo.region" content="US-NM" />
+<meta name="geo.placename" content="Albuquerque" />
+<meta name="geo.position" content="35.0844;-106.6504" />
+<meta name="ICBM" content="35.0844, -106.6504" />
+
+<!-- Open Graph -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="ABQ Cash Home Buyers" />
 <meta property="og:title" content="Sell your Albuquerque house in cash" />
-<meta property="og:description" content="Fair cash offer in 24 hours. Close in 30 days or less. No fees, no repairs, no commissions." />
+<meta property="og:description" content="Fair written cash offer in 24 hours. Close in 7–30 days. No fees, no repairs, no commissions." />
 <meta property="og:url" content="https://example.com/" />
 <meta property="og:image" content="https://example.com/assets/og-image.jpg" />
-<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="ABQ Cash Home Buyers — sell your Albuquerque house for cash" />
+<meta property="og:locale" content="en_US" />
 
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sell your Albuquerque house in cash" />
+<meta name="twitter:description" content="Fair written cash offer in 24 hours. Close in 7–30 days." />
+<meta name="twitter:image" content="https://example.com/assets/og-image.jpg" />
+
+<!-- Favicon / PWA -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="alternate icon" href="favicon.ico" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+
+<!-- Performance: preconnect + non-blocking font load -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=3" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
+
+<link rel="stylesheet" href="styles.css?v=4" />
 
 <!-- Critical CSS: minimal fallback so the page never looks broken if styles.css fails to load -->
 <style>
@@ -28,17 +61,26 @@
   .logo { width: 32px; height: 32px; flex-shrink: 0; }
   .how-icon svg, .nav-toggle svg { width: 24px; height: 24px; }
   img { max-width: 100%; display: block; }
+  .skip-link { position: absolute; left: -9999px; top: 0; background: #0a0a0a; color: #fff; padding: 12px 20px; font-weight: 600; z-index: 999; border-radius: 0 0 8px 0; }
+  .skip-link:focus { left: 0; }
 </style>
 
+<!-- Schema.org: LocalBusiness with rating -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "https://example.com/#business",
   "name": "ABQ Cash Home Buyers",
+  "alternateName": "Albuquerque Cash Home Buyers",
+  "description": "Locally owned home buying company serving Albuquerque and central New Mexico. We buy houses for cash in any condition, with no fees, no repairs, and no commissions.",
   "image": "https://example.com/assets/og-image.jpg",
+  "logo": "https://example.com/favicon.svg",
   "url": "https://example.com/",
   "telephone": "+1-505-555-0123",
+  "email": "offers@example.com",
   "priceRange": "$$",
+  "foundingDate": "2014",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "123 Central Ave NE",
@@ -53,18 +95,170 @@
     {"@type": "City", "name": "Rio Rancho"},
     {"@type": "City", "name": "Bernalillo"},
     {"@type": "City", "name": "Corrales"},
+    {"@type": "City", "name": "Placitas"},
     {"@type": "City", "name": "Los Lunas"},
-    {"@type": "City", "name": "Belen"}
+    {"@type": "City", "name": "Belen"},
+    {"@type": "City", "name": "Tijeras"},
+    {"@type": "City", "name": "Edgewood"}
   ],
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
     "opens": "07:00", "closes": "21:00"
-  }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "82",
+    "reviewCount": "82"
+  },
+  "sameAs": [
+    "https://www.google.com/maps/place/?q=ABQ+Cash+Home+Buyers"
+  ]
+}
+</script>
+
+<!-- Schema.org: HowTo (the 3-step process) — unlocks rich snippets -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to sell your Albuquerque house for cash in 3 steps",
+  "description": "Three-step process to sell your house in Albuquerque, NM for cash with no fees and no repairs.",
+  "totalTime": "P30D",
+  "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "0" },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Tell us about the house",
+      "text": "Submit a 90-second form or call us. We need the address, condition, and your timeline. No income, credit, or financial info required.",
+      "url": "https://example.com/#how"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Get a written offer in 24 hours",
+      "text": "We send a written cash offer within 24 hours, based on recent Albuquerque comparable sales and the property's actual condition. The number we send is the number we close at.",
+      "url": "https://example.com/#how"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Close on your timeline",
+      "text": "Close at a reputable Albuquerque title company in as little as 7 days, or up to 60 days. We pay all closing costs.",
+      "url": "https://example.com/#how"
+    }
+  ]
+}
+</script>
+
+<!-- Schema.org: FAQPage — unlocks rich snippets in Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How fast can you actually close on my Albuquerque house?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seven days if title is clean and you're motivated. Most of our Albuquerque closings happen in two to three weeks. You set the date — we'll match it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you decide what to offer for my house?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We pull recent comparable sales in your specific Albuquerque neighborhood, estimate repairs to bring the property to market condition, and back out our holding and transaction costs. The number we send is the number we close at — no last-minute renegotiation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there really no fees when I sell my house to you?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "None. No commissions, no transaction fees, no junk fees. We pay standard seller closing costs. The number on your offer is the number you net, minus any existing mortgage payoff."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to clean or fix anything before selling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Leave the broken appliances, the storage unit's worth of stuff in the garage, the carpet you've been meaning to replace. We buy as-is and handle everything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will you buy a house with tenants in place?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We buy occupied properties, vacant properties, Section 8 rentals, and houses with tenants behind on rent or on month-to-month leases. Tell us the situation and we'll structure around it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I'm in foreclosure or behind on the mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Call today, not tomorrow. New Mexico is a judicial foreclosure state, which buys you some time, but the clock is ticking. We can often close fast enough to stop the auction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there any obligation when I request an offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zero obligation. You get a written cash offer. Take it, leave it, or use it as leverage with a real estate agent. We don't follow up with spam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you a wholesaler or do you actually buy the house?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both, depending on the deal. Some properties we keep as rentals, some we renovate and resell, and some we assign to a vetted partner buyer. Either way, you sign one contract and you close — that's all that changes for you."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Schema.org: Featured Review -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": { "@type": "LocalBusiness", "name": "ABQ Cash Home Buyers" },
+  "author": { "@type": "Person", "name": "Marisol R." },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "5",
+    "bestRating": "5"
+  },
+  "reviewBody": "Inherited my mom's house in the South Valley and I live in Phoenix. They handled the probate paperwork with my attorney and closed in twenty-two days. I never had to fly out. Honestly the easiest part of a hard year.",
+  "datePublished": "2025-07-15"
+}
+</script>
+
+<!-- Schema.org: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/" }
+  ]
 }
 </script>
 </head>
 <body id="top">
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <header class="site">
   <div class="wrap site-inner">
@@ -91,6 +285,8 @@
     </button>
   </div>
 </header>
+
+<main id="main">
 
 <!-- HERO -->
 <section class="hero">
@@ -226,9 +422,9 @@
     </header>
 
     <div class="sit-grid">
-      <article class="sit"><h3>Inherited a house</h3><p>Out of state, mid-probate, or just complicated. We work with your attorney to make the close clean.</p></article>
-      <article class="sit"><h3>Behind on payments</h3><p>Pre-foreclosure in NM moves faster than people think. We can sometimes close in time to stop the auction.</p></article>
-      <article class="sit"><h3>Going through divorce</h3><p>Neutral process, fast close, both parties walk away. We handle the awkwardness so you don't have to.</p></article>
+      <a class="sit" href="inherited/"><h3>Inherited a house →</h3><p>Out of state, mid-probate, or just complicated. We work with your NM probate attorney to make the close clean.</p></a>
+      <a class="sit" href="foreclosure/"><h3>Behind on payments →</h3><p>Pre-foreclosure in NM moves faster than people think. We can sometimes close in time to stop the auction.</p></a>
+      <a class="sit" href="divorce/"><h3>Going through divorce →</h3><p>Neutral process, fast close, both parties walk away. Equity split at the title company.</p></a>
       <article class="sit"><h3>Tired of being a landlord</h3><p>Bad tenants, deferred maintenance, Section 8 paperwork. We'll take it occupied or vacant.</p></article>
       <article class="sit"><h3>Major repairs needed</h3><p>Foundation, roof, fire damage, hoarder situation, mold. Leave anything you don't want.</p></article>
       <article class="sit"><h3>Relocating for work</h3><p>Close on the day you start the new job. No double mortgage, no remote sale headaches.</p></article>
@@ -266,7 +462,7 @@
       <div class="area-block">
         <h3>Surrounding cities</h3>
         <ul>
-          <li>Rio Rancho</li>
+          <li><a href="rio-rancho/">Rio Rancho →</a></li>
           <li>Bernalillo</li>
           <li>Corrales</li>
           <li>Placitas</li>
@@ -416,6 +612,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer class="foot">

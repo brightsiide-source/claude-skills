@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M 56 0 L 0 0 0 56" fill="none" stroke="#0a0a0a" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="fade" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#fade)"/>
+
+  <!-- Logo + brand -->
+  <g transform="translate(80, 80)">
+    <rect width="56" height="56" rx="13" fill="#0a0a0a"/>
+    <path d="M14 37 L28 16 L42 37 L37 37 L37 42 L19 42 L19 37 Z" fill="#2563eb"/>
+    <text x="76" y="38" font-size="22" font-weight="600" fill="#0a0a0a" letter-spacing="-0.3">ABQ Cash Home Buyers</text>
+  </g>
+
+  <!-- Badge pill -->
+  <g transform="translate(80, 220)">
+    <rect width="316" height="44" rx="22" fill="#eff6ff" stroke="#dbeafe"/>
+    <circle cx="26" cy="22" r="5" fill="#2563eb"/>
+    <text x="44" y="29" font-size="16" font-weight="500" fill="#1d4ed8">Now serving Albuquerque &amp; Rio Rancho</text>
+  </g>
+
+  <!-- Headline -->
+  <text x="80" y="340" font-size="76" font-weight="800" fill="#0a0a0a" letter-spacing="-2.5">Sell your Albuquerque</text>
+  <text x="80" y="420" font-size="76" font-weight="800" fill="#0a0a0a" letter-spacing="-2.5">house for cash.</text>
+  <text x="80" y="500" font-size="76" font-weight="800" fill="#2563eb" letter-spacing="-2.5">In days, not months.</text>
+
+  <!-- Footer stats -->
+  <g transform="translate(80, 560)" font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#6b7280">
+    <text x="0" y="0"><tspan font-weight="600" fill="#0a0a0a" font-size="22" font-family="Inter">24h</tspan>  written offer</text>
+    <text x="220" y="0"><tspan font-weight="600" fill="#0a0a0a" font-size="22" font-family="Inter">7d</tspan>  fastest close</text>
+    <text x="440" y="0"><tspan font-weight="600" fill="#0a0a0a" font-size="22" font-family="Inter">$0</tspan>  fees &amp; commissions</text>
+    <text x="740" y="0"><tspan font-weight="600" fill="#0a0a0a" font-size="22" font-family="Inter">500+</tspan>  NM homes purchased</text>
+  </g>
+
+  <!-- Right edge accent bar -->
+  <rect x="1180" y="0" width="20" height="630" fill="#2563eb"/>
+</svg>
