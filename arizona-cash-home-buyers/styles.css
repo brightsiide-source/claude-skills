@@ -452,7 +452,7 @@ body {
   margin-bottom: 16px;
 }
 
-.situation-card h4 {
+.situation-card h3 {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 8px;
@@ -720,7 +720,7 @@ body {
   line-height: 1.6;
 }
 
-.footer-col h4 {
+.footer-col h3 {
   color: var(--white);
   font-size: 0.95rem;
   font-weight: 700;
