@@ -55,20 +55,6 @@
   </script>
 </head>
 <body>
-  <!-- HIDDEN FORM FOR NETLIFY DETECTION (build-time scrape) -->
-  <form name="cash-offer" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <input type="tel" name="phone" />
-    <input type="text" name="property_address" />
-    <input type="text" name="city" />
-    <input type="text" name="zip" />
-    <select name="property_condition"><option></option></select>
-    <select name="timeline"><option></option></select>
-    <select name="reason"><option></option></select>
-    <textarea name="notes"></textarea>
-  </form>
-
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="container topbar-inner">
@@ -147,8 +133,8 @@
               name="cash-offer"
               method="POST"
               action="/thank-you.html"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
+              netlify
+              netlify-honeypot="bot-field"
               class="lead-form"
             >
               <input type="hidden" name="form-name" value="cash-offer" />
