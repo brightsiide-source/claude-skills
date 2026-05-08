@@ -52,7 +52,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
 
-<link rel="stylesheet" href="styles.css?v=4" />
+<link rel="stylesheet" href="styles.css?v=5" />
 
 <!-- Critical CSS: minimal fallback so the page never looks broken if styles.css fails to load -->
 <style>
@@ -289,35 +289,87 @@
 <main id="main">
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="offer">
   <div class="wrap hero-inner">
-    <span class="badge"><span class="dot"></span> Now serving Albuquerque &amp; Rio Rancho</span>
-    <h1>Sell your Albuquerque house for cash. <span class="text-accent">In days, not months.</span></h1>
-    <p class="hero-lede">
-      A locally owned home-buying company. We make a fair, written cash offer in 24 hours and close at a New Mexico title company in as little as seven days. No repairs, no cleaning, no commissions, no closing costs.
-    </p>
-    <div class="hero-actions">
-      <a href="#offer" class="btn btn-primary btn-lg">Get my cash offer</a>
-      <a href="tel:+15055550123" class="btn btn-secondary btn-lg">Call (505) 555-0123</a>
+    <div class="hero-copy">
+      <span class="badge"><span class="dot"></span> Now serving Albuquerque &amp; Rio Rancho</span>
+      <h1>Sell your Albuquerque house for cash. <span class="text-accent">In days, not months.</span></h1>
+      <p class="hero-lede">
+        A locally owned home-buying company. We make a fair, written cash offer in 24 hours and close at a New Mexico title company in as little as seven days. No repairs, no cleaning, no commissions, no closing costs.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:+15055550123" class="btn btn-secondary btn-lg">Or call (505) 555-0123</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <span class="trust-num">24h</span>
+          <span class="trust-lab">Written offer</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-num">7d</span>
+          <span class="trust-lab">Fastest close</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-num">$0</span>
+          <span class="trust-lab">Fees &amp; closing costs</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-num">500+</span>
+          <span class="trust-lab">NM homes purchased</span>
+        </div>
+      </div>
     </div>
-    <div class="hero-trust">
-      <div class="trust-item">
-        <span class="trust-num">24h</span>
-        <span class="trust-lab">Written offer</span>
+
+    <aside class="hero-form-wrap">
+      <div class="hero-form-card">
+        <div class="hero-form-head">
+          <h2>Get your cash offer</h2>
+          <p>Written offer in 24 hours. No obligation.</p>
+        </div>
+        <form id="lead-form" name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?submitted=true" novalidate>
+          <input type="hidden" name="form-name" value="lead" />
+          <input type="hidden" name="page" value="home" />
+          <p class="hp-field" aria-hidden="true">
+            <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+          <label>
+            <span>Property address</span>
+            <input type="text" name="address" placeholder="123 Central Ave NE, Albuquerque" required autocomplete="street-address" />
+          </label>
+          <div class="row">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="name" placeholder="Jane Doe" required autocomplete="name" />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="(505) 555-0123" required autocomplete="tel" inputmode="tel" />
+            </label>
+          </div>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" />
+          </label>
+          <label>
+            <span>Property condition <small>(optional)</small></span>
+            <select name="condition">
+              <option value="">Select…</option>
+              <option>Move-in ready</option>
+              <option>Needs minor work</option>
+              <option>Needs major repairs</option>
+              <option>Vacant / boarded</option>
+              <option>Not sure</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Get my offer →</button>
+          <p class="micro">No fees, no obligation. We never share your info.</p>
+        </form>
+        <div class="form-success" hidden>
+          <h3>Got it.</h3>
+          <p>A buyer from our Albuquerque team will be in touch within one business day with a written cash offer. Need to talk now? <a href="tel:+15055550123">(505) 555-0123</a>.</p>
+        </div>
       </div>
-      <div class="trust-item">
-        <span class="trust-num">7d</span>
-        <span class="trust-lab">Fastest close</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-num">$0</span>
-        <span class="trust-lab">Fees &amp; closing costs</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-num">500+</span>
-        <span class="trust-lab">NM homes purchased</span>
-      </div>
-    </div>
+    </aside>
   </div>
 </section>
 
@@ -552,63 +604,15 @@
   </div>
 </section>
 
-<!-- OFFER FORM -->
-<section class="offer" id="offer">
-  <div class="wrap offer-inner">
-    <div class="offer-copy">
-      <span class="kicker">Get your cash offer</span>
-      <h2>One short form. We do the rest.</h2>
-      <p class="head-lede">We'll review the property today and have a written offer in your inbox within 24 hours. Or call us right now at <a href="tel:+15055550123">(505) 555-0123</a>. We answer phones seven days a week.</p>
-      <ul class="offer-bullets">
-        <li>No obligation, no fees, no spam follow-ups</li>
-        <li>We never share your information</li>
-        <li>If we're not the right fit, we'll say so</li>
-      </ul>
-    </div>
-
-    <div class="offer-form">
-      <form id="lead-form" name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?submitted=true" novalidate>
-        <input type="hidden" name="form-name" value="lead" />
-        <p class="hp-field" aria-hidden="true">
-          <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
-        </p>
-        <label>
-          <span>Property address</span>
-          <input type="text" name="address" placeholder="123 Central Ave NE, Albuquerque" required autocomplete="street-address" />
-        </label>
-        <div class="row">
-          <label>
-            <span>Your name</span>
-            <input type="text" name="name" placeholder="Jane Doe" required autocomplete="name" />
-          </label>
-          <label>
-            <span>Phone</span>
-            <input type="tel" name="phone" placeholder="(505) 555-0123" required autocomplete="tel" inputmode="tel" />
-          </label>
-        </div>
-        <label>
-          <span>Email</span>
-          <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" />
-        </label>
-        <label>
-          <span>Property condition <small>(optional)</small></span>
-          <select name="condition">
-            <option value="">Select…</option>
-            <option>Move-in ready</option>
-            <option>Needs minor work</option>
-            <option>Needs major repairs</option>
-            <option>Vacant / boarded</option>
-            <option>Not sure</option>
-          </select>
-        </label>
-        <button type="submit" class="btn btn-primary btn-block btn-lg">Send it →</button>
-        <p class="micro">By submitting, you agree to be contacted about your property. We don't sell, share, or spam.</p>
-      </form>
-
-      <div class="form-success" hidden>
-        <h3>Got it.</h3>
-        <p>A buyer from our Albuquerque team will be in touch within one business day with a written cash offer. Need to talk now? <a href="tel:+15055550123">(505) 555-0123</a>.</p>
-      </div>
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap final-cta-inner">
+    <span class="kicker kicker-light">Ready when you are</span>
+    <h2>Get your cash offer in 24 hours.</h2>
+    <p>One short form. Written offer in your inbox by tomorrow. Or call us right now — we answer the phone seven days a week.</p>
+    <div class="final-cta-actions">
+      <a href="#offer" class="btn btn-primary btn-lg">Back to top — get my offer</a>
+      <a href="tel:+15055550123" class="btn btn-ghost btn-lg">Call (505) 555-0123</a>
     </div>
   </div>
 </section>
@@ -660,6 +664,6 @@
   <a href="tel:+15055550123" class="mcta-secondary" aria-label="Call (505) 555-0123">📞</a>
 </div>
 
-<script src="script.js?v=3" defer></script>
+<script src="script.js?v=5" defer></script>
 </body>
 </html>
