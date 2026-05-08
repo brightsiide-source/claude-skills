@@ -293,6 +293,61 @@ input, select, textarea {
   background: var(--dark-3);
 }
 
+/* ---- HERO SPLIT LAYOUT ---- */
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 56px;
+  align-items: center;
+  width: 100%;
+  padding: 120px 0 80px;
+}
+.hero-copy { text-align: left; }
+.hero-copy .hero-sub { margin-left: 0; max-width: 560px; }
+.hero-cta-left { justify-content: flex-start; margin-bottom: 40px; }
+.hero-trust-left { justify-content: flex-start; gap: 24px; }
+.hero-form-wrap { position: relative; }
+.hero-form-card { padding: 28px; }
+.hero-form-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.hero-form-sub {
+  font-size: 0.9rem;
+  color: var(--silver);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 100px 0 60px;
+  }
+  .hero-copy { text-align: center; }
+  .hero-copy .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-cta-left { justify-content: center; }
+  .hero-trust-left { justify-content: center; }
+}
+
+/* Bottom contact-info section (form removed) */
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .contact-info-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
 /* ========== PROBLEMS ========== */
 .problems { background: var(--dark); }
 .problems-grid {

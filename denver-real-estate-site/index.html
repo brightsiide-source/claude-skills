@@ -155,30 +155,60 @@
   <!-- ========== HERO ========== -->
   <header class="hero" id="hero">
     <div class="hero-overlay"></div>
-    <div class="container hero-content">
-      <div class="hero-badge">Trusted Colorado Home Buyers Since 2018</div>
-      <h1>Guaranteed Fast Hope — Sell Your Colorado Home<br><span class="text-accent">in 14 Days, Feel Relief Now</span></h1>
-      <p class="hero-sub">Get a fair, no-obligation cash offer in 24 hours. Close in 30 days or less.<br><strong>No fees. No repairs. No hassle.</strong></p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary btn-lg">Get My Cash Offer <span class="arrow">&rarr;</span></a>
-        <a href="tel:+13098839464" class="btn btn-outline btn-lg">Call (309) 883-9464</a>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="hero-badge">Trusted Colorado Home Buyers Since 2018</div>
+        <h1>Guaranteed Fast Hope — Sell Your Colorado Home<br><span class="text-accent">in 14 Days, Feel Relief Now</span></h1>
+        <p class="hero-sub">Get a fair, no-obligation cash offer in 24 hours. Close in 30 days or less.<br><strong>No fees. No repairs. No hassle.</strong></p>
+        <div class="hero-cta hero-cta-left">
+          <a href="tel:+13098839464" class="btn btn-outline btn-lg">Call (309) 883-9464</a>
+        </div>
+        <div class="hero-trust hero-trust-left">
+          <div class="trust-item">
+            <span class="trust-number">500+</span>
+            <span class="trust-label">Houses Bought</span>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <span class="trust-number">4.9★</span>
+            <span class="trust-label">Google Rating</span>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <span class="trust-number">14 Days</span>
+            <span class="trust-label">Avg Close Time</span>
+          </div>
+        </div>
       </div>
-      <div class="hero-trust">
-        <div class="trust-item">
-          <span class="trust-number">500+</span>
-          <span class="trust-label">Houses Bought</span>
+      <aside class="hero-form-wrap" id="contact">
+        <div class="contact-form-wrapper hero-form-card">
+          <h2 class="hero-form-title">Get Your Free Cash Offer</h2>
+          <p class="hero-form-sub">Takes 60 seconds. We'll respond within 24 hours.</p>
+          <form id="leadForm" class="lead-form" name="contact" method="POST" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <input type="hidden" name="bot-field">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="John Smith" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="john@example.com" autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="address">Property Address *</label>
+              <input type="text" id="address" name="address" required placeholder="123 Main St, Denver, CO 80202" autocomplete="street-address">
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-full">Get My Free Cash Offer &rarr;</button>
+            <p class="form-disclaimer">&#128274; Your information is 100% confidential &amp; encrypted. We will never share or sell your data. No spam, guaranteed.</p>
+          </form>
+          <div id="formSuccess" class="form-success hidden">
+            <div class="success-icon">&#10003;</div>
+            <h3>Thank You!</h3>
+            <p>We've received your information and will contact you within 24 hours with your free cash offer.</p>
+          </div>
         </div>
-        <div class="trust-divider"></div>
-        <div class="trust-item">
-          <span class="trust-number">4.9★</span>
-          <span class="trust-label">Google Rating</span>
-        </div>
-        <div class="trust-divider"></div>
-        <div class="trust-item">
-          <span class="trust-number">14 Days</span>
-          <span class="trust-label">Avg Close Time</span>
-        </div>
-      </div>
+      </aside>
     </div>
   </header>
 
@@ -460,13 +490,16 @@
     </div>
   </section>
 
-  <!-- ========== CONTACT / LEAD FORM ========== -->
-  <section class="section contact" id="contact">
+  <!-- ========== CONTACT INFO + FINAL CTA ========== -->
+  <section class="section contact" id="contact-info">
     <div class="container">
-      <div class="contact-grid">
+      <div class="contact-info-grid">
         <div class="contact-info">
-          <h2>Get Instant Relief and Hope — <span class="text-accent">Free Guaranteed Cash Offer in 24 Hours Now</span></h2>
-          <p>Fill out the form and we'll get back to you within 24 hours with a fair, no-obligation cash offer for your property.</p>
+          <h2>Ready for Your <span class="text-accent">Free Cash Offer?</span></h2>
+          <p>Scroll back up and fill out the form — we'll get back to you within 24 hours with a fair, no-obligation cash offer for your property.</p>
+          <a href="#contact" class="btn btn-primary btn-lg">Get My Cash Offer &rarr;</a>
+        </div>
+        <div class="contact-details-block">
           <div class="contact-details">
             <div class="contact-item">
               <span class="contact-icon">&#128222;</span>
@@ -496,31 +529,6 @@
                 <span>Mon-Sun: 7:00 AM - 9:00 PM</span>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="contact-form-wrapper">
-          <form id="leadForm" class="lead-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact">
-            <input type="hidden" name="bot-field">
-            <div class="form-group">
-              <label for="name">Full Name *</label>
-              <input type="text" id="name" name="name" required placeholder="John Smith" autocomplete="name">
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" required placeholder="john@example.com" autocomplete="email">
-            </div>
-            <div class="form-group">
-              <label for="address">Property Address *</label>
-              <input type="text" id="address" name="address" required placeholder="123 Main St, Denver, CO 80202" autocomplete="street-address">
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-full">Get My Free Cash Offer &rarr;</button>
-            <p class="form-disclaimer">&#128274; Your information is 100% confidential &amp; encrypted. We will never share or sell your data. No spam, guaranteed.</p>
-          </form>
-          <div id="formSuccess" class="form-success hidden">
-            <div class="success-icon">&#10003;</div>
-            <h3>Thank You!</h3>
-            <p>We've received your information and will contact you within 24 hours with your free cash offer.</p>
           </div>
         </div>
       </div>
