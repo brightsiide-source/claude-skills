@@ -77,7 +77,7 @@ p  { margin: 0 0 1em; color: var(--ink-700); }
 .logo { display: inline-flex; align-items: center; gap: 10px; color: var(--ink-900); }
 .logo:hover { text-decoration: none; }
 .logo__mark {
-  width: 40px; height: 40px; border-radius: 8px;
+  width: 64px; height: 64px; border-radius: 8px;
   background: var(--purple-700); color: var(--white);
   display: inline-flex; align-items: center; justify-content: center;
   font-weight: 800; letter-spacing: .02em;
