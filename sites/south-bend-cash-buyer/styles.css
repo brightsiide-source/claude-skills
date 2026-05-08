@@ -125,6 +125,7 @@ p { margin: 0 0 1em; }
   color: var(--ink-900); font-size: 1.1rem;
 }
 .logo:hover { text-decoration: none; }
+.logo-img { width: 64px; height: 64px; object-fit: contain; display: block; }
 .logo-text strong { font-weight: 800; color: var(--green-700); }
 .logo-light { color: #fff; }
 .logo-light .logo-text strong { color: #9be8b8; }
