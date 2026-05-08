@@ -82,6 +82,7 @@ p  { margin: 0 0 1em; color: var(--ink-700); }
   display: inline-flex; align-items: center; justify-content: center;
   font-weight: 800; letter-spacing: .02em;
 }
+img.logo__mark { background: transparent; border-radius: 0; object-fit: contain; padding: 0; }
 .logo__text strong { display: block; font-size: 1.1rem; line-height: 1; }
 .logo__text small { color: var(--ink-500); font-size: .8rem; }
 .logo--light { color: var(--white); }
