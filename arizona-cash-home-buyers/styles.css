@@ -90,6 +90,7 @@ body {
   color: var(--green);
   font-size: 1.5rem;
 }
+img.logo-icon { width: 32px; height: 32px; object-fit: contain; vertical-align: middle; }
 
 .nav-links {
   display: flex;
