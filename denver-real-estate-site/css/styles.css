@@ -298,36 +298,52 @@ input, select, textarea {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 460px);
+  gap: 48px;
   align-items: center;
   width: 100%;
   padding: 120px 0 80px;
 }
 .hero-copy { text-align: left; }
-.hero-copy .hero-sub { margin-left: 0; max-width: 560px; }
-.hero-cta-left { justify-content: flex-start; margin-bottom: 40px; }
-.hero-trust-left { justify-content: flex-start; gap: 24px; }
+.hero-copy .hero-badge { margin-bottom: 18px; }
+.hero-copy h1 {
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  margin-bottom: 18px;
+}
+.hero-copy .hero-sub {
+  margin: 0 0 28px;
+  max-width: 520px;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+}
+.hero-cta-left { justify-content: flex-start; margin-bottom: 28px; }
+.hero-trust-left { justify-content: flex-start; gap: 20px; }
+.hero-trust-left .trust-number { font-size: 1.5rem; }
+.hero-trust-left .trust-divider { height: 32px; }
 .hero-form-wrap { position: relative; }
 .hero-form-card { padding: 28px; }
 .hero-form-title {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .hero-form-sub {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--silver);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+}
+.hero-form-card .lead-form { gap: 14px; }
+.hero-form-card .form-group input {
+  padding: 12px 14px;
+  font-size: 0.95rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 880px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
-    max-width: 640px;
+    gap: 36px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 100px 0 60px;
   }
