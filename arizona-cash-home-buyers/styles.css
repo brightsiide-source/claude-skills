@@ -255,6 +255,70 @@ img.logo-icon { width: 32px; height: 32px; object-fit: contain; vertical-align: 
   font-size: 0.85rem;
 }
 
+/* ---- HERO SPLIT LAYOUT ---- */
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 56px;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.hero-copy {
+  text-align: left;
+}
+
+.hero-copy .hero-brand {
+  margin-bottom: 12px;
+}
+
+.hero-copy .hero-subtitle {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 560px;
+}
+
+.hero-copy .hero-badges {
+  justify-content: flex-start;
+}
+
+.hero-form-wrap {
+  position: relative;
+}
+
+.hero-form-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-form-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+
+.hero-form-sub {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  margin-bottom: 20px;
+}
+
+.contact-form-hero {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.final-cta {
+  text-align: center;
+}
+
 /* ---- TRUST BAR ---- */
 .trust-bar {
   background: var(--green);
@@ -775,6 +839,25 @@ img.logo-icon { width: 32px; height: 32px; object-fit: contain; vertical-align: 
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 640px;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-copy .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-copy .hero-badges {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {
@@ -812,6 +895,10 @@ img.logo-icon { width: 32px; height: 32px; object-fit: contain; vertical-align: 
 
   .contact-form {
     padding: 32px 24px;
+  }
+
+  .hero-form-card {
+    padding: 24px;
   }
 
   .footer-grid {
