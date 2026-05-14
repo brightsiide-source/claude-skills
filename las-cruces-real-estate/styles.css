@@ -1,8 +1,8 @@
 /* ===== CSS Variables ===== */
 :root {
-  --primary: #891216;
-  --primary-dark: #5C0B0F;
-  --primary-light: #B01A1F;
+  --primary: #166534;
+  --primary-dark: #14532d;
+  --primary-light: #15803d;
   --accent: #D4A843;
   --accent-dark: #B8922F;
   --accent-light: #F0D68A;
@@ -11,7 +11,7 @@
   --text-muted: #888;
   --bg: #ffffff;
   --bg-alt: #f8f9fa;
-  --bg-dark: #1A0A0B;
+  --bg-dark: #0a1f10;
   --bg-card: #ffffff;
   --border: #e8e8e8;
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
