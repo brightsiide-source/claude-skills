@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /thanks.html
 
-Sitemap: https://www.cactuspropertysolutions.com/sitemap.xml
+Sitemap: https://cactuspropertysolutions.com/sitemap.xml

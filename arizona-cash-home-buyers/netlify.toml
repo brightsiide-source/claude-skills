@@ -7,8 +7,12 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+# Force www -> apex canonical
 [[redirects]]
-  from = "/thank-you"
-  to = "/thanks.html"
-  status = 200
+  from = "https://www.cactuspropertysolutions.com/*"
+  to = "https://cactuspropertysolutions.com/:splat"
+  status = 301
+  force = true
