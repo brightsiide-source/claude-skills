@@ -8,4 +8,4 @@ Disallow: /*?v=
 # Crawl delay courtesy
 Crawl-delay: 1
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://riograndehomebuyers.com/sitemap.xml
