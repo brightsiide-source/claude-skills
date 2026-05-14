@@ -42,7 +42,7 @@
 # not index two copies of the site.
 # [[redirects]]
 #   from = "https://YOUR-SITE.netlify.app/*"
-#   to = "https://saccashhomebuyers.com/:splat"
+#   to = "https://sacramentopropertysolutions.com/:splat"
 #   status = 301
 #   force = true
 

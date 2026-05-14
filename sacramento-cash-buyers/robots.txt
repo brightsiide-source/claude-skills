@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /thanks.html
 
-Sitemap: https://saccashhomebuyers.com/sitemap.xml
+Sitemap: https://sacramentopropertysolutions.com/sitemap.xml
