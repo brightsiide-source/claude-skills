@@ -1,35 +1,53 @@
 [build]
   publish = "."
 
-# Redirect www to non-www
+# Force www -> apex canonical
 [[redirects]]
-  from = "https://www.coloradocashhomebuyers.com/*"
-  to = "https://coloradocashhomebuyers.com/:splat"
+  from = "https://www.coloradocashhomebuyers.co/*"
+  to = "https://coloradocashhomebuyers.co/:splat"
   status = 301
   force = true
 
-# Custom headers for SEO and security
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com;"
-    Cache-Control = "public, max-age=3600"
+# 301 redirect .html -> extensionless (must come BEFORE the rewrite below,
+# otherwise the rewrite would intercept and the .html URL would stay in browser)
+[[redirects]]
+  from = "/areas/denver.html"
+  to = "/areas/denver"
+  status = 301
+  force = true
 
-[[headers]]
-  for = "/css/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+[[redirects]]
+  from = "/areas/fort-collins.html"
+  to = "/areas/fort-collins"
+  status = 301
+  force = true
 
-[[headers]]
-  for = "/js/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+[[redirects]]
+  from = "/areas/loveland.html"
+  to = "/areas/loveland"
+  status = 301
+  force = true
 
-# Pretty URLs
+[[redirects]]
+  from = "/areas/greeley.html"
+  to = "/areas/greeley"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/areas/longmont.html"
+  to = "/areas/longmont"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/areas/windsor.html"
+  to = "/areas/windsor"
+  status = 301
+  force = true
+
+# Pretty URL rewrites — serve the .html file when extensionless requested,
+# without changing the URL in the browser
 [[redirects]]
   from = "/areas/denver"
   to = "/areas/denver.html"
@@ -59,3 +77,26 @@
   from = "/areas/windsor"
   to = "/areas/windsor.html"
   status = 200
+
+# Custom headers for SEO and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com;"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

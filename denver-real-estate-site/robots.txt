@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://coloradocashhomebuyers.com/sitemap.xml
+Sitemap: https://coloradocashhomebuyers.co/sitemap.xml
