@@ -7,8 +7,6 @@ export const metadata: Metadata = {
   title: "We Buy Houses San Antonio | Cash Home Buyers | Close in 30 Days",
   description:
     "Sell your San Antonio house fast for cash. No repairs, no closing costs, no commissions. Get a fair cash offer in 24 hours and close in as little as 7 days. We buy houses in any condition.",
-  keywords:
-    "we buy houses san antonio, sell my house fast san antonio, cash home buyers san antonio, sell house as is san antonio, we buy ugly houses san antonio, cash for houses san antonio tx",
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
@@ -63,10 +61,8 @@ const localBusinessSchema = {
   logo: `${SITE_URL}/og-image.png`,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "San Antonio",
     addressLocality: "San Antonio",
     addressRegion: "TX",
-    postalCode: "78201",
     addressCountry: "US",
   },
   geo: {
@@ -91,36 +87,6 @@ const localBusinessSchema = {
   ],
   sameAs: [],
   priceRange: "$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: 4.9,
-    reviewCount: 200,
-    bestRating: 5,
-    worstRating: 1,
-  },
-  review: [
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Maria G." },
-      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
-      reviewBody:
-        "I was facing foreclosure and didn't know what to do. These guys gave me a fair cash offer and closed in 12 days. They literally saved my credit. I can't thank them enough.",
-    },
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "James T." },
-      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
-      reviewBody:
-        "Inherited my mother's house and it needed a LOT of work. They bought it as-is and I didn't have to spend a dime. The whole process was smooth and professional.",
-    },
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Sandra & Mike R." },
-      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
-      reviewBody:
-        "We needed to relocate for work in 3 weeks. They made us a fair offer the same day we called and we closed in 10 days. No showings, no hassle. Just done.",
-    },
-  ],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
@@ -288,10 +254,6 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#38BDF8" />
-        <meta name="geo.region" content="US-TX" />
-        <meta name="geo.placename" content="San Antonio" />
-        <meta name="geo.position" content="29.4241;-98.4936" />
-        <meta name="ICBM" content="29.4241, -98.4936" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
