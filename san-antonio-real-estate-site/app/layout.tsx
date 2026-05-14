@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://sacashhomebuyers.com";
+const SITE_URL = "https://sacashhomebuyers.co";
 
 export const metadata: Metadata = {
   title: "We Buy Houses San Antonio | Cash Home Buyers | Close in 30 Days",
@@ -56,7 +56,7 @@ const localBusinessSchema = {
     "We buy houses for cash in San Antonio, TX. Fast closings, no repairs, no fees. Get a fair cash offer in 24 hours and close in as little as 7 days.",
   url: SITE_URL,
   telephone: "+1-309-883-9464",
-  email: "info@sacashhomebuyers.com",
+  email: "info@sacashhomebuyers.co",
   image: `${SITE_URL}/og-image.png`,
   logo: `${SITE_URL}/og-image.png`,
   address: {
