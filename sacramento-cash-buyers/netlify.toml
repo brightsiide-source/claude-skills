@@ -4,7 +4,49 @@
 [build]
   publish = "."
 
-# Security & caching headers
+# Strip .html from neighborhood pages so URLs match the canonical tags
+# and sitemap entries (which use the extensionless form).
+[[redirects]]
+  from = "/we-buy-houses-elk-grove.html"
+  to = "/we-buy-houses-elk-grove"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/we-buy-houses-roseville.html"
+  to = "/we-buy-houses-roseville"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/we-buy-houses-folsom.html"
+  to = "/we-buy-houses-folsom"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/we-buy-houses-citrus-heights.html"
+  to = "/we-buy-houses-citrus-heights"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/we-buy-houses-rancho-cordova.html"
+  to = "/we-buy-houses-rancho-cordova"
+  status = 301
+  force = true
+
+# TODO: Once the custom domain is connected in Netlify, uncomment and
+# replace YOUR-SITE with the actual Netlify subdomain. This forces all
+# *.netlify.app traffic to the canonical custom domain so Google does
+# not index two copies of the site.
+# [[redirects]]
+#   from = "https://YOUR-SITE.netlify.app/*"
+#   to = "https://saccashhomebuyers.com/:splat"
+#   status = 301
+#   force = true
+
+# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
