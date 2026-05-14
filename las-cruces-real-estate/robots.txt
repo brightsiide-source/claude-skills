@@ -1,9 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.webuyhouseslascruces.com/sitemap.xml
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+Sitemap: https://lascruceshomebuyers.com/sitemap.xml
