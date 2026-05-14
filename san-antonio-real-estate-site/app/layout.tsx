@@ -56,7 +56,7 @@ const localBusinessSchema = {
     "We buy houses for cash in San Antonio, TX. Fast closings, no repairs, no fees. Get a fair cash offer in 24 hours and close in as little as 7 days.",
   url: SITE_URL,
   telephone: "+1-309-883-9464",
-  email: "info@sacashhomebuyers.co",
+  email: "washburn.david01@gmail.com",
   image: `${SITE_URL}/og-image.png`,
   logo: `${SITE_URL}/og-image.png`,
   address: {
