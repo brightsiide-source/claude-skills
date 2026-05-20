@@ -1,0 +1,14 @@
+{
+  "name": "Rio Grande Home Buyers",
+  "short_name": "Rio Grande",
+  "description": "Sell your Albuquerque house for cash. Fair offer in 24 hours, close in 7-30 days.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any maskable" },
+    { "src": "assets/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "assets/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}

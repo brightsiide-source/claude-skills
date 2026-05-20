@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow Netlify form submissions endpoint and form noise
+Disallow: /*?submitted=true
+Disallow: /*?v=
+
+# Crawl delay courtesy
+Crawl-delay: 1
+
+Sitemap: https://riograndehomebuyers.com/sitemap.xml
