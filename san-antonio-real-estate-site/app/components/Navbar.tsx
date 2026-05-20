@@ -10,7 +10,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-adobe/95 backdrop-blur-sm border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a href="#" className="flex items-center" aria-label="SA Cash Home Buyers — Home">
+          <a href="/" className="flex items-center" aria-label="SA Cash Home Buyers — Home">
             <div className="bg-white rounded-md px-2 py-1">
               <Image
                 src="/sacash-logo.png"
@@ -23,14 +23,14 @@ export default function Navbar() {
             </div>
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#how-it-works" className="text-sand hover:text-white transition-colors text-sm font-medium">How It Works</a>
-            <a href="#why-us" className="text-sand hover:text-white transition-colors text-sm font-medium">Why Us</a>
-            <a href="#areas" className="text-sand hover:text-white transition-colors text-sm font-medium">Areas We Buy</a>
-            <a href="#testimonials" className="text-sand hover:text-white transition-colors text-sm font-medium">Testimonials</a>
-            <a href="#faq" className="text-sand hover:text-white transition-colors text-sm font-medium">FAQ</a>
+          <div className="hidden md:flex items-center gap-7">
+            <a href="/how-it-works" className="text-sand hover:text-white transition-colors text-sm font-medium">Process</a>
+            <a href="/about" className="text-sand hover:text-white transition-colors text-sm font-medium">About</a>
+            <a href="/service-areas" className="text-sand hover:text-white transition-colors text-sm font-medium">Areas</a>
+            <a href="/faq" className="text-sand hover:text-white transition-colors text-sm font-medium">FAQ</a>
+            <a href="/contact" className="text-sand hover:text-white transition-colors text-sm font-medium">Contact</a>
             <a
-              href="#get-offer"
+              href="/contact"
               className="bg-terra hover:bg-terra-dark text-white px-5 py-2 rounded-md text-sm font-semibold transition-colors"
             >
               Get My Cash Offer
@@ -55,13 +55,13 @@ export default function Navbar() {
 
       {mobileOpen && (
         <div className="md:hidden bg-adobe border-t border-white/10 px-4 pb-4 space-y-3">
-          <a href="#how-it-works" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">How It Works</a>
-          <a href="#why-us" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">Why Us</a>
-          <a href="#areas" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">Areas We Buy</a>
-          <a href="#testimonials" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">Testimonials</a>
-          <a href="#faq" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">FAQ</a>
+          <a href="/how-it-works" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">Process</a>
+          <a href="/about" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">About</a>
+          <a href="/service-areas" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">Areas</a>
+          <a href="/faq" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">FAQ</a>
+          <a href="/contact" onClick={() => setMobileOpen(false)} className="block text-sand hover:text-white py-2 text-sm">Contact</a>
           <a
-            href="#get-offer"
+            href="/contact"
             onClick={() => setMobileOpen(false)}
             className="block bg-terra hover:bg-terra-dark text-white px-5 py-2 rounded-md text-sm font-semibold text-center transition-colors"
           >

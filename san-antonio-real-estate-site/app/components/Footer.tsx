@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-adobe border-t border-white/10 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="inline-block bg-white rounded-md px-3 py-2 mb-4">
@@ -29,42 +29,46 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Site */}
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Site</h4>
             <ul className="space-y-2">
-              <li><a href="#how-it-works" className="text-sand-dark hover:text-white text-sm transition-colors">How It Works</a></li>
-              <li><a href="#why-us" className="text-sand-dark hover:text-white text-sm transition-colors">Why Choose Us</a></li>
-              <li><a href="#areas" className="text-sand-dark hover:text-white text-sm transition-colors">Areas We Buy</a></li>
-              <li><a href="#testimonials" className="text-sand-dark hover:text-white text-sm transition-colors">Testimonials</a></li>
-              <li><a href="#faq" className="text-sand-dark hover:text-white text-sm transition-colors">FAQ</a></li>
-              <li><a href="#get-offer" className="text-sand-dark hover:text-white text-sm transition-colors">Get Cash Offer</a></li>
+              <li><a href="/how-it-works" className="text-sand-dark hover:text-white text-sm transition-colors">Process</a></li>
+              <li><a href="/about" className="text-sand-dark hover:text-white text-sm transition-colors">About</a></li>
+              <li><a href="/service-areas" className="text-sand-dark hover:text-white text-sm transition-colors">Service Areas</a></li>
+              <li><a href="/faq" className="text-sand-dark hover:text-white text-sm transition-colors">FAQ</a></li>
+              <li><a href="/contact" className="text-sand-dark hover:text-white text-sm transition-colors">Contact</a></li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Cities */}
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Contact</h4>
-            <ul className="space-y-3 text-sand-dark text-sm">
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 mt-0.5 text-terra shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
-                San Antonio, TX 78201
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 mt-0.5 text-terra shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                </svg>
-                (210) 555-0100
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 mt-0.5 text-terra shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
-                washburn.david01@gmail.com
-              </li>
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Cities</h4>
+            <ul className="space-y-2">
+              <li><a href="/" className="text-sand-dark hover:text-white text-sm transition-colors">San Antonio</a></li>
+              <li><a href="/new-braunfels" className="text-sand-dark hover:text-white text-sm transition-colors">New Braunfels</a></li>
+              <li><a href="/boerne" className="text-sand-dark hover:text-white text-sm transition-colors">Boerne</a></li>
+              <li><a href="/schertz" className="text-sand-dark hover:text-white text-sm transition-colors">Schertz</a></li>
+              <li><a href="/converse" className="text-sand-dark hover:text-white text-sm transition-colors">Converse</a></li>
+              <li><a href="/seguin" className="text-sand-dark hover:text-white text-sm transition-colors">Seguin</a></li>
+              <li><a href="/helotes" className="text-sand-dark hover:text-white text-sm transition-colors">Helotes</a></li>
+            </ul>
+          </div>
+
+          {/* Situations */}
+          <div>
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Situations</h4>
+            <ul className="space-y-2">
+              <li><a href="/foreclosure" className="text-sand-dark hover:text-white text-sm transition-colors">Stop foreclosure</a></li>
+              <li><a href="/inherited" className="text-sand-dark hover:text-white text-sm transition-colors">Inherited house</a></li>
+              <li><a href="/divorce" className="text-sand-dark hover:text-white text-sm transition-colors">Divorce sale</a></li>
+              <li><a href="/as-is" className="text-sand-dark hover:text-white text-sm transition-colors">Sell as-is</a></li>
+            </ul>
+            <h4 className="text-white font-bold mt-6 mb-3 text-sm uppercase tracking-wider">Contact</h4>
+            <ul className="space-y-2 text-sand-dark text-sm">
+              <li>San Antonio, TX 78201</li>
+              <li>(210) 555-0100</li>
+              <li>washburn.david01@gmail.com</li>
             </ul>
           </div>
         </div>
