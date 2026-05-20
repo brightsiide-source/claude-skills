@@ -31,6 +31,18 @@
   force = true
 
 [[redirects]]
+  from = "/service-areas.html"
+  to = "/service-areas"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/we-buy-houses-las-cruces.html"
   to = "/we-buy-houses-las-cruces"
   status = 301
