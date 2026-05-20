@@ -22,7 +22,7 @@ export default function Hero() {
       });
       setSubmitted(true);
     } catch {
-      setError("Something went wrong. Please call us directly at (309) 883-9464.");
+      setError("Something went wrong. Please call us directly at (210) 555-0100.");
     } finally {
       setSubmitting(false);
     }
@@ -51,7 +51,7 @@ export default function Hero() {
                 </svg>
                 <h3 className="text-2xl font-bold text-adobe mb-2">You&apos;re All Set!</h3>
                 <p className="text-sand-dark mb-4">We&apos;re reviewing your property now. Expect a call from our team within 24 hours with your no-obligation cash offer.</p>
-                <p className="text-sm text-sand-dark">Need to talk sooner? Call <a href="tel:+13098839464" className="text-terra font-semibold">(309) 883-9464</a></p>
+                <p className="text-sm text-sand-dark">Need to talk sooner? Call <a href="tel:+12105550100" className="text-terra font-semibold">(210) 555-0100</a></p>
               </div>
             ) : (
               <>
@@ -109,7 +109,7 @@ export default function Hero() {
                   </div>
                   {error && (
                     <div className="bg-red-50 border border-red-200 rounded-md p-3 text-sm text-red-700">
-                      {error} <a href="tel:+13098839464" className="font-semibold underline">(309) 883-9464</a>
+                      {error} <a href="tel:+12105550100" className="font-semibold underline">(210) 555-0100</a>
                     </div>
                   )}
                   <p className="text-xs text-sand-dark text-center">Takes less than 30 seconds</p>
@@ -163,13 +163,13 @@ export default function Hero() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="tel:+13098839464"
+                href="tel:+12105550100"
                 className="bg-white/10 border border-white/30 hover:border-white/50 text-white px-8 py-4 rounded-md text-lg font-medium transition-colors text-center flex items-center justify-center gap-2"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                Call Now: (309) 883-9464
+                Call Now: (210) 555-0100
               </a>
             </div>
 

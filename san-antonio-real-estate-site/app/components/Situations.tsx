@@ -41,7 +41,7 @@ export default function Situations() {
           <a href="#get-offer" className="inline-flex items-center gap-2 bg-terra hover:bg-terra-dark text-white px-8 py-4 rounded-md text-lg font-bold transition-colors">
             Get Your No-Obligation Offer
           </a>
-          <p className="mt-3 text-sand-dark text-sm">or call <a href="tel:+13098839464" className="text-terra font-semibold">(309) 883-9464</a> right now</p>
+          <p className="mt-3 text-sand-dark text-sm">or call <a href="tel:+12105550100" className="text-terra font-semibold">(210) 555-0100</a> right now</p>
         </div>
       </div>
     </section>

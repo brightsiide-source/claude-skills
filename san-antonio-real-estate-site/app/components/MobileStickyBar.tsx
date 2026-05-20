@@ -8,7 +8,7 @@ export default function MobileStickyBar() {
         Get Cash Offer
       </a>
       <a
-        href="tel:+13098839464"
+        href="tel:+12105550100"
         className="bg-white/10 text-white px-4 py-3 rounded-md font-bold text-sm flex items-center gap-1"
       >
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
