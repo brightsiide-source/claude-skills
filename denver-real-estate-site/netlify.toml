@@ -112,6 +112,18 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/areas/colorado-springs.html"
+  to = "/areas/colorado-springs"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/areas/pueblo.html"
+  to = "/areas/pueblo"
+  status = 301
+  force = true
+
 # Pretty URL rewrites — serve the .html file when extensionless requested,
 # without changing the URL in the browser
 [[redirects]]
@@ -197,6 +209,16 @@
 [[redirects]]
   from = "/areas/windsor"
   to = "/areas/windsor.html"
+  status = 200
+
+[[redirects]]
+  from = "/areas/colorado-springs"
+  to = "/areas/colorado-springs.html"
+  status = 200
+
+[[redirects]]
+  from = "/areas/pueblo"
+  to = "/areas/pueblo.html"
   status = 200
 
 # Custom headers for SEO and security
