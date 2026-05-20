@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" fill="none">
+  <rect x="1" y="1" width="238" height="78" rx="8" stroke="#6b8f71" stroke-width="1.5" fill="none"/>
+  <text x="120" y="30" text-anchor="middle" font-family="'Inter',sans-serif" font-size="13" font-weight="600" fill="#b0b8bf">Google Reviews</text>
+  <text x="120" y="52" text-anchor="middle" font-family="'Inter',sans-serif" font-size="16" fill="#fbbf24" letter-spacing="4">&#9733;&#9733;&#9733;&#9733;&#9733;</text>
+  <text x="120" y="68" text-anchor="middle" font-family="'Inter',sans-serif" font-size="11" font-weight="500" fill="#6b8f71">4.9/5 — 127 reviews</text>
+</svg>
