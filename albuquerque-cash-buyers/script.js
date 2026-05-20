@@ -80,7 +80,7 @@
       })
       .catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
-        alert("Sorry — something went wrong sending that. Please call us at (309) 883-9464 and we'll take it down by phone.");
+        alert("Sorry — something went wrong sending that. Please call us at (505) 555-0100 and we'll take it down by phone.");
       });
   });
 
