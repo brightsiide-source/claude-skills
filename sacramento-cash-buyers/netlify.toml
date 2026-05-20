@@ -4,8 +4,80 @@
 [build]
   publish = "."
 
-# Strip .html from neighborhood pages so URLs match the canonical tags
+# Strip .html from sub-pages so URLs match the canonical tags
 # and sitemap entries (which use the extensionless form).
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-it-works.html"
+  to = "/how-it-works"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-areas.html"
+  to = "/service-areas"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/we-buy-houses-sacramento.html"
+  to = "/we-buy-houses-sacramento"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/we-buy-houses-davis.html"
+  to = "/we-buy-houses-davis"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/we-buy-houses-west-sacramento.html"
+  to = "/we-buy-houses-west-sacramento"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-house-foreclosure-sacramento.html"
+  to = "/sell-house-foreclosure-sacramento"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-inherited-house-sacramento.html"
+  to = "/sell-inherited-house-sacramento"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-house-divorce-sacramento.html"
+  to = "/sell-house-divorce-sacramento"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-house-as-is-sacramento.html"
+  to = "/sell-house-as-is-sacramento"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/we-buy-houses-elk-grove.html"
   to = "/we-buy-houses-elk-grove"
