@@ -42,16 +42,16 @@ export default function Areas() {
             <div className="bg-adobe rounded-xl p-6 mb-8">
               <div className="grid grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-3xl font-extrabold text-terra">200+</div>
-                  <div className="text-sand-dark text-sm mt-1">Homes Bought</div>
+                  <div className="text-3xl font-extrabold text-terra">24h</div>
+                  <div className="text-sand-dark text-sm mt-1">Written offer</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-terra">$50M+</div>
-                  <div className="text-sand-dark text-sm mt-1">Cash Paid Out</div>
+                  <div className="text-3xl font-extrabold text-terra">7d</div>
+                  <div className="text-sand-dark text-sm mt-1">Fastest close</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-terra">14</div>
-                  <div className="text-sand-dark text-sm mt-1">Avg Days to Close</div>
+                  <div className="text-3xl font-extrabold text-terra">$0</div>
+                  <div className="text-sand-dark text-sm mt-1">Fees &amp; closing costs</div>
                 </div>
               </div>
             </div>

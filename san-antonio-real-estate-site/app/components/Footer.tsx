@@ -68,7 +68,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sand-dark text-sm">
               <li>San Antonio, TX 78201</li>
               <li>(210) 555-0100</li>
-              <li>washburn.david01@gmail.com</li>
+              <li>info@sacashhomebuyers.co</li>
             </ul>
           </div>
         </div>

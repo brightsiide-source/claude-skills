@@ -60,8 +60,8 @@ export default function Testimonials() {
         </div>
 
         <div className="text-center mt-12">
-          <a href="#get-offer" className="inline-flex items-center gap-2 bg-terra hover:bg-terra-dark text-white px-8 py-4 rounded-md text-lg font-bold transition-colors">
-            Join 200+ Happy Sellers — Get Your Offer
+          <a href="/contact" className="inline-flex items-center gap-2 bg-terra hover:bg-terra-dark text-white px-8 py-4 rounded-md text-lg font-bold transition-colors">
+            Get Your No-Obligation Cash Offer
           </a>
         </div>
       </div>

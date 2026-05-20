@@ -60,12 +60,7 @@ export default function Hero() {
                   <p className="text-sand-dark text-sm">Fill out this quick form and we&apos;ll contact you within 24 hours</p>
                 </div>
                 <div className="flex items-center justify-center gap-4 text-xs text-sand-dark mb-4 pb-4 border-b border-sand/20">
-                  <div className="flex items-center gap-1">
-                    <svg className="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    <span>4.9/5 from 200+ sellers</span>
-                  </div>
+                  <span>Local, family operated</span>
                   <span className="text-sand">|</span>
                   <span>Closes in as few as 7 days</span>
                 </div>
@@ -132,7 +127,7 @@ export default function Hero() {
           <div className="order-last lg:order-first">
             <div className="inline-flex items-center gap-2 bg-terra/10 border border-terra/30 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2 h-2 bg-terra rounded-full animate-pulse" />
-              <span className="text-terra-light text-sm font-medium">Trusted by 200+ San Antonio Homeowners</span>
+              <span className="text-terra-light text-sm font-medium">Now buying in San Antonio &amp; Bexar County</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
@@ -175,16 +170,16 @@ export default function Hero() {
 
             <div className="mt-8 flex items-center gap-6 text-sand-dark text-sm">
               <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                <svg className="w-5 h-5 text-terra" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>200+ Homes Purchased</span>
+                <span>Locally owned, family operated</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                <svg className="w-5 h-5 text-terra" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>4.9/5 Star Rating</span>
+                <span>Cash offer in 24 hours</span>
               </div>
             </div>
           </div>

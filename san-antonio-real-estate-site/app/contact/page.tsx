@@ -22,7 +22,7 @@ const contactSchema = {
     "@type": "LocalBusiness",
     name: "SA Cash Home Buyers",
     telephone: "+1-210-555-0100",
-    email: "washburn.david01@gmail.com",
+    email: "info@sacashhomebuyers.co",
     address: {
       "@type": "PostalAddress",
       addressLocality: "San Antonio",
@@ -53,7 +53,7 @@ export default function ContactPage() {
 
         <h2>By email</h2>
         <p>
-          <a href="mailto:washburn.david01@gmail.com">washburn.david01@gmail.com</a><br />
+          <a href="mailto:info@sacashhomebuyers.co">info@sacashhomebuyers.co</a><br />
           Replies within one business day.
         </p>
 

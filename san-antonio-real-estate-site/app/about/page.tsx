@@ -22,7 +22,7 @@ const aboutSchema = {
     "@type": "LocalBusiness",
     name: "SA Cash Home Buyers",
     telephone: "+1-210-555-0100",
-    email: "washburn.david01@gmail.com",
+    email: "info@sacashhomebuyers.co",
     address: {
       "@type": "PostalAddress",
       addressLocality: "San Antonio",
@@ -94,7 +94,7 @@ export default function AboutPage() {
         <h2>How to reach us</h2>
         <p>
           Phone: <a href="tel:+12105550100">(210) 555-0100</a><br />
-          Email: <a href="mailto:washburn.david01@gmail.com">washburn.david01@gmail.com</a><br />
+          Email: <a href="mailto:info@sacashhomebuyers.co">info@sacashhomebuyers.co</a><br />
           Hours: Mon&ndash;Fri 8am&ndash;6pm, Sat 9am&ndash;2pm CT. After-hours voicemails returned same day.
         </p>
       </PageShell>
