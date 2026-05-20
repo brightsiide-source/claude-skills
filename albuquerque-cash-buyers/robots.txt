@@ -1,11 +1,42 @@
 User-agent: *
 Allow: /
 
-# Disallow Netlify form submissions endpoint and form noise
+# Form submission noise
 Disallow: /*?submitted=true
 Disallow: /*?v=
 
-# Crawl delay courtesy
-Crawl-delay: 1
+# AI / LLM crawlers — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
 
 Sitemap: https://riograndehomebuyers.com/sitemap.xml

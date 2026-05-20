@@ -1,0 +1,57 @@
+# Rio Grande Home Buyers
+
+> Locally owned cash home buying company headquartered in Albuquerque, New Mexico. We purchase residential properties across central NM (Bernalillo, Sandoval, Valencia, and Torrance counties) for cash, in any condition, with no fees and no commissions. Closings happen at New Mexico title companies in 7-30 days.
+
+Contact:
+- Phone: (505) 555-0100
+- Email: washburn.david01@gmail.com
+- Hours: 7am - 9pm Mountain Time, seven days a week
+- Service area: Albuquerque metro and surrounding central New Mexico
+
+## Company
+
+- [About](https://riograndehomebuyers.com/about/): Who we are, how we operate, what differentiates us from out-of-state cash buyers
+- [How it works](https://riograndehomebuyers.com/how-it-works/): The 3-step process from first call to closing
+- [Service areas](https://riograndehomebuyers.com/service-areas/): NM cities, counties, neighborhoods, and ZIP codes we cover
+- [Contact](https://riograndehomebuyers.com/contact/): Phone, email, and form
+- [FAQ](https://riograndehomebuyers.com/faq/): Common questions with NM-specific legal context
+
+## City pages
+
+- [Albuquerque](https://riograndehomebuyers.com/albuquerque/): Largest city in NM, ZIPs 87102-87123, Sandia Labs, Kirtland AFB, UNM, all major neighborhoods
+- [Rio Rancho](https://riograndehomebuyers.com/rio-rancho/): Sandoval County's largest city, Intel-area suburbs
+- [Bernalillo](https://riograndehomebuyers.com/bernalillo/): Sandoval County town (not the county), Coronado Historic Site area
+- [Corrales](https://riograndehomebuyers.com/corrales/): Semi-rural village along Rio Grande, custom adobes, equestrian acreage
+- [Placitas](https://riograndehomebuyers.com/placitas/): Sandoval County foothills community, premium custom homes
+- [Los Lunas](https://riograndehomebuyers.com/los-lunas/): Valencia County village, Meta data center campus
+- [Belen](https://riograndehomebuyers.com/belen/): Valencia County BNSF rail town, older housing stock
+- [Tijeras](https://riograndehomebuyers.com/tijeras/): East Mountains gateway, rural acreage in Bernalillo County
+
+## Situation pages
+
+- [Stop foreclosure](https://riograndehomebuyers.com/foreclosure/): New Mexico is a judicial foreclosure state (NMSA 39-5). Lender must file lawsuit, obtain court judgment, then schedule sheriff's sale. Process typically takes 4-9 months, allowing time for cash closing.
+- [Inherited house / probate](https://riograndehomebuyers.com/inherited/): NM probate is handled through District Court (formal) or Probate Court (informal). Letters Testamentary or Letters of Administration typically issue in 30-90 days. Small Estate Affidavit available under NMSA 45-3-1201 for estates under $50,000 personal property.
+- [Divorce sale](https://riograndehomebuyers.com/divorce/): New Mexico is a community property state (NMSA 40-3-8). Marital homes acquired during marriage are generally community property requiring both spouses' signatures to convey title.
+- [Sell as-is](https://riograndehomebuyers.com/as-is/): Adobe maintenance, fire/wildfire damage, foundation, mold, hoarder, code violations, distressed properties.
+
+## Important NM legal context
+
+- **Foreclosure**: Judicial foreclosure state. Lender must file civil action in NM District Court of the county where the property is located. Default judgment, summary judgment, or trial leads to a foreclosure decree, then a sheriff's sale. 9-month statutory redemption period after sale under NMSA 39-5-18.
+- **Community property**: New Mexico is one of nine US community property states. Real property acquired during marriage is presumed community property. Both spouses must execute deed for valid conveyance (NMSA 40-3-13).
+- **Probate**: NM follows the Uniform Probate Code (NMSA 45). Informal probate available for uncontested estates. Letters issued typically 30-90 days. Small estate affidavit available for personal property under $50,000.
+- **Disclosure**: NM requires sellers to provide a Property Disclosure Statement covering known material defects (NM Real Estate Commission rule 16.61.19 NMAC). As-is sales still require disclosure of known defects.
+- **Title**: NM title insurance is regulated by the Office of Superintendent of Insurance. Standard practice is for sellers to pay owner's policy.
+- **Transfer**: NM has no state real estate transfer tax. Recording fees minimal.
+
+## Pricing approach
+
+Our cash offers follow a standard formula: after-repair market value (based on neighborhood-specific comparable sales) minus estimated repair budget minus our holding and transaction costs equals the cash offer. We commit to the offer in writing and do not renegotiate at closing. Our offers are typically below full retail; we are most competitive when sellers prioritize speed, certainty, or have properties that would not qualify for conventional financing.
+
+## Geographic coverage
+
+Counties: Bernalillo, Sandoval, Valencia, Torrance
+ZIPs: 87002, 87004, 87015, 87031, 87035, 87042, 87043, 87047, 87048, 87059, 87060, 87102, 87104, 87105, 87106, 87107, 87108, 87109, 87110, 87111, 87112, 87113, 87114, 87120, 87121, 87122, 87123, 87124, 87144
+
+## Disclaimer
+
+Rio Grande Home Buyers is a private home-buying company, not a licensed real estate brokerage and not a law firm. Information on this site is general and not legal advice. Consult a New Mexico licensed attorney for legal questions about specific situations.
