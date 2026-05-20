@@ -11,6 +11,72 @@
 # 301 redirect .html -> extensionless (must come BEFORE the rewrite below,
 # otherwise the rewrite would intercept and the .html URL would stay in browser)
 [[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-it-works.html"
+  to = "/how-it-works"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-areas.html"
+  to = "/service-areas"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-house-foreclosure-colorado.html"
+  to = "/sell-house-foreclosure-colorado"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-inherited-house-colorado.html"
+  to = "/sell-inherited-house-colorado"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-house-divorce-colorado.html"
+  to = "/sell-house-divorce-colorado"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-house-as-is-colorado.html"
+  to = "/sell-house-as-is-colorado"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/areas/aurora.html"
+  to = "/areas/aurora"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/areas/boulder.html"
+  to = "/areas/boulder"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/areas/denver.html"
   to = "/areas/denver"
   status = 301
@@ -48,6 +114,61 @@
 
 # Pretty URL rewrites — serve the .html file when extensionless requested,
 # without changing the URL in the browser
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-it-works"
+  to = "/how-it-works.html"
+  status = 200
+
+[[redirects]]
+  from = "/service-areas"
+  to = "/service-areas.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-house-foreclosure-colorado"
+  to = "/sell-house-foreclosure-colorado.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-inherited-house-colorado"
+  to = "/sell-inherited-house-colorado.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-house-divorce-colorado"
+  to = "/sell-house-divorce-colorado.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-house-as-is-colorado"
+  to = "/sell-house-as-is-colorado.html"
+  status = 200
+
+[[redirects]]
+  from = "/areas/aurora"
+  to = "/areas/aurora.html"
+  status = 200
+
+[[redirects]]
+  from = "/areas/boulder"
+  to = "/areas/boulder.html"
+  status = 200
+
 [[redirects]]
   from = "/areas/denver"
   to = "/areas/denver.html"
