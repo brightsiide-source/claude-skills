@@ -47,7 +47,7 @@ netlify deploy --prod --dir=.
 
 | Where | What to change |
 | --- | --- |
-| `index.html` (and `thanks.html`) | Phone `(916) 555-0100`, email `washburn.david01@gmail.com`, business name, JSON-LD schema |
+| `index.html` (and `thanks.html`) | Phone `(916) 555-0100`, email `info@sacramentopropertysolutions.com`, business name, JSON-LD schema |
 | `styles.css` | `:root` design tokens — green/gold palette, radii, shadows |
 | `index.html` `<meta>` block | Title, description, keywords, canonical URL, Open Graph |
 
