@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://cactuspropertysolutions.com/</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://cactuspropertysolutions.com/</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/about.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/how-it-works.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/service-areas.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/faq.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/contact.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/we-buy-houses-phoenix.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/we-buy-houses-tucson.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/we-buy-houses-mesa.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/we-buy-houses-scottsdale.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/we-buy-houses-chandler.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/we-buy-houses-gilbert.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/we-buy-houses-glendale.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/we-buy-houses-tempe.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/sell-house-foreclosure-arizona.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/sell-inherited-house-arizona.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/sell-house-divorce-arizona.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cactuspropertysolutions.com/sell-house-as-is-arizona.html</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>
