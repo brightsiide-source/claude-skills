@@ -1,5 +1,5 @@
 /**
- * Idaho Home Buyers - Main JavaScript
+ * Casiano Homes - Main JavaScript
  * Handles: navigation, FAQ accordion, form validation, scroll effects
  */
 

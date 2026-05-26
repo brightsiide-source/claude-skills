@@ -117,6 +117,48 @@
   to = "/about.html"
   status = 301
 
+# FAQ and Contact pretty URLs
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 301
+
+# Situation pages pretty URLs
+[[redirects]]
+  from = "/foreclosure"
+  to = "/situations/foreclosure.html"
+  status = 301
+
+[[redirects]]
+  from = "/inherited-property"
+  to = "/situations/inherited-property.html"
+  status = 301
+
+[[redirects]]
+  from = "/divorce"
+  to = "/situations/divorce.html"
+  status = 301
+
+[[redirects]]
+  from = "/relocating"
+  to = "/situations/relocating.html"
+  status = 301
+
+[[redirects]]
+  from = "/costly-repairs"
+  to = "/situations/costly-repairs.html"
+  status = 301
+
+[[redirects]]
+  from = "/unwanted-rental"
+  to = "/situations/unwanted-rental.html"
+  status = 301
+
 # 404 handling
 [[redirects]]
   from = "/*"
