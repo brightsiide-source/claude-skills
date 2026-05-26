@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import PageShell from "../components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Sell Your House During Divorce in Texas — Cash, Both Parties Walk Away | SA Cash Home Buyers",
+  title: "Sell Your House During Divorce in Texas | Cash, Both Parties Walk Away | SA Cash Home Buyers",
   description:
     "Selling your San Antonio house during divorce. Texas community property, homestead protections, both spouses sign. Neutral process, fast close, equity split at title.",
   alternates: { canonical: "/divorce" },
   openGraph: {
-    title: "Sell Your TX House During Divorce — Cash",
+    title: "Sell Your TX House During Divorce | Cash",
     description: "Texas community property and homestead rules handled. Neutral, fast, both parties walk away.",
     url: "https://sacashhomebuyers.co/divorce",
     type: "website",
@@ -18,7 +18,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Divorce house sale — Texas",
-  provider: { "@type": "LocalBusiness", name: "SA Cash Home Buyers", telephone: "+1-210-555-0100" },
+  provider: { "@type": "LocalBusiness", name: "SA Cash Home Buyers", telephone: "+1-830-590-1105" },
   areaServed: { "@type": "State", name: "Texas" },
   description: "Cash purchase of marital homes during Texas divorce. We handle community property and homestead protections.",
 };
@@ -83,7 +83,7 @@ export default function DivorcePage() {
         <p>We&rsquo;ll coordinate with your attorneys throughout. We won&rsquo;t communicate with one spouse without the other if you&rsquo;d prefer all communication go through counsel.</p>
 
         <h2>Want a confidential conversation?</h2>
-        <p>Call <a href="tel:+12105550100">(210) 555-0100</a> or use the contact form. We can talk with one or both spouses, or directly with your attorney. No-obligation cash offer in 24 hours.</p>
+        <p>Call <a href="tel:+18305901105">(830) 590-1105</a> or use the contact form. We can talk with one or both spouses, or directly with your attorney. No-obligation cash offer in 24 hours.</p>
       </PageShell>
     </>
   );

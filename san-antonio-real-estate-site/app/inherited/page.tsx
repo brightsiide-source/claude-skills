@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageShell from "../components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Sell an Inherited House in Texas — Cash, Even During Probate | SA Cash Home Buyers",
+  title: "Sell an Inherited House in Texas | Cash, Even During Probate | SA Cash Home Buyers",
   description:
     "Inherited a house in San Antonio or Texas? We work with TX probate (independent administration), Small Estate Affidavits, and out-of-state heirs. Cash offer in 24 hours.",
   alternates: { canonical: "/inherited" },
@@ -18,7 +18,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Inherited house cash purchase — Texas",
-  provider: { "@type": "LocalBusiness", name: "SA Cash Home Buyers", telephone: "+1-210-555-0100" },
+  provider: { "@type": "LocalBusiness", name: "SA Cash Home Buyers", telephone: "+1-830-590-1105" },
   areaServed: { "@type": "State", name: "Texas" },
   description: "Cash purchase of inherited homes in Texas. We work with probate, independent administration, and out-of-state heirs.",
 };
@@ -76,7 +76,7 @@ export default function InheritedPage() {
         <p>Inherited property gets a <strong>stepped-up basis</strong> to fair market value at the date of death. That means if you sell soon after inheriting, capital gains exposure is usually minimal &mdash; you&rsquo;re only taxed on appreciation between the date of death and the sale date. This is general information, not tax advice; talk to a CPA.</p>
 
         <h2>Get a fair cash offer on the inherited property</h2>
-        <p>Call <a href="tel:+12105550100">(210) 555-0100</a> or use the contact form. We&rsquo;ll work with you and your attorney to structure a clean Texas closing on a timeline that matches your probate process.</p>
+        <p>Call <a href="tel:+18305901105">(830) 590-1105</a> or use the contact form. We&rsquo;ll work with you and your attorney to structure a clean Texas closing on a timeline that matches your probate process.</p>
       </PageShell>
     </>
   );

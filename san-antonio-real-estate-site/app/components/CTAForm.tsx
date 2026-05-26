@@ -56,7 +56,7 @@ export default function CTAForm() {
                 <li className="flex gap-2"><span className="font-bold text-terra">2.</span> We call you within 24 hours with a cash offer</li>
                 <li className="flex gap-2"><span className="font-bold text-terra">3.</span> If you accept, we close on your schedule</li>
               </ol>
-              <p className="text-sm text-sand-dark">Need to talk sooner? Call us at <a href="tel:+12105550100" className="text-terra font-semibold">(210) 555-0100</a></p>
+              <p className="text-sm text-sand-dark">Need to talk sooner? Call us at <a href="tel:+18305901105" className="text-terra font-semibold">(830) 590-1105</a></p>
             </div>
           ) : (
             <>
@@ -148,7 +148,7 @@ export default function CTAForm() {
 
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-md p-3 text-sm text-red-700">
-                  {error} Call us at <a href="tel:+12105550100" className="font-semibold underline">(210) 555-0100</a>
+                  {error} Call us at <a href="tel:+18305901105" className="font-semibold underline">(830) 590-1105</a>
                 </div>
               )}
 
@@ -164,7 +164,7 @@ export default function CTAForm() {
                 By submitting, you agree to be contacted about your property. No spam, ever. Your information is 100% confidential.
               </p>
               <p className="text-sm text-sand-dark text-center">
-                Prefer to talk? Call <a href="tel:+12105550100" className="text-terra font-semibold">(210) 555-0100</a>
+                Prefer to talk? Call <a href="tel:+18305901105" className="text-terra font-semibold">(830) 590-1105</a>
               </p>
             </form>
 

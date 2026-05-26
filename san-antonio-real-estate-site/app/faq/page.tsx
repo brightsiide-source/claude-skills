@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Common questions about selling your San Antonio house for cash. How fast we close, how offers work, Texas non-judicial foreclosure, probate, divorce, and as-is sales.",
   alternates: { canonical: "/faq" },
   openGraph: {
-    title: "FAQ — Cash Home Buying in San Antonio, TX",
+    title: "FAQ | Cash Home Buying in San Antonio, TX",
     description: "Common questions answered straight.",
     url: "https://sacashhomebuyers.co/faq",
     type: "website",
@@ -40,7 +40,7 @@ export default function FAQPage() {
       <PageShell
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
         title="Frequently Asked Questions"
-        intro="Straight answers about cash home sales in San Antonio and Texas. Don't see your question? Call (210) 555-0100."
+        intro="Straight answers about cash home sales in San Antonio and Texas. Don't see your question? Call (830) 590-1105."
       >
         <h2>Process &amp; timing</h2>
 

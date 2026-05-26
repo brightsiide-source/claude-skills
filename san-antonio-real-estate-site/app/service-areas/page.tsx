@@ -19,7 +19,7 @@ const lbSchema = {
   "@type": "LocalBusiness",
   name: "SA Cash Home Buyers",
   url: "https://sacashhomebuyers.co/",
-  telephone: "+1-210-555-0100",
+  telephone: "+1-830-590-1105",
   areaServed: [
     { "@type": "City", name: "San Antonio" },
     { "@type": "City", name: "New Braunfels" },

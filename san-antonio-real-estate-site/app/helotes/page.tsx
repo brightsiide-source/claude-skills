@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Sell your Helotes, TX house fast for cash. Local Bexar County buyers in this Hill Country-edge suburb northwest of San Antonio. Custom homes, acreage. Close in 7-30 days.",
   alternates: { canonical: "/helotes" },
   openGraph: {
-    title: "We Buy Houses Helotes TX — Cash Offer in 24 Hours",
+    title: "We Buy Houses Helotes TX | Cash Offer in 24 Hours",
     description: "Local cash buyers serving Helotes. Close in 30 days.",
     url: "https://sacashhomebuyers.co/helotes",
     type: "website",
@@ -20,7 +20,7 @@ const schema = {
   name: "SA Cash Home Buyers",
   description: "We buy houses for cash in Helotes, TX.",
   url: "https://sacashhomebuyers.co/helotes",
-  telephone: "+1-210-555-0100",
+  telephone: "+1-830-590-1105",
   areaServed: { "@type": "City", name: "Helotes", containedInPlace: { "@type": "State", name: "Texas" } },
 };
 

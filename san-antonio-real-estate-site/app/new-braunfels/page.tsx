@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Sell your New Braunfels, TX house fast for cash. Local buyers serving Comal County — Schlitterbahn area, Gruene, Canyon Lake. Close in 7-30 days, no fees.",
   alternates: { canonical: "/new-braunfels" },
   openGraph: {
-    title: "We Buy Houses New Braunfels TX — Cash Offer in 24 Hours",
+    title: "We Buy Houses New Braunfels TX | Cash Offer in 24 Hours",
     description: "Local cash buyers serving New Braunfels and Comal County. Close in 30 days.",
     url: "https://sacashhomebuyers.co/new-braunfels",
     type: "website",
@@ -20,7 +20,7 @@ const schema = {
   name: "SA Cash Home Buyers",
   description: "We buy houses for cash in New Braunfels, TX.",
   url: "https://sacashhomebuyers.co/new-braunfels",
-  telephone: "+1-210-555-0100",
+  telephone: "+1-830-590-1105",
   areaServed: { "@type": "City", name: "New Braunfels", containedInPlace: { "@type": "State", name: "Texas" } },
 };
 

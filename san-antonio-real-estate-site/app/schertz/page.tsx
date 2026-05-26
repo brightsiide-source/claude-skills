@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Sell your Schertz, TX house fast for cash. Local buyers serving Guadalupe County — Randolph AFB area. Military relocations, close in 7-30 days.",
   alternates: { canonical: "/schertz" },
   openGraph: {
-    title: "We Buy Houses Schertz TX — Cash Offer in 24 Hours",
+    title: "We Buy Houses Schertz TX | Cash Offer in 24 Hours",
     description: "Local cash buyers serving Schertz. Randolph AFB-aware closings.",
     url: "https://sacashhomebuyers.co/schertz",
     type: "website",
@@ -20,7 +20,7 @@ const schema = {
   name: "SA Cash Home Buyers",
   description: "We buy houses for cash in Schertz, TX.",
   url: "https://sacashhomebuyers.co/schertz",
-  telephone: "+1-210-555-0100",
+  telephone: "+1-830-590-1105",
   areaServed: { "@type": "City", name: "Schertz", containedInPlace: { "@type": "State", name: "Texas" } },
 };
 

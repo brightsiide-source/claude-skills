@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Sell your Boerne, TX house fast for cash. Local Kendall County buyers — Hill Country, premium custom homes, acreage. Close in 7-30 days, no fees.",
   alternates: { canonical: "/boerne" },
   openGraph: {
-    title: "We Buy Houses Boerne TX — Cash Offer in 24 Hours",
+    title: "We Buy Houses Boerne TX | Cash Offer in 24 Hours",
     description: "Local cash buyers serving Boerne and Kendall County Hill Country.",
     url: "https://sacashhomebuyers.co/boerne",
     type: "website",
@@ -20,7 +20,7 @@ const schema = {
   name: "SA Cash Home Buyers",
   description: "We buy houses for cash in Boerne, TX.",
   url: "https://sacashhomebuyers.co/boerne",
-  telephone: "+1-210-555-0100",
+  telephone: "+1-830-590-1105",
   areaServed: { "@type": "City", name: "Boerne", containedInPlace: { "@type": "State", name: "Texas" } },
 };
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Sell your Converse, TX house fast for cash. Local Bexar County buyers in this NE San Antonio suburb. Older housing, working families. Close in 7-30 days.",
   alternates: { canonical: "/converse" },
   openGraph: {
-    title: "We Buy Houses Converse TX — Cash Offer in 24 Hours",
+    title: "We Buy Houses Converse TX | Cash Offer in 24 Hours",
     description: "Local cash buyers serving Converse. Close in 30 days.",
     url: "https://sacashhomebuyers.co/converse",
     type: "website",
@@ -20,7 +20,7 @@ const schema = {
   name: "SA Cash Home Buyers",
   description: "We buy houses for cash in Converse, TX.",
   url: "https://sacashhomebuyers.co/converse",
-  telephone: "+1-210-555-0100",
+  telephone: "+1-830-590-1105",
   areaServed: { "@type": "City", name: "Converse", containedInPlace: { "@type": "State", name: "Texas" } },
 };
 

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import PageShell from "../components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Sell Your House As-Is in Texas — Cash, Any Condition | SA Cash Home Buyers",
+  title: "Sell Your House As-Is in Texas | Cash, Any Condition | SA Cash Home Buyers",
   description:
     "Sell your San Antonio or Texas house as-is. Foundation problems, post-tension slab issues, fire damage, mold, hoarder, code violations. Cash offer in 24 hours.",
   alternates: { canonical: "/as-is" },
   openGraph: {
-    title: "Sell Your TX House As-Is — Cash, Any Condition",
+    title: "Sell Your TX House As-Is | Cash, Any Condition",
     description: "Foundation, slab, fire, mold, hoarder, code violations. We buy TX houses as-is for cash.",
     url: "https://sacashhomebuyers.co/as-is",
     type: "website",
@@ -18,7 +18,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "As-is cash home purchase — Texas",
-  provider: { "@type": "LocalBusiness", name: "SA Cash Home Buyers", telephone: "+1-210-555-0100" },
+  provider: { "@type": "LocalBusiness", name: "SA Cash Home Buyers", telephone: "+1-830-590-1105" },
   areaServed: { "@type": "State", name: "Texas" },
   description: "We buy Texas houses as-is for cash. No repairs, no cleaning, no inspections required.",
 };
@@ -109,7 +109,7 @@ export default function AsIsPage() {
         <p>We&rsquo;ll tell you honestly which situation you&rsquo;re in. If a traditional sale would serve you better, we&rsquo;ll say so.</p>
 
         <h2>Get an as-is offer</h2>
-        <p>Call <a href="tel:+12105550100">(210) 555-0100</a> or use the contact form. Tell us what&rsquo;s wrong with the house &mdash; the worse it is, the more value we add by handling it.</p>
+        <p>Call <a href="tel:+18305901105">(830) 590-1105</a> or use the contact form. Tell us what&rsquo;s wrong with the house &mdash; the worse it is, the more value we add by handling it.</p>
       </PageShell>
     </>
   );

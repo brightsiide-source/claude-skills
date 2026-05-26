@@ -52,10 +52,10 @@ export default function PageShell({
               Get my cash offer
             </a>
             <a
-              href="tel:+12105550100"
+              href="tel:+18305901105"
               className="inline-flex items-center gap-2 bg-adobe hover:bg-adobe-light text-white px-6 py-3 rounded-md font-bold transition-colors"
             >
-              Call (210) 555-0100
+              Call (830) 590-1105
             </a>
           </div>
         </div>

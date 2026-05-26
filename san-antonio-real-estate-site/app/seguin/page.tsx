@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Sell your Seguin, TX house fast for cash. Local Guadalupe County buyers. Historic downtown, working families, BNSF rail, Caterpillar plant. Close in 7-30 days.",
   alternates: { canonical: "/seguin" },
   openGraph: {
-    title: "We Buy Houses Seguin TX — Cash Offer in 24 Hours",
+    title: "We Buy Houses Seguin TX | Cash Offer in 24 Hours",
     description: "Local cash buyers serving Seguin and Guadalupe County.",
     url: "https://sacashhomebuyers.co/seguin",
     type: "website",
@@ -20,7 +20,7 @@ const schema = {
   name: "SA Cash Home Buyers",
   description: "We buy houses for cash in Seguin, TX.",
   url: "https://sacashhomebuyers.co/seguin",
-  telephone: "+1-210-555-0100",
+  telephone: "+1-830-590-1105",
   areaServed: { "@type": "City", name: "Seguin", containedInPlace: { "@type": "State", name: "Texas" } },
 };
 

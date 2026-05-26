@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import PageShell from "../components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Stop Foreclosure in Texas — Sell Your House for Cash | SA Cash Home Buyers",
+  title: "Stop Foreclosure in Texas | Sell Your House for Cash | SA Cash Home Buyers",
   description:
     "Facing foreclosure in San Antonio or anywhere in Texas? TX is a non-judicial state — only 21 days notice. We can sometimes close fast enough to stop the trustee's sale.",
   alternates: { canonical: "/foreclosure" },
   openGraph: {
-    title: "Stop Foreclosure in Texas — Sell for Cash",
+    title: "Stop Foreclosure in Texas | Sell for Cash",
     description: "Texas 21-day non-judicial foreclosure timeline. We can sometimes close in time. Cash offer in 24 hours.",
     url: "https://sacashhomebuyers.co/foreclosure",
     type: "website",
@@ -18,7 +18,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Stop foreclosure cash home purchase — Texas",
-  provider: { "@type": "LocalBusiness", name: "SA Cash Home Buyers", telephone: "+1-210-555-0100" },
+  provider: { "@type": "LocalBusiness", name: "SA Cash Home Buyers", telephone: "+1-830-590-1105" },
   areaServed: { "@type": "State", name: "Texas" },
   description: "Cash purchase of homes facing non-judicial trustee sale foreclosure in Texas.",
 };
@@ -83,7 +83,7 @@ export default function ForeclosurePage() {
         <p>If you owe more than the house is worth, we can also work directly with your lender on a short sale &mdash; though those take longer (60-120 days) and require lender approval. Call us and we&rsquo;ll evaluate which path makes sense.</p>
 
         <h2>Get out from under it</h2>
-        <p>Call <a href="tel:+12105550100">(210) 555-0100</a> or use the contact form. Conversations are confidential and there&rsquo;s no cost or obligation. The earlier you call, the more options you have &mdash; especially in Texas, where the foreclosure clock is the shortest in the country.</p>
+        <p>Call <a href="tel:+18305901105">(830) 590-1105</a> or use the contact form. Conversations are confidential and there&rsquo;s no cost or obligation. The earlier you call, the more options you have &mdash; especially in Texas, where the foreclosure clock is the shortest in the country.</p>
       </PageShell>
     </>
   );

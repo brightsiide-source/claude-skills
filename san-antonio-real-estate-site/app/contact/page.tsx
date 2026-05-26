@@ -4,11 +4,11 @@ import PageShell from "../components/PageShell";
 export const metadata: Metadata = {
   title: "Contact SA Cash Home Buyers | Get a Cash Offer on Your TX House",
   description:
-    "Get a written cash offer on your San Antonio house in 24 hours. Call (210) 555-0100 or fill out the form. Locally owned, no obligation, no fees.",
+    "Get a written cash offer on your San Antonio house in 24 hours. Call (830) 590-1105 or fill out the form. Locally owned, no obligation, no fees.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact SA Cash Home Buyers",
-    description: "Cash offer in 24 hours. Call (210) 555-0100.",
+    description: "Cash offer in 24 hours. Call (830) 590-1105.",
     url: "https://sacashhomebuyers.co/contact",
     type: "website",
   },
@@ -21,7 +21,7 @@ const contactSchema = {
   mainEntity: {
     "@type": "LocalBusiness",
     name: "SA Cash Home Buyers",
-    telephone: "+1-210-555-0100",
+    telephone: "+1-830-590-1105",
     email: "info@sacashhomebuyers.co",
     address: {
       "@type": "PostalAddress",
@@ -42,11 +42,11 @@ export default function ContactPage() {
       <PageShell
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
         title="Get your cash offer."
-        intro="Written offer in 24 hours. No obligation, no fees, no spam. Or call (210) 555-0100 right now."
+        intro="Written offer in 24 hours. No obligation, no fees, no spam. Or call (830) 590-1105 right now."
       >
         <h2>By phone</h2>
         <p>
-          <a href="tel:+12105550100" className="text-2xl font-bold">(210) 555-0100</a><br />
+          <a href="tel:+18305901105" className="text-2xl font-bold">(830) 590-1105</a><br />
           Monday&ndash;Friday 8am&ndash;6pm CT, Saturday 9am&ndash;2pm CT.<br />
           After-hours voicemails returned the same day.
         </p>

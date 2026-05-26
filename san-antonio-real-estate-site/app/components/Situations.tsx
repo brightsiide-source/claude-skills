@@ -6,7 +6,7 @@ export default function Situations() {
     { title: "Behind on Taxes", description: "Owe back taxes? We can help resolve the situation." },
     { title: "Bad Tenants", description: "Tired of dealing with problem tenants? Sell and walk away." },
     { title: "Code Violations", description: "Facing city code violations? We buy houses with violations." },
-    { title: "Fire / Storm Damage", description: "Damaged property? No repairs needed — we buy as-is." },
+    { title: "Fire / Storm Damage", description: "Damaged property? No repairs needed | we buy as-is." },
     { title: "Relocation", description: "Need to move fast for a job? We'll get you out in days." },
   ];
 
@@ -41,7 +41,7 @@ export default function Situations() {
           <a href="#get-offer" className="inline-flex items-center gap-2 bg-terra hover:bg-terra-dark text-white px-8 py-4 rounded-md text-lg font-bold transition-colors">
             Get Your No-Obligation Offer
           </a>
-          <p className="mt-3 text-sand-dark text-sm">or call <a href="tel:+12105550100" className="text-terra font-semibold">(210) 555-0100</a> right now</p>
+          <p className="mt-3 text-sand-dark text-sm">or call <a href="tel:+18305901105" className="text-terra font-semibold">(830) 590-1105</a> right now</p>
         </div>
       </div>
     </section>

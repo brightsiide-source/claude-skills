@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "The 3-step process to sell your San Antonio house for cash. Submit details, get a written offer in 24 hours, close on your timeline at a Texas title company.",
   alternates: { canonical: "/how-it-works" },
   openGraph: {
-    title: "How It Works — Selling your TX house for cash",
+    title: "How It Works | Selling your TX house for cash",
     description: "Three steps. Cash offer in 24 hours, close 7-30 days.",
     url: "https://sacashhomebuyers.co/how-it-works",
     type: "website",
@@ -41,7 +41,7 @@ export default function HowItWorksPage() {
         intro="Three steps. No listings, no showings, no waiting on buyer financing. Here's exactly what happens between your first call and your check at closing."
       >
         <h2>Step 01 &mdash; Tell us about the property</h2>
-        <p>Submit the contact form or call <a href="tel:+12105550100">(210) 555-0100</a>. We need three things:</p>
+        <p>Submit the contact form or call <a href="tel:+18305901105">(830) 590-1105</a>. We need three things:</p>
         <ul>
           <li><strong>Address</strong> of the property</li>
           <li><strong>General condition</strong> &mdash; rough age, anything broken or deferred, occupied vs vacant</li>
