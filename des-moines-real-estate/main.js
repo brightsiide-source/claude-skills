@@ -46,14 +46,66 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ---- Form Submission with Loading State ----
+  // ---- Form Submission (Netlify Forms via AJAX, with loading + error states) ----
   function handleFormSubmit(form) {
-    form.addEventListener('submit', function () {
+    form.addEventListener('submit', function (e) {
+      // Let the browser surface native validation messages first.
+      if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+        return;
+      }
+
+      e.preventDefault();
+
       var btn = form.querySelector('button[type="submit"]');
-      btn.innerHTML = '<span class="spinner"></span> Submitting...';
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
+      var originalHtml = btn ? btn.innerHTML : '';
+      if (btn) {
+        btn.innerHTML = '<span class="spinner"></span> Submitting...';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+      }
+
+      clearFormError(form);
+
+      // Encode all fields (including hidden form-name + honeypot) for Netlify.
+      var body = new URLSearchParams(new FormData(form)).toString();
+      var successUrl = form.getAttribute('action') || '/thank-you.html';
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Submission failed: ' + res.status);
+          window.location.href = successUrl;
+        })
+        .catch(function () {
+          if (btn) {
+            btn.innerHTML = originalHtml;
+            btn.disabled = false;
+            btn.style.opacity = '';
+          }
+          showFormError(
+            form,
+            'Sorry, something went wrong submitting your request. Please try again or call us at (515) 633-1077.'
+          );
+        });
     });
+  }
+
+  function showFormError(form, msg) {
+    clearFormError(form);
+    var err = document.createElement('p');
+    err.className = 'form-submit-error';
+    err.setAttribute('role', 'alert');
+    err.textContent = msg;
+    err.style.cssText = 'color:#ef4444;font-size:0.9rem;margin-top:12px;text-align:center;';
+    form.appendChild(err);
+  }
+
+  function clearFormError(form) {
+    var existing = form.querySelector('.form-submit-error');
+    if (existing) existing.remove();
   }
 
   var heroForm = document.getElementById('hero-form');
