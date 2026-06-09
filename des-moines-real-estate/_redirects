@@ -1,1 +1,5 @@
-/*    /index.html   200
+# This is a multi-page static site — do NOT use an SPA catch-all rewrite
+# (e.g. `/*  /index.html  200`). A catch-all rewrite intercepts Netlify
+# Forms POST submissions and serves index.html for every path, which breaks
+# form handling and multi-page routing. Netlify serves the .html files
+# directly, so no redirect rules are needed here.
