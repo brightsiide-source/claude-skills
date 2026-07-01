@@ -142,6 +142,7 @@ class SetupDetector:
         setups.extend(self._check_bollinger_squeeze(price, ind_5m, ind_1m))
         setups.extend(self._check_macd_crossover(price, ind_5m, ind_1m, bias_1m, bias_5m))
         setups.extend(self._check_rsi_extreme(price, ind_5m, ind_1m))
+        setups.extend(self._check_trend_continuation(price, ind_5m, ind_1m, bars_5m))
 
         # GLOBAL FILTERS — applied to every setup
         filtered = []
@@ -460,6 +461,241 @@ class SetupDetector:
                          "description": f"RSI {rsi_5m:.0f} overbought at resistance {nearest:.2f}"}]
         return []
 
+    def _check_trend_continuation(self, price, ind_5m, ind_1m, bars_5m=None):
+        """WITH-TREND momentum breakout. Only fires when regime is trending.
+
+        This is the missing piece: on strong trend days price rides the 9EMA
+        and never gives a deep pullback. Instead of fading the move, we join
+        it when a fresh 5m bar breaks the recent range in the trend direction.
+        """
+        if self.regime not in ("UPTREND", "DOWNTREND"):
+            return []
+        if not bars_5m or len(bars_5m) < 8:
+            return []
+        atr = ind_5m.get("atr", {})
+        atr_val = atr.get("value") if isinstance(atr, dict) else None
+        if not atr_val or atr_val <= 0:
+            return []
+
+        prior = bars_5m[-6:-1]          # last 5 bars before the current one
+        last = bars_5m[-1]
+        prior_high = max(b["high"] for b in prior)
+        prior_low = min(b["low"] for b in prior)
+        rsi_5m = self._get_rsi(ind_5m)
+        vol_ok = last.get("volume", 0) >= (sum(b.get("volume", 0) for b in prior) / len(prior)) if prior else True
+
+        if self.regime == "UPTREND" and last["close"] > prior_high:
+            score = 55
+            if rsi_5m and rsi_5m > 55: score += 10
+            if vol_ok: score += 10           # breakout on expanding volume
+            if last["close"] > last["open"]: score += 5
+            swing_low = prior_low
+            stop = round(swing_low - atr_val * 0.3, 2)
+            risk = price - stop
+            if risk <= 0:
+                return []
+            target = round(price + risk * 2, 2)
+            rr = abs(target - price) / max(risk, 0.01)
+            return [{"name": "Trend Continuation", "direction": "LONG", "score": min(score, 100),
+                     "entry": round(price, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                     "description": f"Uptrend breakout > {prior_high:.2f}, RSI {rsi_5m or 0:.0f}"}]
+
+        if self.regime == "DOWNTREND" and last["close"] < prior_low:
+            score = 55
+            if rsi_5m and rsi_5m < 45: score += 10
+            if vol_ok: score += 10
+            if last["close"] < last["open"]: score += 5
+            swing_high = prior_high
+            stop = round(swing_high + atr_val * 0.3, 2)
+            risk = stop - price
+            if risk <= 0:
+                return []
+            target = round(price - risk * 2, 2)
+            rr = abs(price - target) / max(risk, 0.01)
+            return [{"name": "Trend Continuation", "direction": "SHORT", "score": min(score, 100),
+                     "entry": round(price, 2), "stop": stop, "target": target, "rr": round(rr, 1),
+                     "description": f"Downtrend breakdown < {prior_low:.2f}, RSI {rsi_5m or 0:.0f}"}]
+        return []
+
+
+# ---- Outcome Tracker --------------------------------------------------
+
+class OutcomeTracker:
+    """Tracks whether each fired alert would have hit its target or stop.
+
+    This is how we learn if the system has a real edge. Every alert is
+    followed forward: once price touches the entry it's 'active', then it
+    resolves to WIN (hit target) or LOSS (hit stop). Results append to a
+    JSONL file that survives across sessions, so per-setup win rates
+    accumulate over days/weeks — the foundation for every future tuning
+    decision.
+    """
+
+    def __init__(self, path: str):
+        self.path = path
+        self._open: List[Dict] = []
+        self._lock = threading.Lock()
+        os.makedirs(os.path.dirname(path), exist_ok=True) if os.path.dirname(path) else None
+
+    def record(self, setup: Dict):
+        with self._lock:
+            self._open.append({
+                "name": setup.get("name"),
+                "direction": setup.get("direction"),
+                "score": setup.get("score"),
+                "entry": setup.get("entry"),
+                "stop": setup.get("stop"),
+                "target": setup.get("target"),
+                "rr": setup.get("rr"),
+                "regime": setup.get("regime", ""),
+                "alert_time": setup.get("alert_time"),
+                "date": datetime.now().strftime("%Y-%m-%d"),
+                "triggered": False,
+                "born": time.time(),
+            })
+
+    def update(self, price: float):
+        if not price or price <= 0:
+            return
+        with self._lock:
+            still_open = []
+            for t in self._open:
+                d = t["direction"]
+                if not t["triggered"]:
+                    if (d == "LONG" and price <= t["entry"]) or \
+                       (d == "SHORT" and price >= t["entry"]):
+                        t["triggered"] = True
+                outcome = None
+                if t["triggered"]:
+                    if d == "LONG":
+                        if price >= t["target"]:
+                            outcome = "WIN"
+                        elif price <= t["stop"]:
+                            outcome = "LOSS"
+                    else:
+                        if price <= t["target"]:
+                            outcome = "WIN"
+                        elif price >= t["stop"]:
+                            outcome = "LOSS"
+                age_min = (time.time() - t["born"]) / 60.0
+                if outcome is None and age_min > 60:
+                    outcome = "EXPIRED" if t["triggered"] else "NO_FILL"
+                if outcome:
+                    t["outcome"] = outcome
+                    self._write(t)
+                else:
+                    still_open.append(t)
+            self._open = still_open
+
+    def _write(self, t: Dict):
+        try:
+            with open(self.path, "a") as f:
+                f.write(json.dumps(t) + "\n")
+        except Exception:
+            pass
+
+    def get_summary(self) -> Dict:
+        """Aggregate WIN/LOSS by setup name from the full history file."""
+        stats = {}
+        try:
+            with open(self.path) as f:
+                for line in f:
+                    try:
+                        r = json.loads(line)
+                    except Exception:
+                        continue
+                    o = r.get("outcome")
+                    if o not in ("WIN", "LOSS"):
+                        continue
+                    st = stats.setdefault(r.get("name", "?"), {"win": 0, "loss": 0})
+                    st["win" if o == "WIN" else "loss"] += 1
+        except FileNotFoundError:
+            pass
+        return stats
+
+    @property
+    def open_count(self) -> int:
+        return len(self._open)
+
+
+# ---- News Guard -------------------------------------------------------
+
+class NewsGuard:
+    """Mutes alerts around high-impact economic events (FOMC/CPI/NFP/etc).
+
+    Uses the built-in economic calendar (news_scanner) and the real ET
+    clock so it works regardless of the trader's local timezone.
+    """
+
+    def __init__(self, buffer_min: int = 15, impact: str = "HIGH"):
+        self.buffer_min = buffer_min
+        self.impact = impact.upper()
+        self._events = []  # list of (datetime_ET, name, move)
+        self._et = None
+        self._load()
+
+    def _load(self):
+        try:
+            from zoneinfo import ZoneInfo
+            self._et = ZoneInfo("America/New_York")
+        except Exception:
+            self._et = None
+        try:
+            import news_scanner as ns
+            from datetime import datetime as _dt
+            for row in ns.ECONOMIC_CALENDAR_2026:
+                # row = [date, time_et, event, impact, move]
+                if len(row) < 5:
+                    continue
+                date_s, time_s, name, impact, move = row[0], row[1], row[2], row[3], row[4]
+                if impact.upper() != self.impact:
+                    continue
+                try:
+                    naive = _dt.strptime(f"{date_s} {time_s}", "%Y-%m-%d %H:%M")
+                    ev = naive.replace(tzinfo=self._et) if self._et else naive
+                    self._events.append((ev, name, move))
+                except Exception:
+                    continue
+        except Exception:
+            self._events = []
+
+    def check(self):
+        """Return (in_blackout: bool, message: str)."""
+        if not self._events:
+            return (False, "")
+        try:
+            from datetime import datetime as _dt
+            now = _dt.now(self._et) if self._et else _dt.now()
+        except Exception:
+            return (False, "")
+        for ev, name, move in self._events:
+            delta_min = (ev - now).total_seconds() / 60.0
+            # Blackout window: buffer before through buffer after
+            if -self.buffer_min <= delta_min <= self.buffer_min:
+                if delta_min >= 0:
+                    return (True, f"{name} in {delta_min:.0f}m ({move})")
+                return (True, f"{name} {abs(delta_min):.0f}m ago ({move})")
+        return (False, "")
+
+    def next_event(self):
+        """Return (name, minutes_until) for the next high-impact event today."""
+        if not self._events:
+            return None
+        try:
+            from datetime import datetime as _dt
+            now = _dt.now(self._et) if self._et else _dt.now()
+        except Exception:
+            return None
+        upcoming = [(ev, name) for ev, name, _ in self._events
+                    if (ev - now).total_seconds() > 0
+                    and (ev - now).total_seconds() < 86400]
+        if not upcoming:
+            return None
+        upcoming.sort(key=lambda x: x[0])
+        ev, name = upcoming[0]
+        mins = (ev - now).total_seconds() / 60.0
+        return (name, mins)
+
 
 # ---- Alert Manager ----------------------------------------------------
 
@@ -615,7 +851,9 @@ class Dashboard:
                analysis_1m: Dict, setups: List[Dict], account_info: Dict,
                bar_count: int, alert_history: List[Dict] = None,
                min_score: int = 50, nq_price: float = None,
-               regime: str = "RANGE"):
+               regime: str = "RANGE", news_msg: str = "",
+               next_news=None, outcome_stats: Dict = None,
+               open_trades: int = 0):
         self.clear()
         now = datetime.now()
 
@@ -648,8 +886,16 @@ class Dashboard:
               f"Floor: ${floor:,.0f}  |  Left: ${remaining:,.0f}  |  {status}")
         print("-" * 72)
 
+        # ========== NEWS BLACKOUT BANNER (highest priority) ==========
+        if news_msg:
+            print(f"  \033[41;37m !! NEWS HALT !! \033[0m  {news_msg}  — alerts muted")
+            print("-" * 72)
+
         # ========== ACTIVE ALERTS (TOP OF SCREEN — MOST VISIBLE) ==========
-        if setups:
+        if news_msg:
+            print("  Alerts suppressed during high-impact news window.")
+            print("-" * 72)
+        elif setups:
             top = setups[0]
             badge = self._score_badge(top["score"])
             print()
@@ -732,7 +978,32 @@ class Dashboard:
                       f"E:{a['entry']} T:{a['target']}")
             print("-" * 72)
 
-        print(f"  Bars: {bar_count} | Min Score: {min_score} | Alerts: {len(history)} today | Ctrl+C to stop")
+        # Outcome Track Record (accumulated across all sessions)
+        stats = outcome_stats or {}
+        if stats:
+            print("  TRACK RECORD (target hit vs stopped):")
+            total_w = total_l = 0
+            for name, st in sorted(stats.items()):
+                w, l = st["win"], st["loss"]
+                total_w += w
+                total_l += l
+                n = w + l
+                wr = (w / n * 100) if n else 0
+                print(f"    {name:<26} {w}W-{l}L  ({wr:.0f}% win, n={n})")
+            gn = total_w + total_l
+            gwr = (total_w / gn * 100) if gn else 0
+            print(f"    {'OVERALL':<26} {total_w}W-{total_l}L  ({gwr:.0f}% win, n={gn})")
+            print("-" * 72)
+
+        # Next high-impact event
+        next_line = ""
+        if next_news:
+            nm, mins = next_news
+            if mins < 120:
+                next_line = f" | Next news: {nm} in {mins:.0f}m"
+
+        print(f"  Bars: {bar_count} | Min Score: {min_score} | Alerts: {len(history)} today"
+              f" | Tracking: {open_trades}{next_line} | Ctrl+C to stop")
 
 
 # ---- Live Connector (Main Orchestrator) --------------------------------
@@ -741,7 +1012,7 @@ class LiveConnector:
     """Connects to Alpaca, streams data, runs analysis, and fires alerts."""
 
     def __init__(self, config: Dict, min_score: int = 50,
-                 alert_log: str = None):
+                 alert_log: str = None, news_buffer: int = 15):
         self.config = config
         self.api_key = config["api_key"]
         self.secret_key = config["secret_key"]
@@ -760,6 +1031,13 @@ class LiveConnector:
         log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                "..", "assets", "trade-logs")
         self.logger = TradeLogger(log_dir)
+
+        # Outcome tracker — accumulates real win/loss stats across sessions
+        outcomes_path = os.path.join(log_dir, "alert-outcomes.jsonl")
+        self.outcomes = OutcomeTracker(outcomes_path)
+
+        # News guard — mutes alerts around high-impact economic events
+        self.news = NewsGuard(buffer_min=news_buffer) if news_buffer > 0 else None
 
         self.rest: Optional[AlpacaREST] = None
         self.stream: Optional[AlpacaStream] = None
@@ -900,13 +1178,29 @@ class LiveConnector:
                     except Exception:
                         pass
 
+                # Follow previously-fired alerts forward (win/loss tracking)
+                self.outcomes.update(price)
+
                 # Detect setups with confluence scoring
                 raw_setups = self.detector.detect_all(
                     analysis_1m, analysis_5m, bars_5m, bars_1m
                 )
+                # Tag each setup with the regime it fired in (for the log)
+                for s in raw_setups:
+                    s["regime"] = self.detector.regime
+
+                # NEWS BLACKOUT — mute alerts around high-impact events
+                news_halt, news_msg = (self.news.check() if self.news else (False, ""))
+                if news_halt:
+                    raw_setups = []  # suppress all setups during the window
 
                 # Process through alert manager (filter, dedupe, beep)
+                prev_alert_count = len(self.alerts.alert_history)
                 qualified_setups = self.alerts.process_setups(raw_setups)
+                # Record any newly-fired alerts into the outcome tracker
+                if len(self.alerts.alert_history) > prev_alert_count:
+                    for s in self.alerts.alert_history[prev_alert_count:]:
+                        self.outcomes.record(s)
 
                 account_info = {
                     "apex_account": self.apex_account,
@@ -925,6 +1219,10 @@ class LiveConnector:
                     alert_history=self.alerts.get_recent_alerts(),
                     min_score=self.min_score,
                     regime=self.detector.regime,
+                    news_msg=news_msg if news_halt else "",
+                    next_news=self.news.next_event() if self.news else None,
+                    outcome_stats=self.outcomes.get_summary(),
+                    open_trades=self.outcomes.open_count,
                 )
 
                 # Every 5 minutes, clear stale alert keys so setups can re-fire
@@ -979,6 +1277,9 @@ def main():
                         help="Path to write alert log file (optional)")
     parser.add_argument("--instrument", default=None, choices=["NQ", "MNQ"],
                         help="NQ or MNQ for position sizing (default: from config or NQ)")
+    parser.add_argument("--news-buffer", type=int, default=15,
+                        help="Minutes before/after high-impact news to mute alerts "
+                             "(default: 15, use 0 to disable)")
 
     args = parser.parse_args()
     config = load_config(args.config)
@@ -989,7 +1290,8 @@ def main():
         config["instrument"] = args.instrument
 
     connector = LiveConnector(config, min_score=args.min_score,
-                              alert_log=args.alert_log)
+                              alert_log=args.alert_log,
+                              news_buffer=args.news_buffer)
     connector.run()
 
 
