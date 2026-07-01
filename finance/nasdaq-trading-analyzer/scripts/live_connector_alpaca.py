@@ -115,6 +115,10 @@ class SetupDetector:
     - Multi-timeframe alignment (1m confirms 5m)
     """
 
+    # Current market regime, exposed for the dashboard. One of:
+    # UPTREND, DOWNTREND, RANGE, VOLATILE
+    regime = "RANGE"
+
     def detect_all(self, analysis_1m: Dict, analysis_5m: Dict,
                    bars_5m: List[Dict] = None, bars_1m: List[Dict] = None) -> List[Dict]:
         setups = []
@@ -127,6 +131,12 @@ class SetupDetector:
         bias_1m = analysis_1m.get("overall_bias", "")
         bias_5m = analysis_5m.get("overall_bias", "")
 
+        # Classify the market regime BEFORE detecting setups. This is the
+        # falling-knife guard: in a strong directional move we refuse
+        # counter-trend mean-reversion entries (the mistake that fired 5
+        # "buy the dip" longs during a 300pt crash).
+        self.regime = self._compute_regime(price, ind_5m, bars_5m)
+
         setups.extend(self._check_ema_pullback(price, ind_5m, ind_1m, bias_1m, bars_5m))
         setups.extend(self._check_vwap_bounce(price, ind_5m, ind_1m, bias_5m, bars_1m))
         setups.extend(self._check_bollinger_squeeze(price, ind_5m, ind_1m))
@@ -136,11 +146,26 @@ class SetupDetector:
         # GLOBAL FILTERS — applied to every setup
         filtered = []
         for s in setups:
+            direction = s.get("direction", "")
+
+            # REGIME GUARD — never fade a strong trend (no falling knives).
+            # RSI capitulation reversals are the one allowed exception, and
+            # only when explicitly flagged as a reversal setup.
+            is_reversal = s.get("reversal", False)
+            if self.regime == "DOWNTREND" and direction == "LONG" and not is_reversal:
+                continue
+            if self.regime == "UPTREND" and direction == "SHORT" and not is_reversal:
+                continue
+            # In a violent volatility expansion, mean reversion is unreliable.
+            # Require a much higher bar (only A-grade momentum survives).
+            if self.regime == "VOLATILE":
+                s["score"] -= 20
+                s["description"] += " [!volatile]"
+
             # Skip anything below 1.5:1 R:R
             if s.get("rr", 0) < 1.5:
                 continue
             # Penalize when 1m and 5m bias conflict
-            direction = s.get("direction", "")
             if direction == "LONG" and "BEAR" in bias_5m.upper():
                 s["score"] -= 15  # Fighting the 5m trend
                 s["description"] += " [!5m conflict]"
@@ -152,12 +177,57 @@ class SetupDetector:
                 s["score"] += 10
             elif direction == "SHORT" and "BEAR" in bias_5m.upper() and "BEAR" in bias_1m.upper():
                 s["score"] += 10
+            # Bonus when the setup goes WITH a clean trend
+            if self.regime == "UPTREND" and direction == "LONG":
+                s["score"] += 8
+            elif self.regime == "DOWNTREND" and direction == "SHORT":
+                s["score"] += 8
             s["score"] = max(0, min(s["score"], 100))
             filtered.append(s)
 
         # Sort by score descending — best trades first
         filtered.sort(key=lambda s: s.get("score", 0), reverse=True)
         return filtered
+
+    def _compute_regime(self, price, ind_5m, bars_5m):
+        """Classify the current market regime from 5m structure.
+
+        Returns UPTREND / DOWNTREND / RANGE / VOLATILE. Used to suppress
+        counter-trend entries so we never buy a crash or short a rip.
+        """
+        atr = ind_5m.get("atr", {})
+        atr_val = atr.get("value") if isinstance(atr, dict) else None
+        vwap = ind_5m.get("vwap")
+        bb = ind_5m.get("bollinger", {})
+        bbw = bb.get("width")
+
+        if not bars_5m or len(bars_5m) < 7 or not atr_val or atr_val <= 0:
+            return "RANGE"
+
+        # Net move over the last 6 5m bars, measured in ATR units
+        recent = bars_5m[-6:]
+        net_move = recent[-1]["close"] - recent[0]["open"]
+        net_atr = net_move / atr_val
+
+        down = sum(1 for b in recent if b["close"] < b["open"])
+        up = sum(1 for b in recent if b["close"] > b["open"])
+
+        # Distance of price from VWAP, in ATR units (how "extended" we are)
+        vwap_dist_atr = (price - vwap) / atr_val if vwap else 0
+
+        strong_down = (net_atr <= -1.5 and down >= 4) or vwap_dist_atr <= -2.5
+        strong_up = (net_atr >= 1.5 and up >= 4) or vwap_dist_atr >= 2.5
+
+        # A very wide Bollinger band width with no clear direction = chaos
+        volatile = bbw is not None and bbw > 5.0
+
+        if strong_down:
+            return "DOWNTREND"
+        if strong_up:
+            return "UPTREND"
+        if volatile:
+            return "VOLATILE"
+        return "RANGE"
 
     def _get_rsi(self, ind):
         rsi = ind.get("rsi", {})
@@ -366,7 +436,10 @@ class SetupDetector:
                 stop = round(nearest * 0.997, 2)
                 target = round(nearest * 1.006, 2)
                 rr = abs(target - nearest) / max(abs(nearest - stop), 0.01)
+                # Only a DEEP washout (RSI<25) counts as a reversal that may
+                # override the downtrend guard. A mild 28 dip in a crash does not.
                 return [{"name": "RSI Oversold + Support", "direction": "LONG", "score": min(score, 100),
+                         "reversal": rsi_5m < 25,
                          "entry": round(nearest, 2), "stop": stop, "target": target, "rr": round(rr, 1),
                          "description": f"RSI {rsi_5m:.0f} oversold at support {nearest:.2f}"}]
         if rsi_5m > 70 and resistances:
@@ -382,6 +455,7 @@ class SetupDetector:
                 target = round(nearest * 0.994, 2)
                 rr = abs(nearest - target) / max(abs(stop - nearest), 0.01)
                 return [{"name": "RSI Overbought + Resistance", "direction": "SHORT", "score": min(score, 100),
+                         "reversal": rsi_5m > 75,
                          "entry": round(nearest, 2), "stop": stop, "target": target, "rr": round(rr, 1),
                          "description": f"RSI {rsi_5m:.0f} overbought at resistance {nearest:.2f}"}]
         return []
@@ -540,7 +614,8 @@ class Dashboard:
     def render(self, symbol: str, price: float, analysis_5m: Dict,
                analysis_1m: Dict, setups: List[Dict], account_info: Dict,
                bar_count: int, alert_history: List[Dict] = None,
-               min_score: int = 50, nq_price: float = None):
+               min_score: int = 50, nq_price: float = None,
+               regime: str = "RANGE"):
         self.clear()
         now = datetime.now()
 
@@ -604,7 +679,12 @@ class Dashboard:
         bias_5m = analysis_5m.get("overall_bias", "Waiting...")
         bias_1m = analysis_1m.get("overall_bias", "Waiting...")
 
-        print(f"  5m: {bias_5m}  |  1m: {bias_1m}")
+        regime_color = {
+            "UPTREND": "\033[42;30m", "DOWNTREND": "\033[41;37m",
+            "VOLATILE": "\033[43;30m", "RANGE": "\033[47;30m",
+        }.get(regime, "\033[47;30m")
+        regime_tag = f"{regime_color} {regime} \033[0m"
+        print(f"  5m: {bias_5m}  |  1m: {bias_1m}  |  Regime: {regime_tag}")
 
         # Key indicators inline
         parts = []
@@ -844,6 +924,7 @@ class LiveConnector:
                     bar_count=self.candles.bar_count,
                     alert_history=self.alerts.get_recent_alerts(),
                     min_score=self.min_score,
+                    regime=self.detector.regime,
                 )
 
                 # Every 5 minutes, clear stale alert keys so setups can re-fire
