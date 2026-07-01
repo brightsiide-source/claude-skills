@@ -50,7 +50,8 @@ def _wr(win, loss):
 
 def summarize(records):
     """Build aggregate statistics from the outcome records."""
-    by_setup = defaultdict(lambda: {"win": 0, "loss": 0, "expired": 0, "no_fill": 0})
+    by_setup = defaultdict(lambda: {"win": 0, "loss": 0, "expired": 0,
+                                    "no_fill": 0, "mfe": [], "mae": []})
     by_regime = defaultdict(lambda: {"win": 0, "loss": 0})
     by_direction = defaultdict(lambda: {"win": 0, "loss": 0})
     by_bracket = defaultdict(lambda: {"win": 0, "loss": 0})
@@ -61,6 +62,10 @@ def summarize(records):
     for r in records:
         o = r.get("outcome")
         name = r.get("name", "?")
+        # Collect run distance (max favorable excursion) for every filled trade
+        if o in ("WIN", "LOSS", "EXPIRED") and r.get("mfe_pts") is not None:
+            by_setup[name]["mfe"].append(r.get("mfe_pts", 0))
+            by_setup[name]["mae"].append(r.get("mae_pts", 0))
         if o == "WIN":
             by_setup[name]["win"] += 1
             totals["win"] += 1
@@ -150,6 +155,22 @@ def format_text(summary, min_n):
         lines.append(f"    {name:<28} {st['win']:>2}W-{st['loss']:>2}L  "
                      f"{wr:>3.0f}%  (n={n}){flag}")
     lines.append("-" * 60)
+
+    # How far setups run — the "hold vs take 10" answer
+    has_run_data = any(st["mfe"] for st in summary["by_setup"].values())
+    if has_run_data:
+        lines.append("  HOW FAR THEY RUN (avg NQ points, once triggered):")
+        lines.append("    setup                        avg run   worst dip   n")
+        for name, st in rows:
+            if not st["mfe"]:
+                continue
+            avg_mfe = sum(st["mfe"]) / len(st["mfe"])
+            avg_mae = sum(st["mae"]) / len(st["mae"])
+            lines.append(f"    {name:<26} {avg_mfe:>6.0f}pt   {avg_mae:>6.0f}pt   "
+                         f"{len(st['mfe'])}")
+        lines.append("    (avg run = how far it went your way before resolving —")
+        lines.append("     high avg run = let winners ride; low = take quick profits)")
+        lines.append("-" * 60)
 
     # By score bracket
     lines.append("  BY CONFIDENCE SCORE:")

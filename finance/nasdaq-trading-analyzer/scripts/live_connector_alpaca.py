@@ -119,6 +119,44 @@ class SetupDetector:
     # UPTREND, DOWNTREND, RANGE, VOLATILE
     regime = "RANGE"
 
+    # Scalp calibration. When set (dict with stop_points, target_points,
+    # nq_ref), every setup's stop/target is rescaled to the trader's
+    # actual NQ point range instead of the proxy's larger % swings.
+    scalp = None
+
+    def _nq_points_to_proxy(self, points, proxy_price):
+        """Convert an NQ point distance into a TQQQ/proxy dollar distance.
+
+        TQQQ is ~3x the NASDAQ's daily move. A move of `points` on NQ (at
+        the configured reference level) equals this many dollars on the proxy.
+        points_per_dollar = nq_ref / (3 * proxy_price)
+        """
+        nq_ref = self.scalp.get("nq_ref", 25000)
+        ppd = nq_ref / (3.0 * proxy_price) if proxy_price else 0
+        return (points / ppd) if ppd else 0
+
+    def _apply_scalp(self, setups, price):
+        """Rescale each setup's stop/target to the scalp point range."""
+        if not self.scalp or not price:
+            return setups
+        stop_pts = self.scalp.get("stop_points", 12)
+        tgt_pts = self.scalp.get("target_points", 20)
+        stop_d = self._nq_points_to_proxy(stop_pts, price)
+        tgt_d = self._nq_points_to_proxy(tgt_pts, price)
+        for s in setups:
+            entry = s.get("entry", price)
+            if s.get("direction") == "LONG":
+                s["stop"] = round(entry - stop_d, 2)
+                s["target"] = round(entry + tgt_d, 2)
+            elif s.get("direction") == "SHORT":
+                s["stop"] = round(entry + stop_d, 2)
+                s["target"] = round(entry - tgt_d, 2)
+            else:
+                continue
+            s["rr"] = round(tgt_pts / stop_pts, 1) if stop_pts else s.get("rr")
+            s["scalp_pts"] = (stop_pts, tgt_pts)
+        return setups
+
     def detect_all(self, analysis_1m: Dict, analysis_5m: Dict,
                    bars_5m: List[Dict] = None, bars_1m: List[Dict] = None) -> List[Dict]:
         setups = []
@@ -143,6 +181,10 @@ class SetupDetector:
         setups.extend(self._check_macd_crossover(price, ind_5m, ind_1m, bias_1m, bias_5m))
         setups.extend(self._check_rsi_extreme(price, ind_5m, ind_1m))
         setups.extend(self._check_trend_continuation(price, ind_5m, ind_1m, bars_5m))
+
+        # SCALP CALIBRATION — rescale stops/targets to the trader's NQ point
+        # range before the R:R gate runs, so the data matches how they trade.
+        setups = self._apply_scalp(setups, price)
 
         # GLOBAL FILTERS — applied to every setup
         filtered = []
@@ -531,19 +573,28 @@ class OutcomeTracker:
     decision.
     """
 
-    def __init__(self, path: str):
+    def __init__(self, path: str, nq_ref: float = 25000):
         self.path = path
+        self.nq_ref = nq_ref
         self._open: List[Dict] = []
         self._lock = threading.Lock()
         os.makedirs(os.path.dirname(path), exist_ok=True) if os.path.dirname(path) else None
 
+    def _proxy_to_nq_points(self, dollars, proxy_price):
+        """Convert a TQQQ/proxy dollar move into NQ points (approx)."""
+        if not proxy_price:
+            return 0
+        ppd = self.nq_ref / (3.0 * proxy_price)  # NQ points per proxy dollar
+        return abs(dollars) * ppd
+
     def record(self, setup: Dict):
         with self._lock:
+            entry = setup.get("entry")
             self._open.append({
                 "name": setup.get("name"),
                 "direction": setup.get("direction"),
                 "score": setup.get("score"),
-                "entry": setup.get("entry"),
+                "entry": entry,
                 "stop": setup.get("stop"),
                 "target": setup.get("target"),
                 "rr": setup.get("rr"),
@@ -552,6 +603,9 @@ class OutcomeTracker:
                 "date": datetime.now().strftime("%Y-%m-%d"),
                 "triggered": False,
                 "born": time.time(),
+                # Max favorable / adverse excursion (proxy prices), seeded at entry
+                "mfe_price": entry,
+                "mae_price": entry,
             })
 
     def update(self, price: float):
@@ -565,6 +619,14 @@ class OutcomeTracker:
                     if (d == "LONG" and price <= t["entry"]) or \
                        (d == "SHORT" and price >= t["entry"]):
                         t["triggered"] = True
+                # Track how far it ran in favor / against (once active)
+                if t["triggered"]:
+                    if d == "LONG":
+                        t["mfe_price"] = max(t["mfe_price"], price)
+                        t["mae_price"] = min(t["mae_price"], price)
+                    else:
+                        t["mfe_price"] = min(t["mfe_price"], price)
+                        t["mae_price"] = max(t["mae_price"], price)
                 outcome = None
                 if t["triggered"]:
                     if d == "LONG":
@@ -582,6 +644,12 @@ class OutcomeTracker:
                     outcome = "EXPIRED" if t["triggered"] else "NO_FILL"
                 if outcome:
                     t["outcome"] = outcome
+                    entry = t["entry"]
+                    # Convert the excursions to NQ points for the log
+                    t["mfe_pts"] = round(
+                        self._proxy_to_nq_points(t["mfe_price"] - entry, entry), 1)
+                    t["mae_pts"] = round(
+                        self._proxy_to_nq_points(t["mae_price"] - entry, entry), 1)
                     self._write(t)
                 else:
                     still_open.append(t)
@@ -900,7 +968,9 @@ class Dashboard:
             badge = self._score_badge(top["score"])
             print()
             print(f"  {badge}  \033[1m>>> {top['name']} — {top['direction']} <<<\033[0m  Score: {top['score']}/100")
-            print(f"        Entry: {top['entry']}   Stop: {top['stop']}   Target: {top['target']}   R:R {top.get('rr', '?')}:1")
+            pts = top.get("scalp_pts")
+            pts_str = f"   ({pts[1]}pt tgt / {pts[0]}pt stop)" if pts else ""
+            print(f"        Entry: {top['entry']}   Stop: {top['stop']}   Target: {top['target']}   R:R {top.get('rr', '?')}:1{pts_str}")
 
             # Position sizing
             sizing = calc_position_size(top["entry"], top["stop"], apex_acct, balance, instrument)
@@ -1012,7 +1082,8 @@ class LiveConnector:
     """Connects to Alpaca, streams data, runs analysis, and fires alerts."""
 
     def __init__(self, config: Dict, min_score: int = 50,
-                 alert_log: str = None, news_buffer: int = 15):
+                 alert_log: str = None, news_buffer: int = 15,
+                 scalp: Dict = None):
         self.config = config
         self.api_key = config["api_key"]
         self.secret_key = config["secret_key"]
@@ -1022,9 +1093,12 @@ class LiveConnector:
         self.apex_balance = config.get("apex_balance", 50000.0)
         self.instrument = config.get("instrument", "NQ")
         self.min_score = min_score
+        self.scalp = scalp
 
         self.candles = CandleAggregator()
         self.detector = SetupDetector()
+        if scalp:
+            self.detector.scalp = scalp  # enable scalp-calibrated stops/targets
         self.alerts = AlertManager(min_score=min_score, alert_log_path=alert_log)
         self.dashboard = Dashboard()
 
@@ -1034,7 +1108,8 @@ class LiveConnector:
 
         # Outcome tracker — accumulates real win/loss stats across sessions
         outcomes_path = os.path.join(log_dir, "alert-outcomes.jsonl")
-        self.outcomes = OutcomeTracker(outcomes_path)
+        nq_ref = scalp.get("nq_ref", 25000) if scalp else 25000
+        self.outcomes = OutcomeTracker(outcomes_path, nq_ref=nq_ref)
 
         # News guard — mutes alerts around high-impact economic events
         self.news = NewsGuard(buffer_min=news_buffer) if news_buffer > 0 else None
@@ -1054,6 +1129,9 @@ class LiveConnector:
         print(f"  NQ LIVE CO-PILOT (Alpaca) — Alert Mode ON")
         print(f"  Min confluence score: {self.min_score}  |  Instrument: {self.instrument}")
         print(f"  Apex {self.apex_account.upper()}  |  Balance: ${self.apex_balance:,.2f}")
+        if self.scalp:
+            print(f"  SCALP MODE: {self.scalp['target_points']}pt target / "
+                  f"{self.scalp['stop_points']}pt stop  (NQ ref {self.scalp['nq_ref']:.0f})")
         print("=" * 72)
 
         try:
@@ -1280,6 +1358,16 @@ def main():
     parser.add_argument("--news-buffer", type=int, default=15,
                         help="Minutes before/after high-impact news to mute alerts "
                              "(default: 15, use 0 to disable)")
+    parser.add_argument("--scalp", action="store_true",
+                        help="Scalp mode: rescale every stop/target to your NQ "
+                             "point range instead of the proxy's larger swings.")
+    parser.add_argument("--scalp-stop", type=int, default=12,
+                        help="Scalp stop distance in NQ points (default: 12)")
+    parser.add_argument("--scalp-target", type=int, default=20,
+                        help="Scalp target distance in NQ points (default: 20)")
+    parser.add_argument("--nq-ref", type=float, default=25000,
+                        help="Approx current NQ price, used to convert points "
+                             "to the TQQQ proxy scale (default: 25000)")
 
     args = parser.parse_args()
     config = load_config(args.config)
@@ -1289,9 +1377,18 @@ def main():
     if args.instrument:
         config["instrument"] = args.instrument
 
+    scalp = None
+    if args.scalp:
+        scalp = {
+            "stop_points": args.scalp_stop,
+            "target_points": args.scalp_target,
+            "nq_ref": config.get("nq_reference_price", args.nq_ref),
+        }
+
     connector = LiveConnector(config, min_score=args.min_score,
                               alert_log=args.alert_log,
-                              news_buffer=args.news_buffer)
+                              news_buffer=args.news_buffer,
+                              scalp=scalp)
     connector.run()
 
 
