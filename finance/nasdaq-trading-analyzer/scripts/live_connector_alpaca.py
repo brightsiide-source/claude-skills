@@ -921,7 +921,7 @@ class Dashboard:
                min_score: int = 50, nq_price: float = None,
                regime: str = "RANGE", news_msg: str = "",
                next_news=None, outcome_stats: Dict = None,
-               open_trades: int = 0):
+               open_trades: int = 0, closed_msg: str = ""):
         self.clear()
         now = datetime.now()
 
@@ -954,13 +954,22 @@ class Dashboard:
               f"Floor: ${floor:,.0f}  |  Left: ${remaining:,.0f}  |  {status}")
         print("-" * 72)
 
-        # ========== NEWS BLACKOUT BANNER (highest priority) ==========
-        if news_msg:
+        # ========== MARKET CLOSED BANNER (highest priority) ==========
+        if closed_msg:
+            print(f"  \033[47;30m  MARKET CLOSED  \033[0m  {closed_msg}  "
+                  f"— data collection paused")
+            print("-" * 72)
+
+        # ========== NEWS BLACKOUT BANNER ==========
+        if news_msg and not closed_msg:
             print(f"  \033[41;37m !! NEWS HALT !! \033[0m  {news_msg}  — alerts muted")
             print("-" * 72)
 
         # ========== ACTIVE ALERTS (TOP OF SCREEN — MOST VISIBLE) ==========
-        if news_msg:
+        if closed_msg:
+            print("  Alerts and tracking resume at the next RTH session.")
+            print("-" * 72)
+        elif news_msg:
             print("  Alerts suppressed during high-impact news window.")
             print("-" * 72)
         elif setups:
@@ -1122,6 +1131,32 @@ class LiveConnector:
         self._new_bar_event = threading.Event()
         self._stale_clear_counter = 0
 
+    def _market_status(self):
+        """Return (is_open, message) for US equity regular trading hours.
+
+        RTH = Mon-Fri, 9:30 AM - 4:00 PM ET. Uses the real ET clock so it
+        works regardless of the trader's local timezone. When closed, the
+        connector keeps displaying but mutes alerts and outcome tracking so
+        leaving it running 24/7 never pollutes the data.
+        """
+        try:
+            from datetime import datetime as _dt, time as _t
+            try:
+                from zoneinfo import ZoneInfo
+                now = _dt.now(ZoneInfo("America/New_York"))
+            except Exception:
+                now = _dt.now()
+            if now.weekday() >= 5:
+                return (False, "Weekend — market closed")
+            t = now.time()
+            if t < _t(9, 30):
+                return (False, "Pre-market — opens 9:30 ET")
+            if t >= _t(16, 0):
+                return (False, "After-hours — closed 16:00 ET")
+            return (True, "")
+        except Exception:
+            return (True, "")  # fail open — never block on a clock error
+
     def run(self):
         """Main entry point."""
         check_dependencies()
@@ -1256,8 +1291,13 @@ class LiveConnector:
                     except Exception:
                         pass
 
+                # MARKET-HOURS GUARD — only fire alerts and track outcomes
+                # during regular trading hours, so running 24/7 stays clean.
+                market_open, closed_msg = self._market_status()
+
                 # Follow previously-fired alerts forward (win/loss tracking)
-                self.outcomes.update(price)
+                if market_open:
+                    self.outcomes.update(price)
 
                 # Detect setups with confluence scoring
                 raw_setups = self.detector.detect_all(
@@ -1269,14 +1309,14 @@ class LiveConnector:
 
                 # NEWS BLACKOUT — mute alerts around high-impact events
                 news_halt, news_msg = (self.news.check() if self.news else (False, ""))
-                if news_halt:
-                    raw_setups = []  # suppress all setups during the window
+                if news_halt or not market_open:
+                    raw_setups = []  # suppress all setups (news window or closed)
 
                 # Process through alert manager (filter, dedupe, beep)
                 prev_alert_count = len(self.alerts.alert_history)
                 qualified_setups = self.alerts.process_setups(raw_setups)
                 # Record any newly-fired alerts into the outcome tracker
-                if len(self.alerts.alert_history) > prev_alert_count:
+                if market_open and len(self.alerts.alert_history) > prev_alert_count:
                     for s in self.alerts.alert_history[prev_alert_count:]:
                         self.outcomes.record(s)
 
@@ -1301,6 +1341,7 @@ class LiveConnector:
                     next_news=self.news.next_event() if self.news else None,
                     outcome_stats=self.outcomes.get_summary(),
                     open_trades=self.outcomes.open_count,
+                    closed_msg=closed_msg if not market_open else "",
                 )
 
                 # Every 5 minutes, clear stale alert keys so setups can re-fire
