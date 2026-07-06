@@ -108,6 +108,24 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/sell-rental-property-tenant-las-cruces.html"
+  to = "/sell-rental-property-tenant-las-cruces"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/we-buy-mobile-homes-dona-ana-county.html"
+  to = "/we-buy-mobile-homes-dona-ana-county"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-house-cash-nmsu-area.html"
+  to = "/sell-house-cash-nmsu-area"
+  status = 301
+  force = true
+
 # Force www -> apex canonical
 [[redirects]]
   from = "https://www.lascruceshomebuyers.com/*"
