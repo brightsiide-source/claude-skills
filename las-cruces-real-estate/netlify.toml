@@ -126,6 +126,31 @@
   status = 301
   force = true
 
+# Blog: .html -> extensionless
+[[redirects]]
+  from = "/blog/index.html"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/how-to-sell-inherited-house-new-mexico.html"
+  to = "/blog/how-to-sell-inherited-house-new-mexico"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/new-mexico-foreclosure-timeline.html"
+  to = "/blog/new-mexico-foreclosure-timeline"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/how-cash-home-buyers-calculate-offers-las-cruces.html"
+  to = "/blog/how-cash-home-buyers-calculate-offers-las-cruces"
+  status = 301
+  force = true
+
 # Force www -> apex canonical
 [[redirects]]
   from = "https://www.lascruceshomebuyers.com/*"

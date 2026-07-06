@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Cash Home Buyers Calculate Offers in Las Cruces (Real Math)</title>
+  <meta name="description" content="Transparent walkthrough of how cash home buyers price properties in Las Cruces. Real formula, real example, and how to tell a fair offer from a lowball.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lascruceshomebuyers.com/blog/how-cash-home-buyers-calculate-offers-las-cruces">
+  <meta property="og:title" content="How Cash Home Buyers Calculate Offers in Las Cruces">
+  <meta property="og:description" content="The actual math behind cash home offers — after-repair value, repair budget, holding costs, transaction costs — walked through with a real example.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://lascruceshomebuyers.com/blog/how-cash-home-buyers-calculate-offers-las-cruces">
+  <meta property="og:image" content="https://lascruceshomebuyers.com/lascruceslogo.png">
+  <meta property="article:author" content="Drew Heberer">
+  <meta property="article:published_time" content="2026-06-24">
+  <meta property="article:section" content="Selling Guide">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": "https://lascruceshomebuyers.com/blog/how-cash-home-buyers-calculate-offers-las-cruces#article",
+    "headline": "How Cash Home Buyers Calculate Offers in Las Cruces (Real Math)",
+    "description": "Transparent walkthrough of the cash home buyer offer formula — ARV, repair budget, holding costs, transaction costs — with a real Las Cruces example.",
+    "url": "https://lascruceshomebuyers.com/blog/how-cash-home-buyers-calculate-offers-las-cruces",
+    "datePublished": "2026-06-24",
+    "dateModified": "2026-06-24",
+    "author": {
+      "@type": "Person",
+      "@id": "https://lascruceshomebuyers.com/about#drew-heberer",
+      "name": "Drew Heberer",
+      "url": "https://lascruceshomebuyers.com/about#drew-heberer"
+    },
+    "publisher": {
+      "@type": "RealEstateAgent",
+      "@id": "https://lascruceshomebuyers.com/#business",
+      "name": "Las Cruces Cash Home Buyers",
+      "url": "https://lascruceshomebuyers.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://lascruceshomebuyers.com/blog/how-cash-home-buyers-calculate-offers-las-cruces"
+    },
+    "articleSection": "Selling Guide",
+    "keywords": "cash home buyer offer formula, Las Cruces cash offer, ARV after-repair value, sell house cash Las Cruces, how much do cash buyers pay, fair cash offer"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lascruceshomebuyers.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://lascruceshomebuyers.com/blog" },
+      { "@type": "ListItem", "position": 3, "name": "How Cash Home Buyers Calculate Offers in Las Cruces", "item": "https://lascruceshomebuyers.com/blog/how-cash-home-buyers-calculate-offers-las-cruces" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo" aria-label="Las Cruces Cash Home Buyers"><img src="../lascruceslogo.png" alt="Las Cruces Cash Home Buyers" class="logo-img"></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../how-it-works.html">How It Works</a></li>
+        <li><a href="../about.html">About Us</a></li>
+        <li class="dropdown">
+          <a href="../service-areas.html">Areas We Serve &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="../we-buy-houses-las-cruces.html">Las Cruces</a></li>
+            <li><a href="../we-buy-houses-mesilla.html">Mesilla</a></li>
+            <li><a href="../we-buy-houses-sunland-park.html">Sunland Park</a></li>
+            <li><a href="../we-buy-houses-anthony.html">Anthony</a></li>
+            <li><a href="../we-buy-houses-dona-ana.html">Do&ntilde;a Ana</a></li>
+            <li><a href="../we-buy-houses-chaparral.html">Chaparral</a></li>
+            <li><a href="../we-buy-houses-hatch.html">Hatch</a></li>
+          </ul>
+        </li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <a href="../contact.html" class="btn btn-nav">Get My Cash Offer</a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="../index.html">Home</a> <span>&rsaquo;</span> <a href="/blog">Blog</a> <span>&rsaquo;</span> How Cash Home Buyers Calculate Offers
+    </div>
+  </div>
+
+  <!-- Article -->
+  <article class="section blog-post">
+    <div class="container">
+      <div class="blog-post-header">
+        <div class="blog-post-tag">Selling Guide</div>
+        <h1>How Cash Home Buyers Calculate Offers in Las Cruces (Real Math)</h1>
+        <div class="blog-post-meta">
+          <span class="blog-post-author">By <a href="../about.html#drew-heberer">Drew Heberer</a>, Co-Founder</span>
+          <span class="blog-post-sep">&bull;</span>
+          <span class="blog-post-date">Published June 24, 2026</span>
+          <span class="blog-post-sep">&bull;</span>
+          <span class="blog-post-read">8 min read</span>
+        </div>
+      </div>
+
+      <div class="article-body">
+
+        <p class="blog-post-lede">The question we hear most often on the phone is: <em>"How did you come up with that number?"</em> Fair question. This walkthrough shows the actual formula every honest cash home buyer uses, applies it to a real Las Cruces example, and tells you how to spot a lowball from a fair offer.</p>
+
+        <p>If you're getting cash offers from anyone &mdash; us or someone else &mdash; and the buyer won't show you their math, that's a red flag. Every real offer is built from four numbers. If you know what they are, you can evaluate any offer in about five minutes.</p>
+
+        <h2>The formula</h2>
+        <p>Every legitimate cash offer follows this equation:</p>
+        <p style="text-align:center; font-size:1.15rem; font-weight:700; background:#fafaf9; padding:20px; border-radius:8px; margin:24px 0;">
+          Offer = ARV &minus; Repair Budget &minus; Holding &amp; Transaction Costs &minus; Buyer's Profit
+        </p>
+        <p>Let's define each piece.</p>
+
+        <h3>ARV: After-Repair Value</h3>
+        <p>ARV is what the property would sell for on the MLS if it were fully renovated and market-ready. Not what it's worth today &mdash; what it will be worth after we spend the money to fix it up.</p>
+        <p>How we calculate it: we pull recent sold comparable properties from your specific Las Cruces neighborhood. Same size (within ~10%), same bed/bath count, same lot, sold in the last 3-6 months. We adjust for differences (updated kitchen vs. dated kitchen, refrigerated air vs. swamp cooler, etc.). We're looking for what a comparable renovated house actually closed at, not what someone's asking price is.</p>
+        <p>For Las Cruces, ARV varies dramatically by submarket. East Mesa 3-bed/2-bath: $280,000-$340,000 range. Central Las Cruces (older stock): $180,000-$260,000. Alameda Depot Historic District: highly variable depending on preservation status. NMSU-area rentals: $220,000-$300,000. Chaparral: $150,000-$220,000. Rural Anthony or Hatch: highly acreage-dependent.</p>
+
+        <h3>Repair Budget</h3>
+        <p>This is what it will cost us to bring the property to ARV condition. Not a wish list &mdash; the actual scope needed to make it MLS-ready to an end buyer who'll get an inspection and financing.</p>
+        <p>Typical Las Cruces repair scopes we see:</p>
+        <ul>
+          <li><strong>Cosmetic refresh</strong> (paint, carpet/LVP, light fixtures, hardware): $8,000-$15,000</li>
+          <li><strong>Kitchen remodel</strong> (cabinets, countertops, appliances): $12,000-$25,000</li>
+          <li><strong>Bath remodel</strong> (per bath): $5,000-$12,000</li>
+          <li><strong>Refrigerated air conversion</strong> (from swamp cooler): $8,000-$14,000</li>
+          <li><strong>HVAC replacement</strong> (existing central): $6,000-$10,000</li>
+          <li><strong>Flat roof replacement</strong> (typical Las Cruces flat roof): $8,000-$14,000</li>
+          <li><strong>Stucco re-do</strong> (partial to full re-mud): $4,000-$18,000</li>
+          <li><strong>Electrical rewire</strong> (knob-and-tube, aluminum): $8,000-$18,000</li>
+          <li><strong>Plumbing repipe</strong> (galvanized replacement): $4,000-$10,000</li>
+          <li><strong>Foundation stabilization</strong>: $5,000-$25,000+</li>
+          <li><strong>Full renovation</strong> (structure to finishes): $60,000-$120,000+</li>
+        </ul>
+        <p>We build the specific scope from a walkthrough of your property. Some things we can't tell without opening walls (Are the sewer lines cast iron? Is there polybutylene?) so we build in a contingency &mdash; usually 10-15% &mdash; for unknowns.</p>
+
+        <h3>Holding &amp; Transaction Costs</h3>
+        <p>Between the day we buy your house and the day we sell it renovated, we're paying real costs:</p>
+        <ul>
+          <li><strong>Property taxes</strong> during rehab and marketing (~$2-4/day for typical Las Cruces property)</li>
+          <li><strong>Insurance</strong> (vacant-property policy) &mdash; $1,500-$3,000/year prorated</li>
+          <li><strong>Utilities</strong> during rehab (~$150-$300/month)</li>
+          <li><strong>Cost of capital</strong> &mdash; either loan interest or opportunity cost of our own money tied up in the deal (typically 8-12% annualized)</li>
+          <li><strong>Buying-side transaction costs</strong> (title insurance, escrow, recording): ~$1,500-$3,000</li>
+          <li><strong>Selling-side transaction costs</strong> when we resell (agent commissions if we list, closing costs): 6-8% of ARV</li>
+          <li><strong>Contingency</strong> for unforeseen issues (leaks discovered during rehab, permit delays, market shifts): 5-8% of ARV</li>
+        </ul>
+        <p>All in, holding + transaction typically runs 12-18% of ARV depending on how long the rehab and marketing take. Longer projects = more carrying cost. A Las Cruces flip typically runs 4-7 months from purchase to resale.</p>
+
+        <h3>Buyer's Profit</h3>
+        <p>This is the part everyone gets uncomfortable talking about. We're running a business. If we can't make money on the deal, we don't do the deal.</p>
+        <p>Honest Las Cruces cash buyers target 10-15% profit margins on ARV. Anything less and we're taking on risk we can't afford (rehab overruns, market softening, deals we lose money on). Anything more and we're leaving too much on the table &mdash; we won't win competitive situations against other cash buyers, and word gets around that we're lowballing.</p>
+        <p>If you meet a cash buyer targeting 25-30% margins, that's a lowball operation. Their offers won't compete on speed or price unless you're desperate.</p>
+
+        <h2>A real Las Cruces example</h2>
+        <p>Let's walk through a concrete calculation. Say you have a 3-bedroom, 2-bath home in central Las Cruces (say the University Park area). 1,400 square feet, single-story, built 1978. Original stucco needs work. Original swamp cooler. Kitchen last updated in 1995. One bath dated. Roof is 15 years old, functional but end-of-life. Yard is dead. Interior needs paint and flooring throughout.</p>
+
+        <h3>Step 1: ARV</h3>
+        <p>Recent sold comps in the same submarket for similar size and finish level (renovated): $255,000, $268,000, $242,000, $260,000. We land on ARV of <strong>$255,000</strong>.</p>
+
+        <h3>Step 2: Repair budget</h3>
+        <ul>
+          <li>Full cosmetic refresh (paint interior, LVP throughout, fixtures): $12,000</li>
+          <li>Kitchen refresh (paint cabinets, new countertops, appliances): $14,000</li>
+          <li>Bath 2 remodel: $8,000</li>
+          <li>Refrigerated air conversion: $11,000</li>
+          <li>Roof replacement: $10,000</li>
+          <li>Stucco partial re-do (front + one side): $8,000</li>
+          <li>Landscaping / curb appeal: $4,000</li>
+          <li>Contingency (12%): $8,000</li>
+        </ul>
+        <p><strong>Total repair budget: $75,000</strong></p>
+
+        <h3>Step 3: Holding &amp; transaction costs</h3>
+        <p>Assume 6 months from purchase to resale, standard costs:</p>
+        <ul>
+          <li>Property tax (6 months at typical central LC rate): $1,200</li>
+          <li>Vacant property insurance (6 months): $900</li>
+          <li>Utilities during rehab (4 months): $800</li>
+          <li>Cost of capital (10% APR on average deployed capital): $9,000</li>
+          <li>Buying-side title/escrow: $2,000</li>
+          <li>Selling-side (~7% of ARV): $17,850</li>
+          <li>Market/unforeseen contingency (5% of ARV): $12,750</li>
+        </ul>
+        <p><strong>Total holding &amp; transaction: $44,500</strong></p>
+
+        <h3>Step 4: Target profit</h3>
+        <p>12% of ARV = <strong>$30,600</strong></p>
+
+        <h3>Step 5: The offer</h3>
+        <p style="text-align:center; font-size:1.05rem; background:#fafaf9; padding:20px; border-radius:8px; margin:24px 0;">
+          $255,000 (ARV) &minus; $75,000 (repairs) &minus; $44,500 (holding/transaction) &minus; $30,600 (profit) = <strong style="color:var(--primary); font-size:1.25rem;">$104,900</strong>
+        </p>
+        <p>Round to <strong>$105,000</strong>. That's the honest cash offer for this hypothetical property.</p>
+
+        <h2>Is that a fair offer?</h2>
+        <p>The immediate reaction is often "$105,000 for a house worth $255,000? That's ridiculous."</p>
+        <p>But that's not the right comparison. The house isn't worth $255,000 <em>today</em> &mdash; it's worth what a retail buyer would actually pay for it in its current condition. Let's do that math:</p>
+        <ul>
+          <li><strong>Listed as-is on MLS:</strong> Realistic listing price around $175,000-$190,000. Days on market: 60-120 days for a house needing this much work. Buyers who bid on it will insist on repair credits after inspection. Realistic net after 5% agent commission, 2% closing costs, 4 months holding: around $155,000-$165,000.</li>
+          <li><strong>Owner does the rehab first, then lists:</strong> Requires $75,000 in cash upfront and 4-6 months. If everything goes right, ARV of $255,000, minus 6% commission ($15,300), minus 2% closing costs ($5,100), minus rehab costs ($75,000). Net: $159,600. Doesn't count the owner's time, project management stress, or risk of overruns.</li>
+          <li><strong>Cash sale to us:</strong> $105,000. Close in 14-30 days. No repairs, no showings, no commissions, no rehab risk.</li>
+        </ul>
+        <p>Traditional listing nets ~$50,000 more than a cash sale in this scenario &mdash; but requires either $75,000 in cash and 6 months of your time, or 3-4 months of listing with repair credit fights.</p>
+
+        <p>If you don't have the cash or the time or the interest in managing a rehab, the extra $50,000 is theoretical. If you do, listing is probably the better call.</p>
+        <p>Cash offers are honest tradeoffs, not scams. The tradeoff is: convert convenience and speed into a lower gross number.</p>
+
+        <h2>How to spot a lowball offer</h2>
+        <p>Legitimate cash offers are typically in the range of 65-80% of ARV. If you're getting an offer significantly below 65% of ARV, one of these is happening:</p>
+        <ol>
+          <li><strong>The buyer thinks the property needs more work than it does.</strong> Fixable with a walkthrough or a rebuttal on specific scope items.</li>
+          <li><strong>The buyer is running a lowball strategy</strong> &mdash; sending offers at 40-50% of ARV to volume-source desperate sellers. Common with out-of-state investor operations that never visit properties.</li>
+          <li><strong>The submarket really is that discounted</strong> &mdash; sometimes true in specific Chaparral, Anthony, or rural Do&ntilde;a Ana County parcels where retail buyer demand is thin.</li>
+        </ol>
+        <p>How to tell which: ask the buyer to walk you through their math. If they can't show ARV comps and repair scope, or if they refuse to discuss their formula, they're lowballing.</p>
+
+        <h2>Questions to ask any cash buyer</h2>
+        <p>Before you sign a purchase contract with any cash buyer, ask:</p>
+        <ol>
+          <li>"Can you show me the comparable sales you used to determine ARV?"</li>
+          <li>"What repair scope did you assume, and can I see the breakdown?"</li>
+          <li>"What percentage of ARV is your offer?"</li>
+          <li>"Do you have proof of funds &mdash; a bank statement or a lender's letter?"</li>
+          <li>"What's your title company, and can I contact them to verify you close on your contracts?"</li>
+          <li>"Are you buying for yourself or wholesaling this to another buyer?" (Wholesaling isn't inherently bad &mdash; but you should know.)</li>
+          <li>"What's your inspection contingency?" (Legitimate as-is buyers have short or zero contingencies. Long inspection contingencies = renegotiation risk.)</li>
+        </ol>
+        <p>Any honest buyer answers all seven without hesitation. We'll walk anyone through our specific math on their property before they even sign anything.</p>
+
+        <h2>Ready to see actual math on your property?</h2>
+        <p>If you want to know what your specific Las Cruces property would fetch as a cash offer, call or write in. We'll walk through the ARV comps, the repair scope we see, and the exact number &mdash; before you commit to anything.</p>
+
+        <p>Call <a href="tel:+15752228799">(575) 222-8799</a> or use our <a href="../contact.html">contact form</a>.</p>
+
+        <hr class="blog-post-hr">
+        <p class="blog-post-disclaimer"><em>Example calculations are illustrative and use round numbers for readability. Actual offers depend on the specific property, current market conditions, verified repair scope, and prevailing cost of capital. Costs and prices referenced are approximate and vary.</em></p>
+      </div>
+
+      <!-- Related pages -->
+      <aside class="blog-post-related">
+        <h3>Related pages on this site</h3>
+        <ul>
+          <li><a href="../how-it-works.html">Our 4-Step Process</a></li>
+          <li><a href="../sell-house-as-is-las-cruces.html">Sell As-Is in Las Cruces</a></li>
+          <li><a href="/blog/how-to-sell-inherited-house-new-mexico">How to Sell an Inherited House in New Mexico</a></li>
+          <li><a href="/blog/new-mexico-foreclosure-timeline">New Mexico Foreclosure Timeline</a></li>
+        </ul>
+      </aside>
+    </div>
+  </article>
+
+  <!-- Final CTA -->
+  <section class="section final-cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Want to See the Math on Your Property?</h2>
+        <p>We'll walk through ARV comps, repair scope, and the exact offer &mdash; before you commit to anything.</p>
+        <div class="cta-buttons">
+          <a href="../contact.html" class="btn btn-primary btn-lg">Get My Cash Offer &rarr;</a>
+          <a href="tel:+15752228799" class="btn btn-white btn-lg">&#9742; (575) 222-8799</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo"><img src="../lascruceslogo.png" alt="Las Cruces Cash Home Buyers" class="logo-img"></div>
+          <p>We're a local Las Cruces company that buys houses for cash. We help homeowners sell fast, avoid foreclosure, and move on with life.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../how-it-works.html">How It Works</a></li>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="../reviews.html">Reviews</a></li>
+            <li><a href="../contact.html">Contact Us</a></li>
+            <li><a href="../sell-house-foreclosure-las-cruces.html">Foreclosure Help</a></li>
+            <li><a href="../sell-inherited-house-las-cruces.html">Inherited Property</a></li>
+            <li><a href="../sell-house-divorce-las-cruces.html">Divorce Sale</a></li>
+            <li><a href="../sell-house-as-is-las-cruces.html">Sell As-Is</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul>
+            <li>&#9742; <a href="tel:+15752228799">(575) 222-8799</a></li>
+            <li>&#9993; <a href="mailto:info@lascruceshomebuyers.com">info@lascruceshomebuyers.com</a></li>
+            <li>&#128205; Las Cruces, NM 88001</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>We Buy Houses In</h3>
+          <ul>
+            <li><a href="../we-buy-houses-las-cruces.html">Las Cruces, NM</a></li>
+            <li><a href="../we-buy-houses-mesilla.html">Mesilla, NM</a></li>
+            <li><a href="../we-buy-houses-dona-ana.html">Do&ntilde;a Ana, NM</a></li>
+            <li><a href="../we-buy-houses-sunland-park.html">Sunland Park, NM</a></li>
+            <li><a href="../we-buy-houses-anthony.html">Anthony, NM</a></li>
+            <li><a href="../we-buy-houses-chaparral.html">Chaparral, NM</a></li>
+            <li><a href="../we-buy-houses-hatch.html">Hatch, NM</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Las Cruces Cash Home Buyers. All rights reserved.</p>
+        <p class="footer-disclaimer">Disclaimer: We are not realtors or a real estate brokerage. We are professional home buyers. This blog is informational only and not legal advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

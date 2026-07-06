@@ -84,6 +84,19 @@ traditional listing will typically net more after costs.
 - City pages: /we-buy-houses-{las-cruces, mesilla, sunland-park,
   anthony, dona-ana, chaparral, hatch}
 
+## Blog / long-form guides
+
+- Blog hub: https://lascruceshomebuyers.com/blog
+- How to Sell an Inherited House in New Mexico (probate walkthrough,
+  Small Estate Affidavit, Affidavit of Heirship, NMSA 45):
+  https://lascruceshomebuyers.com/blog/how-to-sell-inherited-house-new-mexico
+- New Mexico Foreclosure Timeline (judicial foreclosure under NMSA
+  39-5, 4-9 month timeline, statutory redemption):
+  https://lascruceshomebuyers.com/blog/new-mexico-foreclosure-timeline
+- How Cash Home Buyers Calculate Offers in Las Cruces (real math,
+  ARV formula, worked example):
+  https://lascruceshomebuyers.com/blog/how-cash-home-buyers-calculate-offers-las-cruces
+
 ## What we are not
 
 We are not realtors. We do not list properties on the MLS. We are
