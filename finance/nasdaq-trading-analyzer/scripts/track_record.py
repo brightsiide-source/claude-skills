@@ -135,9 +135,19 @@ def format_text(summary, min_n):
     lines.append(f"  OVERALL: {t['win']}W - {t['loss']}L   "
                  f"({gwr:.0f}% win rate, n={resolved})")
     lines.append(f"  Also: {t['no_fill']} never filled, {t['expired']} expired")
-    n_flag = "  *** enough data to trust ***" if resolved >= 40 else \
-             "  (need ~40 for a reliable read)"
-    lines.append(n_flag)
+
+    # Confidence flag — quantity is necessary but not sufficient. We also
+    # want a decent number of setups with enough per-setup samples before
+    # calling anything reliable.
+    per_setup_ok = sum(
+        1 for st in summary["by_setup"].values()
+        if (st["win"] + st["loss"]) >= 15)
+    if resolved >= 60 and per_setup_ok >= 2:
+        lines.append("  *** solid sample — safe to draw conclusions ***")
+    elif resolved >= 30:
+        lines.append("  (building — early signal only, not yet reliable)")
+    else:
+        lines.append("  (tiny sample — treat as noise, keep collecting)")
     lines.append("-" * 60)
 
     # By setup
