@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Las Cruces Cash Home Buyers | Trusted Local</title>
-  <meta name="description" content="Meet the team behind Las Cruces Cash Home Buyers. Locally owned, family operated. Serving Dona Ana County across Las Cruces, Mesilla, Hatch, Anthony, Sunland Park.">
+  <title>About Us | Las Cruces Cash Home Buyers | David Washburn &amp; Drew Heberer</title>
+  <meta name="description" content="David Washburn and Drew Heberer buy houses for cash in Las Cruces and Doña Ana County. Started as real estate investors in Iowa, moved into the Las Cruces market to help New Mexico homeowners sell stress-free.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://lascruceshomebuyers.com/about">
-  <meta property="og:title" content="About Us | Las Cruces Cash Home Buyers | Local & Trusted">
-  <meta property="og:description" content="Meet the team behind Las Cruces Cash Home Buyers. Locally owned, family operated. Serving Dona Ana County.">
+  <meta property="og:title" content="About Us | Las Cruces Cash Home Buyers — David Washburn &amp; Drew Heberer">
+  <meta property="og:description" content="Meet David Washburn &amp; Drew Heberer. Started buying houses in Iowa, brought the same stress-free process to Las Cruces and Doña Ana County.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lascruceshomebuyers.com/about">
   <meta property="og:image" content="https://lascruceshomebuyers.com/lascruceslogo.png">
@@ -17,15 +17,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
-  <!-- JSON-LD Organization Structured Data -->
+  <!-- JSON-LD: Organization + Founders -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
+    "@id": "https://lascruceshomebuyers.com/#business",
     "name": "Las Cruces Cash Home Buyers",
-    "description": "Locally owned, family operated cash home buyers serving Las Cruces and Dona Ana County.",
+    "description": "Locally operated cash home buying company serving Las Cruces and Doña Ana County, New Mexico. Founded by David Washburn and Drew Heberer.",
     "url": "https://lascruceshomebuyers.com",
-    "telephone": "(575) 222-8799",
+    "telephone": "+1-575-222-8799",
+    "email": "info@lascruceshomebuyers.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Las Cruces",
@@ -37,11 +39,46 @@
       { "@type": "City", "name": "Mesilla" },
       { "@type": "City", "name": "Sunland Park" },
       { "@type": "City", "name": "Anthony" },
-      { "@type": "City", "name": "Dona Ana" },
+      { "@type": "City", "name": "Doña Ana" },
       { "@type": "City", "name": "Chaparral" },
-      { "@type": "City", "name": "Hatch" }
+      { "@type": "City", "name": "Hatch" },
+      { "@type": "AdministrativeArea", "name": "Doña Ana County, New Mexico" }
+    ],
+    "founder": [
+      {
+        "@type": "Person",
+        "@id": "https://lascruceshomebuyers.com/about#david-washburn",
+        "name": "David Washburn",
+        "jobTitle": "Co-Founder",
+        "worksFor": { "@id": "https://lascruceshomebuyers.com/#business" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://lascruceshomebuyers.com/about#drew-heberer",
+        "name": "Drew Heberer",
+        "jobTitle": "Co-Founder",
+        "worksFor": { "@id": "https://lascruceshomebuyers.com/#business" }
+      }
     ],
     "priceRange": "$$"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "url": "https://lascruceshomebuyers.com/about",
+    "mainEntity": { "@id": "https://lascruceshomebuyers.com/#business" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lascruceshomebuyers.com/" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://lascruceshomebuyers.com/about" }
+    ]
   }
   </script>
 </head>
@@ -55,17 +92,18 @@
         <li><a href="how-it-works.html">How It Works</a></li>
         <li><a href="about.html">About Us</a></li>
         <li class="dropdown">
-          <a href="index.html#situations">Areas We Serve &#9662;</a>
+          <a href="service-areas.html">Areas We Serve &#9662;</a>
           <ul class="dropdown-menu">
             <li><a href="we-buy-houses-las-cruces.html">Las Cruces</a></li>
             <li><a href="we-buy-houses-mesilla.html">Mesilla</a></li>
             <li><a href="we-buy-houses-sunland-park.html">Sunland Park</a></li>
             <li><a href="we-buy-houses-anthony.html">Anthony</a></li>
-            <li><a href="we-buy-houses-dona-ana.html">Dona Ana</a></li>
+            <li><a href="we-buy-houses-dona-ana.html">Do&ntilde;a Ana</a></li>
             <li><a href="we-buy-houses-chaparral.html">Chaparral</a></li>
             <li><a href="we-buy-houses-hatch.html">Hatch</a></li>
           </ul>
         </li>
+        <li><a href="faq.html">FAQ</a></li>
         <li><a href="reviews.html">Reviews</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -79,9 +117,9 @@
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">
-      <div class="hero-badge">Local. Trusted. Proven.</div>
+      <div class="hero-badge">Two founders. One straightforward process.</div>
       <h1>About Las Cruces Cash Home Buyers</h1>
-      <p>We're a locally owned and operated company that helps Dona Ana County homeowners sell their houses fast for cash. No agents, no fees, no stress — just honest people helping neighbors.</p>
+      <p>David Washburn and Drew Heberer buy houses for cash across Las Cruces and Do&ntilde;a Ana County. We started as real estate investors in Iowa, and we brought the same straightforward, stress-free process to the New Mexico market. If you're trying to sell a house and the traditional path isn't working, we want to help.</p>
       <div class="hero-cta">
         <a href="contact.html" class="btn btn-primary btn-lg">Get My Free Cash Offer &rarr;</a>
         <a href="tel:+15752228799" class="btn btn-outline btn-lg">&#9742; (575) 222-8799</a>
@@ -99,164 +137,117 @@
   </div>
 
   <!-- Our Story -->
-  <section class="content-section">
+  <section class="section market-context">
     <div class="container">
-      <div class="content-grid">
-        <div class="content-text">
-          <span class="section-tag">Our Story</span>
-          <h2>How We Got Started</h2>
-          <p>Las Cruces Cash Home Buyers was founded in 2018 with a simple idea: homeowners deserve a better way to sell. We'd seen too many families struggle with the traditional real estate process — the months of waiting, the expensive repairs, the uncertainty of buyer financing falling through.</p>
-          <p>We started right here in Las Cruces because this is our home. We grew up in Dona Ana County, we raise our families here, and we're invested in this community. When we buy a house, we're not just closing a deal — we're helping a neighbor move forward with their life.</p>
-          <p>Since 2018, we've helped over 500 homeowners across Las Cruces, Mesilla, Sunland Park, Anthony, and every corner of Dona Ana County. From families facing foreclosure to landlords ready to retire, we've seen every situation — and we treat every homeowner with the respect and care they deserve.</p>
+      <div class="article-body">
+        <h2>How we got started</h2>
+        <p>David and Drew started buying houses together in Iowa &mdash; single-family homes from sellers who needed to move faster than the traditional MLS process allowed. The pattern was almost always the same. Somebody was going through a divorce, or facing foreclosure, or had inherited a house they lived states away from. They didn't have three months to list, stage, and wait for a buyer's financing to clear. They needed a straight answer, a real offer, and a closing date.</p>
+        <p>We got good at delivering that. Written cash offers within a business day. Closings in one to three weeks at the local title company. No repair credits, no financing contingencies, no last-minute renegotiations. Sellers left the table with cash and a fresh start &mdash; and they told the next person we did what we said we'd do.</p>
+        <p>When we started looking at Las Cruces and Do&ntilde;a Ana County, we saw the same patterns we'd seen in Iowa. NMSU faculty relocating out of state. Adult children inheriting a parent's East Mesa or University Hills home from three states away. Longtime landlords near NMSU tired of managing rentals that don't cash-flow the way they used to. Homeowners in the Mesquite Historic District or Alameda Depot with older adobe or Territorial-style homes that need too much work to make MLS-ready. We moved into the market to do the same work here that we'd been doing in Iowa &mdash; and to do it right.</p>
+
+        <h2>What we actually do</h2>
+        <p>We buy residential property in Do&ntilde;a Ana County for cash. Single-family houses, small multifamily, mobile homes on land, mobile homes in parks, older adobes, newer East Mesa production builds, ag parcels in the Hatch Valley, cross-border properties in Sunland Park and Anthony. Any condition. Any situation. We handle the paperwork, we handle the title company coordination, we pay the closing costs.</p>
+        <p>What we don't do: we don't list properties on the MLS, we don't represent buyers or sellers as agents, we're not a franchise or a national chain, and we don't hand off your information to whoever pays the highest referral fee. We're a small, locally-operated business that buys houses with our own funds.</p>
+
+        <h2>Why the two of us moved into the New Mexico market</h2>
+        <p>Honest answer: because Las Cruces and Do&ntilde;a Ana County have real seller demand that isn't well-served. The national iBuyers (Opendoor, Offerpad) don't buy in most of the ZIPs we work &mdash; they only run algorithms in the highest-volume urban markets, and they charge 5-9% "service fees" on top of their offers. Traditional MLS listings work for move-in-ready homes with time to wait. Everything else in between &mdash; the older houses, the distressed situations, the out-of-state heirs, the tired landlords &mdash; that's where we come in.</p>
+        <p>And Las Cruces is the kind of town we like to work in. It's small enough that reputation matters and word gets around. It's diverse enough &mdash; NMSU, WSMR military, Fort Bliss commuters, ag families, cross-border communities &mdash; that no two closings are the same. And the Mesilla Valley has real character. We're glad to be doing this here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founders Section -->
+  <section class="section founders" id="founders" style="background: var(--bg-alt);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Meet the Founders</span>
+        <h2>David Washburn &amp; Drew Heberer</h2>
+        <p>The same people who answer the phone are the ones who sign at closing.</p>
+      </div>
+      <div class="founders-grid">
+        <div class="founder-card">
+          <div class="founder-avatar founder-avatar--dw" aria-hidden="true">DW</div>
+          <h3>David Washburn</h3>
+          <p class="founder-role">Co-Founder</p>
+          <p>David got into buying houses in Iowa and has been at it long enough to know that the paperwork is usually the easy part &mdash; the hard part is figuring out what a seller actually needs. He handles a lot of the seller-side conversations, coordinates with attorneys and title companies, and answers the phone when it rings. He's the one you'll usually talk to first when you reach out.</p>
         </div>
-        <div class="content-image">
-          <div class="big-icon">&#127968;</div>
-          <h3>Founded in 2018</h3>
-          <p>Born and raised in Las Cruces. Proudly serving our community for over 7 years.</p>
+        <div class="founder-card">
+          <div class="founder-avatar founder-avatar--dh" aria-hidden="true">DH</div>
+          <h3>Drew Heberer</h3>
+          <p class="founder-role">Co-Founder</p>
+          <p>Drew's background is the deal side &mdash; running numbers, valuing property, managing the operational side of a closing. He walks properties, works up the offers, and coordinates the rehab and disposition once we own a house. If you have a question about how we arrived at a specific number, that's Drew's answer.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Story -->
+  <section class="section market-context">
+    <div class="container">
+      <div class="article-body">
+        <h2>What a Las Cruces closing looks like</h2>
+        <p>To make this concrete, here's a recent closing we can share (details generalized to protect the seller's privacy):</p>
+        <p><strong>The situation.</strong> An out-of-state family member had inherited a home in Las Cruces from a parent who passed. The property had been sitting for a few months. It needed work &mdash; original stucco, aging HVAC, dated interior, some deferred plumbing. The heir lived in another state, didn't want to fly back and forth, and didn't have the bandwidth to manage contractors remotely. A traditional MLS listing would have meant months of coordinating repairs from a distance, then more months on market. They wanted the property gone.</p>
+        <p><strong>How the sale went.</strong> They called us. We got the address, walked through the property with permission, and had a written cash offer to them within a business day. They accepted. We opened title at a Do&ntilde;a Ana County title company. Title cleared quickly &mdash; probate had already been handled and Letters had been issued, so the paperwork was in order. The seller signed remotely at a mobile notary in their home state. We closed 14 days after the first phone call. Funds wired to their account the next business day.</p>
+        <p><strong>Why we're sharing it.</strong> This is what a "we want out of this situation" sale looks like when everything goes right. No repairs, no contractor headaches, no showings, no back-and-forth after inspection. One seller, one buyer, one title company, done.</p>
+        <p>Not every closing goes this smoothly &mdash; sometimes title has complications, or probate isn't fully closed, or the property needs more work than we can absorb. When that happens we tell sellers upfront and work through it together. But this kind of clean, respectful, fast closing is the outcome we're trying to deliver every time.</p>
       </div>
     </div>
   </section>
 
   <!-- Our Values -->
-  <section class="section" style="background: var(--bg-alt);">
+  <section class="section" style="background: #ffffff;">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">What We Believe</span>
-        <h2>Our Core Values</h2>
-        <p>These six values guide every interaction, every offer, and every closing we do.</p>
+        <span class="section-tag">How We Work</span>
+        <h2>Six things we commit to on every closing</h2>
+        <p>These aren't marketing values &mdash; they're the actual rules of engagement.</p>
       </div>
       <div class="values-grid">
         <div class="value-card">
           <div class="icon">&#129309;</div>
           <h3>Integrity</h3>
-          <p>We do what we say we'll do. Every offer is honest, every promise is kept, and every handshake means something. Our reputation in Las Cruces is everything to us.</p>
+          <p>What we say on the phone is what shows up in writing. What's in writing is what closes. If we make a mistake on the offer, we absorb it &mdash; we don't renegotiate at the closing table.</p>
         </div>
         <div class="value-card">
           <div class="icon">&#9889;</div>
-          <h3>Speed</h3>
-          <p>When you need to sell fast, every day counts. We respond within hours, present offers within 24 hours, and can close in as few as 7 days. No delays, no excuses.</p>
+          <h3>Speed on your timeline</h3>
+          <p>Written offer within one business day. Closings from 7 to 30+ days &mdash; your call. If you need more time, we work around your schedule. If you need it done tomorrow, we push.</p>
         </div>
         <div class="value-card">
           <div class="icon">&#128269;</div>
-          <h3>Transparency</h3>
-          <p>No hidden fees, no bait-and-switch tactics, no fine print surprises. We show you exactly how we calculate our offer and explain every document before you sign.</p>
+          <h3>Transparent offer math</h3>
+          <p>Every offer is: after-repair value minus repair budget minus our holding and transaction costs. We show you the math. If our number doesn't work for you, we'll tell you honestly whether listing with an agent would net more.</p>
         </div>
         <div class="value-card">
           <div class="icon">&#128205;</div>
-          <h3>Local Expertise</h3>
-          <p>We know Las Cruces inside and out — every neighborhood, every school district, every market trend. Our local knowledge means more accurate, fairer offers for you.</p>
+          <h3>Local process, local title</h3>
+          <p>We close at Do&ntilde;a Ana County title companies. We know New Mexico real estate law, community property rules, water rights, and NM MVD mobile home title transfers. We're not learning on your closing.</p>
         </div>
         <div class="value-card">
           <div class="icon">&#9878;</div>
-          <h3>Fair Offers</h3>
-          <p>We're not here to lowball anyone. Our offers are based on real comparable sales data and honest repair estimates. We want you to feel good about the deal — and come back to refer us.</p>
+          <h3>Fair, not lowball</h3>
+          <p>We make money on the spread between what we pay and what the property sells for post-rehab. That spread has to work for our business, but our offer also has to be fair enough that you'd refer us to your neighbor. We take both seriously.</p>
         </div>
         <div class="value-card">
           <div class="icon">&#128587;</div>
-          <h3>No Pressure</h3>
-          <p>Selling your home is a major decision. We'll never rush you, guilt you, or use high-pressure tactics. Get our offer, take your time, and decide when you're ready.</p>
+          <h3>No pressure, no follow-up spam</h3>
+          <p>You get a written offer. You take it, you leave it, or you use it as a benchmark against an agent listing. If you say no thanks, we don't chase you. No robocalls, no drip email campaigns.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats / Numbers Section -->
-  <section class="section" style="background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); color: #fff;">
+  <!-- Business Info -->
+  <section class="section market-context">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag" style="background: rgba(212, 168, 67, 0.15); color: var(--accent);">By the Numbers</span>
-        <h2 style="color: #fff;">Our Track Record Speaks for Itself</h2>
-        <p style="color: rgba(255,255,255,0.8);">A straightforward, local approach to buying houses in Las Cruces and Dona Ana County.</p>
-      </div>
-      <div class="values-grid">
-        <div class="value-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12);">
-          <div style="font-size: 3.5rem; font-weight: 900; color: var(--accent); margin-bottom: 8px;">24h</div>
-          <h3 style="color: #fff;">Written Offer</h3>
-          <p style="color: rgba(255,255,255,0.7);">Submit your property details and we'll deliver a written cash offer within one business day. No obligation, no pressure.</p>
-        </div>
-        <div class="value-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12);">
-          <div style="font-size: 3.5rem; font-weight: 900; color: var(--accent); margin-bottom: 8px;">7 Days</div>
-          <h3 style="color: #fff;">Fastest Closing</h3>
-          <p style="color: rgba(255,255,255,0.7);">Our fastest closing takes 7 days from first contact to cash in hand. When you need to move quickly, we make it happen.</p>
-        </div>
-        <div class="value-card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12);">
-          <div style="font-size: 3.5rem; font-weight: 900; color: var(--accent); margin-bottom: 8px;">$0</div>
-          <h3 style="color: #fff;">Fees &amp; Commissions</h3>
-          <p style="color: rgba(255,255,255,0.7);">Zero realtor commissions, zero closing costs, zero hidden fees. We pay for everything. Your offer is your net payout.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Mission -->
-  <section class="content-section">
-    <div class="container">
-      <div class="content-grid reverse">
-        <div class="content-text">
-          <span class="section-tag">Our Mission</span>
-          <h2>Helping Las Cruces Homeowners Move Forward</h2>
-          <p>Our mission is simple: provide Las Cruces homeowners with a fast, fair, and stress-free way to sell their homes. We believe that no matter your situation — foreclosure, divorce, inherited property, or just needing a change — you deserve a solution that works on your timeline, not someone else's.</p>
-          <p>We're not Wall Street investors or a faceless national corporation. We're your neighbors. We live here, we work here, and we care about the impact we have on this community. Every house we buy is one more family we've helped move on to the next chapter of their life.</p>
-          <p>When we renovate the homes we purchase, we improve neighborhoods. When we close quickly for a family in crisis, we provide peace of mind. That's not just a business — that's a purpose.</p>
-          <ul>
-            <li><span class="check">&#10004;</span> Locally owned and family operated</li>
-            <li><span class="check">&#10004;</span> Registered with the State of New Mexico</li>
-            <li><span class="check">&#10004;</span> We pay all standard seller closing costs</li>
-            <li><span class="check">&#10004;</span> Active members of the Las Cruces community</li>
-          </ul>
-        </div>
-        <div class="content-image">
-          <div class="big-icon">&#127775;</div>
-          <h3>Our Purpose</h3>
-          <p>Every home we buy is a family we've helped move forward. That drives everything we do.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="section testimonials" style="background: var(--bg-alt);">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Real Stories</span>
-        <h2>What Our Clients Say About Us</h2>
-        <p>Don't take our word for it — hear from Las Cruces homeowners who've been through our process.</p>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">"I was facing foreclosure and felt hopeless. They gave me a fair cash offer in one day and we closed in 12 days. They literally saved my family's credit. I can't thank them enough."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">MR</div>
-            <div>
-              <strong>Maria R.</strong>
-              <span>Las Cruces, NM — Sold in 12 days</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">"Inherited my parents' house and it needed a TON of work. I didn't want to deal with contractors or listing it. Got a cash offer on Monday, closed on Friday. Easiest decision I ever made."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">JT</div>
-            <div>
-              <strong>James T.</strong>
-              <span>Mesilla Park, NM — Sold in 5 days</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">"After my divorce, I needed to sell fast and split the equity. They were professional, respectful, and made the whole process painless. Closed in 3 weeks with zero hassle."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">SK</div>
-            <div>
-              <strong>Sarah K.</strong>
-              <span>Las Cruces, NM — Sold in 21 days</span>
-            </div>
-          </div>
-        </div>
+      <div class="article-body">
+        <h2>The legal stuff</h2>
+        <p><strong>Business structure.</strong> Las Cruces Cash Home Buyers operates through a limited liability company registered with the State of New Mexico. Verifiable through the New Mexico Secretary of State's business search at <a href="https://portal.sos.state.nm.us/BFS/online/CorporationBusinessSearch" target="_blank" rel="noopener">portal.sos.state.nm.us</a>. Ask us for the exact entity name when you call &mdash; we're happy to share it.</p>
+        <p><strong>What we are not.</strong> We are not a licensed real estate brokerage. We do not represent buyers or sellers as agents in third-party transactions. We do not list properties on the MLS. We are a private home-buying company that purchases property for our own account. That means no commissions, no agency fiduciary duties, and no listing agreements &mdash; but it also means we have real skin in the game on every closing.</p>
+        <p><strong>What we are not (part 2).</strong> We are not a law firm. Anything on this site &mdash; New Mexico foreclosure timelines, community property rules, probate steps, mobile home title conversions &mdash; is general information, not legal advice for your specific situation. Talk to a New Mexico attorney for legal questions. We're happy to refer you to Las Cruces-area real estate and probate attorneys we work with.</p>
+        <p><strong>Where we're based.</strong> Las Cruces, NM. We serve Do&ntilde;a Ana County primarily, with occasional deals in adjacent Sierra, Otero, and northern El Paso (TX) counties.</p>
+        <p><strong>References available.</strong> If you're evaluating whether to work with us and want to talk to a prior seller, or to the title company we close through, or to a Las Cruces attorney we've worked alongside, ask. We can put you in touch.</p>
       </div>
     </div>
   </section>
@@ -265,13 +256,13 @@
   <section class="section final-cta">
     <div class="container">
       <div class="cta-card">
-        <h2>Ready to Work with a Team You Can Trust?</h2>
-        <p>Get your free, no-obligation cash offer from Las Cruces's most trusted home buyers. It takes less than 2 minutes to get started.</p>
+        <h2>Want to Talk?</h2>
+        <p>The best way to figure out if selling to us makes sense is to have a conversation. No pressure, no obligation. We answer the phone.</p>
         <div class="cta-buttons">
           <a href="contact.html" class="btn btn-primary btn-lg">Get My Cash Offer &rarr;</a>
           <a href="tel:+15752228799" class="btn btn-white btn-lg">&#9742; Call (575) 222-8799</a>
         </div>
-        <p class="cta-sub">We respond within 24 hours &bull; No obligation &bull; 100% confidential</p>
+        <p class="cta-sub">Written offer within 24 hours &bull; No obligation &bull; 100% confidential</p>
       </div>
     </div>
   </section>
@@ -295,6 +286,9 @@
             <li><a href="sell-inherited-house-las-cruces.html">Inherited Property</a></li>
             <li><a href="sell-house-divorce-las-cruces.html">Divorce Sale</a></li>
             <li><a href="sell-house-as-is-las-cruces.html">Sell As-Is</a></li>
+            <li><a href="sell-rental-property-tenant-las-cruces.html">Sell Rental with Tenants</a></li>
+            <li><a href="we-buy-mobile-homes-dona-ana-county.html">Mobile Homes</a></li>
+            <li><a href="sell-house-cash-nmsu-area.html">NMSU Area</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -310,7 +304,7 @@
           <ul>
             <li><a href="we-buy-houses-las-cruces.html">Las Cruces, NM</a></li>
             <li><a href="we-buy-houses-mesilla.html">Mesilla, NM</a></li>
-            <li><a href="we-buy-houses-dona-ana.html">Dona Ana, NM</a></li>
+            <li><a href="we-buy-houses-dona-ana.html">Do&ntilde;a Ana, NM</a></li>
             <li><a href="we-buy-houses-sunland-park.html">Sunland Park, NM</a></li>
             <li><a href="we-buy-houses-anthony.html">Anthony, NM</a></li>
             <li><a href="we-buy-houses-chaparral.html">Chaparral, NM</a></li>
@@ -320,7 +314,7 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Las Cruces Cash Home Buyers. All rights reserved.</p>
-        <p class="footer-disclaimer">Disclaimer: We are not realtors or a real estate brokerage. We are professional home buyers. Results may vary. Each property and situation is unique.</p>
+        <p class="footer-disclaimer">Disclaimer: We are not realtors or a real estate brokerage. We are professional home buyers. This page is informational only and not legal advice.</p>
       </div>
     </div>
   </footer>

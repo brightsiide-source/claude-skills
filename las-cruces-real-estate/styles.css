@@ -1799,3 +1799,63 @@ img {
 .nm-legal {
   background: #ffffff;
 }
+
+/* Founders section — About page */
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.founder-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px 28px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.founder-card h3 {
+  margin: 16px 0 4px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.founder-role {
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+.founder-card p {
+  color: #4b5563;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+.founder-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+}
+.founder-avatar--dh {
+  background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+  color: #0f172a;
+}
+@media (max-width: 640px) {
+  .founders-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
