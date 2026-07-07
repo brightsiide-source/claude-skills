@@ -688,26 +688,47 @@ class OutcomeTracker:
 
 # ---- News Guard -------------------------------------------------------
 
+def now_eastern(utc=None):
+    """Return the current US Eastern wall-clock time as a naive datetime.
+
+    Computed from UTC (always available) with the US DST rule, so it is
+    correct regardless of the trader's PC timezone and needs no external
+    tzdata package (which Windows Python often lacks). US Eastern DST runs
+    from the 2nd Sunday of March to the 1st Sunday of November.
+    """
+    from datetime import datetime, timezone, timedelta, date
+    if utc is None:
+        utc = datetime.now(timezone.utc)
+
+    def nth_sunday(year, month, n):
+        d = date(year, month, 1)
+        first_sunday = 1 + (6 - d.weekday()) % 7  # weekday(): Mon=0..Sun=6
+        return first_sunday + (n - 1) * 7
+
+    y = utc.year
+    # Transitions happen at 2:00 AM local; in UTC that's 07:00 (EST->EDT)
+    # and 06:00 (EDT->EST).
+    dst_start = datetime(y, 3, nth_sunday(y, 3, 2), 7, tzinfo=timezone.utc)
+    dst_end = datetime(y, 11, nth_sunday(y, 11, 1), 6, tzinfo=timezone.utc)
+    is_dst = dst_start <= utc < dst_end
+    offset = timedelta(hours=-4 if is_dst else -5)
+    return (utc + offset).replace(tzinfo=None)
+
+
 class NewsGuard:
     """Mutes alerts around high-impact economic events (FOMC/CPI/NFP/etc).
 
-    Uses the built-in economic calendar (news_scanner) and the real ET
-    clock so it works regardless of the trader's local timezone.
+    Uses the built-in economic calendar (news_scanner) and true ET computed
+    from UTC, so it works regardless of the trader's PC timezone.
     """
 
     def __init__(self, buffer_min: int = 15, impact: str = "HIGH"):
         self.buffer_min = buffer_min
         self.impact = impact.upper()
-        self._events = []  # list of (datetime_ET, name, move)
-        self._et = None
+        self._events = []  # list of (naive_ET_datetime, name, move)
         self._load()
 
     def _load(self):
-        try:
-            from zoneinfo import ZoneInfo
-            self._et = ZoneInfo("America/New_York")
-        except Exception:
-            self._et = None
         try:
             import news_scanner as ns
             from datetime import datetime as _dt
@@ -719,8 +740,8 @@ class NewsGuard:
                 if impact.upper() != self.impact:
                     continue
                 try:
-                    naive = _dt.strptime(f"{date_s} {time_s}", "%Y-%m-%d %H:%M")
-                    ev = naive.replace(tzinfo=self._et) if self._et else naive
+                    # Calendar times are already ET; store as naive ET.
+                    ev = _dt.strptime(f"{date_s} {time_s}", "%Y-%m-%d %H:%M")
                     self._events.append((ev, name, move))
                 except Exception:
                     continue
@@ -731,11 +752,7 @@ class NewsGuard:
         """Return (in_blackout: bool, message: str)."""
         if not self._events:
             return (False, "")
-        try:
-            from datetime import datetime as _dt
-            now = _dt.now(self._et) if self._et else _dt.now()
-        except Exception:
-            return (False, "")
+        now = now_eastern()
         for ev, name, move in self._events:
             delta_min = (ev - now).total_seconds() / 60.0
             # Blackout window: buffer before through buffer after
@@ -749,11 +766,7 @@ class NewsGuard:
         """Return (name, minutes_until) for the next high-impact event today."""
         if not self._events:
             return None
-        try:
-            from datetime import datetime as _dt
-            now = _dt.now(self._et) if self._et else _dt.now()
-        except Exception:
-            return None
+        now = now_eastern()
         upcoming = [(ev, name) for ev, name, _ in self._events
                     if (ev - now).total_seconds() > 0
                     and (ev - now).total_seconds() < 86400]
@@ -1140,12 +1153,8 @@ class LiveConnector:
         leaving it running 24/7 never pollutes the data.
         """
         try:
-            from datetime import datetime as _dt, time as _t
-            try:
-                from zoneinfo import ZoneInfo
-                now = _dt.now(ZoneInfo("America/New_York"))
-            except Exception:
-                now = _dt.now()
+            from datetime import time as _t
+            now = now_eastern()  # true ET from UTC, timezone-independent
             if now.weekday() >= 5:
                 return (False, "Weekend — market closed")
             t = now.time()
