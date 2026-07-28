@@ -49,6 +49,27 @@
 </head>
 <body>
 <div class="wrap">
+  <div class="panel" style="text-align:center; background:linear-gradient(180deg,#161b22,#12161c);">
+    <div style="font-size:22px; font-weight:800; letter-spacing:.01em;">NQ Live Co-Pilot</div>
+    <div class="muted" style="margin:4px 0 8px;">Real-time NASDAQ setup scanner for scalpers — <span id="profileLabel">1m/5m NQ futures</span></div>
+    <div style="font-size:13px; line-height:1.5; color:var(--txt); max-width:600px; margin:0 auto;">
+      Watches the market live, scores every setup for confluence, and flags
+      only high-quality entries with an exact stop, target, and size — while
+      tracking how each call actually plays out.
+    </div>
+    <details style="margin-top:10px; text-align:left; max-width:600px; margin-left:auto; margin-right:auto;">
+      <summary class="muted" style="cursor:pointer; text-align:center;">How it works</summary>
+      <div class="muted" style="font-size:12px; line-height:1.6; margin-top:8px;">
+        • <b>Regime filter</b> — never fades a strong trend (no falling knives).<br>
+        • <b>Confluence score (0-100)</b> — RSI, EMA, VWAP, MACD, Bollinger, S/R alignment.<br>
+        • <b>Scalp-calibrated</b> — stops/targets in your NQ point range (12/20 pts).<br>
+        • <b>News & market-hours guards</b> — mutes alerts around big events and after close.<br>
+        • <b>Outcome tracking</b> — every alert followed to win/loss so the edge is measured, not assumed.<br>
+        Uses a NASDAQ ETF proxy for the live feed; you execute on your own platform.
+      </div>
+    </details>
+  </div>
+
   <div class="panel hdr">
     <div><span class="sym" id="sym">—</span> <span class="price" id="price">—</span></div>
     <div style="text-align:right">
@@ -131,6 +152,7 @@ async function tick(){
   if(s.status!=='ok'){ document.getElementById('time').textContent='warming up…'; return; }
 
   document.getElementById('conn').className='dot live';
+  if(s.profile_label) document.getElementById('profileLabel').textContent=s.profile_label;
   document.getElementById('sym').textContent=s.symbol;
   document.getElementById('price').textContent=s.price!=null?s.price.toFixed(2):'—';
   document.getElementById('time').textContent=new Date().toLocaleTimeString();
