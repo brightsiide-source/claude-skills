@@ -35,6 +35,7 @@ class StateDashboard:
 
     def __init__(self):
         self.state = {"status": "starting", "ts": None}
+        self.meta = {}  # profile info merged into every snapshot
         self._lock = threading.Lock()
 
     @staticmethod
@@ -139,6 +140,7 @@ class StateDashboard:
             "min_score": min_score,
             "open_trades": open_trades,
         }
+        snap.update(self.meta)  # profile label, asset_class, etc.
         with self._lock:
             self.state = snap
 

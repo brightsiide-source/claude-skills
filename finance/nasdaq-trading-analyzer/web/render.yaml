@@ -1,0 +1,25 @@
+# Render.com blueprint — deploy the NQ Live Co-Pilot as a public web service.
+# 1. Push this repo to GitHub.
+# 2. On render.com: New > Blueprint > point at the repo.
+# 3. Set the secret env vars (ALPACA_API_KEY, ALPACA_SECRET_KEY) in the
+#    dashboard — they are NEVER committed to the repo.
+services:
+  - type: web
+    name: nq-live-copilot
+    runtime: docker
+    dockerfilePath: ./finance/nasdaq-trading-analyzer/web/Dockerfile
+    dockerContext: .
+    plan: starter          # ~$7/mo, always-on
+    envVars:
+      - key: ALPACA_API_KEY
+        sync: false        # set manually in dashboard (secret)
+      - key: ALPACA_SECRET_KEY
+        sync: false        # set manually in dashboard (secret)
+      - key: ALPACA_ENV
+        value: paper
+      - key: SYMBOL
+        value: TQQQ
+      - key: PROFILE
+        value: scalper
+      - key: MIN_SCORE
+        value: "55"
