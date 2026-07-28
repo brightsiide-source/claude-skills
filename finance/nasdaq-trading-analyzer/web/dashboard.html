@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NQ Live Co-Pilot</title>
+<style>
+  :root { --bg:#0d1117; --panel:#161b22; --line:#232a34; --txt:#e6edf3;
+          --dim:#8b949e; --grn:#2ea043; --red:#da3633; --yel:#d29922; --blu:#388bfd; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt);
+         font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:15px; }
+  .wrap { max-width:760px; margin:0 auto; padding:12px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:10px;
+           padding:12px 14px; margin-bottom:10px; }
+  .hdr { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .sym { font-size:15px; color:var(--dim); }
+  .price { font-size:30px; font-weight:700; }
+  .time { color:var(--dim); font-size:13px; }
+  .tag { padding:2px 9px; border-radius:6px; font-weight:700; font-size:13px; }
+  .up{background:var(--grn);color:#fff;} .down{background:var(--red);color:#fff;}
+  .range{background:#30363d;color:var(--txt);} .vol{background:var(--yel);color:#000;}
+  .banner { padding:10px 12px; border-radius:8px; font-weight:700; margin-bottom:10px; }
+  .b-closed{background:#30363d;color:var(--dim);} .b-news{background:var(--red);color:#fff;}
+  .alert { border-left:5px solid var(--blu); }
+  .alert.LONG{border-color:var(--grn);} .alert.SHORT{border-color:var(--red);}
+  .a-head { display:flex; justify-content:space-between; align-items:center; }
+  .a-name { font-size:18px; font-weight:700; }
+  .dir-LONG{color:var(--grn);} .dir-SHORT{color:var(--red);}
+  .score { font-size:22px; font-weight:800; }
+  .a-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:10px; }
+  .a-grid .k { color:var(--dim); font-size:11px; text-transform:uppercase; }
+  .a-grid .v { font-size:16px; font-weight:700; }
+  .muted { color:var(--dim); }
+  .kv { display:flex; gap:14px; flex-wrap:wrap; }
+  .kv span b { color:var(--txt); } .kv span { color:var(--dim); }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th,td { text-align:left; padding:5px 6px; border-bottom:1px solid var(--line); }
+  th { color:var(--dim); font-weight:600; }
+  .win{color:var(--grn);} .loss{color:var(--red);}
+  .foot { color:var(--dim); font-size:12px; text-align:center; margin-top:6px; }
+  .dot { height:9px; width:9px; border-radius:50%; display:inline-block; margin-right:5px; }
+  .live{background:var(--grn);} .stale{background:var(--red);}
+  h3 { margin:0 0 8px; font-size:13px; color:var(--dim); text-transform:uppercase; letter-spacing:.05em; }
+  button#snd { background:var(--panel); color:var(--dim); border:1px solid var(--line);
+               border-radius:6px; padding:4px 10px; cursor:pointer; font:inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="panel hdr">
+    <div><span class="sym" id="sym">—</span> <span class="price" id="price">—</span></div>
+    <div style="text-align:right">
+      <div class="time"><span class="dot stale" id="conn"></span><span id="time">connecting…</span></div>
+      <button id="snd">🔔 sound: on</button>
+    </div>
+  </div>
+
+  <div id="banner"></div>
+
+  <div class="panel">
+    <div class="kv">
+      <span>Apex <b id="acct">—</b></span>
+      <span>Bal <b id="bal">—</b></span>
+      <span>Floor <b id="floor">—</b></span>
+      <span>Left <b id="left">—</b></span>
+      <span class="tag range" id="ddstatus">—</span>
+    </div>
+  </div>
+
+  <div id="alertZone"></div>
+
+  <div class="panel">
+    <div class="kv" style="margin-bottom:8px">
+      <span>5m <b id="b5">—</b></span>
+      <span>1m <b id="b1">—</b></span>
+      <span>Regime <span class="tag range" id="regime">—</span></span>
+    </div>
+    <div class="kv" id="inds"></div>
+    <div class="kv" id="levels" style="margin-top:8px"></div>
+  </div>
+
+  <div class="panel">
+    <h3>Track Record (target hit vs stopped)</h3>
+    <table><thead><tr><th>Setup</th><th>W-L</th><th>Win%</th><th>n</th></tr></thead>
+      <tbody id="tr"><tr><td colspan="4" class="muted">No resolved alerts yet.</td></tr></tbody></table>
+  </div>
+
+  <div class="panel">
+    <h3>Recent Alerts</h3>
+    <table><tbody id="alerts"><tr><td class="muted">None yet.</td></tr></tbody></table>
+  </div>
+
+  <div class="foot" id="foot">—</div>
+</div>
+
+<script>
+let soundOn = true, lastAlertKey = null, audioCtx = null;
+document.getElementById('snd').onclick = () => {
+  soundOn = !soundOn;
+  document.getElementById('snd').textContent = '🔔 sound: ' + (soundOn?'on':'off');
+  if (soundOn && !audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+};
+function beep(n){
+  if(!soundOn) return;
+  if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+  for(let i=0;i<n;i++){
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.frequency.value=880; g.gain.value=0.12;
+    const t=audioCtx.currentTime + i*0.18;
+    o.start(t); o.stop(t+0.12);
+  }
+}
+const money = v => '$'+Number(v).toLocaleString(undefined,{maximumFractionDigits:0});
+const regClass = r => ({UPTREND:'up',DOWNTREND:'down',VOLATILE:'vol'}[r]||'range');
+
+async function tick(){
+  let s;
+  try { s = await (await fetch('/api/state',{cache:'no-store'})).json(); }
+  catch(e){ document.getElementById('conn').className='dot stale';
+            document.getElementById('time').textContent='disconnected'; return; }
+  if(s.status!=='ok'){ document.getElementById('time').textContent='warming up…'; return; }
+
+  document.getElementById('conn').className='dot live';
+  document.getElementById('sym').textContent=s.symbol;
+  document.getElementById('price').textContent=s.price!=null?s.price.toFixed(2):'—';
+  document.getElementById('time').textContent=new Date().toLocaleTimeString();
+
+  // banner
+  let bn='';
+  if(s.closed_msg) bn=`<div class="banner b-closed">MARKET CLOSED — ${s.closed_msg}</div>`;
+  else if(s.news_msg) bn=`<div class="banner b-news">NEWS HALT — ${s.news_msg} — alerts muted</div>`;
+  document.getElementById('banner').innerHTML=bn;
+
+  // account
+  const a=s.account;
+  document.getElementById('acct').textContent=a.apex;
+  document.getElementById('bal').textContent=money(a.balance);
+  document.getElementById('floor').textContent=money(a.floor);
+  document.getElementById('left').textContent=money(a.remaining);
+  const ds=document.getElementById('ddstatus'); ds.textContent=a.status;
+  ds.className='tag '+(a.status==='SAFE'?'up':a.status==='CRITICAL'?'down':'vol');
+
+  // alerts / top setup
+  const az=document.getElementById('alertZone');
+  if(s.setups && s.setups.length && !s.closed_msg && !s.news_msg){
+    const t=s.setups[0];
+    const pts=t.scalp_pts?` &nbsp;(${t.scalp_pts[1]}pt tgt / ${t.scalp_pts[0]}pt stop)`:'';
+    az.innerHTML=`<div class="panel alert ${t.direction}">
+      <div class="a-head">
+        <div class="a-name">${t.name} <span class="dir-${t.direction}">${t.direction}</span></div>
+        <div class="score">${t.score}<span class="muted" style="font-size:13px">/100</span></div>
+      </div>
+      <div class="a-grid">
+        <div><div class="k">Entry</div><div class="v">${t.entry}</div></div>
+        <div><div class="k">Stop</div><div class="v">${t.stop}</div></div>
+        <div><div class="k">Target</div><div class="v">${t.target}</div></div>
+        <div><div class="k">R:R</div><div class="v">${t.rr}:1</div></div>
+      </div>
+      <div class="muted" style="margin-top:8px">Size ${t.contracts} ${a.instrument} · risk ${money(t.risk)}${pts}<br>${t.description||''}</div>
+    </div>`;
+    const key=t.name+'|'+t.direction+'|'+t.entry;
+    if(key!==lastAlertKey){ lastAlertKey=key; beep(t.score>=75?3:t.score>=60?2:1); }
+  } else {
+    az.innerHTML=`<div class="panel muted">No setups ≥ ${s.min_score}. Scanning…</div>`;
+    lastAlertKey=null;
+  }
+
+  // bias + regime + indicators
+  document.getElementById('b5').textContent=s.bias_5m;
+  document.getElementById('b1').textContent=s.bias_1m;
+  const rg=document.getElementById('regime'); rg.textContent=s.regime; rg.className='tag '+regClass(s.regime);
+  const i=s.indicators, ip=[];
+  if(i.rsi!=null) ip.push(`<span>RSI <b>${Math.round(i.rsi)}</b></span>`);
+  if(i.macd_h!=null) ip.push(`<span>MACD-H <b>${i.macd_h.toFixed(3)}</b></span>`);
+  if(i.vwap!=null) ip.push(`<span>VWAP <b>${i.vwap.toFixed(2)}</b></span>`);
+  if(i.atr!=null) ip.push(`<span>ATR <b>${i.atr}</b></span>`);
+  if(i.bbw!=null) ip.push(`<span>BBW <b>${i.bbw.toFixed(2)}%</b></span>`);
+  document.getElementById('inds').innerHTML=ip.join('');
+  const L=s.levels, lp=[];
+  if(L.resistance&&L.resistance.length) lp.push(`<span>R <b>${L.resistance.map(x=>x.toFixed(2)).join(', ')}</b></span>`);
+  if(L.pivot!=null) lp.push(`<span>PP <b>${L.pivot}</b></span>`);
+  if(L.support&&L.support.length) lp.push(`<span>S <b>${L.support.map(x=>x.toFixed(2)).join(', ')}</b></span>`);
+  document.getElementById('levels').innerHTML=lp.join('');
+
+  // track record
+  const tr=document.getElementById('tr');
+  if(s.track_record.rows.length){
+    tr.innerHTML=s.track_record.rows.map(r=>
+      `<tr><td>${r.name}</td><td><span class="win">${r.win}W</span>-<span class="loss">${r.loss}L</span></td><td>${r.wr}%</td><td>${r.n}</td></tr>`).join('')
+      +`<tr style="font-weight:700"><td>OVERALL</td><td><span class="win">${s.track_record.overall.win}W</span>-<span class="loss">${s.track_record.overall.loss}L</span></td><td>${s.track_record.overall.wr}%</td><td>${s.track_record.overall.n}</td></tr>`;
+  } else tr.innerHTML='<tr><td colspan="4" class="muted">No resolved alerts yet.</td></tr>';
+
+  // recent alerts
+  const al=document.getElementById('alerts');
+  al.innerHTML=(s.alerts&&s.alerts.length)? s.alerts.slice().reverse().map(x=>
+    `<tr><td class="muted">${x.time||''}</td><td>[${x.score}]</td><td>${x.name} <span class="dir-${x.direction}">${x.direction}</span></td><td class="muted">E:${x.entry} T:${x.target}</td></tr>`).join('')
+    :'<tr><td class="muted">None yet.</td></tr>';
+
+  let nn = s.next_news ? ` · next news: ${s.next_news.name} in ${s.next_news.mins}m` : '';
+  document.getElementById('foot').textContent=
+    `Bars ${s.bar_count} · min score ${s.min_score} · tracking ${s.open_trades}${nn}`;
+}
+tick(); setInterval(tick, 2000);
+</script>
+</body>
+</html>
