@@ -164,9 +164,107 @@
   .btn.primary{ width:100%; background:var(--hud); color:#1a1206; border-color:var(--hud);
     font-weight:800; padding:11px; font-size:15px; margin-top:4px; }
   .btn.primary:hover{ filter:brightness(1.05); color:#1a1206; }
+
+  /* onboarding */
+  .onb{ position:fixed; inset:0; background:var(--ground); z-index:80; overflow:auto;
+    background-image:radial-gradient(1200px 600px at 50% -5%, rgba(245,177,61,.09), transparent 60%);
+    display:grid; place-items:start center; padding:6vh 16px 40px; }
+  .onb[hidden]{ display:none; }
+  .onb-card{ width:100%; max-width:520px; }
+  .onb-brand{ display:flex; align-items:center; gap:11px; justify-content:center; margin-bottom:26px; }
+  .onb-brand .bname{ font-size:18px; }
+  .onb h1{ font-size:26px; text-align:center; margin:0 0 8px; text-wrap:balance; letter-spacing:-.01em; }
+  .onb .sub{ text-align:center; color:var(--dim); margin:0 0 24px; line-height:1.5; }
+  .step{ display:none; } .step.on{ display:block; }
+  .choices{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:460px){ .choices{ grid-template-columns:1fr; } }
+  .choice{ text-align:left; background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:16px; cursor:pointer; transition:border-color .15s, transform .05s; color:var(--ink); font:inherit; }
+  .choice:hover{ border-color:var(--hud); }
+  .choice:active{ transform:translateY(1px); }
+  .choice:focus-visible{ outline:2px solid var(--hud); outline-offset:2px; }
+  .choice .ico{ font-size:22px; }
+  .choice .t{ font-weight:800; font-size:16px; margin-top:6px; }
+  .choice .s{ font-size:12px; color:var(--dim); margin-top:3px; }
+  .choice .live{ color:var(--long); } .choice .soon{ color:var(--hud); }
+  .steps-dots{ display:flex; gap:6px; justify-content:center; margin:22px 0 0; }
+  .steps-dots i{ width:7px; height:7px; border-radius:50%; background:var(--line); }
+  .steps-dots i.on{ background:var(--hud); }
+  .seg{ display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
+  .seg > span{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); }
+  .opts{ display:flex; gap:8px; flex-wrap:wrap; }
+  .opt{ flex:1; min-width:96px; text-align:center; background:var(--panel); border:1px solid var(--line);
+    border-radius:10px; padding:11px 8px; cursor:pointer; font:inherit; color:var(--ink); font-size:14px; }
+  .opt.sel{ border-color:var(--hud); background:var(--hud-soft); color:var(--ink); font-weight:700; }
+  .opt:focus-visible{ outline:2px solid var(--hud); outline-offset:2px; }
+  .onb-actions{ display:flex; gap:10px; margin-top:8px; }
+  .onb-actions .btn{ flex:1; padding:12px; font-size:15px; }
+  .soon-wrap{ text-align:center; }
+  .soon-badge{ display:inline-block; background:var(--hud-soft); color:var(--hud); border:1px solid color-mix(in srgb,var(--hud) 40%,transparent);
+    padding:5px 12px; border-radius:999px; font-weight:800; font-size:12px; letter-spacing:.06em; margin-bottom:14px; }
+  .soon-wrap h1{ margin-bottom:10px; }
 </style>
 </head>
 <body>
+
+<!-- ONBOARDING (first visit; routes by trading style) -->
+<div class="onb" id="onb" hidden>
+  <div class="onb-card">
+    <div class="onb-brand"><div class="mark" aria-hidden="true"></div><div class="bname">NQ Live Co-Pilot</div></div>
+
+    <!-- Step 1: asset -->
+    <div class="step" id="step1">
+      <h1>How do you like to trade?</h1>
+      <p class="sub">We'll tailor your dashboard to your style. Pick your main market.</p>
+      <div class="choices">
+        <button class="choice" data-asset="futures"><div class="ico">📈</div><div class="t">Futures</div><div class="s live">● Live now — NQ/MNQ</div></button>
+        <button class="choice" data-asset="options"><div class="ico">🎯</div><div class="t">Options</div><div class="s soon">● In development</div></button>
+        <button class="choice" data-asset="stocks"><div class="ico">🏦</div><div class="t">Stocks</div><div class="s soon">● In development</div></button>
+        <button class="choice" data-asset="crypto"><div class="ico">₿</div><div class="t">Crypto</div><div class="s soon">● In development</div></button>
+      </div>
+    </div>
+
+    <!-- Step 2: profile -->
+    <div class="step" id="step2">
+      <h1>A bit about you</h1>
+      <p class="sub">This tunes your risk sizing and what we show first.</p>
+      <div class="seg"><span>Experience</span><div class="opts" data-field="experience">
+        <button class="opt" data-val="new">New</button>
+        <button class="opt" data-val="some">Some</button>
+        <button class="opt" data-val="experienced">Experienced</button></div></div>
+      <div class="seg"><span>Account</span><div class="opts" data-field="account_type">
+        <button class="opt" data-val="prop">Prop firm</button>
+        <button class="opt" data-val="personal">Personal</button>
+        <button class="opt" data-val="paper">Paper only</button></div></div>
+      <div class="seg"><span>Main goal</span><div class="opts" data-field="goal">
+        <button class="opt" data-val="learn">Learn</button>
+        <button class="opt" data-val="income">Steady income</button>
+        <button class="opt" data-val="grow">Grow account</button></div></div>
+      <div class="onb-actions">
+        <button class="btn" id="obBack">Back</button>
+        <button class="btn primary" id="obDone">See my dashboard</button>
+      </div>
+    </div>
+
+    <!-- Coming soon (non-futures) -->
+    <div class="step" id="stepSoon">
+      <div class="soon-wrap">
+        <div class="soon-badge" id="soonBadge">IN DEVELOPMENT</div>
+        <h1 id="soonTitle">You're on the early list</h1>
+        <p class="sub" id="soonMsg"></p>
+        <div class="onb-actions">
+          <button class="btn primary" id="soonDemo">Explore the live futures demo</button>
+        </div>
+        <div class="onb-actions">
+          <button class="btn" id="soonChange">← Change trading style</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-dots" id="dots"><i class="on"></i><i></i></div>
+  </div>
+</div>
+
 <div class="wrap">
 
   <div class="bar">
@@ -384,6 +482,69 @@ $('acctClose').onclick=()=>$('acctModal').hidden=true;
 $('acctSave').onclick=saveAcct;
 $('fType').onchange=syncAcctForm; $('fRiskModel').onchange=syncAcctForm;
 $('acctModal').addEventListener('click',e=>{ if(e.target.id==='acctModal') $('acctModal').hidden=true; });
+
+// ---- onboarding: route each visitor by trading style ----
+const PROFILE_KEY='copilot_profile';
+const ASSET_LABEL={futures:'Futures',options:'Options',stocks:'Stocks',crypto:'Crypto'};
+let PROFILE=(()=>{ try{return JSON.parse(localStorage.getItem(PROFILE_KEY)||'null');}catch(e){return null;} })();
+let onbAsset=null, onbSel={experience:null,account_type:null,goal:null};
+
+function showStep(id){
+  document.querySelectorAll('.onb .step').forEach(s=>s.classList.remove('on'));
+  $(id).classList.add('on');
+  const dots=$('dots'), i=dots.querySelectorAll('i');
+  if(id==='step1'){ i[0].className='on'; i[1].className=''; dots.style.display='flex'; }
+  else if(id==='step2'){ i[0].className='on'; i[1].className='on'; dots.style.display='flex'; }
+  else dots.style.display='none';
+}
+function openOnboarding(){
+  onbAsset=null; onbSel={experience:null,account_type:null,goal:null};
+  document.querySelectorAll('.onb .opt').forEach(o=>o.classList.remove('sel'));
+  $('onb').hidden=false; showStep('step1');
+}
+function showSoon(asset){
+  const nice=ASSET_LABEL[asset]||asset;
+  $('soonBadge').textContent=(nice+' · in development').toUpperCase();
+  $('soonTitle').textContent="You're on the early list for "+nice;
+  $('soonMsg').textContent=nice+" isn't live yet — we're building it with the same "
+    +"validation discipline as the futures engine, so it launches with proof, not hype. "
+    +"Your spot is saved and we'll tailor a "+nice+" dashboard when it ships. "
+    +"Meantime, watch the live futures co-pilot in action.";
+  showStep('stepSoon'); $('onb').hidden=false;
+}
+function routeFromProfile(){
+  if(!PROFILE){ openOnboarding(); }
+  else if(PROFILE.asset==='futures'){ $('onb').hidden=true; }
+  else { showSoon(PROFILE.asset); }
+}
+document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{ onbAsset=b.getAttribute('data-asset'); showStep('step2'); });
+document.querySelectorAll('.onb .opts').forEach(group=>{
+  const field=group.getAttribute('data-field');
+  group.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{
+    group.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+    o.classList.add('sel'); onbSel[field]=o.getAttribute('data-val');
+  });
+});
+$('obBack').onclick=()=>showStep('step1');
+$('obDone').onclick=()=>{
+  PROFILE={ asset:onbAsset||'futures', experience:onbSel.experience||'',
+            account_type:onbSel.account_type||'', goal:onbSel.goal||'' };
+  try{ localStorage.setItem(PROFILE_KEY, JSON.stringify(PROFILE)); }catch(e){}
+  if(onbSel.account_type==='prop'||onbSel.account_type==='personal'){
+    SETTINGS.type=onbSel.account_type;
+    try{ localStorage.setItem('copilot_settings', JSON.stringify(SETTINGS)); }catch(e){}
+  }
+  // record the demand signal (which markets people actually want)
+  try{ fetch('/api/signup',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(PROFILE)}); }catch(e){}
+  if(PROFILE.asset==='futures') $('onb').hidden=true; else showSoon(PROFILE.asset);
+};
+$('soonDemo').onclick=()=>{ $('onb').hidden=true; };
+$('soonChange').onclick=()=>openOnboarding();
+$('profileLabel').style.cursor='pointer';
+$('profileLabel').title='Change trading style';
+$('profileLabel').onclick=()=>openOnboarding();
+routeFromProfile();
 const money=v=>'$'+Number(v).toLocaleString(undefined,{maximumFractionDigits:0});
 const regClass=r=>({UPTREND:'up',DOWNTREND:'down',VOLATILE:'warn'}[r]||'neutral');
 const biasClass=b=>/BULL/i.test(b)?'up':/BEAR/i.test(b)?'down':'neutral';

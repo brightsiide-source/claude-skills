@@ -33,7 +33,9 @@ _ENGINE = None
 _WEB_DIR = os.path.dirname(os.path.abspath(__file__))
 _HTML_PATH = os.path.join(_WEB_DIR, "dashboard.html")
 _CATALOG_HTML = os.path.join(_WEB_DIR, "catalog.html")
-_OUTCOMES = os.path.join(_WEB_DIR, "..", "assets", "trade-logs", "alert-outcomes.jsonl")
+_DATA_DIR = os.path.join(_WEB_DIR, "..", "assets", "trade-logs")
+_OUTCOMES = os.path.join(_DATA_DIR, "alert-outcomes.jsonl")
+_WAITLIST = os.path.join(_DATA_DIR, "signups.jsonl")   # demand capture (persistent disk)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -68,6 +70,8 @@ class Handler(BaseHTTPRequestHandler):
             except Exception as e:
                 body = json.dumps({"error": str(e)})
             self._send(200, body.encode("utf-8"))
+        elif self.path.startswith("/api/signups/stats"):
+            self._send(200, json.dumps(self._signup_stats()).encode("utf-8"))
         elif self.path.startswith("/catalog"):
             self._serve_file(_CATALOG_HTML)
         elif self.path in ("/", "/index.html", "/dashboard.html"):
@@ -76,6 +80,48 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, b'{"ok":true}')
         else:
             self._send(404, b'{"error":"not found"}')
+
+    def do_POST(self):
+        if self.path.startswith("/api/signup"):
+            length = int(self.headers.get("Content-Length", 0) or 0)
+            raw = self.rfile.read(length) if length else b"{}"
+            try:
+                data = json.loads(raw or b"{}")
+            except Exception:
+                data = {}
+            from datetime import datetime
+            rec = {
+                "asset": str(data.get("asset", ""))[:40],
+                "experience": str(data.get("experience", ""))[:40],
+                "account_type": str(data.get("account_type", ""))[:40],
+                "goal": str(data.get("goal", ""))[:60],
+                "ts": datetime.utcnow().isoformat() + "Z",
+            }
+            try:
+                os.makedirs(_DATA_DIR, exist_ok=True)
+                with open(_WAITLIST, "a") as f:
+                    f.write(json.dumps(rec) + "\n")
+            except Exception:
+                pass
+            self._send(200, b'{"ok":true}')
+        else:
+            self._send(404, b'{"error":"not found"}')
+
+    def _signup_stats(self):
+        counts, total = {}, 0
+        try:
+            with open(_WAITLIST) as f:
+                for line in f:
+                    try:
+                        r = json.loads(line)
+                    except Exception:
+                        continue
+                    a = r.get("asset", "?") or "?"
+                    counts[a] = counts.get(a, 0) + 1
+                    total += 1
+        except FileNotFoundError:
+            pass
+        return {"counts": counts, "total": total}
 
     def log_message(self, *args):
         pass  # quiet — no per-request console spam
