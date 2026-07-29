@@ -326,6 +326,7 @@ const DEMO = {
 };
 
 let soundOn=true, lastKey=null, actx=null, isDemo=false;
+let lastGood=null, hasLive=false;   // hold last live snapshot through a blip
 const $=id=>document.getElementById(id);
 
 // ---- per-visitor account settings (localStorage, no login) ----
@@ -428,18 +429,24 @@ function renderRisk(){
 }
 
 async function tick(){
-  let s;
+  let s=null, reconnecting=false;
   try{
     const r=await fetch('/api/state',{cache:'no-store'});
     if(!r.ok) throw 0;
-    s=await r.json();
-    isDemo=false;
-  }catch(e){ s=DEMO; isDemo=true; }
-
-  if(s.status!=='ok'){ $('conn').className='dot'; $('connTxt').textContent='warming up…'; return; }
+    const j=await r.json();
+    if(j.status==='ok'){ s=j; lastGood=j; hasLive=true; isDemo=false; }
+    else if(hasLive && lastGood){ s=lastGood; isDemo=false; }   // transient — keep last live
+    else { $('conn').className='dot'; $('connTxt').textContent='warming up…'; return; }
+  }catch(e){
+    // A single failed poll must NOT flash to sample data. Only fall back to
+    // demo before we've ever seen live data (e.g. a standalone preview).
+    if(hasLive && lastGood){ s=lastGood; isDemo=false; reconnecting=true; }
+    else { s=DEMO; isDemo=true; }
+  }
 
   $('conn').className='dot '+(isDemo?'demo':'live');
-  $('connTxt').textContent=isDemo?'preview · sample data':new Date().toLocaleTimeString();
+  $('connTxt').textContent = isDemo ? 'preview · sample data'
+    : reconnecting ? 'reconnecting…' : new Date().toLocaleTimeString();
   if(s.profile_label) $('profileLabel').textContent=s.profile_label;
   $('sym').textContent=s.symbol;
   $('price').textContent=s.price!=null?s.price.toFixed(2):'—';

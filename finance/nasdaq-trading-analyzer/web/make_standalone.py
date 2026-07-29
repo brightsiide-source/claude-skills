@@ -129,14 +129,19 @@ Railway and Fly.io work the same way (persistent container from a private repo).
 
 
 def main():
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.getcwd(), "nq-copilot-standalone")
+    args = [a for a in sys.argv[1:] if a != "--force"]
+    force = "--force" in sys.argv
+    out = args[0] if args else os.path.join(os.getcwd(), "nq-copilot-standalone")
     out = os.path.abspath(out)
-    if os.path.exists(out):
-        print(f"Refusing to overwrite existing path: {out}", file=sys.stderr)
+    if os.path.exists(out) and not force:
+        print(f"Refusing to overwrite existing path: {out}\n"
+              f"Re-run with --force to refresh the code in place "
+              f"(keeps your .git history):\n"
+              f"  python3 web/make_standalone.py \"{out}\" --force", file=sys.stderr)
         sys.exit(1)
 
-    os.makedirs(os.path.join(out, "scripts"))
-    os.makedirs(os.path.join(out, "web"))
+    os.makedirs(os.path.join(out, "scripts"), exist_ok=True)
+    os.makedirs(os.path.join(out, "web"), exist_ok=True)
 
     for f in NEEDED_SCRIPTS:
         shutil.copy2(os.path.join(SKILL, "scripts", f), os.path.join(out, "scripts", f))

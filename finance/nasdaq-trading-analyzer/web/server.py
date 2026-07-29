@@ -37,6 +37,11 @@ _OUTCOMES = os.path.join(_WEB_DIR, "..", "assets", "trade-logs", "alert-outcomes
 
 
 class Handler(BaseHTTPRequestHandler):
+    # HTTP/1.1 keep-alive: reuse connections cleanly behind Render's proxy
+    # instead of the HTTP/1.0 default, which caused intermittent request
+    # failures (and a demo/live flicker on the 2s poll).
+    protocol_version = "HTTP/1.1"
+
     def _send(self, code, body, content_type="application/json"):
         self.send_response(code)
         self.send_header("Content-Type", content_type)
