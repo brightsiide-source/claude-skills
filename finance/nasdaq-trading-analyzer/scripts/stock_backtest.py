@@ -240,48 +240,102 @@ def load_config(path):
     return cfg
 
 
+def run_one(rest, symbol, strategy, years, capital, save):
+    """Backtest a single symbol; return (stats, n_bars) or (None, 0)."""
+    bars = fetch_daily(rest, symbol, years)
+    if len(bars) < 60:
+        print(f"  {symbol}: not enough history ({len(bars)} bars) — skipped", file=sys.stderr)
+        return None, 0
+    stats = analyze(simulate(bars, STRATEGIES[strategy], capital), years)
+    if save:
+        from datetime import datetime, timezone
+        rec = {"symbol": symbol, "strategy": strategy, "years": years,
+               "bars": len(bars), "stats": stats,
+               "ts": datetime.now(timezone.utc).isoformat()}
+        try:
+            os.makedirs(os.path.dirname(RESULTS_PATH), exist_ok=True)
+            with open(RESULTS_PATH, "a") as f:
+                f.write(json.dumps(rec) + "\n")
+        except Exception as e:
+            print(f"  (could not save {symbol}: {e})", file=sys.stderr)
+    return stats, len(bars)
+
+
+def format_basket(strategy, years, rows):
+    """rows: list of (symbol, stats). Print a comparison table + averages."""
+    L = ["=" * 66,
+         f"  BASKET BACKTEST · {strategy} · {years}yr · {len(rows)} symbols",
+         "=" * 66,
+         f"  {'Symbol':<8}{'CAGR':>8}{'Buy&Hold':>10}{'vs B&H':>9}{'MaxDD':>8}{'Trades':>8}{'Win%':>7}"]
+    L.append("-" * 66)
+    for sym, st in rows:
+        L.append(f"  {sym:<8}{st['cagr_pct']:>7}%{st['buy_hold_pct']:>9}%"
+                 f"{st['vs_buy_hold_pct']:>+8}%{st['max_drawdown_pct']:>7}%"
+                 f"{st['trades']:>8}{st['win_rate_pct']:>6}%")
+    if rows:
+        n = len(rows)
+        avg_cagr = round(sum(s['cagr_pct'] for _, s in rows) / n, 1)
+        avg_vs = round(sum(s['vs_buy_hold_pct'] for _, s in rows) / n, 1)
+        beat = sum(1 for _, s in rows if s['vs_buy_hold_pct'] > 0)
+        L.append("-" * 66)
+        L.append(f"  {'AVERAGE':<8}{avg_cagr:>7}%{'':>10}{avg_vs:>+8}%")
+        L.append("=" * 66)
+        L.append(f"  Beat buy & hold: {beat}/{n} symbols. "
+                 f"{'A real edge — forward-test it.' if avg_vs > 0 else 'No edge vs holding — do not ship.'}")
+        L.append("  Past results are not predictive.")
+    return "\n".join(L)
+
+
 def main():
     p = argparse.ArgumentParser(description="Backtest a swing strategy over years of stock history")
     p.add_argument("--config", required=True, help="Alpaca config JSON")
-    p.add_argument("--symbol", required=True, help="Stock symbol, e.g. AAPL")
+    p.add_argument("--symbol", required=True,
+                   help="Symbol, or comma-separated basket e.g. AAPL,MSFT,GOOGL")
     p.add_argument("--years", type=float, default=5)
     p.add_argument("--strategy", choices=list(STRATEGIES), default="sma_cross")
     p.add_argument("--capital", type=float, default=10000)
     p.add_argument("--format", choices=["text", "json"], default="text")
     p.add_argument("--save", action="store_true",
-                   help="Append the result to the shared backtest log the "
+                   help="Append each result to the shared backtest log the "
                         "catalog reads (assets/backtests/backtest-results.jsonl)")
     args = p.parse_args()
 
     cfg = load_config(args.config)
     rest = AlpacaREST(cfg["api_key"], cfg["secret_key"], cfg.get("environment", "paper"))
 
-    bars = fetch_daily(rest, args.symbol.upper(), args.years)
-    if len(bars) < 60:
-        print(f"Not enough history for {args.symbol} ({len(bars)} bars).", file=sys.stderr)
-        sys.exit(1)
+    symbols = [s.strip().upper() for s in args.symbol.split(",") if s.strip()]
 
-    sim = simulate(bars, STRATEGIES[args.strategy], args.capital)
-    stats = analyze(sim, args.years)
-
-    if args.save:
-        from datetime import datetime
-        rec = {"symbol": args.symbol.upper(), "strategy": args.strategy,
-               "years": args.years, "bars": len(bars), "stats": stats,
-               "ts": datetime.utcnow().isoformat() + "Z"}
-        try:
-            os.makedirs(os.path.dirname(RESULTS_PATH), exist_ok=True)
-            with open(RESULTS_PATH, "a") as f:
-                f.write(json.dumps(rec) + "\n")
+    # Single symbol -> full detailed report
+    if len(symbols) == 1:
+        stats, n = run_one(rest, symbols[0], args.strategy, args.years, args.capital, args.save)
+        if not stats:
+            sys.exit(1)
+        if args.save:
             print(f"(saved to {os.path.relpath(RESULTS_PATH)})", file=sys.stderr)
-        except Exception as e:
-            print(f"(could not save: {e})", file=sys.stderr)
+        if args.format == "json":
+            print(json.dumps({"symbol": symbols[0], "strategy": args.strategy,
+                              "years": args.years, "bars": n, "stats": stats}, indent=2))
+        else:
+            print(format_text(symbols[0], args.strategy, args.years, stats, n))
+        return
 
+    # Basket -> comparison table
+    rows = []
+    for sym in symbols:
+        print(f"  backtesting {sym}...", file=sys.stderr)
+        stats, n = run_one(rest, sym, args.strategy, args.years, args.capital, args.save)
+        if stats:
+            rows.append((sym, stats))
+    if not rows:
+        print("No symbols produced enough history.", file=sys.stderr)
+        sys.exit(1)
+    if args.save:
+        print(f"(saved {len(rows)} results to {os.path.relpath(RESULTS_PATH)})", file=sys.stderr)
     if args.format == "json":
-        print(json.dumps({"symbol": args.symbol.upper(), "strategy": args.strategy,
-                          "years": args.years, "bars": len(bars), "stats": stats}, indent=2))
+        print(json.dumps({"strategy": args.strategy, "years": args.years,
+                          "results": [{"symbol": s, "stats": st} for s, st in rows]}, indent=2))
     else:
-        print(format_text(args.symbol.upper(), args.strategy, args.years, stats, len(bars)))
+        print(format_basket(args.strategy, args.years, rows))
 
 
 if __name__ == "__main__":

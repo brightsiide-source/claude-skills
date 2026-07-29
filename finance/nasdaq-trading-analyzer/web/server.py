@@ -89,13 +89,13 @@ class Handler(BaseHTTPRequestHandler):
                 data = json.loads(raw or b"{}")
             except Exception:
                 data = {}
-            from datetime import datetime
+            from datetime import datetime, timezone
             rec = {
                 "asset": str(data.get("asset", ""))[:40],
                 "experience": str(data.get("experience", ""))[:40],
                 "account_type": str(data.get("account_type", ""))[:40],
                 "goal": str(data.get("goal", ""))[:60],
-                "ts": datetime.utcnow().isoformat() + "Z",
+                "ts": datetime.now(timezone.utc).isoformat(),
             }
             try:
                 os.makedirs(_DATA_DIR, exist_ok=True)

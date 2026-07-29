@@ -20,7 +20,7 @@ import json
 import os
 import sys
 import threading
-from datetime import datetime
+from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "scripts"))
 
@@ -96,7 +96,7 @@ class StateDashboard:
 
         snap = {
             "status": "ok",
-            "ts": datetime.utcnow().isoformat() + "Z",
+            "ts": datetime.now(timezone.utc).isoformat(),
             "symbol": symbol,
             "price": round(price, 2) if price else None,
             "market_open": not bool(closed_msg),
