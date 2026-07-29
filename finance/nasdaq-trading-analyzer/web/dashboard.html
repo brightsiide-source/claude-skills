@@ -145,6 +145,25 @@
   @media (prefers-reduced-motion:no-preference){
     .price,.score-num{ transition:color .2s; }
   }
+
+  /* account modal */
+  .modal{ position:fixed; inset:0; background:rgba(4,7,11,.62); backdrop-filter:blur(3px);
+    display:grid; place-items:start center; padding:24px 14px; z-index:50; overflow:auto; }
+  .modal[hidden]{ display:none; }
+  .sheet{ width:100%; max-width:440px; background:var(--panel); border:1px solid var(--line);
+    border-radius:16px; box-shadow:var(--shadow); padding:18px 18px 20px; }
+  .sheet-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .sheet-title{ font-size:17px; font-weight:800; }
+  .modal-note{ color:var(--dim); font-size:12.5px; line-height:1.5; margin:0 0 14px; }
+  .modal-note b{ color:var(--ink); }
+  .fld{ display:flex; flex-direction:column; gap:5px; margin-bottom:12px; }
+  .fld > span{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); }
+  .fld input,.fld select{ background:var(--panel2); border:1px solid var(--line); color:var(--ink);
+    border-radius:9px; padding:10px 11px; font:inherit; font-size:15px; }
+  .fld input:focus,.fld select:focus{ outline:2px solid var(--hud); outline-offset:1px; }
+  .btn.primary{ width:100%; background:var(--hud); color:#1a1206; border-color:var(--hud);
+    font-weight:800; padding:11px; font-size:15px; margin-top:4px; }
+  .btn.primary:hover{ filter:brightness(1.05); color:#1a1206; }
 </style>
 </head>
 <body>
@@ -160,8 +179,56 @@
     </div>
     <div class="ctrls">
       <span class="status"><span class="dot" id="conn"></span><span id="connTxt">connecting…</span></span>
+      <button class="btn" id="acct" title="Your account & goals">⚙ Account</button>
       <button class="btn" id="snd" title="Toggle alert sound">🔔 on</button>
       <button class="btn" id="thm" title="Toggle theme">◐</button>
+    </div>
+  </div>
+
+  <!-- ACCOUNT & GOALS (per-visitor, saved in this browser) -->
+  <div class="modal" id="acctModal" hidden>
+    <div class="sheet">
+      <div class="sheet-head">
+        <div class="sheet-title">Your Account &amp; Goals</div>
+        <button class="btn" id="acctClose">✕</button>
+      </div>
+      <p class="modal-note">Saved in this browser only. The signals are the same for
+        everyone — this just sizes each one to <b>your</b> account.</p>
+
+      <label class="fld"><span>Account type</span>
+        <select id="fType">
+          <option value="prop">Prop firm (drawdown rule — Apex, Topstep…)</option>
+          <option value="personal">Personal account (% or $ risk per trade)</option>
+        </select>
+      </label>
+
+      <label class="fld"><span>Account balance ($)</span>
+        <input id="fBalance" type="number" inputmode="decimal" step="100"></label>
+
+      <label class="fld" id="wrapDrawdown"><span>Max drawdown ($) — prop rule</span>
+        <input id="fDrawdown" type="number" inputmode="decimal" step="100"></label>
+
+      <label class="fld"><span>Risk per trade</span>
+        <select id="fRiskModel">
+          <option value="dd_pct">% of drawdown</option>
+          <option value="acct_pct">% of account</option>
+          <option value="fixed">fixed $ amount</option>
+        </select>
+      </label>
+      <label class="fld"><span id="riskValLabel">Risk value</span>
+        <input id="fRiskValue" type="number" inputmode="decimal" step="0.5"></label>
+
+      <label class="fld"><span>Instrument</span>
+        <select id="fInstrument">
+          <option value="NQ">NQ — E-mini Nasdaq ($20/pt)</option>
+          <option value="MNQ">MNQ — Micro Nasdaq ($2/pt)</option>
+        </select>
+      </label>
+
+      <label class="fld"><span>Daily profit goal ($, optional)</span>
+        <input id="fGoal" type="number" inputmode="decimal" step="50"></label>
+
+      <button class="btn primary" id="acctSave">Save</button>
     </div>
   </div>
 
@@ -188,10 +255,10 @@
   <!-- INSTRUMENTS -->
   <div class="grid">
     <div class="card">
-      <h3>Risk · Apex EOD Drawdown</h3>
+      <h3 id="riskTitle">Your Risk</h3>
       <div class="risk-row"><span id="acctName" class="mono">—</span><span class="pill neutral" id="ddstatus">—</span></div>
       <div class="gauge"><i id="ddbar" style="width:100%"></i></div>
-      <div class="risk-row"><span>Floor <b class="mono" id="floor">—</b></span><span>Left <b class="mono" id="left">—</b></span></div>
+      <div class="risk-row"><span id="riskL1">—</span><span id="riskL2">—</span></div>
     </div>
     <div class="card">
       <h3>Key Levels</h3>
@@ -259,6 +326,62 @@ const DEMO = {
 
 let soundOn=true, lastKey=null, actx=null, isDemo=false;
 const $=id=>document.getElementById(id);
+
+// ---- per-visitor account settings (localStorage, no login) ----
+const POINT_VALUE={NQ:20, MNQ:2};
+const DEFAULT_SETTINGS={type:"prop", balance:50000, drawdown:2500,
+  riskModel:"dd_pct", riskValue:15, instrument:"NQ", goal:0};
+function loadSettings(){
+  try{ return Object.assign({}, DEFAULT_SETTINGS, JSON.parse(localStorage.getItem('copilot_settings')||'{}')); }
+  catch(e){ return {...DEFAULT_SETTINGS}; }
+}
+let SETTINGS=loadSettings();
+
+// Size a signal to THIS user's account. Uses the setup's point-based stop
+// (scalp_pts) so it works regardless of the proxy price.
+function sizeFor(setup){
+  const s=SETTINGS;
+  const pv=POINT_VALUE[s.instrument]||20;
+  const stopPts=(setup.scalp_pts&&setup.scalp_pts[0])?setup.scalp_pts[0]:12;
+  const riskPerContract=stopPts*pv;
+  let maxRisk;
+  if(s.riskModel==='fixed') maxRisk=s.riskValue;
+  else if(s.riskModel==='acct_pct') maxRisk=s.balance*(s.riskValue/100);
+  else maxRisk=(s.drawdown||s.balance)*(s.riskValue/100); // dd_pct
+  let contracts=Math.max(1, Math.floor(maxRisk/Math.max(riskPerContract,1)));
+  return {contracts, risk:contracts*riskPerContract, instrument:s.instrument,
+          perContract:riskPerContract};
+}
+
+// wire the settings modal
+function openAcct(){
+  const s=SETTINGS;
+  $('fType').value=s.type; $('fBalance').value=s.balance; $('fDrawdown').value=s.drawdown;
+  $('fRiskModel').value=s.riskModel; $('fRiskValue').value=s.riskValue;
+  $('fInstrument').value=s.instrument; $('fGoal').value=s.goal||'';
+  syncAcctForm(); $('acctModal').hidden=false;
+}
+function syncAcctForm(){
+  const isProp=$('fType').value==='prop';
+  $('wrapDrawdown').style.display=isProp?'':'none';
+  const m=$('fRiskModel').value;
+  $('riskValLabel').textContent = m==='fixed'?'Risk value ($ per trade)'
+    : m==='acct_pct'?'Risk value (% of account per trade)'
+    : 'Risk value (% of drawdown per trade)';
+}
+function saveAcct(){
+  SETTINGS={ type:$('fType').value, balance:+$('fBalance').value||0,
+    drawdown:+$('fDrawdown').value||0, riskModel:$('fRiskModel').value,
+    riskValue:+$('fRiskValue').value||0, instrument:$('fInstrument').value,
+    goal:+$('fGoal').value||0 };
+  try{ localStorage.setItem('copilot_settings', JSON.stringify(SETTINGS)); }catch(e){}
+  $('acctModal').hidden=true; tick();
+}
+$('acct').onclick=openAcct;
+$('acctClose').onclick=()=>$('acctModal').hidden=true;
+$('acctSave').onclick=saveAcct;
+$('fType').onchange=syncAcctForm; $('fRiskModel').onchange=syncAcctForm;
+$('acctModal').addEventListener('click',e=>{ if(e.target.id==='acctModal') $('acctModal').hidden=true; });
 const money=v=>'$'+Number(v).toLocaleString(undefined,{maximumFractionDigits:0});
 const regClass=r=>({UPTREND:'up',DOWNTREND:'down',VOLATILE:'warn'}[r]||'neutral');
 const biasClass=b=>/BULL/i.test(b)?'up':/BEAR/i.test(b)?'down':'neutral';
@@ -274,6 +397,34 @@ function beep(n){ if(!soundOn) return; if(!actx) actx=new (window.AudioContext||
   for(let i=0;i<n;i++){ const o=actx.createOscillator(),g=actx.createGain();
     o.connect(g); g.connect(actx.destination); o.type='sine'; o.frequency.value=880; g.gain.value=.10;
     const t=actx.currentTime+i*0.16; o.start(t); o.stop(t+.11); } }
+
+function renderRisk(){
+  const s=SETTINGS;
+  const perTrade = s.riskModel==='fixed' ? s.riskValue
+    : s.riskModel==='acct_pct' ? s.balance*(s.riskValue/100)
+    : (s.drawdown||s.balance)*(s.riskValue/100);
+  $('acctName').textContent = (s.type==='prop'?'Prop':'Personal')+' · '+money(s.balance);
+  if(s.type==='prop'){
+    $('riskTitle').textContent='Your Risk · Prop Drawdown';
+    $('ddstatus').textContent='DD '+money(s.drawdown);
+    $('ddstatus').className='pill neutral';
+    $('riskL1').innerHTML='Per trade <b class="mono">'+money(perTrade)+'</b>';
+    $('riskL2').innerHTML='Goal <b class="mono">'+(s.goal?money(s.goal):'—')+'</b>';
+    // gauge: how much of the drawdown one trade risks (lower is safer)
+    const frac=s.drawdown>0?Math.min(100,(perTrade/s.drawdown)*100):0;
+    const bar=$('ddbar'); bar.style.width=(100-frac)+'%';
+    bar.style.background = frac<=15?'var(--long)':frac<=30?'var(--warn)':'var(--short)';
+  } else {
+    $('riskTitle').textContent='Your Risk · Personal Account';
+    const pct=s.balance>0?(perTrade/s.balance*100):0;
+    $('ddstatus').textContent=pct.toFixed(1)+'% / trade';
+    $('ddstatus').className='pill '+(pct<=1.5?'up':pct<=3?'warn':'down');
+    $('riskL1').innerHTML='Per trade <b class="mono">'+money(perTrade)+'</b>';
+    $('riskL2').innerHTML='Goal <b class="mono">'+(s.goal?money(s.goal):'—')+'</b>';
+    const bar=$('ddbar'); bar.style.width=Math.max(4,100-pct*10)+'%';
+    bar.style.background = pct<=1.5?'var(--long)':pct<=3?'var(--warn)':'var(--short)';
+  }
+}
 
 async function tick(){
   let s;
@@ -316,6 +467,7 @@ async function tick(){
   const sz=$('signalZone');
   if(s.setups&&s.setups.length&&!s.closed_msg&&!s.news_msg){
     const t=s.setups[0];
+    const sizing=sizeFor(t);   // sized to THIS visitor's account
     const pts=t.scalp_pts?`&nbsp;·&nbsp;${t.scalp_pts[1]}pt target / ${t.scalp_pts[0]}pt stop`:'';
     sz.innerHTML=`<div class="signal ${t.direction}"><div class="pad">
       <div class="sig-head">
@@ -326,9 +478,9 @@ async function tick(){
         <div class="leg"><div class="k">Entry</div><div class="v mono">${t.entry}</div></div>
         <div class="leg"><div class="k">Stop</div><div class="v mono">${t.stop}</div></div>
         <div class="leg"><div class="k">Target</div><div class="v mono">${t.target}</div></div>
-        <div class="leg"><div class="k">Size</div><div class="v mono">${t.contracts} ${s.account.instrument}</div></div>
+        <div class="leg"><div class="k">Your Size</div><div class="v mono">${sizing.contracts} ${sizing.instrument}</div></div>
       </div>
-      <div class="sig-meta">Risk <b>${money(t.risk)}</b>${pts}<br>${t.description||''}</div>
+      <div class="sig-meta">Your risk <b>${money(sizing.risk)}</b>${pts}<br>${t.description||''}</div>
     </div></div>`;
     const key=t.name+'|'+t.direction+'|'+t.entry;
     if(key!==lastKey){ lastKey=key; if(!isDemo) beep(t.score>=75?3:t.score>=60?2:1); }
@@ -339,15 +491,8 @@ async function tick(){
     lastKey=null;
   }
 
-  // risk gauge
-  const a=s.account;
-  $('acctName').textContent='Apex '+a.apex+' · '+money(a.balance);
-  $('floor').textContent=money(a.floor); $('left').textContent=money(a.remaining);
-  const ds=$('ddstatus'); ds.textContent=a.status;
-  ds.className='pill '+(a.status==='SAFE'?'up':a.status==='CRITICAL'?'down':'warn');
-  const dd=a.balance-a.floor, pct=dd>0?Math.max(0,Math.min(100,(a.remaining/dd)*100)):100;
-  const bar=$('ddbar'); bar.style.width=pct+'%';
-  bar.style.background = a.status==='SAFE'?'var(--long)':a.status==='CRITICAL'?'var(--short)':'var(--warn)';
+  // risk gauge — driven by THIS visitor's own settings, not any fixed account
+  renderRisk();
 
   // levels
   const L=s.levels, lp=[];
