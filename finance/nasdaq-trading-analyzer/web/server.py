@@ -30,7 +30,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 from engine import WebEngine  # noqa: E402
 
 _ENGINE = None
-_HTML_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard.html")
+_WEB_DIR = os.path.dirname(os.path.abspath(__file__))
+_HTML_PATH = os.path.join(_WEB_DIR, "dashboard.html")
+_CATALOG_HTML = os.path.join(_WEB_DIR, "catalog.html")
+_OUTCOMES = os.path.join(_WEB_DIR, "..", "assets", "trade-logs", "alert-outcomes.jsonl")
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -42,16 +45,28 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _serve_file(self, path):
+        try:
+            with open(path, "rb") as f:
+                self._send(200, f.read(), "text/html; charset=utf-8")
+        except FileNotFoundError:
+            self._send(404, b"not found", "text/plain")
+
     def do_GET(self):
         if self.path.startswith("/api/state"):
             state = _ENGINE.get_state() if _ENGINE else {"status": "no-engine"}
             self._send(200, json.dumps(state).encode("utf-8"))
-        elif self.path in ("/", "/index.html", "/dashboard.html"):
+        elif self.path.startswith("/api/catalog"):
             try:
-                with open(_HTML_PATH, "rb") as f:
-                    self._send(200, f.read(), "text/html; charset=utf-8")
-            except FileNotFoundError:
-                self._send(404, b"dashboard.html not found", "text/plain")
+                from catalog import build_catalog
+                body = json.dumps(build_catalog(_OUTCOMES))
+            except Exception as e:
+                body = json.dumps({"error": str(e)})
+            self._send(200, body.encode("utf-8"))
+        elif self.path.startswith("/catalog"):
+            self._serve_file(_CATALOG_HTML)
+        elif self.path in ("/", "/index.html", "/dashboard.html"):
+            self._serve_file(_HTML_PATH)
         elif self.path == "/health":
             self._send(200, b'{"ok":true}')
         else:

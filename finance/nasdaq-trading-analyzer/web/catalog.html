@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategies & Coverage — NQ Live Co-Pilot</title>
+<style>
+  :root{
+    --ground:#0a0e14; --panel:#121924; --panel2:#0e141d; --line:#1f2a3a;
+    --ink:#e8eef6; --dim:#8496ab; --hud:#f5b13d; --hud-soft:#2a2312;
+    --long:#33c46a; --short:#ff5b5b; --shadow:0 8px 30px rgba(0,0,0,.35);
+    --display:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --ground:#e8ecf1; --panel:#ffffff; --panel2:#f3f6fa; --line:#d6dde7;
+      --ink:#16202c; --dim:#5a6b7d; --hud:#a9670f; --hud-soft:#f6ecd7;
+      --long:#178a4c; --short:#c93a3a; --shadow:0 6px 22px rgba(20,30,45,.10); }
+  }
+  :root[data-theme="dark"]{ --ground:#0a0e14; --panel:#121924; --panel2:#0e141d; --line:#1f2a3a;
+    --ink:#e8eef6; --dim:#8496ab; --hud:#f5b13d; --hud-soft:#2a2312; --long:#33c46a; --short:#ff5b5b; --shadow:0 8px 30px rgba(0,0,0,.35); }
+  :root[data-theme="light"]{ --ground:#e8ecf1; --panel:#ffffff; --panel2:#f3f6fa; --line:#d6dde7;
+    --ink:#16202c; --dim:#5a6b7d; --hud:#a9670f; --hud-soft:#f6ecd7; --long:#178a4c; --short:#c93a3a; --shadow:0 6px 22px rgba(20,30,45,.10); }
+  *{ box-sizing:border-box; } html,body{ margin:0; }
+  body{ background:var(--ground); color:var(--ink); font-family:var(--display); font-size:15px; line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(1200px 500px at 50% -10%, rgba(245,177,61,.06), transparent 60%); }
+  .mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  .wrap{ max-width:900px; margin:0 auto; padding:16px 16px 48px; }
+  .bar{ display:flex; align-items:center; justify-content:space-between; padding:10px 2px 18px; gap:12px; }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .mark{ width:30px; height:30px; border-radius:7px; background:linear-gradient(150deg,#1b2636,#0d1420);
+    border:1px solid var(--line); display:grid; place-items:center; flex:none; position:relative; }
+  .mark::before{ content:""; width:13px; height:13px; border-radius:50%; border:2px solid var(--hud); box-shadow:0 0 10px rgba(245,177,61,.5); }
+  .bname{ font-weight:800; letter-spacing:.02em; font-size:16px; }
+  .btag{ font-size:11px; color:var(--dim); letter-spacing:.14em; text-transform:uppercase; }
+  a.btn{ text-decoration:none; background:var(--panel); color:var(--dim); border:1px solid var(--line);
+    border-radius:8px; padding:7px 12px; font-size:13px; }
+  a.btn:hover{ color:var(--ink); }
+
+  .hero{ border:1px solid var(--line); border-radius:16px; background:linear-gradient(180deg,var(--panel),var(--panel2));
+    padding:22px 22px 20px; box-shadow:var(--shadow); margin-bottom:16px; }
+  .hero h1{ margin:0 0 6px; font-size:26px; letter-spacing:-.01em; text-wrap:balance; }
+  .hero p{ margin:0; color:var(--dim); max-width:64ch; line-height:1.55; }
+  .legend{ display:flex; gap:8px 14px; flex-wrap:wrap; margin-top:16px; font-size:12px; color:var(--dim); }
+  .legend .badge{ margin-right:5px; }
+  .counts{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  .stat{ flex:1; min-width:120px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+  .stat .n{ font-size:24px; font-weight:800; } .stat .l{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); }
+
+  h2{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); margin:24px 4px 10px; }
+  .badge{ display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:999px;
+    font-size:11px; font-weight:800; letter-spacing:.05em; border:1px solid transparent; }
+  .badge.LIVE{ color:var(--long); background:color-mix(in srgb,var(--long) 15%,transparent); border-color:color-mix(in srgb,var(--long) 40%,transparent); }
+  .badge.BACKTESTING{ color:var(--hud); background:var(--hud-soft); border-color:color-mix(in srgb,var(--hud) 40%,transparent); }
+  .badge.PLANNED{ color:var(--dim); background:color-mix(in srgb,var(--dim) 12%,transparent); border-color:var(--line); }
+  .badge.active{ color:var(--long); background:color-mix(in srgb,var(--long) 15%,transparent); border-color:color-mix(in srgb,var(--long) 40%,transparent); }
+  .badge.planned{ color:var(--dim); background:color-mix(in srgb,var(--dim) 12%,transparent); border-color:var(--line); }
+
+  .markets{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:640px){ .markets{ grid-template-columns:1fr; } }
+  .mcard{ border:1px solid var(--line); border-radius:12px; background:var(--panel); padding:13px 15px; box-shadow:var(--shadow); }
+  .mcard .top{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .mcard .name{ font-weight:700; } .mcard .note{ color:var(--dim); font-size:12.5px; margin-top:6px; line-height:1.5; }
+
+  .rows{ display:flex; flex-direction:column; gap:10px; }
+  .srow{ border:1px solid var(--line); border-radius:12px; background:var(--panel); box-shadow:var(--shadow);
+    padding:14px 16px; display:grid; grid-template-columns:1fr auto; gap:6px 12px; align-items:start; }
+  .srow .name{ font-size:16px; font-weight:700; }
+  .srow .meta{ color:var(--dim); font-size:12px; margin-top:2px; }
+  .srow .blurb{ color:var(--dim); font-size:13px; margin-top:7px; line-height:1.5; grid-column:1 / -1; }
+  .srow .right{ text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
+  .rec{ font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:13px; color:var(--dim); }
+  .rec .win{ color:var(--long); } .rec .loss{ color:var(--short); }
+
+  .foot{ color:var(--dim); font-size:12px; text-align:center; margin-top:22px; line-height:1.6; }
+  .disc{ color:var(--dim); font-size:11.5px; text-align:center; max-width:640px; margin:12px auto 0; line-height:1.6; }
+  .disc b{ color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand"><div class="mark" aria-hidden="true"></div>
+      <div><div class="bname">Strategies &amp; Coverage</div><div class="btag">NQ Live Co-Pilot</div></div></div>
+    <a class="btn" href="/">← Live dashboard</a>
+  </div>
+
+  <div class="hero">
+    <h1>What's covered, and what's proven</h1>
+    <p>Every strategy earns its status from data, never from a marketing claim.
+      A strategy only reads <b>LIVE</b> once it has enough resolved trades
+      <em>and</em> beats break-even. Until then it's honestly labeled
+      <b>Backtesting</b> or <b>Planned</b>. This is the validation engine, in the open.</p>
+    <div class="counts" id="counts"></div>
+    <div class="legend">
+      <span><span class="badge LIVE">LIVE</span> validated edge (earned by data)</span>
+      <span><span class="badge BACKTESTING">BACKTESTING</span> built, collecting outcomes</span>
+      <span><span class="badge PLANNED">PLANNED</span> on the roadmap</span>
+    </div>
+  </div>
+
+  <h2>Market Coverage</h2>
+  <div class="markets" id="markets"></div>
+
+  <h2>Strategies</h2>
+  <div class="rows" id="strategies"></div>
+
+  <div class="foot" id="foot">Loading…</div>
+  <div class="disc"><b>For educational and informational purposes only — not
+    financial advice.</b> Status reflects internal validation, not a promise of
+    future results. Trading involves substantial risk of loss.</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const CATALOG_DEMO={
+  counts:{LIVE:0,BACKTESTING:6,PLANNED:4}, thresholds:{min_n:40,min_wr:52},
+  markets:[
+    {name:"NASDAQ futures (NQ/MNQ)",status:"active",note:"Live proxy feed today. The built strategies run here."},
+    {name:"S&P futures (ES/MES)",status:"planned",note:"Same engine, different instrument + point values."},
+    {name:"US stocks (Robinhood-style)",status:"planned",note:"Needs per-symbol feed + share-based sizing."},
+    {name:"Crypto (BTC/ETH)",status:"planned",note:"24/7 feed; volatility-scaled setups."}
+  ],
+  strategies:[
+    {key:"Trend Continuation",market:"NASDAQ futures",style:"Momentum / with-trend",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Joins a strong trend on a fresh breakout instead of fading it.",data_note:"collecting data",record:null},
+    {key:"EMA Pullback",market:"NASDAQ futures",style:"Trend pullback",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Buys the dip to the 9EMA in an uptrend (mirror for shorts).",data_note:"collecting data",record:null},
+    {key:"VWAP Bounce",market:"NASDAQ futures",style:"Mean reversion",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Fades an extension back toward session VWAP, trend-aligned.",data_note:"collecting data",record:null},
+    {key:"RSI Oversold + Support",market:"NASDAQ futures",style:"Reversal",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Deep RSI washout at support — capitulation bounce.",data_note:"collecting data",record:null},
+    {key:"MACD Bullish Cross",market:"NASDAQ futures",style:"Momentum",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Fresh MACD cross near the zero line in the trend direction.",data_note:"collecting data",record:null},
+    {key:"Bollinger Squeeze",market:"NASDAQ futures",style:"Volatility breakout",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Tight-band compression resolving into a directional break.",data_note:"collecting data",record:null},
+    {key:"Opening Range Breakout",market:"NASDAQ futures",style:"Breakout",timeframe:"5m",status:"PLANNED",blurb:"First-15-min range break. Backtester exists; not live-wired.",data_note:"roadmap — not built",record:null},
+    {key:"Swing Trend (daily)",market:"S&P futures",style:"Multi-day trend",timeframe:"1h/1d",status:"PLANNED",blurb:"Higher-timeframe trend rides. Needs daily-bar engine.",data_note:"roadmap — not built",record:null},
+    {key:"Gap & Go",market:"US stocks",style:"Momentum",timeframe:"1m/5m",status:"PLANNED",blurb:"Pre-market gap continuation. Needs per-symbol stock feed.",data_note:"roadmap — not built",record:null},
+    {key:"Mean Reversion (RSI2)",market:"US stocks",style:"Mean reversion",timeframe:"1d",status:"PLANNED",blurb:"Classic short-term reversion on oversold pullbacks.",data_note:"roadmap — not built",record:null}
+  ]
+};
+
+function render(d, demo){
+  const c=d.counts;
+  $('counts').innerHTML=[['LIVE',c.LIVE],['BACKTESTING',c.BACKTESTING],['PLANNED',c.PLANNED]]
+    .map(([l,n])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
+  $('markets').innerHTML=d.markets.map(m=>
+    `<div class="mcard"><div class="top"><span class="name">${m.name}</span>
+      <span class="badge ${m.status}">${m.status==='active'?'ACTIVE':'PLANNED'}</span></div>
+      <div class="note">${m.note}</div></div>`).join('');
+  $('strategies').innerHTML=d.strategies.map(s=>{
+    let rec='';
+    if(s.record){ rec=`<span class="rec"><span class="win">${s.record.win}</span>–<span class="loss">${s.record.loss}</span> · ${s.record.wr}% · n=${s.record.n}</span>`; }
+    else rec=`<span class="rec">${s.data_note}</span>`;
+    return `<div class="srow">
+      <div><div class="name">${s.key}</div>
+        <div class="meta">${s.market} · ${s.style} · ${s.timeframe}</div></div>
+      <div class="right"><span class="badge ${s.status}">${s.status}</span>${rec}</div>
+      <div class="blurb">${s.blurb}</div></div>`;
+  }).join('');
+  const t=d.thresholds||{min_n:40,min_wr:52};
+  $('foot').innerHTML=`A strategy is promoted to <b style="color:var(--long)">LIVE</b> only after ≥ ${t.min_n} resolved trades at ≥ ${t.min_wr}% win rate.`
+    +(demo?' &nbsp;·&nbsp; <span style="color:var(--hud)">preview · sample data</span>':'');
+}
+
+(async()=>{
+  try{
+    const r=await fetch('/api/catalog',{cache:'no-store'});
+    if(!r.ok) throw 0;
+    const d=await r.json();
+    if(d.error) throw 0;
+    render(d,false);
+  }catch(e){ render(CATALOG_DEMO,true); }
+})();
+</script>
+</body>
+</html>
