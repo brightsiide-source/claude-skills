@@ -72,6 +72,12 @@
   .srow .right{ text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
   .rec{ font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:13px; color:var(--dim); }
   .rec .win{ color:var(--long); } .rec .loss{ color:var(--short); }
+  .bt{ grid-column:1 / -1; margin-top:8px; display:flex; gap:8px 16px; flex-wrap:wrap;
+    padding:9px 11px; background:var(--panel2); border:1px solid var(--line); border-radius:9px;
+    font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:12.5px; }
+  .bt .lbl{ color:var(--dim); font-size:10px; letter-spacing:.06em; text-transform:uppercase; display:block; }
+  .bt .pos{ color:var(--long); } .bt .neg{ color:var(--short); }
+  .bt-tag{ font-size:10px; color:var(--dim); font-family:var(--display); align-self:center; }
 
   .foot{ color:var(--dim); font-size:12px; text-align:center; margin-top:22px; line-height:1.6; }
   .disc{ color:var(--dim); font-size:11.5px; text-align:center; max-width:640px; margin:12px auto 0; line-height:1.6; }
@@ -129,10 +135,10 @@ const CATALOG_DEMO={
     {key:"RSI Oversold + Support",market:"NASDAQ futures",style:"Reversal",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Deep RSI washout at support — capitulation bounce.",data_note:"collecting data",record:null},
     {key:"MACD Bullish Cross",market:"NASDAQ futures",style:"Momentum",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Fresh MACD cross near the zero line in the trend direction.",data_note:"collecting data",record:null},
     {key:"Bollinger Squeeze",market:"NASDAQ futures",style:"Volatility breakout",timeframe:"1m/5m",status:"BACKTESTING",blurb:"Tight-band compression resolving into a directional break.",data_note:"collecting data",record:null},
-    {key:"Opening Range Breakout",market:"NASDAQ futures",style:"Breakout",timeframe:"5m",status:"PLANNED",blurb:"First-15-min range break. Backtester exists; not live-wired.",data_note:"roadmap — not built",record:null},
-    {key:"Swing Trend (daily)",market:"S&P futures",style:"Multi-day trend",timeframe:"1h/1d",status:"PLANNED",blurb:"Higher-timeframe trend rides. Needs daily-bar engine.",data_note:"roadmap — not built",record:null},
-    {key:"Gap & Go",market:"US stocks",style:"Momentum",timeframe:"1m/5m",status:"PLANNED",blurb:"Pre-market gap continuation. Needs per-symbol stock feed.",data_note:"roadmap — not built",record:null},
-    {key:"Mean Reversion (RSI2)",market:"US stocks",style:"Mean reversion",timeframe:"1d",status:"PLANNED",blurb:"Classic short-term reversion on oversold pullbacks.",data_note:"roadmap — not built",record:null}
+    {key:"Opening Range Breakout",market:"NASDAQ futures",style:"Breakout",timeframe:"5m",status:"PLANNED",blurb:"First-15-min range break. Backtester exists; not live-wired.",data_note:"roadmap — not built",record:null,backtest_result:null},
+    {key:"Swing Trend (daily)",market:"US stocks",style:"Multi-day trend",timeframe:"1d",status:"PLANNED",blurb:"20/50 SMA trend rides. Backtestable over years of history.",data_note:"backtest: +18.8% CAGR",record:null,backtest_result:{avg_cagr:18.8,avg_vs_bh:-2.9,symbols:3,runs:3}},
+    {key:"Momentum (12-month)",market:"US stocks",style:"Time-series momentum",timeframe:"1d",status:"PLANNED",blurb:"Hold while 12-month return is positive and above the 200SMA.",data_note:"backtest: +12.8% CAGR",record:null,backtest_result:{avg_cagr:12.8,avg_vs_bh:1.4,symbols:2,runs:2}},
+    {key:"Mean Reversion (RSI2)",market:"US stocks",style:"Mean reversion",timeframe:"1d",status:"PLANNED",blurb:"Connors RSI(2) oversold dips above the 200SMA.",data_note:"roadmap — backtest it to populate",record:null,backtest_result:null}
   ]
 };
 
@@ -148,11 +154,23 @@ function render(d, demo){
     let rec='';
     if(s.record){ rec=`<span class="rec"><span class="win">${s.record.win}</span>–<span class="loss">${s.record.loss}</span> · ${s.record.wr}% · n=${s.record.n}</span>`; }
     else rec=`<span class="rec">${s.data_note}</span>`;
+    // historical backtest block (daily/swing stock strategies)
+    let bt='';
+    const b=s.backtest_result;
+    if(b){
+      const cagrC=b.avg_cagr>=0?'pos':'neg', vsC=b.avg_vs_bh>=0?'pos':'neg';
+      bt=`<div class="bt">
+        <div><span class="lbl">Avg CAGR</span><span class="${cagrC}">${b.avg_cagr>=0?'+':''}${b.avg_cagr}%</span></div>
+        <div><span class="lbl">vs Buy&amp;Hold</span><span class="${vsC}">${b.avg_vs_bh>=0?'+':''}${b.avg_vs_bh}%</span></div>
+        <div><span class="lbl">Symbols</span><span>${b.symbols}</span></div>
+        <span class="bt-tag">${b.runs} backtest run${b.runs===1?'':'s'}, daily bars</span>
+      </div>`;
+    }
     return `<div class="srow">
       <div><div class="name">${s.key}</div>
         <div class="meta">${s.market} · ${s.style} · ${s.timeframe}</div></div>
       <div class="right"><span class="badge ${s.status}">${s.status}</span>${rec}</div>
-      <div class="blurb">${s.blurb}</div></div>`;
+      <div class="blurb">${s.blurb}</div>${bt}</div>`;
   }).join('');
   const t=d.thresholds||{min_n:40,min_wr:52};
   $('foot').innerHTML=`A strategy is promoted to <b style="color:var(--long)">LIVE</b> only after ≥ ${t.min_n} resolved trades at ≥ ${t.min_wr}% win rate.`

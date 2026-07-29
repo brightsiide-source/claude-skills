@@ -35,6 +35,8 @@ from alpaca_api import AlpacaREST
 from technical_analyzer import calc_sma, calc_rsi
 
 COST = 0.0005  # 5 bps per side (slippage + commission approximation)
+RESULTS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "..", "assets", "backtests", "backtest-results.jsonl")
 
 
 # ---- Strategies: given closes + index + current position, return target ----
@@ -69,7 +71,32 @@ def strat_rsi2(closes, i, pos):
         return 1
 
 
-STRATEGIES = {"sma_cross": strat_sma_cross, "rsi2": strat_rsi2}
+def strat_donchian(closes, i, pos, entry_n=20, exit_n=10):
+    """Turtle-style breakout: buy an N-day high, exit on an M-day low."""
+    if i < entry_n:
+        return 0
+    if pos == 0:
+        return 1 if closes[i] >= max(closes[i - entry_n + 1:i + 1]) else 0
+    return 0 if closes[i] <= min(closes[i - exit_n + 1:i + 1]) else 1
+
+
+def strat_momentum(closes, i, pos, lookback=252):
+    """Time-series momentum: hold while the 12-month return is positive and
+    price is above its 200-day average; step aside otherwise."""
+    if i < lookback:
+        return 0
+    mom = closes[i] / closes[i - lookback] - 1
+    sma200 = sum(closes[i - 199:i + 1]) / 200
+    ok = mom > 0 and closes[i] > sma200
+    return 1 if ok else 0
+
+
+STRATEGIES = {
+    "sma_cross": strat_sma_cross,
+    "rsi2": strat_rsi2,
+    "donchian": strat_donchian,
+    "momentum": strat_momentum,
+}
 
 
 # ---- Simulation ----
@@ -221,6 +248,9 @@ def main():
     p.add_argument("--strategy", choices=list(STRATEGIES), default="sma_cross")
     p.add_argument("--capital", type=float, default=10000)
     p.add_argument("--format", choices=["text", "json"], default="text")
+    p.add_argument("--save", action="store_true",
+                   help="Append the result to the shared backtest log the "
+                        "catalog reads (assets/backtests/backtest-results.jsonl)")
     args = p.parse_args()
 
     cfg = load_config(args.config)
@@ -233,6 +263,19 @@ def main():
 
     sim = simulate(bars, STRATEGIES[args.strategy], args.capital)
     stats = analyze(sim, args.years)
+
+    if args.save:
+        from datetime import datetime
+        rec = {"symbol": args.symbol.upper(), "strategy": args.strategy,
+               "years": args.years, "bars": len(bars), "stats": stats,
+               "ts": datetime.utcnow().isoformat() + "Z"}
+        try:
+            os.makedirs(os.path.dirname(RESULTS_PATH), exist_ok=True)
+            with open(RESULTS_PATH, "a") as f:
+                f.write(json.dumps(rec) + "\n")
+            print(f"(saved to {os.path.relpath(RESULTS_PATH)})", file=sys.stderr)
+        except Exception as e:
+            print(f"(could not save: {e})", file=sys.stderr)
 
     if args.format == "json":
         print(json.dumps({"symbol": args.symbol.upper(), "strategy": args.strategy,
