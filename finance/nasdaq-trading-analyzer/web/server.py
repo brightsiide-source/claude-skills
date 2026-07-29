@@ -32,6 +32,7 @@ from engine import WebEngine  # noqa: E402
 _ENGINE = None
 _WEB_DIR = os.path.dirname(os.path.abspath(__file__))
 _HTML_PATH = os.path.join(_WEB_DIR, "dashboard.html")
+_LANDING_HTML = os.path.join(_WEB_DIR, "landing.html")
 _CATALOG_HTML = os.path.join(_WEB_DIR, "catalog.html")
 _DATA_DIR = os.path.join(_WEB_DIR, "..", "assets", "trade-logs")
 _OUTCOMES = os.path.join(_DATA_DIR, "alert-outcomes.jsonl")
@@ -74,8 +75,10 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, json.dumps(self._signup_stats()).encode("utf-8"))
         elif self.path.startswith("/catalog"):
             self._serve_file(_CATALOG_HTML)
-        elif self.path in ("/", "/index.html", "/dashboard.html"):
+        elif self.path.startswith("/app") or self.path == "/dashboard.html":
             self._serve_file(_HTML_PATH)
+        elif self.path in ("/", "/index.html"):
+            self._serve_file(_LANDING_HTML)
         elif self.path == "/health":
             self._send(200, b'{"ok":true}')
         else:

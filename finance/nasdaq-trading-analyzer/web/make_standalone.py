@@ -30,7 +30,7 @@ NEEDED_SCRIPTS = [
 ]
 WEB_FILES = [
     "server.py", "engine.py", "profiles.py", "catalog.py",
-    "dashboard.html", "catalog.html",
+    "landing.html", "dashboard.html", "catalog.html",
 ]
 
 REQUIREMENTS = "websocket-client>=1.6\n"
