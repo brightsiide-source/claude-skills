@@ -321,6 +321,8 @@
         <select id="fInstrument">
           <option value="NQ">NQ — E-mini Nasdaq ($20/pt)</option>
           <option value="MNQ">MNQ — Micro Nasdaq ($2/pt)</option>
+          <option value="ES">ES — E-mini S&amp;P ($50/pt)</option>
+          <option value="MES">MES — Micro S&amp;P ($5/pt)</option>
         </select>
       </label>
 
@@ -428,7 +430,7 @@ let lastGood=null, hasLive=false;   // hold last live snapshot through a blip
 const $=id=>document.getElementById(id);
 
 // ---- per-visitor account settings (localStorage, no login) ----
-const POINT_VALUE={NQ:20, MNQ:2};
+const POINT_VALUE={NQ:20, MNQ:2, ES:50, MES:5};
 const DEFAULT_SETTINGS={type:"prop", balance:50000, drawdown:2500,
   riskModel:"dd_pct", riskValue:15, instrument:"NQ", goal:0};
 function loadSettings(){

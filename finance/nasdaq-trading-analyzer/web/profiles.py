@@ -60,6 +60,34 @@ PROFILES = {
 DEFAULT = "scalper"
 
 
+# ---- Markets ----------------------------------------------------------
+# A market = a live proxy symbol + the futures instrument it maps to. The
+# same scalping engine runs on any of these; only the symbol, index
+# reference and point value change. `live` markets can stream today; the
+# rest are on the roadmap. Note: Alpaca's free data plan allows one live
+# stream, so serving several live markets at once means subscribing to all
+# their proxy symbols on a single connection (multi-symbol engine).
+MARKETS = {
+    "nasdaq": {"label": "NASDAQ futures (NQ/MNQ)", "proxy": "TQQQ",
+               "instrument": "NQ", "index_ref": 25000, "leverage": 3, "live": True},
+    "sp500": {"label": "S&P 500 futures (ES/MES)", "proxy": "SPXL",
+              "instrument": "ES", "index_ref": 6000, "leverage": 3, "live": True},
+    "crypto": {"label": "Crypto (BTC/ETH)", "proxy": "BTC/USD",
+               "instrument": "BTC", "index_ref": 0, "leverage": 1, "live": False},
+    "stocks": {"label": "US stocks (pick a symbol)", "proxy": None,
+               "instrument": "shares", "index_ref": 0, "leverage": 1, "live": False},
+}
+
+
+def live_markets():
+    """Markets that can stream today (share one Alpaca connection)."""
+    return {k: v for k, v in MARKETS.items() if v.get("live")}
+
+
+def get_market(name):
+    return MARKETS.get((name or "").lower(), MARKETS["nasdaq"])
+
+
 def get_profile(name):
     """Return a profile dict by name, falling back to the default."""
     return PROFILES.get((name or "").lower(), PROFILES[DEFAULT])
