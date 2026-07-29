@@ -5,31 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NQ Live Co-Pilot</title>
 <style>
+  /* Futuristic dark palette — matches the landing page. Committed dark so it
+     always looks the part regardless of the viewer's OS theme. */
   :root{
-    --ground:#0a0e14; --panel:#121924; --panel2:#0e141d; --line:#1f2a3a;
-    --ink:#e8eef6; --dim:#8496ab; --hud:#f5b13d; --hud-soft:#2a2312;
-    --long:#33c46a; --short:#ff5b5b; --warn:#f5b13d; --ok:#33c46a;
-    --shadow:0 8px 30px rgba(0,0,0,.35);
+    --ground:#070a12; --panel:#0e1422; --panel2:#111a2c; --line:#1b2740;
+    --ink:#eaf0fb; --dim:#8b98b2; --faint:#5c6a86;
+    --b1:#5b7cfa; --b2:#22d3ee;
+    --hud:#22d3ee; --hud-soft:#0f2a3d;          /* accent = cyan */
+    --long:#34d399; --short:#fb6a6a; --warn:#f5b13d; --ok:#34d399;
+    --grad:linear-gradient(96deg,#5b7cfa,#22d3ee);
+    --shadow:0 30px 70px -30px rgba(0,0,0,.75);
     --display:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,Consolas,monospace;
   }
-  @media (prefers-color-scheme: light){
-    :root{ --ground:#e8ecf1; --panel:#ffffff; --panel2:#f3f6fa; --line:#d6dde7;
-      --ink:#16202c; --dim:#5a6b7d; --hud:#a9670f; --hud-soft:#f6ecd7;
-      --long:#178a4c; --short:#c93a3a; --shadow:0 6px 22px rgba(20,30,45,.10); }
-  }
-  :root[data-theme="dark"]{ --ground:#0a0e14; --panel:#121924; --panel2:#0e141d; --line:#1f2a3a;
-    --ink:#e8eef6; --dim:#8496ab; --hud:#f5b13d; --hud-soft:#2a2312;
-    --long:#33c46a; --short:#ff5b5b; --shadow:0 8px 30px rgba(0,0,0,.35); }
-  :root[data-theme="light"]{ --ground:#e8ecf1; --panel:#ffffff; --panel2:#f3f6fa; --line:#d6dde7;
-    --ink:#16202c; --dim:#5a6b7d; --hud:#a9670f; --hud-soft:#f6ecd7;
-    --long:#178a4c; --short:#c93a3a; --shadow:0 6px 22px rgba(20,30,45,.10); }
 
   *{ box-sizing:border-box; }
   html,body{ margin:0; }
   body{ background:var(--ground); color:var(--ink); font-family:var(--display);
     font-size:15px; line-height:1.45; -webkit-font-smoothing:antialiased;
-    background-image:radial-gradient(1200px 500px at 50% -10%, rgba(245,177,61,.06), transparent 60%); }
+    background-image:
+      radial-gradient(900px 480px at 82% -6%, rgba(34,211,238,.09), transparent 55%),
+      radial-gradient(1000px 560px at 8% 2%, rgba(91,124,250,.11), transparent 55%);
+    background-repeat:no-repeat; background-attachment:fixed; }
+  .grad{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
   .wrap{ max-width:840px; margin:0 auto; padding:16px 16px 40px; }
 
@@ -37,12 +35,11 @@
   .bar{ display:flex; align-items:center; justify-content:space-between; gap:12px;
     padding:10px 2px 16px; }
   .brand{ display:flex; align-items:center; gap:10px; }
-  .mark{ width:30px; height:30px; border-radius:7px; position:relative; flex:none;
-    background:linear-gradient(150deg,#1b2636,#0d1420); border:1px solid var(--line);
+  .mark{ width:30px; height:30px; border-radius:8px; position:relative; flex:none;
+    background:linear-gradient(150deg,#182848,#0b1220); border:1px solid var(--line);
     display:grid; place-items:center; }
-  .mark::before{ content:""; width:13px; height:13px; border-radius:50%;
-    border:2px solid var(--hud); box-shadow:0 0 10px rgba(245,177,61,.5); }
-  .mark::after{ content:""; position:absolute; width:22px; height:1.5px; background:var(--hud); opacity:.5; }
+  .mark::before{ content:""; width:12px; height:12px; border-radius:50%;
+    border:2px solid var(--b2); box-shadow:0 0 10px rgba(34,211,238,.6); }
   .bname{ font-weight:800; letter-spacing:.02em; font-size:16px; }
   .btag{ font-size:11px; color:var(--dim); letter-spacing:.14em; text-transform:uppercase; }
   .ctrls{ display:flex; align-items:center; gap:8px; }
@@ -62,7 +59,8 @@
   .hud-top{ display:flex; align-items:flex-end; justify-content:space-between;
     gap:16px; padding:18px 20px 14px; flex-wrap:wrap; }
   .sym{ font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); }
-  .price{ font-size:46px; font-weight:800; line-height:1; letter-spacing:-.01em; }
+  .price{ font-size:46px; font-weight:800; line-height:1; letter-spacing:-.01em;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .price small{ font-size:15px; color:var(--dim); font-weight:600; margin-left:8px; }
   .state-line{ text-align:right; }
   .pill{ display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px;
@@ -87,7 +85,9 @@
   .b-news .bdot{ background:var(--short); }
 
   /* signal card */
-  .signal{ border:1px solid var(--line); border-radius:16px; background:var(--panel);
+  .signal.LONG{ box-shadow:0 0 0 1px rgba(52,211,153,.2), 0 24px 60px -36px rgba(52,211,153,.5); }
+  .signal.SHORT{ box-shadow:0 0 0 1px rgba(251,106,106,.2), 0 24px 60px -36px rgba(251,106,106,.5); }
+  .signal{ border:1px solid var(--line); border-radius:18px; background:var(--panel);
     box-shadow:var(--shadow); margin-bottom:14px; overflow:hidden; position:relative; }
   .signal::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--dim); }
   .signal.LONG::before{ background:var(--long); }
@@ -98,7 +98,8 @@
   .sig-dir{ font-weight:800; }
   .sig-dir.LONG{ color:var(--long); } .sig-dir.SHORT{ color:var(--short); }
   .score-badge{ display:flex; flex-direction:column; align-items:flex-end; line-height:1; }
-  .score-num{ font-size:30px; font-weight:900; }
+  .score-num{ font-size:30px; font-weight:900;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .score-grade{ font-size:11px; letter-spacing:.1em; color:var(--hud); font-weight:800; }
   .legs{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
   .leg{ background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:9px 11px; }
@@ -161,9 +162,9 @@
   .fld input,.fld select{ background:var(--panel2); border:1px solid var(--line); color:var(--ink);
     border-radius:9px; padding:10px 11px; font:inherit; font-size:15px; }
   .fld input:focus,.fld select:focus{ outline:2px solid var(--hud); outline-offset:1px; }
-  .btn.primary{ width:100%; background:var(--hud); color:#1a1206; border-color:var(--hud);
+  .btn.primary{ width:100%; background:var(--grad); color:#06101f; border-color:transparent;
     font-weight:800; padding:11px; font-size:15px; margin-top:4px; }
-  .btn.primary:hover{ filter:brightness(1.05); color:#1a1206; }
+  .btn.primary:hover{ filter:brightness(1.06); color:#06101f; }
 
   /* onboarding */
   .onb{ position:fixed; inset:0; background:var(--ground); z-index:80; overflow:auto;
@@ -280,7 +281,6 @@
       <a class="btn" href="/catalog" title="Strategies & coverage" style="text-decoration:none">Strategies</a>
       <button class="btn" id="acct" title="Your account & goals">⚙ Account</button>
       <button class="btn" id="snd" title="Toggle alert sound">🔔 on</button>
-      <button class="btn" id="thm" title="Toggle theme">◐</button>
     </div>
   </div>
 
@@ -552,9 +552,6 @@ const grade=s=>s>=90?'A+':s>=75?'A':s>=60?'B+':s>=50?'B':'C';
 
 $('snd').onclick=()=>{ soundOn=!soundOn; $('snd').textContent='🔔 '+(soundOn?'on':'off');
   if(soundOn&&!actx) actx=new (window.AudioContext||window.webkitAudioContext)(); };
-$('thm').onclick=()=>{ const r=document.documentElement;
-  const cur=r.getAttribute('data-theme')|| (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-  r.setAttribute('data-theme', cur==='dark'?'light':'dark'); };
 
 function beep(n){ if(!soundOn) return; if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)();
   for(let i=0;i<n;i++){ const o=actx.createOscillator(),g=actx.createGain();
