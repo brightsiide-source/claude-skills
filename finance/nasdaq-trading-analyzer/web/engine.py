@@ -163,7 +163,7 @@ class WebEngine:
         self._thread = threading.Thread(target=self.connector.run, daemon=True)
         self._thread.start()
 
-    def get_state(self):
+    def get_state(self, market=None):   # market ignored (single-market fallback)
         return self.state_dashboard.get_state()
 
 

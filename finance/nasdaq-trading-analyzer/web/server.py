@@ -62,7 +62,11 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path.startswith("/api/state"):
-            state = _ENGINE.get_state() if _ENGINE else {"status": "no-engine"}
+            market = None
+            if "?" in self.path:
+                from urllib.parse import parse_qs, urlparse
+                market = parse_qs(urlparse(self.path).query).get("market", [None])[0]
+            state = _ENGINE.get_state(market) if _ENGINE else {"status": "no-engine"}
             self._send(200, json.dumps(state).encode("utf-8"))
         elif self.path.startswith("/api/catalog"):
             try:
@@ -199,11 +203,18 @@ def main():
         scalp = dict(prof["scalp"])
         scalp["nq_ref"] = cfg.get("nq_reference_price", args.nq_ref)
 
-    _ENGINE = WebEngine(cfg, min_score=min_score, scalp=scalp)
-    _ENGINE.state_dashboard.meta = {
-        "profile": args.profile, "profile_label": prof.get("label", args.profile),
-        "asset_class": prof.get("asset_class", "futures"),
-    }
+    # Multi-market engine: polls every live market (NASDAQ, S&P, ...) on one
+    # shared Alpaca connection. Falls back to single-market on any import error.
+    try:
+        from multi_engine import MultiMarketEngine
+        _ENGINE = MultiMarketEngine(cfg, min_score=min_score)
+    except Exception as e:
+        print(f"  (multi-market unavailable, single-market fallback: {e})")
+        _ENGINE = WebEngine(cfg, min_score=min_score, scalp=scalp)
+        _ENGINE.state_dashboard.meta = {
+            "profile": args.profile, "profile_label": prof.get("label", args.profile),
+            "asset_class": prof.get("asset_class", "futures"),
+        }
     _ENGINE.start()
 
     server = ThreadingHTTPServer((args.host, args.port), Handler)

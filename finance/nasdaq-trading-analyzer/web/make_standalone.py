@@ -29,7 +29,7 @@ NEEDED_SCRIPTS = [
     "track_record.py",
 ]
 WEB_FILES = [
-    "server.py", "engine.py", "profiles.py", "catalog.py",
+    "server.py", "engine.py", "multi_engine.py", "profiles.py", "catalog.py",
     "landing.html", "dashboard.html", "catalog.html",
 ]
 
