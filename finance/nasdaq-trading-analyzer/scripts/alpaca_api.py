@@ -98,7 +98,8 @@ class AlpacaREST:
         return self._request(f"{self.base_url}/v2/positions")
 
     def get_bars(self, symbol: str, timeframe: str = "1Min",
-                 limit: int = 200, days_back: int = 3) -> list:
+                 limit: int = 200, days_back: int = 3,
+                 adjustment: str = "raw") -> list:
         """Get historical bars.
 
         Args:
@@ -106,11 +107,16 @@ class AlpacaREST:
             timeframe: '1Min', '5Min', '15Min', '1Hour', '1Day'
             limit: number of bars (max 10000)
             days_back: how many calendar days back to look (default 3)
+            adjustment: 'raw' | 'split' | 'dividend' | 'all'. Use 'all' for
+                multi-year backtests so stock splits/dividends don't create
+                fake price cliffs. Intraday live use keeps 'raw' to match the
+                live quote.
         """
         from datetime import datetime, timedelta, timezone
         start = (datetime.now(timezone.utc) - timedelta(days=days_back)).strftime("%Y-%m-%dT%H:%M:%SZ")
         url = (f"{self.data_url}/v2/stocks/{symbol}/bars"
-               f"?timeframe={timeframe}&limit={limit}&start={start}&feed=iex")
+               f"?timeframe={timeframe}&limit={limit}&start={start}"
+               f"&adjustment={adjustment}&feed=iex")
         result = self._request(url)
         return result.get("bars", [])
 

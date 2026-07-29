@@ -187,7 +187,10 @@ def analyze(sim, years):
 
 def fetch_daily(rest, symbol, years):
     days = int(years * 365) + 5
-    bars_raw = rest.get_bars(symbol, timeframe="1Day", limit=10000, days_back=days)
+    # adjustment='all' -> split & dividend adjusted, so multi-year prices are
+    # continuous (no fake cliffs on split dates). Essential for correct backtests.
+    bars_raw = rest.get_bars(symbol, timeframe="1Day", limit=10000,
+                             days_back=days, adjustment="all")
     bars = []
     for b in bars_raw:
         c = float(b.get("c", b.get("close", 0)))
